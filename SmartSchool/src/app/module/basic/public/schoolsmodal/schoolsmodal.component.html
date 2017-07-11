@@ -1,0 +1,49 @@
+<h2 md-dialog-title>新增学校</h2>
+<md-dialog-content>
+	
+	<form #addForm="ngForm">
+		<!-- <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="8px" fxLayoutWrap fxFill>
+			<md-select placeholder="Favorite food" fxFlex="30">
+			<md-option *ngFor="let food of foods" [value]="food.value">
+				{{ food.viewValue }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="Favorite food" fxFlex="30">
+			<md-option *ngFor="let food of foods" [value]="food.value">
+				{{ food.viewValue }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="Favorite food" fxFlex="30">
+			<md-option *ngFor="let food of foods" [value]="food.value">
+				{{ food.viewValue }}
+			</md-option>
+		</md-select>
+		</div> -->
+
+		<div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="8px" fxLayoutWrap fxFill>
+			<md-input-container fxFlex="30">
+		      <input mdInput placeholder="学校名称" name="name"  required [(ngModel)]="data.name" #nameinput="ngModel" id="nameinput">
+		    </md-input-container>
+		    <md-input-container fxFlex="30">
+		      <input mdInput placeholder="学校电话" name="tel" required [(ngModel)]="data.tel">
+		    </md-input-container>
+		    <md-input-container fxFlex="30">
+		      <input mdInput placeholder="学校地址" name="address" required [(ngModel)]="data.address">
+		    </md-input-container>
+		</div>		
+
+	</form>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  
+ 	<button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+    >保存</button>
+
+	<button
+	md-button
+	color="primary"
+	md-dialog-close>关闭</button>
+</md-dialog-actions>

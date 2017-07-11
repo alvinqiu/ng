@@ -1,0 +1,75 @@
+
+<md-toolbar id="app-nav" class="slide-in-down" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+	<div fxFlex="1 1 auto">
+		<button md-button [mdMenuTriggerFor]="topMenu">SmartSchool智慧校园系统<md-icon>more_vert</md-icon></button>
+		<md-menu #topMenu="mdMenu">
+		  <a md-menu-item routerLink="/app/homepage/">
+		  	<md-icon>home</md-icon>
+		    <span>首页</span>
+		  </a>
+		  <!-- <a md-menu-item>
+		    <span>学生管理系统</span>
+		  </a>
+		  <a  md-menu-item>
+		    <md-icon>notifications_off</md-icon>
+		    <span>人事管理系统</span>
+		  </a>
+		  <a  md-menu-item>
+		    <md-icon>notifications_off</md-icon>
+		    <span>学校信息管理</span>
+		  </a>
+		  <a  md-menu-item>
+		    <md-icon>notifications_off</md-icon>
+		    <span>教务管理系统</span>
+		  </a>
+		  <a  md-menu-item>
+		    <md-icon>notifications_off</md-icon>
+		    <span>校园智慧云盘</span>
+		  </a>
+		  <a  md-menu-item>
+		    <md-icon>notifications_off</md-icon>
+		    <span>账户设置</span>
+		  </a> -->
+		</md-menu>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="center center">
+		<img src="../assets/img/header.jpeg" alt="" class="avatar">
+	</div>
+</md-toolbar>
+<md-sidenav-container  class="container">
+  <md-sidenav #sidenav mode="side" opened="true" id="app-nav-list" class="slide-in-left">
+	<md-list>
+		<!-- <h3  md-subheader>基础数据管理</h3>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/schools">
+			<md-icon>school</md-icon>
+			<h4 md-line>学校信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/grades">
+			<md-icon>grade</md-icon>
+			<h4 md-line>年级信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/classes">
+			<md-icon>class</md-icon>
+			<h4 md-line>班级信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/subjects">
+			<md-icon>subject</md-icon>
+			<h4 md-line>课程信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/subjects">
+			<md-icon>subject</md-icon>
+			<h4 md-line>学生信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/subjects">
+			<md-icon>subject</md-icon>
+			<h4 md-line>教职工信息</h4>
+		</a>
+		<a md-list-item routerLinkActive="active" routerLink="app/basic/subjects">
+			<md-icon>subject</md-icon>
+			<h4 md-line>用户管理</h4>
+		</a>
+ -->
+	</md-list>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+</md-sidenav-container>

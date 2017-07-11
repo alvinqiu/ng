@@ -1,0 +1,6 @@
+{
+  "/hxwwz/rest/json": {
+    "target": "http://wxtest.hx168.com.cn",
+    "secure": false
+  }
+}

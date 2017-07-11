@@ -1,0 +1,63 @@
+<div class="container fall-in-x">
+    <h3>学科管理</h3>
+    <div class="td-search-container">
+    <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+    </td-search-box>
+    <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
+    <md-menu #topMenu="mdMenu">
+      <a  md-menu-item>
+        <md-icon>add</md-icon>
+        <span>新增</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>edit</md-icon>
+        <span>修改</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>delete</md-icon>
+        <span>删除</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>file_upload</md-icon>
+        <span>导出</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>file_download</md-icon>
+        <span>导入</span>
+      </a>
+    </md-menu>
+  </div>
+  <div class="divider"></div>
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <!-- <div>
+      tree
+    </div> -->
+    <div fxFlex="grow" fxLayout="column">
+      <td-data-table
+        #dataTable
+        [data]="basicData"
+        [columns]="columns"
+        [selectable]="true"
+        [multiple]="true"
+        [(ngModel)]="selectedRows"
+        (rowSelect)="selectEvent($event)"
+        >
+      </td-data-table>
+      <td-paging-bar 
+        #pagingBar 
+        [firstLast]="true" 
+        [pageSizeAll]="false" 
+        [pageSizes]="[10,20,50]"
+          pageLinkCount="5" 
+          [initialPage]="1" 
+          [pageSize]="100" 
+          [total]="1345" 
+          (change)="change($event)">
+        <span td-paging-bar-label>每页:</span>
+        {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+      </td-paging-bar>
+    </div>
+    
+  </div>
+  
+</div>

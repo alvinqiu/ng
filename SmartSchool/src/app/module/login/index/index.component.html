@@ -1,0 +1,31 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+	<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="48px" fxFlex="grow">
+		<md-card>
+			<form #LoginForm="ngForm" fxLayout="column" fxLayoutAlign="center center">
+				<h3>智慧校园管理系统</h3>
+				<md-input-container>
+					<span mdPrefix><md-icon>people_outline</md-icon></span>
+					<input id="username" type="text" mdInput placeholder="用户名" name="username">
+				</md-input-container>
+				<md-input-container>
+					<span mdPrefix><md-icon>lock_outline</md-icon></span>
+					<input id="password" type="password" mdInput placeholder="密码" name="password">
+				</md-input-container>
+				<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxFlexFill>
+					<button
+					fxFill
+				    md-raised-button
+				    color="primary"
+				    fxFlexFill
+				    >登陆</button>
+				    <button md-button fxFlexFill>忘记密码？</button>
+				</div>
+								
+			</form>
+		</md-card>
+	</div>
+	<div class="footer" fxLayout="row" fxLayoutAlign="center center" >
+		<md-icon>copyright</md-icon>2017 SmartSchool智慧校园管理系统
+	</div>
+	
+</div>

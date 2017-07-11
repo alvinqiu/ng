@@ -1,0 +1,41 @@
+<div class="container" fxLayout="row" fxLayoutAlign="start " fxFlexFill fxLayoutGap="48px">
+	<div class="container-tree">
+		tree
+	</div>
+	<div class="container-content" fxFlex="grow">
+		<md-toolbar color="primary">
+		    <button md-raised-button color="primary">新增</button>
+		    <button md-raised-button color="primary">修改</button>
+		    <button md-raised-button color="primary">删除</button>
+		    <span fxFlex="grow"></span>
+		    <md-input-container floatPlaceholder="never">
+		      <input mdInput placeholder="搜索" value="">
+		      <span mdSuffix><md-icon class="search">search</md-icon></span>
+		    </md-input-container>
+		  </md-toolbar>
+
+		  <td-data-table
+		    #dataTable
+		    [data]="basicData"
+		    [columns]="columns"
+		    [selectable]="true"
+		    [multiple]="true"
+		    [(ngModel)]="selectedRows"
+		    (rowSelect)="selectEvent($event)"
+		    >
+		  </td-data-table>
+		  <td-paging-bar 
+		    #pagingBar 
+		    [firstLast]="true" 
+		    [pageSizeAll]="false" 
+		    [pageSizes]="[10,20,50]"
+		      pageLinkCount="5" 
+		      [initialPage]="1" 
+		      [pageSize]="100" 
+		      [total]="1345" 
+		      (change)="change($event)">
+		    <span td-paging-bar-label>每页:</span>
+		    {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+		  </td-paging-bar>
+	</div>
+</div>

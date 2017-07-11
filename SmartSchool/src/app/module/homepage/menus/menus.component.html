@@ -1,0 +1,323 @@
+
+<div class="menus-container light-speed-in">
+	<div *ngFor="let item of Menu; let i = index;">
+		<md-chip-list >
+		  <md-chip class="title" color="primary" selected="true">
+				{{item.name}}
+		  </md-chip>
+		</md-chip-list>
+		<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap="16px" >
+			<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
+				<md-card >
+					<a md-button routerLink="{{child.url}}">
+						<md-icon>{{child.icon}}</md-icon>
+						<span>{{child.name}}</span>
+						<div>{{child.description}}</div>
+					</a>
+				</md-card>
+			</div>
+		</div>
+	</div>	
+</div>
+
+
+
+<!--   
+  <md-chip-list >
+	  <md-chip class="title" color="primary" selected="true">
+			基础信息管理
+	  </md-chip>
+  </md-chip-list>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" fxLayoutWrap >
+  	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>school</md-icon>
+	    </div>
+	    <md-card-title>学校管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>grade</md-icon>
+	    </div>
+	    <md-card-title>年级管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>class</md-icon>
+	    </div>
+	    <md-card-title>班级管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>subject</md-icon>
+	    </div>
+	    <md-card-title>学科管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card fxFlex="20">
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>people</md-icon>
+	    </div>
+	    <md-card-title>人事管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+  </div>
+
+   <md-chip-list >
+	  <md-chip class="title" color="primary" selected="true">
+			资源管理
+	  </md-chip>
+  </md-chip-list>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+  	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>cloud</md-icon>
+	    </div>
+	    <md-card-title>智慧云网盘</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>playlist_add_check</md-icon>
+	    </div>
+	    <md-card-title>资产管理</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      建设中...
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>cloud_upload</md-icon>
+	    </div>
+	    <md-card-title>我的资源</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      用户自身上传资源
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>collections</md-icon>
+	    </div>
+	    <md-card-title>收藏资源</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      用户收藏优秀资源
+	    </p>
+	  </md-card-content>
+	</md-card>
+  </div>
+  
+   <md-chip-list >
+	  <md-chip class="title" color="primary" selected="true">
+			资产模块
+	  </md-chip>
+  </md-chip-list>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+  	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>attach_money</md-icon>
+	    </div>
+	    <md-card-title>资产中心</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      资产基础数据管理
+	    </p>
+	  </md-card-content>
+	</md-card>
+	<md-card>
+	  <md-card-header>
+	    <div md-card-avatar>
+	    	<md-icon>account_balance_wallet</md-icon>
+	    </div>
+	    <md-card-title>资产状态</md-card-title>
+	  </md-card-header>
+	  <md-card-content>
+	    <p>
+	      资产基本管理状态
+	    </p>
+	  </md-card-content>
+	</md-card>
+  </div>
+  
+   -->
