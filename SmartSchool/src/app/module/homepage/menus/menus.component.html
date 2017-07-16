@@ -6,7 +6,7 @@
 				{{item.name}}
 		  </md-chip>
 		</md-chip-list>
-		<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap="16px" >
+		<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap fxLayoutGap="16px" >
 			<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
 				<md-card >
 					<a md-button routerLink="{{child.url}}">

@@ -1,0 +1,20 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
+	<div class="content" fxLayout="column" fxLayoutAlign="center start">				
+		<pdf-viewer [src]="pdfSrc" 
+			[page]="page" 
+			[original-size]="true" 
+			style="display: block;"
+		></pdf-viewer>
+		<div fxLayout="row" fxLayoutAlign="center center">
+			<button md-button>
+                      上一页
+            </button>
+            <md-chip-list>
+			  <md-chip>Page:<input type="number" placeholder="Page" [(ngModel)]="page"></md-chip>
+			</md-chip-list>
+            <button md-button>
+              上一页
+            </button>
+		</div>
+	</div>
+</div>

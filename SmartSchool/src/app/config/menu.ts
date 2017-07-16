@@ -69,7 +69,7 @@ export const Menu = [{
 	"children": [{
 		"icon":"school",
 		"name":"智慧云网盘",
-		"url":"",
+		"url":"/app/resources/index",
 		"description": "建设中..."
 	},{
 		"icon":"school",

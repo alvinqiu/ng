@@ -1,3 +1,38 @@
-<p>
-  index works!
-</p>
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
+	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+		<div *ngFor="let item of list; let i = index;" class="card" fxLayout="row" fxLayoutAlign="center center">
+			
+				<md-card >
+				<a md-button >
+				  <md-card-header>
+				    <img md-card-avatar src="../../../../assets/img/header.jpeg" alt="">
+				    <md-card-title>Shiba Inu</md-card-title>
+				    <md-card-subtitle>Dog Breed</md-card-subtitle>
+				  </md-card-header>
+				  <md-card-content>
+				    <p>
+				      The Shiba Inu 
+				    </p>
+				  </md-card-content>
+				  </a>
+				</md-card>
+			
+		</div>
+		<div class="page" fxFlexFill>
+			<td-paging-bar 
+				#pagingBar 
+				[firstLast]="true" 
+				[pageSizeAll]="false" 
+				[pageSizes]="[10,20,50]"
+				pageLinkCount="5" 
+				[initialPage]="1" 
+				[pageSize]="100" 
+				[total]="1345" 
+				(change)="change($event)">
+				<span td-paging-bar-label>每页:</span>
+				{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+			</td-paging-bar>
+		</div>
+	</div>
+	
+</div>
