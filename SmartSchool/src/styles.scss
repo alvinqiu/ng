@@ -107,6 +107,20 @@ app-homepage {
 }
 // search component
 
+//expansion-panel
+td-expansion-panel {
+	.td-expansion-panel-header-content {
+		display: flex;
+		align-items: center;
+		span {
+			flex-grow: 1;
+		}
+		
+	}
+}
+
+//expansion-panel
+
 // loading animate
 #app-loading {
 	opacity: 100;

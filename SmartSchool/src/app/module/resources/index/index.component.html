@@ -1,23 +1,34 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
-		<div *ngFor="let item of list; let i = index;" class="card" fxLayout="row" fxLayoutAlign="center center">
-			
-				<md-card >
-				<a md-button >
-				  <md-card-header>
-				    <img md-card-avatar src="../../../../assets/img/header.jpeg" alt="">
-				    <md-card-title>Shiba Inu</md-card-title>
-				    <md-card-subtitle>Dog Breed</md-card-subtitle>
-				  </md-card-header>
-				  <md-card-content>
-				    <p>
-				      The Shiba Inu 
-				    </p>
-				  </md-card-content>
-				  </a>
-				</md-card>
-			
-		</div>
+		<md-card fxFlexFill>
+			<md-toolbar color="primary">
+				<button md-button>语文</button>
+			</md-toolbar>
+			<td-expansion-panel-group fxFlexFill>
+			  <td-expansion-panel label="年级：">
+			    <button md-button>语文</button>
+			  </td-expansion-panel>
+			  <td-expansion-panel label="学校：">
+			    <button md-button>语文</button>
+			  </td-expansion-panel>
+			</td-expansion-panel-group>
+		</md-card>
+		
+
+		<md-list *ngFor="let item of list; let i = index;" fxFlexFill>
+			<h3 md-subheader>热点相关命题（语文2017） （2份打包）</h3>
+			<md-list-item>
+				<md-icon md-list-icon>folder</md-icon>
+				<div class="slot" fxLayout="column">
+					<button md-button>预览</button>
+					<button md-button>下载</button>
+				</div>
+				<p md-line>教材： 语文</p>
+				<p md-line>分类： 试题试卷 ,同步测试 ,山东 ,2017</p>
+				<p md-line><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span></p>
+			</md-list-item>
+			<md-divider></md-divider>
+		</md-list>
 		<div class="page" fxFlexFill>
 			<td-paging-bar 
 				#pagingBar 
