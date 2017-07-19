@@ -53,11 +53,15 @@ export class SchoolsComponent implements OnInit {
     { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
   ];
   columns: ITdDataTableColumn[] = [
+    { name: 'code', label: '学校ID' },
     { name: 'name', label: '学校名称' },
-    { name: 'status', label: '分校区' },
-    { name: 'parent', label: '母校' },
-    { name: 'tel', label: '联系电话' },
-    { name: 'addr', label: '地址' },
+    { name: 'addr', label: '学校地址' },
+    { name: 'status', label: '是否是分校' },
+    { name: 'parent', label: '隶属学校' },
+    { name: 'principal', label: '校长' },
+    { name: 'phone', label: '办公室电话' },
+    { name: 'tel', label: '移动电话' },
+    
   ];
   selectedRows: any[] = [];
   event: IPageChangeEvent;

@@ -6,34 +6,17 @@ export const Menu = [{
 		"name":"学校管理",
 		"url":"/app/basic/schools",
 		"description": "建设中..."
-	},
-	// {
-	// 	"icon":"school",
-	// 	"name":"用户管理",
-	// 	"url":"",
-	// 	"description": "建设中..."
-	// },{
-	// 	"icon":"school",
-	// 	"name":"教室信息",
-	// 	"url":"",
-	// 	"description": "建设中..."
-	// },{
-	// 	"icon":"school",
-	// 	"name":"学生信息",
-	// 	"url":"",
-	// 	"description": "建设中..."
-	// },{
-	// 	"icon":"school",
-	// 	"name":"教职工信息",
-	// 	"url":"",
-	// 	"description": "建设中..."
-	// },{
-	// 	"icon":"school",
-	// 	"name":"部门管理",
-	// 	"url":"/app/basic/departs",
-	// 	"description": "建设中..."
-	// },
-	{
+	},{
+		"icon":"school",
+		"name":"教职工信息",
+		"url":"",
+		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"部门管理",
+		"url":"/app/basic/departs",
+		"description": "建设中..."
+	},{
 		"icon":"subject",
 		"name":"学科管理",
 		"url":"/app/basic/subjects",

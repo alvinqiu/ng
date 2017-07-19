@@ -13,11 +13,13 @@ import {
   MdDialogModule,
   MdSelectModule,
   MdMenuModule,
+  MdGridListModule,
 } from '@angular/material';
 import { 
   CovalentDataTableModule,
   CovalentPagingModule,
   CovalentSearchModule, 
+  CovalentExpansionPanelModule,
 } from '@covalent/core';
 
 import { ApiService } from '../../service/api.service';
@@ -49,9 +51,11 @@ import { DepartmentComponent } from './department/department.component';
     MdDialogModule,
     MdSelectModule,
     MdMenuModule,
+    MdGridListModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
+    CovalentExpansionPanelModule,
   ],
   declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent],
   entryComponents: [

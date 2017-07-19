@@ -4,3 +4,8 @@
 h3 {
 	padding-left: 24px;
 }
+.tree .mat-button {
+	width: 100%;
+    text-align: left;
+    padding-left: 30px;
+}
