@@ -1,6 +1,17 @@
 .container {
-	width: 100%;
+	width: 1024px;
+	padding-bottom: 40px;
 }
 .content {
 	padding-bottom: 80px;
+}
+.toolbar,
+.func {
+	padding: 10px 0px;
+}
+.star {
+	padding: 20px 0px 10px;
+}
+md-slider {
+	width: 50%;
 }

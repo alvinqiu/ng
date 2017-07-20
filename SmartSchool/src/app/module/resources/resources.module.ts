@@ -10,6 +10,8 @@ import {
   MdChipsModule,
   MdIconModule,
   MdListModule,
+  MdInputModule,
+  MdSliderModule,
 } from '@angular/material';
 import { 
   CovalentDataTableModule,
@@ -39,6 +41,8 @@ import { AssetsComponent } from './assets/assets.component';
     MdChipsModule,
     MdIconModule,
     MdListModule,
+    MdInputModule,
+    MdSliderModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
