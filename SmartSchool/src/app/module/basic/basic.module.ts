@@ -14,6 +14,7 @@ import {
   MdSelectModule,
   MdMenuModule,
   MdGridListModule,
+  MdTabsModule,
 } from '@angular/material';
 import { 
   CovalentDataTableModule,
@@ -33,6 +34,12 @@ import { ClassesComponent } from './classes/classes.component';
 import { SchoolsmodalComponent } from './public/schoolsmodal/schoolsmodal.component';
 import { StaffComponent } from './staff/staff.component';
 import { DepartmentComponent } from './department/department.component';
+import { ClassesmodalComponent } from './public/classesmodal/classesmodal.component';
+import { GradesmodalComponent } from './public/gradesmodal/gradesmodal.component';
+import { BuildingsComponent } from './buildings/buildings.component';
+import { OfficesComponent } from './offices/offices.component';
+import { BuildingsmodalComponent } from './public/buildingsmodal/buildingsmodal.component';
+import { OfficesmodalComponent } from './public/officesmodal/officesmodal.component';
 
 
 
@@ -52,14 +59,19 @@ import { DepartmentComponent } from './department/department.component';
     MdSelectModule,
     MdMenuModule,
     MdGridListModule,
+    MdTabsModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentExpansionPanelModule,
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent],
   entryComponents: [
-    SchoolsmodalComponent
+    SchoolsmodalComponent,
+    ClassesmodalComponent,
+    GradesmodalComponent,
+    BuildingsmodalComponent,
+    OfficesmodalComponent,
   ],
   providers:[
     ApiService,

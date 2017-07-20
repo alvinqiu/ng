@@ -18,8 +18,23 @@ export const Menu = [{
 		"description": "建设中..."
 	},{
 		"icon":"subject",
+		"name":"教学楼管理",
+		"url":"/app/basic/buildings",
+		"description": "建设中..."
+	},{
+		"icon":"class",
+		"name":"教室办公室管理",
+		"url":"/app/basic/offices",
+		"description": "建设中..."
+	},{
+		"icon":"subject",
 		"name":"学科管理",
 		"url":"/app/basic/subjects",
+		"description": "建设中..."
+	},{
+		"icon":"class",
+		"name":"年级管理",
+		"url":"/app/basic/grades",
 		"description": "建设中..."
 	},{
 		"icon":"class",

@@ -5,7 +5,7 @@
     </td-search-box>
     <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
     <md-menu #topMenu="mdMenu">
-      <a  md-menu-item>
+      <a  md-menu-item (click)="openDialog()">
         <md-icon>add</md-icon>
         <span>新增</span>
       </a>
@@ -38,14 +38,24 @@
             <button md-button>高三</button>
           </div>
         </td-expansion-panel>
-        <td-expansion-panel label="Another label goes here">
+        <td-expansion-panel label="初中">
           <div class="md-padding">
-            <h3 class="md-subhead">md-padding class</h3>
+            <button md-button>初一</button>
+            <button md-button>初二</button>
+            <button md-button>初三</button>
           </div>
         </td-expansion-panel>
-        <td-expansion-panel label="Yet another label goes here">
+        <td-expansion-panel label="小学">
           <div class="md-padding">
-            <h3 class="md-subhead">md-padding class</h3>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
           </div>
         </td-expansion-panel>
       </td-expansion-panel-group>

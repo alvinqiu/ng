@@ -1,47 +1,30 @@
-<h2 md-dialog-title>新增学校</h2>
+<h2 md-dialog-title>新增教室</h2>
 <md-dialog-content>
 	
 	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 		<!-- <div fxLayout='column'> -->
 			<md-input-container fxFlex="50">
-		      <input mdInput placeholder="学校名称"  required >
+		      <input mdInput placeholder="学校名字"  required >
 		    </md-input-container>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="校长"  required >
+		      <input mdInput placeholder="教室名字"  required >
 		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="办公室电话"   >
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="移动电话"   >
-		    </md-input-container>
-		    <md-select placeholder="是否是分校" fxFlex="50">
+		    <md-select placeholder="教室属性" fxFlex="50">
 				<md-option *ngFor="let food of foods" [value]="food.value">
 					{{ food.viewValue }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="总校" fxFlex="50">
+			<md-select placeholder="教室属性" fxFlex="50">
 				<md-option *ngFor="let food of foods" [value]="food.value">
 					{{ food.viewValue }}
 				</md-option>
 			</md-select>
-			<md-input-container fxFlex="33">
-		      <input mdInput placeholder="省份"  required >
-		    </md-input-container>
-		    <md-input-container fxFlex="33">
-		      <input mdInput placeholder="市"   >
-		    </md-input-container>
-		    <md-input-container fxFlex="33">
-		      <input mdInput placeholder="区/县"   >
-		    </md-input-container>
-			<md-input-container fxFlex="50">
-		      <input mdInput placeholder="街道信息"   >
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="邮编"   >
+			
+		    <md-input-container fxFlex="100">
+		      <input mdInput placeholder="最大容纳人数"  required >
 		    </md-input-container>
 			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="学校描述"></textarea>
+				<textarea mdInput placeholder="年级描述"></textarea>
 			</md-input-container>
 
 		<!-- </div> -->
