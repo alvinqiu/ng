@@ -5,16 +5,50 @@
 			[original-size]="true" 
 			style="display: block;"
 		></pdf-viewer>
-		<div fxLayout="row" fxLayoutAlign="center center">
+		<div class="toolbar" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
 			<button md-button>
                       上一页
             </button>
             <md-chip-list>
-			  <md-chip>Page:<input type="number" placeholder="Page" [(ngModel)]="page"></md-chip>
+			  <md-chip>页码:<input type="number" placeholder="Page" [(ngModel)]="page"></md-chip>
 			</md-chip-list>
             <button md-button>
               上一页
             </button>
 		</div>
+		<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
+			<button md-button>下载</button>
+			<button md-button>收藏</button>
+			<button md-button>审核通过</button>
+			<button md-button>审核失败</button>
+		</div>
+		<div fxLayout="star" fxLayoutAlign="center center" fxFlexFill>
+			评分：
+			<md-slider
+			    [max]="5"
+			    [min]="1"
+			    [step]="1"
+			    [tick-interval]="1"
+			    [thumb-label]="true"
+			    >
+			</md-slider>
+		</div>
+		<div class="comment" fxFlexFill>
+			<h3>评论</h3>
+			<div class="divider"></div>
+			
+			<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+				<md-input-container fxFlex="100">
+					<textarea mdInput placeholder="留言"></textarea>
+				</md-input-container>
+			</form>
+			
+			<div fxLayoutAlign="end center">
+				<button md-button>回复</button>
+			</div>
+		</div>
+		
+
+
 	</div>
 </div>
