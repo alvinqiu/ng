@@ -4,6 +4,8 @@ import {
   IPageChangeEvent
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
+import { ApiService } from '../../../service/api.service';
+import { SubjectsmodalComponent } from '../public/subjectsmodal/subjectsmodal.component';
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
@@ -20,18 +22,20 @@ export class SubjectsComponent implements OnInit {
      { name: '清华大学', status: '否', parent: '中国教育部'}
   ];
   columns: ITdDataTableColumn[] = [
-    { name: 'name', label: '学校名称' },
-    { name: 'status', label: '分校区' },
-    { name: 'parent', label: '母校' },
-    { name: 'tel', label: '联系电话' },
-    { name: 'addr', label: '地址' },
+    { name: 'name', label: '学科名字' },
+    { name: 'status', label: '必修科目' },
+    { name: 'parent', label: '学校' },
+    { name: 'tel', label: '描述' },
   ];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
   searchInputTerm: string;
-  constructor() { }
+  constructor(
+    public dialog: MdDialog,
+    private _service: ApiService
+    ) { }
 
   ngOnInit() {
   }
@@ -42,12 +46,12 @@ export class SubjectsComponent implements OnInit {
   }
 
   openDialog():void {
-    // let dialogRef = this.dialog.open(SchoolsmodalComponent, {
-    //   data:{"value":"test"},
-    //   width:"60%"
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    let dialogRef = this.dialog.open(SubjectsmodalComponent, {
+      data:{"value":"test"},
+      width:"60%"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)

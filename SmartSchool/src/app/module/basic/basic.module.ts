@@ -40,6 +40,7 @@ import { BuildingsComponent } from './buildings/buildings.component';
 import { OfficesComponent } from './offices/offices.component';
 import { BuildingsmodalComponent } from './public/buildingsmodal/buildingsmodal.component';
 import { OfficesmodalComponent } from './public/officesmodal/officesmodal.component';
+import { SubjectsmodalComponent } from './public/subjectsmodal/subjectsmodal.component';
 
 
 
@@ -65,13 +66,14 @@ import { OfficesmodalComponent } from './public/officesmodal/officesmodal.compon
     CovalentSearchModule,
     CovalentExpansionPanelModule,
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,
     GradesmodalComponent,
     BuildingsmodalComponent,
     OfficesmodalComponent,
+    SubjectsmodalComponent,
   ],
   providers:[
     ApiService,

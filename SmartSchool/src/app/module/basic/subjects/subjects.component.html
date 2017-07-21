@@ -5,7 +5,7 @@
     </td-search-box>
     <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
     <md-menu #topMenu="mdMenu">
-      <a  md-menu-item>
+      <a  md-menu-item (click)="openDialog()">
         <md-icon>add</md-icon>
         <span>新增</span>
       </a>
