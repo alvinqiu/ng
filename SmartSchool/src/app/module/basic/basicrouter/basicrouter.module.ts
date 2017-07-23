@@ -9,6 +9,7 @@ import { StaffComponent } from '../staff/staff.component';
 import { DepartmentComponent } from '../department/department.component';
 import { BuildingsComponent } from '../buildings/buildings.component';
 import { OfficesComponent } from '../offices/offices.component';
+import { PersonalComponent } from '../personal/personal.component';
 
 const BasicRoutes: Route[] = [
 	{ path: '', redirectTo: 'schools',  pathMatch: 'full'},
@@ -19,7 +20,8 @@ const BasicRoutes: Route[] = [
 	{ path: 'staffs', component: StaffComponent },
 	{ path: 'departs', component: DepartmentComponent},
 	{ path: 'buildings', component: BuildingsComponent},
-	{ path: 'offices', component: OfficesComponent}
+	{ path: 'offices', component: OfficesComponent},
+	{ path: 'personal', component: PersonalComponent}
 ];
 
 

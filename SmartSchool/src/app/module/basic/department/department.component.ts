@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { 
   ITdDataTableColumn,
-  IPageChangeEvent
+  IPageChangeEvent,
+  TdDataTableSortingOrder,
+  ITdDataTableSortChangeEvent,
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
+import { ApiService } from '../../../service/api.service';
+import { DepartmentmodalComponent } from '../public/departmentmodal/departmentmodal.component';
 
 @Component({
   selector: 'app-department',
@@ -58,7 +62,10 @@ export class DepartmentComponent implements OnInit {
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
   searchInputTerm: string;
-  constructor() { }
+  constructor(
+    public dialog: MdDialog,
+    private _service: ApiService
+    ) { }
 
   ngOnInit() {
   }
@@ -68,12 +75,12 @@ export class DepartmentComponent implements OnInit {
   }
 
   openDialog():void {
-    // let dialogRef = this.dialog.open(SchoolsmodalComponent, {
-    //   data:{"value":"test"},
-    //   width:"60%"
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    let dialogRef = this.dialog.open(DepartmentmodalComponent, {
+      data:{"value":"test"},
+      width:"60%"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)

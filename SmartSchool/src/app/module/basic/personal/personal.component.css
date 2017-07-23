@@ -4,13 +4,8 @@
 h3 {
 	padding-left: 24px;
 }
-.tree {
-	width: 275px;
-}
-.tree .mat-button {
-	width: 100%;
-    text-align: left;
-    padding-left: 30px;
+form {
+	width: 1024px;
 }
 .mat-select,
 .mat-input-container {

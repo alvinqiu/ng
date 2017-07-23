@@ -1,41 +1,131 @@
-<div class="container" fxLayout="row" fxLayoutAlign="start " fxFlexFill fxLayoutGap="48px">
-	<div class="container-tree">
-		tree
-	</div>
-	<div class="container-content" fxFlex="grow">
-		<md-toolbar color="primary">
-		    <button md-raised-button color="primary">新增</button>
-		    <button md-raised-button color="primary">修改</button>
-		    <button md-raised-button color="primary">删除</button>
-		    <span fxFlex="grow"></span>
-		    <md-input-container floatPlaceholder="never">
-		      <input mdInput placeholder="搜索" value="">
-		      <span mdSuffix><md-icon class="search">search</md-icon></span>
-		    </md-input-container>
-		  </md-toolbar>
-
-		  <td-data-table
-		    #dataTable
-		    [data]="basicData"
-		    [columns]="columns"
-		    [selectable]="true"
-		    [multiple]="true"
-		    [(ngModel)]="selectedRows"
-		    (rowSelect)="selectEvent($event)"
-		    >
-		  </td-data-table>
-		  <td-paging-bar 
-		    #pagingBar 
-		    [firstLast]="true" 
-		    [pageSizeAll]="false" 
-		    [pageSizes]="[10,20,50]"
-		      pageLinkCount="5" 
-		      [initialPage]="1" 
-		      [pageSize]="100" 
-		      [total]="1345" 
-		      (change)="change($event)">
-		    <span td-paging-bar-label>每页:</span>
-		    {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
-		  </td-paging-bar>
-	</div>
+<div class="container fall-in-x">
+    <h3>人事管理</h3>
+    <md-tab-group>
+      <md-tab label="职工列表">
+        <div class="td-search-container">
+          <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+          </td-search-box>
+          <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
+          <md-menu #topMenu="mdMenu">
+            <a  md-menu-item (click)="openDialog()">
+              <md-icon>add</md-icon>
+              <span>新增</span>
+            </a>
+            <a  md-menu-item>
+              <md-icon>edit</md-icon>
+              <span>修改</span>
+            </a>
+            <a  md-menu-item>
+              <md-icon>delete</md-icon>
+              <span>删除</span>
+            </a>
+            <a  md-menu-item>
+              <md-icon>file_upload</md-icon>
+              <span>导出</span>
+            </a>
+            <a  md-menu-item>
+              <md-icon>file_download</md-icon>
+              <span>导入</span>
+            </a>
+          </md-menu>
+        </div>
+        <div class="divider"></div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <div class="tree">
+            <td-expansion-panel-group>
+              <td-expansion-panel label="高中">
+                <div class="md-padding">
+                  <button md-button>高一</button>
+                  <button md-button>高二</button>
+                  <button md-button>高三</button>
+                </div>
+              </td-expansion-panel>
+              <td-expansion-panel label="初中">
+                <div class="md-padding">
+                  <button md-button>初一</button>
+                  <button md-button>初二</button>
+                  <button md-button>初三</button>
+                </div>
+              </td-expansion-panel>
+              <td-expansion-panel label="小学">
+                <div class="md-padding">
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                  <button md-button>一年级</button>
+                </div>
+              </td-expansion-panel>
+            </td-expansion-panel-group>
+          </div>
+          <div fxFlex="grow" fxLayout="column">
+            <td-data-table
+              #dataTable
+              [data]="basicData"
+              [columns]="columns"
+              [selectable]="true"
+              [multiple]="true"
+              [(ngModel)]="selectedRows"
+              (rowSelect)="selectEvent($event)"
+              >
+            </td-data-table>
+            <td-paging-bar 
+              #pagingBar 
+              [firstLast]="true" 
+              [pageSizeAll]="false" 
+              [pageSizes]="[10,20,50]"
+                pageLinkCount="5" 
+                [initialPage]="1" 
+                [pageSize]="100" 
+                [total]="1345" 
+                (change)="change($event)">
+              <span td-paging-bar-label>每页:</span>
+              {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+            </td-paging-bar>
+          </div>
+          
+        </div>
+      </md-tab>
+      <md-tab label="职工属性">
+        <md-toolbar>
+          <button md-button>
+            <md-icon>add</md-icon>
+            <span>新增</span>
+          </button>
+          <button md-button>
+            <md-icon>edit</md-icon>
+            <span>修改</span>
+          </button>
+          <button md-button>
+            <md-icon>delete</md-icon>
+            <span>删除</span>
+          </button>
+        </md-toolbar>
+        
+        <div class="divider"></div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <div fxFlex="grow" fxLayout="column">
+            <td-data-table
+              #dataTable
+              [data]="basicData"
+              [columns]="columns"
+              [selectable]="true"
+              [multiple]="true"
+              [sortable]="true"
+              [sortBy]="sortBy"
+              [sortOrder]="sortOrder"
+              [(ngModel)]="selectedRows"
+              (rowSelect)="selectEvent($event)"
+              >
+            </td-data-table>
+          </div>
+        </div>
+      </md-tab>
+    </md-tab-group>
+    
+  
 </div>
