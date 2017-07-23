@@ -89,7 +89,7 @@ export const Menu = [{
 	},{
 		"icon":"school",
 		"name":"资产管理",
-		"url":"",
+		"url":"/app/resources/assets",
 		"description": "建设中..."
 	}]
 }

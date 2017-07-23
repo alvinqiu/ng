@@ -1,3 +1,41 @@
-<p>
-  assets works!
-</p>
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
+  <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+    <md-card fxFlexFill>
+      <md-toolbar>
+        <button md-button (click)="openDialog()">新增资产</button>
+        <button md-button (click)="openDialog()">二维码查询资产</button>
+        <button md-button (click)="openDialog()">资产类别设置</button>
+        <button md-button (click)="openDialog()">供应商管理</button>
+        <button md-button (click)="openDialog()">资产编号规则设置</button>
+      </md-toolbar>
+    </md-card>
+
+    <td-data-table
+      [data]="basicData"
+      [columns]="columns" fxFlexFill>
+      <ng-template tdDataTableTemplate="type" let-value="value" let-row="row" let-column="column">
+        <div layout="row">
+          <span flex>{{value}}</span> // or <span flex>{{row[column]}}</span>
+          <md-icon>star</md-icon>
+        </div>
+      </ng-template>
+    </td-data-table>
+
+    <div class="page" fxFlexFill>
+      <td-paging-bar
+        #pagingBar
+        [firstLast]="true"
+        [pageSizeAll]="false"
+        [pageSizes]="[10,20,50]"
+        pageLinkCount="5"
+        [initialPage]="1"
+        [pageSize]="100"
+        [total]="1345"
+        (change)="change($event)">
+        <span td-paging-bar-label>每页:</span>
+        {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+      </td-paging-bar>
+    </div>
+  </div>
+
+</div>
