@@ -15,7 +15,7 @@ export class DetailComponent implements OnInit {
 	page: number = 1;
 	maxPage: number;
 	minPage: number = 1;
-
+  rate: number = 4;
   constructor(private aRoute: ActivatedRoute) {
   	this.aRoute.params.subscribe((params) => {
        console.log(params.id);

@@ -12,6 +12,11 @@ import { ApiService } from '../../../service/api.service';
 })
 export class ReviewComponent implements OnInit {
   list:any = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}];
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ]
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;

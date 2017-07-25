@@ -1,52 +1,71 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
-	<div class="content" fxLayout="column" fxLayoutAlign="center start">				
-		<pdf-viewer [src]="pdfSrc" 
-			[page]="page" 
-			[original-size]="true" 
-			style="display: block;"
-		></pdf-viewer>
-		<div class="toolbar" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
-			<button md-button>
-                      上一页
-            </button>
-            <md-chip-list>
-			  <md-chip>页码:<input type="number" placeholder="Page" [(ngModel)]="page"></md-chip>
-			</md-chip-list>
-            <button md-button>
-              上一页
-            </button>
-		</div>
-		<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
-			<button md-button>下载</button>
-			<button md-button>收藏</button>
-			<button md-button>审核通过</button>
-			<button md-button>审核失败</button>
-		</div>
-		<div fxLayout="star" fxLayoutAlign="center center" fxFlexFill>
-			评分：
-			<md-slider
-			    [max]="5"
-			    [min]="1"
-			    [step]="1"
-			    [tick-interval]="1"
-			    [thumb-label]="true"
-			    >
-			</md-slider>
-		</div>
-		<div class="comment" fxFlexFill>
-			<h3>评论</h3>
-			<div class="divider"></div>
+	<div class="content" fxLayout="row" fxLayoutAlign="center start">				
+		<div class="left" fxFlex="1 1 auto">
+			<h2 class="text-center">审核通过审核通过审核通过审核通过审核通过</h2>
+			<div class="preview">
+				<img src="../../../../assets/img/angular.jpg" alt="">
+				<img src="../../../../assets/img/angular.jpg" alt="">
+				<img src="../../../../assets/img/angular.jpg" alt="">
+				<img src="../../../../assets/img/angular.jpg" alt="">
+				
+			</div>
+			<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
+				<button md-button>下载</button>
+				<button md-button>收藏</button>
+				<button md-button>审核通过</button>
+				<button md-button>审核失败</button>
+			</div>
 			
-			<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-				<md-input-container fxFlex="100">
-					<textarea mdInput placeholder="留言"></textarea>
-				</md-input-container>
-			</form>
-			
-			<div fxLayoutAlign="end center">
-				<button md-button>回复</button>
+			<div class="comment" fxFlexFill>
+				<h3>评论</h3>
+				<div class="divider"></div>
+				<md-list>
+					<md-list-item >
+						<img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar">
+						<h4 md-line>1234</h4>
+						<p md-line> 1223434 </p>
+						<div class="slot" fxLayout="column">
+							<bar-rating [(rate)]="rate" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating>
+						</div>
+					</md-list-item>
+					<md-divider></md-divider>
+				</md-list>
+				<md-list>
+					<md-list-item >
+						<img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar">
+						<h4 md-line>1234</h4>
+						<p md-line> 1223434 </p>
+						<div class="slot" fxLayout="column">
+							<bar-rating [(rate)]="rate" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating>
+						</div>
+					</md-list-item>
+					<md-divider></md-divider>
+				</md-list>
+				<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+					<div fxLayout="star" fxLayoutAlign="end center" fxFlexFill>
+						<span>评分：</span><bar-rating [(rate)]="rate" [max]="5" [theme]="'default'"></bar-rating>
+					</div>
+					<md-input-container fxFlex="100">
+						<textarea mdInput placeholder="留言"></textarea>
+					</md-input-container>
+				</form>
+				
+				<div fxLayoutAlign="end center">
+					<button md-button>回复</button>
+				</div>
 			</div>
 		</div>
+		<div class="right" fxFlex="275px">
+			<md-card>
+				<div>上传作者：</div>
+				<div>上传时间：</div>
+				<div>类型：</div>
+				<div>：</div>
+				<div>作者：</div>
+				<div>作者：</div>
+			</md-card>	
+		</div>
+		
 		
 
 

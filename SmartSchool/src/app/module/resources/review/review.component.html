@@ -1,13 +1,13 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
 		<md-card fxFlexFill>
-			<md-toolbar color="primary">
-				<button md-button>全部资源</button>
+			<td-expansion-panel-group fxFlexFill>
+			  <td-expansion-panel label="状态：">
+			    <button md-button>全部资源</button>
 				<button md-button>审核通过</button>
 				<button md-button>待审核</button>
 				<button md-button>未审核通过</button>
-			</md-toolbar>
-			<td-expansion-panel-group fxFlexFill>
+			  </td-expansion-panel>
 			  <td-expansion-panel label="年级：">
 			    <button md-button>语文</button>
 			  </td-expansion-panel>
@@ -15,33 +15,15 @@
 			    <button md-button>语文</button>
 			  </td-expansion-panel>
 			</td-expansion-panel-group>
-			<!-- <div class="td-search-container"> -->
-			    <!-- <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-			    </td-search-box>
-			    <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
-			    <md-menu #topMenu="mdMenu">
-			      <a  md-menu-item (click)="openDialog()">
-			        <md-icon>add</md-icon>
-			        <span>新增</span>
-			      </a>
-			      <a  md-menu-item (click)="openDialog()">
-			        <md-icon>edit</md-icon>
-			        <span>修改</span>
-			      </a>
-			      <a  md-menu-item (click)="openDialog()">
-			        <md-icon>delete</md-icon>
-			        <span>删除</span>
-			      </a>
-			      <a  md-menu-item (click)="openDialog()">
-			        <md-icon>file_upload</md-icon>
-			        <span>导出</span>
-			      </a>
-			      <a  md-menu-item (click)="openDialog()">
-			        <md-icon>file_download</md-icon>
-			        <span>导入</span>
-			      </a>
-			    </md-menu>
-			  </div> -->
+			<div class="td-search-container">
+				<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+				</td-search-box>
+				<md-select placeholder="匹配类型">
+					<md-option *ngFor="let food of foods" [value]="food.value">
+					{{ food.viewValue }}
+					</md-option>
+				</md-select>
+			</div>
 		</md-card>
 		
 

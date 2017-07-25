@@ -14,8 +14,8 @@ export class UploadmodalComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
   file: File;
-  fileSelectMsg: string = 'No file selected yet.';
-  fileUploadMsg: string = 'No file uploaded yet.';
+  fileSelectMsg: string = '您还没有选择文件';
+  fileUploadMsg: string = '您还没有上传文件';
   constructor(
   	@Inject(MD_DIALOG_DATA) groups: any, 
   	private dialogRef: MdDialogRef<UploadmodalComponent>,

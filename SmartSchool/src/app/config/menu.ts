@@ -13,6 +13,11 @@ export const Menu = [{
 		"description": "建设中..."
 	},{
 		"icon":"school",
+		"name":"账户管理",
+		"url":"/app/basic/account",
+		"description": "建设中..."
+	},{
+		"icon":"school",
 		"name":"部门管理",
 		"url":"/app/basic/departs",
 		"description": "建设中..."
@@ -86,12 +91,14 @@ export const Menu = [{
 		"name":"资源审核",
 		"url":"/app/resources/review",
 		"description": "建设中..."
-	},{
-		"icon":"school",
-		"name":"资产管理",
-		"url":"",
-		"description": "建设中..."
-	}]
+	}
+	// ,{
+	// 	"icon":"school",
+	// 	"name":"资产管理",
+	// 	"url":"",
+	// 	"description": "建设中..."
+	// }
+	]
 }
 // ,{
 // 	"id": "strategy",

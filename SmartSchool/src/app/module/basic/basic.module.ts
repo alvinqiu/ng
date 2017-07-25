@@ -45,6 +45,9 @@ import { DepartmentmodalComponent } from './public/departmentmodal/departmentmod
 import { StaffsmodalComponent } from './public/staffsmodal/staffsmodal.component';
 import { StaffsattributemodalComponent } from './public/staffsattributemodal/staffsattributemodal.component';
 import { PersonalComponent } from './personal/personal.component';
+import { StaffpropertyComponent } from './staff/staffproperty/staffproperty.component';
+import { StaffunaccountComponent } from './staff/staffunaccount/staffunaccount.component';
+import { AccountComponent } from './account/account.component';
 
 
 
@@ -70,7 +73,7 @@ import { PersonalComponent } from './personal/personal.component';
     CovalentSearchModule,
     CovalentExpansionPanelModule,
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,
@@ -81,6 +84,8 @@ import { PersonalComponent } from './personal/personal.component';
     DepartmentmodalComponent,
     StaffsmodalComponent,
     StaffsattributemodalComponent,
+    StaffpropertyComponent,
+    StaffunaccountComponent,
   ],
   providers:[
     ApiService,
