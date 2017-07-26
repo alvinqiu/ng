@@ -46,15 +46,15 @@
 			<td-paging-bar 
 				#pagingBar 
 				[firstLast]="true" 
-				[pageSizeAll]="false" 
+				[pageSizeAll]="pageSizeAll" 
 				[pageSizes]="[10,20,50]"
 				pageLinkCount="5" 
 				[initialPage]="1" 
-				[pageSize]="100" 
-				[total]="1345" 
+				[pageSize]="pageSize" 
+				[total]="totalElements" 
 				(change)="change($event)">
 				<span td-paging-bar-label>每页:</span>
-				{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+				{{pagingBar.range}} <span>of {{totalElements}}</span>
 			</td-paging-bar>
 		</div>
 	</div>

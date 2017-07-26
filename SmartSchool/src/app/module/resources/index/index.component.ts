@@ -20,11 +20,20 @@ export class IndexComponent implements OnInit {
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
+  pageSize: number;
+  totalElements: number;
   searchInputTerm: string;
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
-    ) { }
+    ) {
+    this.pageSize = 50;
+    this.totalElements = 1000;
+    // this._service.getHttp('/resource').then(res => {
+    //   this.totalElements = res.json().totalElements
+    //   this.pageSize = res.json().pageSize
+    // });
+  }
   change(event: IPageChangeEvent): void {
     this.event = event;
     console.log(event)

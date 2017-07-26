@@ -3,13 +3,13 @@ import { Http,Headers  } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 const headers:Headers = new Headers({'Content-Type': 'application/json'});
-let domain:string;
+let domain:string = "";
 
-if (environment.production) {
-	domain = "";
-} else {
-	domain = "http://localhost:4200";
-}
+// if (environment.production) {
+// 	domain = "http://dev.slothtek.com:8080";
+// } else {
+// 	domain = "";
+// }
 
 
 @Injectable()

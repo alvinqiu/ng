@@ -74,7 +74,7 @@ export class SchoolsComponent implements OnInit {
     public dialog: MdDialog,
     private _service: ApiService
   ) { 
-    this._service.getHttp("/hxwwz/rest/json/info/getUserRisk?name=1").then((e:any) => {console.log(e.json())}).catch((e:any) => {console.log(e)});
+    // this._service.getHttp("/hxwwz/rest/json/info/getUserRisk?name=1").then((e:any) => {console.log(e.json())}).catch((e:any) => {console.log(e)});
   }
   
   ngOnInit() {

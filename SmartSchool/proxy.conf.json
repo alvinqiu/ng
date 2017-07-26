@@ -1,6 +1,6 @@
 {
-  "/hxwwz/rest/json": {
-    "target": "http://wxtest.hx168.com.cn",
+  "/": {
+    "target": "http://dev.slothtek.com:8080",
     "secure": false
   }
 }
