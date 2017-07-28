@@ -18,7 +18,7 @@ export class ApiService {
   constructor(private _http: Http) { }
 
   getHttp(url?:string): Promise<any> {
-  	console.log(environment.production)
+  	// console.log(environment.production)
   	return this._http.get(domain+url).toPromise();
   }
 

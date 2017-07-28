@@ -1,4 +1,4 @@
-export interface School {
+export interface SchoolInterface {
 	"id": number;
 	"name": string;
 	"nick_name": string;

@@ -1,6 +1,7 @@
 {
-  "/": {
-    "target": "http://dev.slothtek.com:8080",
+
+  "/api/": {
+    "target": "http://120.25.149.248:8889",
     "secure": false
   }
 }

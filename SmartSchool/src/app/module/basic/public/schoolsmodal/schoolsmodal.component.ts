@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild  } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-
+import { SchoolClass } from '../../../../class/school';
+import { SchoolInterface } from '../../../../interface/school';
 
 @Component({
   selector: 'app-schoolsmodal',
@@ -8,28 +9,43 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./schoolsmodal.component.css']
 })
 export class SchoolsmodalComponent implements OnInit {
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+   
+  YesOrNo = [
+    {value: '1', viewValue: '否'},
+    {value: '2', viewValue: '是'},
   ]
-  data = {
-    "name":"",
-    "tel":"",
-    "address": ""
-  }
-  @ViewChild('nameinput')
-  nameinput;
+  school:SchoolInterface;
+  condition:object = {
+    func : ""
+  };
   constructor(
-  	@Inject(MD_DIALOG_DATA) groups: any, 
+    @Inject(MD_DIALOG_DATA) groups: any,
   	private dialogRef: MdDialogRef<SchoolsmodalComponent>
   ) { 
-  	console.log(groups);
+    console.log(groups)
+    switch(groups.func) {
+      case "modify":
+        break;
+      case "check":
+        break;
+      default:
+        this.school = new SchoolClass();
+    }
+
+    
     
   }
 
   ngOnInit() {
-      console.log(this.nameinput)
+    
+  }
+
+  save() {
+    console.log(this.school)
+  }
+
+  selectChange() {
+    console.log(this.school)
   }
 
 }

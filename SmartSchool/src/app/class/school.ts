@@ -1,4 +1,4 @@
-export class School {
+export class SchoolClass {
 	"id": 0;
 	"name":"";
 	"nick_name": "";
