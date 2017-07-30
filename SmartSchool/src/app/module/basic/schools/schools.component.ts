@@ -8,6 +8,7 @@ import {
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { SchoolsmodalComponent } from '../public/schoolsmodal/schoolsmodal.component';
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { SchoolInterface } from '../../../interface/school';
 
 import { Http,Headers  } from '@angular/http';
@@ -59,17 +60,35 @@ export class SchoolsComponent implements OnInit {
   }
 
   selectEvent(e:any):any {
-  	// console.log(e)
-  	// console.log(this.selectedRows)
+    this.selectedRows = e;
   }
 
   openDialog(condition:any):void {
-    let dialogRef = this.dialog.open(SchoolsmodalComponent, {
-      data: condition,
-      width:"60%"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    condition.schoollist = this.basicData;
+    condition.selectedRows = this.selectedRows;
+    if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        width:"60%"
+      });
+    } else {
+      let dialogRef = this.dialog.open(SchoolsmodalComponent, {
+        data: condition,
+        width:"60%"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result)
+      });
+    }
+    
+  }
+  delete():void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        width:"60%"
+      });
+    } else {
+
+    }
   }
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)

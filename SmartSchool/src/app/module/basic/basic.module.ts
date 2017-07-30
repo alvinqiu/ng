@@ -21,6 +21,7 @@ import {
   CovalentPagingModule,
   CovalentSearchModule, 
   CovalentExpansionPanelModule,
+  CovalentMessageModule,
 } from '@covalent/core';
 
 import { ApiService } from '../../service/api.service';
@@ -48,6 +49,7 @@ import { PersonalComponent } from './personal/personal.component';
 import { StaffpropertyComponent } from './staff/staffproperty/staffproperty.component';
 import { StaffunaccountComponent } from './staff/staffunaccount/staffunaccount.component';
 import { AccountComponent } from './account/account.component';
+import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
 
 
 
@@ -72,8 +74,9 @@ import { AccountComponent } from './account/account.component';
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentExpansionPanelModule,
+    CovalentMessageModule,
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,
@@ -86,6 +89,7 @@ import { AccountComponent } from './account/account.component';
     StaffsattributemodalComponent,
     StaffpropertyComponent,
     StaffunaccountComponent,
+    MsgmodalComponent,
   ],
   providers:[
     ApiService,
