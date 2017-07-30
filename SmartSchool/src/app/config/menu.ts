@@ -13,6 +13,11 @@ export const Menu = [{
 		"description": "建设中..."
 	},{
 		"icon":"school",
+		"name":"账户管理",
+		"url":"/app/basic/account",
+		"description": "建设中..."
+	},{
+		"icon":"school",
 		"name":"部门管理",
 		"url":"/app/basic/departs",
 		"description": "建设中..."
@@ -92,6 +97,7 @@ export const Menu = [{
 		"url":"/app/resources/assets",
 		"description": "建设中..."
 	}]
+	}
 }
 // ,{
 // 	"id": "strategy",

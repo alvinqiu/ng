@@ -1,11 +1,7 @@
 .container {
 	padding-bottom: 100px;
 }
-.tree {
-	width: 275px;
-}
-.tree .mat-button {
-	width: 100%;
-    text-align: left;
-    padding-left: 30px;
+
+h3 {
+	padding-left: 24px;
 }

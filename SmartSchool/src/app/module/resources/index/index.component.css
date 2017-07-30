@@ -1,31 +1,15 @@
 .container {
 	width: 100%;
+	padding-top: 16px;
 }
 .content {
 	width: 1024px;
 	padding-bottom: 80px;
 }
-/*.card {
-	width: 256px;
-	padding: 8px;
+.mat-toolbar {
+	background: white;
 }
-
-md-card {
-	width: 100%;
-	padding: 0px;
+.td-search-container md-select {
+	min-width: 275px;
+	padding-bottom: 3px;
 }
-md-card>.mat-button {
-	width: 100%;
-	padding: 24px;
-}
-md-card-header {
-	align-items: center;
-}
-.mat-card-avatar {
-	height: 48px;
-    width: 48px;
-}    
-md-card-title,
-md-card-subtitle {
-	margin: 0px;
-}*/

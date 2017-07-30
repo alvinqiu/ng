@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<router-outlet>
+	<a md-button *ngFor="let child of menu.children; let o = index;" routerLink="{{child.url}}">{{child.name}}</a>
+  	<div class="divider"></div>
+</router-outlet>

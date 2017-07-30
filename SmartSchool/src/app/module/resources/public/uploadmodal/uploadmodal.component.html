@@ -22,8 +22,8 @@
 				<textarea mdInput placeholder="资源描述"></textarea>
 			</md-input-container>
 			<div fxFlex="100">
-				<p>Select Event: {{fileSelectMsg}}</p>
-				<p>Upload Event: {{fileUploadMsg}}</p>
+				<p>选择文件: {{fileSelectMsg}}</p>
+				<p>上传文件: {{fileUploadMsg}}</p>
 				<td-file-upload #singleFileUpload (select)="selectEvent($event)" (upload)="uploadEvent($event)" (cancel)="cancelEvent()">
 				  <md-icon>file_upload</md-icon><span>{{ singleFileUpload.files?.name }}</span>
 				  <ng-template td-file-input-label>

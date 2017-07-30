@@ -1,6 +1,7 @@
 {
-  "/hxwwz/rest/json": {
-    "target": "http://wxtest.hx168.com.cn",
+
+  "/api/": {
+    "target": "http://120.25.149.248:8889",
     "secure": false
   }
 }

@@ -3,13 +3,13 @@ import { Http,Headers  } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 const headers:Headers = new Headers({'Content-Type': 'application/json'});
-let domain:string;
+let domain:string = "";
 
-if (environment.production) {
-	domain = "";
-} else {
-	domain = "http://localhost:4200";
-}
+// if (environment.production) {
+// 	domain = "http://dev.slothtek.com:8080";
+// } else {
+// 	domain = "";
+// }
 
 
 @Injectable()
@@ -18,7 +18,7 @@ export class ApiService {
   constructor(private _http: Http) { }
 
   getHttp(url?:string): Promise<any> {
-  	console.log(environment.production)
+  	// console.log(environment.production)
   	return this._http.get(domain+url).toPromise();
   }
 

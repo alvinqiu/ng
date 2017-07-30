@@ -8,6 +8,8 @@ import {
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { SchoolsmodalComponent } from '../public/schoolsmodal/schoolsmodal.component';
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
+import { SchoolInterface } from '../../../interface/school';
 
 import { Http,Headers  } from '@angular/http';
 
@@ -17,56 +19,25 @@ import { Http,Headers  } from '@angular/http';
   styleUrls: ['./schools.component.css']
 })
 export class SchoolsComponent implements OnInit {
-  basicData: any[] = [
-    { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-  ];
+  basicData: Array<SchoolInterface>;
   columns: ITdDataTableColumn[] = [
     { name: 'code', label: '学校ID' },
     { name: 'name', label: '学校名称' },
-    { name: 'addr', label: '学校地址' },
-    { name: 'status', label: '是否是分校' },
-    { name: 'parent', label: '隶属学校' },
-    { name: 'principal', label: '校长' },
-    { name: 'phone', label: '办公室电话' },
-    { name: 'tel', label: '移动电话' },
+    // { name: 'addr', label: '学校地址' },
+    { name: 'branch', label: '是否是分校' },
+    { name: 'parent_school', label: '隶属学校' },
+    { name: 'nominated_contact_person', label: '校长' },
+    { name: 'office_no', label: '办公室电话' },
+    { name: 'nominated_contact_no', label: '移动电话' },
     
   ];
   selectedRows: any[] = [];
-  event: IPageChangeEvent;
   firstLast: boolean = false;
-  pageSizeAll: boolean = false;
+  event: IPageChangeEvent;
+  pageSize: number = 20;
+  page: number;
+  totalCount: number;
+
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
@@ -74,24 +45,50 @@ export class SchoolsComponent implements OnInit {
     public dialog: MdDialog,
     private _service: ApiService
   ) { 
-    this._service.getHttp("/hxwwz/rest/json/info/getUserRisk?name=1").then((e:any) => {console.log(e.json())}).catch((e:any) => {console.log(e)});
+
+    
   }
   
   ngOnInit() {
+    this._service
+        .getHttp("/api/bi/school/1/20")
+        .then((response:any) => {
+          this.basicData = response.json().entries;
+          this.totalCount = response.json().totalCount;
+        })
+        .catch((e:any) => {console.log(e)});
   }
 
   selectEvent(e:any):any {
-  	console.log(e)
-  	console.log(this.selectedRows)
+    this.selectedRows = e;
   }
 
-  openDialog():void {
-    let dialogRef = this.dialog.open(SchoolsmodalComponent, {
-      data:{"value":"test"},
-      width:"60%"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+  openDialog(condition:any):void {
+    condition.schoollist = this.basicData;
+    condition.selectedRows = this.selectedRows;
+    if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        width:"60%"
+      });
+    } else {
+      let dialogRef = this.dialog.open(SchoolsmodalComponent, {
+        data: condition,
+        width:"60%"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result)
+      });
+    }
+    
+  }
+  delete():void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        width:"60%"
+      });
+    } else {
+
+    }
   }
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)
@@ -99,16 +96,21 @@ export class SchoolsComponent implements OnInit {
 
 
   change(event: IPageChangeEvent): void {
-    this.event = event;
     console.log(event)
+    this._service
+        .getHttp(`/api/bi/school/${event.page}/${event.pageSize}`)
+        .then((response:any) => {
+          this.basicData = response.json().entries;
+          this.totalCount = response.json().totalCount;
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
   }
 
-  toggleFirstLast(): void {
-    this.firstLast = !this.firstLast;
-    console.log("firstLast")
-  }
+
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    console.log(sortEvent)
+    // console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }

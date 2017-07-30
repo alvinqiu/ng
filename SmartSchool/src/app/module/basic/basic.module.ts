@@ -21,6 +21,7 @@ import {
   CovalentPagingModule,
   CovalentSearchModule, 
   CovalentExpansionPanelModule,
+  CovalentMessageModule,
 } from '@covalent/core';
 
 import { ApiService } from '../../service/api.service';
@@ -45,6 +46,10 @@ import { DepartmentmodalComponent } from './public/departmentmodal/departmentmod
 import { StaffsmodalComponent } from './public/staffsmodal/staffsmodal.component';
 import { StaffsattributemodalComponent } from './public/staffsattributemodal/staffsattributemodal.component';
 import { PersonalComponent } from './personal/personal.component';
+import { StaffpropertyComponent } from './staff/staffproperty/staffproperty.component';
+import { StaffunaccountComponent } from './staff/staffunaccount/staffunaccount.component';
+import { AccountComponent } from './account/account.component';
+import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
 
 
 
@@ -69,8 +74,9 @@ import { PersonalComponent } from './personal/personal.component';
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentExpansionPanelModule,
+    CovalentMessageModule,
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,
@@ -81,6 +87,9 @@ import { PersonalComponent } from './personal/personal.component';
     DepartmentmodalComponent,
     StaffsmodalComponent,
     StaffsattributemodalComponent,
+    StaffpropertyComponent,
+    StaffunaccountComponent,
+    MsgmodalComponent,
   ],
   providers:[
     ApiService,
