@@ -39,6 +39,7 @@ import { MineComponent } from './mine/mine.component';
 import { ReviewComponent } from './review/review.component';
 import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component';
 import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
+import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.component';
 
 @NgModule({
   imports: [
@@ -62,16 +63,17 @@ import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-mo
     // MdGridListModule,
     // MdTabsModule,
     BarRatingModule,
-    // CovalentDataTableModule,
+    CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [PdfViewerComponent,ResourcesComponent, IndexComponent, DetailComponent, AssetsComponent, MineComponent, ReviewComponent, UploadmodalComponent, AssetsAddModalComponent],
+  declarations: [PdfViewerComponent,ResourcesComponent, IndexComponent, DetailComponent, AssetsComponent, MineComponent, ReviewComponent, UploadmodalComponent, AssetsAddModalComponent, QrCodeModalComponent],
   entryComponents: [
     UploadmodalComponent,
     AssetsAddModalComponent,
+    QrCodeModalComponent,
   ],
   providers:[
     ApiService,

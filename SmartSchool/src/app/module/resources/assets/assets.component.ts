@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
   IPageChangeEvent,
-  ITdDataTableColumn } from '@covalent/core';
+  ITdDataTableColumn,
+  TdDataTableSortingOrder,
+  ITdDataTableSortChangeEvent } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-modal.component';
+import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 
 @Component({
   selector: 'app-assets',
@@ -11,7 +14,6 @@ import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-m
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent implements OnInit {
-  event: IPageChangeEvent;
   columns: ITdDataTableColumn[] = [
     { name: 'id',  label: '序号' },
     { name: 'asset.name', label: '资产名称' },
@@ -25,7 +27,7 @@ export class AssetsComponent implements OnInit {
     { name: 'asset.price', label: '单价' },
     { name: 'asset.price', label: '总价' },
     { name: 'asset.purchaseDate', label: '购买时间' },
-    { name: '', label: '操作' },
+    { name: 'operation', label: '操作' },
   ];
 
   basicData: any[] = [
@@ -42,6 +44,7 @@ export class AssetsComponent implements OnInit {
         'price': 'test',
         'purchaseDate': 'test',
       },
+      'operation':'edit',
     }, {
       'id': 2,
       'asset': {
@@ -55,6 +58,7 @@ export class AssetsComponent implements OnInit {
         'price': 'test',
         'purchaseDate': 'test',
       },
+      'operation':'edit',
     },{
       'id': 3,
       'asset': {
@@ -68,6 +72,7 @@ export class AssetsComponent implements OnInit {
         'price': 'test',
         'purchaseDate': 'test',
       },
+      'operation':'edit',
     },{
       'id': 4,
       'asset': {
@@ -81,6 +86,7 @@ export class AssetsComponent implements OnInit {
         'price': 'test',
         'purchaseDate': 'test',
       },
+      'operation':'edit',
     },{
       'id': 5,
       'asset': {
@@ -94,8 +100,20 @@ export class AssetsComponent implements OnInit {
         'price': 'test',
         'purchaseDate': 'test',
       },
+      'operation':'edit',
     }
   ];
+
+  selectedRows: any[] = [];
+  firstLast: boolean = false;
+  event: IPageChangeEvent;
+  pageSize: number = 20;
+  page: number;
+  totalCount: number;
+
+  searchInputTerm: string;
+  sortBy: string = 'name';
+  sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
 
   constructor(
     public dialog: MdDialog
@@ -104,13 +122,49 @@ export class AssetsComponent implements OnInit {
     this.event = event;
     console.log(event);
   }
-  openDialog():void {
-    let dialogRef = this.dialog.open(AssetsAddModalComponent, {
-      data:{"id":"1"},
-      width:"60%"
-    });
+  openDialog(condition:any):void {
+    let dialogRef = null;
+    switch(condition.func){
+      case 'add':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width:"60%"
+        });
+      break;
+      case 'qrCode':
+        dialogRef = this.dialog.open(QrCodeModalComponent, {
+          width:"60%"
+        });
+      break;
+      case 'type':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width:"60%"
+        });
+      break;
+      case 'supplier':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width:"60%"
+        });
+      break;
+      case 'rule':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width:"60%"
+        });
+      break;
+      default:
+      break;
+    }
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  selectEvent(e:any):any {
+    this.selectedRows = e;
+  }
+
+  sort(sortEvent: ITdDataTableSortChangeEvent): void {
+    // console.log(sortEvent)
+    this.sortBy = sortEvent.name;
+    this.sortOrder = sortEvent.order;
   }
 
   ngOnInit() {
