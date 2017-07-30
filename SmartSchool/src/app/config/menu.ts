@@ -91,14 +91,13 @@ export const Menu = [{
 		"name":"资源审核",
 		"url":"/app/resources/review",
 		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"资产管理",
+		"url":"/app/resources/assets",
+		"description": "建设中..."
+	}]
 	}
-	// ,{
-	// 	"icon":"school",
-	// 	"name":"资产管理",
-	// 	"url":"",
-	// 	"description": "建设中..."
-	// }
-	]
 }
 // ,{
 // 	"id": "strategy",

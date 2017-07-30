@@ -20,12 +20,10 @@ import {
   // MdTabsModule,
 } from '@angular/material';
 import { BarRatingModule } from "ngx-bar-rating";
-
-
-import { 
-  // CovalentDataTableModule,
+import {
+  CovalentDataTableModule,
   CovalentPagingModule,
-  CovalentSearchModule, 
+  CovalentSearchModule,
   CovalentExpansionPanelModule,
   CovalentFileModule,
 } from '@covalent/core';
@@ -40,6 +38,7 @@ import { AssetsComponent } from './assets/assets.component';
 import { MineComponent } from './mine/mine.component';
 import { ReviewComponent } from './review/review.component';
 import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component';
+import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
 
 @NgModule({
   imports: [
@@ -69,9 +68,10 @@ import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [PdfViewerComponent,ResourcesComponent, IndexComponent, DetailComponent, AssetsComponent, MineComponent, ReviewComponent, UploadmodalComponent],
+  declarations: [PdfViewerComponent,ResourcesComponent, IndexComponent, DetailComponent, AssetsComponent, MineComponent, ReviewComponent, UploadmodalComponent, AssetsAddModalComponent],
   entryComponents: [
     UploadmodalComponent,
+    AssetsAddModalComponent,
   ],
   providers:[
     ApiService,

@@ -1,0 +1,49 @@
+<h2 md-dialog-title>新增资产</h2>
+<md-dialog-content>
+
+  <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="资产名称"  required >
+    </md-input-container>
+    <md-select placeholder="资产类型" fxFlex="25">
+      <md-option *ngFor="let type of types" [value]="type.value">
+        {{ type.viewValue }}
+      </md-option>
+    </md-select>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="品牌"  required >
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="规格型号"  required >
+    </md-input-container>
+
+    <md-select placeholder="供应商" fxFlex="25">
+      <md-option *ngFor="let supplier of suppliers" [value]="supplier.value">
+        {{ supplier.viewValue }}
+      </md-option>
+    </md-select>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="单价（元）"  required >
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="数量"  required >
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="购买时间"  required >
+    </md-input-container>
+
+  </form>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+  >保存</button>
+
+  <button
+    md-button
+    color="primary"
+    md-dialog-close>关闭</button>
+</md-dialog-actions>
