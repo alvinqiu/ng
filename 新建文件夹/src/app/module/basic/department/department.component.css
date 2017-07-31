@@ -1,0 +1,15 @@
+.container {
+	padding-bottom: 100px;
+}
+h3 {
+	padding-left: 24px;
+}
+.form-content,
+.tree {
+	width: 512px;
+}
+.tree .mat-button {
+	width: 100%;
+    text-align: left;
+    padding-left: 30px;
+}

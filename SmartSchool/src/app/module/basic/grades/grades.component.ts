@@ -113,16 +113,18 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
     } else {
-      this._service
-        .deleteHttp(`api/bi/grade/delGrade`, this.selectedRows)
-        .then((response:any) => {
-          console.log(response)
-          // this.basicData = response.json().entries;
-          // this.totalCount = response.json().totalCount;
-        })
-        .catch((e:any) => {
-          console.log(e)
-        });
+      let reqlist = this.selectedRows.map( item => item.id);
+      console.log(reqlist)
+      // this._service
+      //   .deleteHttp(`api/bi/grade/delGrade`, {gradeIds: reqlist})
+      //   .then((response:any) => {
+      //     console.log(response)
+      //     // this.basicData = response.json().entries;
+      //     // this.totalCount = response.json().totalCount;
+      //   })
+      //   .catch((e:any) => {
+      //     console.log(e)
+      //   });
     }
   }
   toggleFirstLast(): void {

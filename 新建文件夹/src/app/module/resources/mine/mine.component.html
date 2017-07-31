@@ -1,0 +1,53 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
+	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+		<md-card fxFlexFill>
+			<md-toolbar>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+				<button md-button>语文</button>
+			</md-toolbar>
+			<md-toolbar>
+				<span fxFlex="1 1 auto"></span>
+				<button md-button (click)="openDialog()">资源上传</button>
+			</md-toolbar>
+		</md-card>
+		
+
+
+		<md-list *ngFor="let item of list; let i = index;" fxFlexFill>
+			<h3 md-subheader>热点相关命题（语文2017） （2份打包）</h3>
+			<md-list-item>
+				<md-icon md-list-icon>folder</md-icon>
+				<div class="slot" fxLayout="column">
+					<button md-button>预览</button>
+					<button md-button>下载</button>
+				</div>
+				<p md-line>教材： 语文</p>
+				<p md-line>分类： 试题试卷 ,同步测试 ,山东 ,2017</p>
+				<p md-line><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span></p>
+			</md-list-item>
+			<md-divider></md-divider>
+		</md-list>
+		<div class="page" fxFlexFill>
+			<td-paging-bar 
+				#pagingBar 
+				[firstLast]="true" 
+				[pageSizeAll]="false" 
+				[pageSizes]="[10,20,50]"
+				pageLinkCount="5" 
+				[initialPage]="1" 
+				[pageSize]="100" 
+				[total]="1345" 
+				(change)="change($event)">
+				<span td-paging-bar-label>每页:</span>
+				{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+			</td-paging-bar>
+		</div>
+	</div>
+	
+</div>

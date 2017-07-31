@@ -1,0 +1,95 @@
+<div class="container fall-in-x">
+    <h3>部门管理</h3>
+    <div class="td-search-container">
+    <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+    </td-search-box>
+    <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
+    <md-menu #topMenu="mdMenu">
+      <a  md-menu-item (click)="openDialog()">
+        <md-icon>add</md-icon>
+        <span>新增</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>edit</md-icon>
+        <span>修改</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>delete</md-icon>
+        <span>删除</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>file_upload</md-icon>
+        <span>导出</span>
+      </a>
+      <a  md-menu-item>
+        <md-icon>file_download</md-icon>
+        <span>导入</span>
+      </a>
+    </md-menu>
+  </div>
+  <div class="divider"></div>
+  <div fxLayout="row" fxLayoutAlign="center start" fxFlexFill>
+    <div class="tree">
+      <td-expansion-panel-group>
+        <td-expansion-panel label="高中">
+          <div class="md-padding">
+            <button md-button>高一</button>
+            <button md-button>高二</button>
+            <button md-button>高三</button>
+          </div>
+        </td-expansion-panel>
+        <td-expansion-panel label="初中">
+          <div class="md-padding">
+            <button md-button>初一</button>
+            <button md-button>初二</button>
+            <button md-button>初三</button>
+          </div>
+        </td-expansion-panel>
+        <td-expansion-panel label="小学">
+          <div class="md-padding">
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+            <button md-button>一年级</button>
+          </div>
+        </td-expansion-panel>
+      </td-expansion-panel-group>
+    </div>
+    <div class="form-content" fxFlex="grow" fxLayout="column">
+      <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+          <md-input-container fxFlex="100">
+            <input mdInput placeholder="部门名称"  required >
+          </md-input-container>
+          <md-input-container fxFlex="100">
+            <input mdInput placeholder="部门名称"  required >
+          </md-input-container>
+          <md-input-container fxFlex="100">
+            <input mdInput placeholder="部门名称"  required >
+          </md-input-container>
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="部门负责人"  required >
+          </md-input-container>
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="办公室电话"   >
+          </md-input-container>
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="移动电话"   >
+          </md-input-container>
+          
+        <md-input-container fxFlex="100">
+          <textarea mdInput placeholder="学校描述"></textarea>
+        </md-input-container>
+
+      
+      
+      </form>
+    </div>
+    
+  </div>
+  
+</div>

@@ -1,0 +1,21 @@
+md-sidenav-container {
+	height: 100%;
+	min-width: 1024px;
+}
+
+md-toolbar {
+	display: none;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.24);
+	z-index: 10;
+}
+
+md-sidenav {
+  min-width: 240px;
+  display: none;
+}
+
+md-list a {
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  text-decoration: none;
+}
+

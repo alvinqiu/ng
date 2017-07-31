@@ -1,0 +1,11 @@
+.mat-select {
+	padding-bottom: 4px;
+}
+.tree {
+	width: 275px;
+}
+.tree .mat-button {
+	width: 100%;
+    text-align: left;
+    padding-left: 30px;
+}

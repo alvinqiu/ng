@@ -1,0 +1,18 @@
+.container {
+	height: 100%;
+}
+
+h1 {
+	margin-top: 0px;
+}
+div.footer {
+	font-size: 14px;	
+}
+.mat-icon {
+	font-size: 16px;
+	height: 16px;
+	width: 24px;
+}
+.blank10 {
+	height: 10px;
+}

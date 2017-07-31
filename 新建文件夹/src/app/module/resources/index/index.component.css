@@ -1,0 +1,15 @@
+.container {
+	width: 100%;
+	padding-top: 16px;
+}
+.content {
+	width: 1024px;
+	padding-bottom: 80px;
+}
+.mat-toolbar {
+	background: white;
+}
+.td-search-container md-select {
+	min-width: 275px;
+	padding-bottom: 3px;
+}
