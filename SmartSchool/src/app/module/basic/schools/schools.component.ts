@@ -96,7 +96,6 @@ export class SchoolsComponent implements OnInit {
 
 
   change(event: IPageChangeEvent): void {
-    console.log(event)
     this._service
         .getHttp(`/api/bi/school/${event.page}/${event.pageSize}`)
         .then((response:any) => {

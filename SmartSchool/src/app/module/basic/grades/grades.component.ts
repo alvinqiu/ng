@@ -6,9 +6,11 @@ import {
   ITdDataTableSortChangeEvent,
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { ApiService } from '../../../service/api.service';
 import { GradesmodalComponent } from '../public/gradesmodal/gradesmodal.component';
-
+import { GradeInterface } from '../../../interface/grade';
+import { GradeClass } from '../../../class/grade';
 import { Http,Headers  } from '@angular/http';
 
 @Component({
@@ -17,57 +19,25 @@ import { Http,Headers  } from '@angular/http';
   styleUrls: ['./grades.component.css']
 })
 export class GradesComponent implements OnInit {
-   basicData: any[] = [
-    { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-  ];
+  basicData: Array<GradeInterface>;
   columns: ITdDataTableColumn[] = [
-    { name: 'code', label: '年级名字' },
-    { name: 'name', label: '年级属性' },
-    { name: 'addr', label: '入学年' },
-    { name: 'status', label: '年级负责人' },
-    { name: 'parent', label: '状态' },
-    { name: 'principal', label: '学校' },
-    { name: 'phone', label: '描述' },
+    { name: 'gradeName', label: '年级名字' },
+    { name: 'gradeAttr', label: '年级属性' },
+    { name: 'gradeLevel', label: '入学年' },
+    { name: 'gradeManagerName', label: '年级负责人' },
+    { name: 'status', label: '状态' },
+    { name: 'schoolName', label: '学校' },
+    { name: 'gradeDesc', label: '描述' },
     
   ];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
-  pageSizeAll: boolean = false;
-  searchInputTerm: string;
-  sortBy: string = 'name';
+  pageSize: number = 2;
+  page: number;
+  totalCount: number;
+  searchInputTerm: string = "";
+  sortBy: string = 'gradeName';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
   	public dialog: MdDialog,
@@ -75,6 +45,13 @@ export class GradesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+     this._service
+        .getHttp("/api/bi/grade/getGradeByCondition?page=1&pageSize=2")
+        .then((response:any) => {
+          this.basicData = response.json().entries;
+          this.totalCount = response.json().totalCount;
+        })
+        .catch((e:any) => {console.log(e)});
   }
 
   selectEvent(e:any):any {
@@ -82,24 +59,72 @@ export class GradesComponent implements OnInit {
   	console.log(this.selectedRows)
   }
 
-  openDialog():void {
-    let dialogRef = this.dialog.open(GradesmodalComponent, {
-      data:{"value":"test"},
-      width:"60%"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+  openDialog(condition:any):void {
+    condition.gradelist = this.basicData;
+    condition.selectedRows = this.selectedRows;
+    if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      let dialogRef = this.dialog.open(GradesmodalComponent, {
+        data: condition,
+        width:"60%"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+      });
+    }
+    
   }
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)
+    this.searchInputTerm = searchInputTerm;
+    this._service
+      .getHttp(`/api/bi/grade/getGradeByCondition?page=1&pageSize=2&gradeName=${searchInputTerm}`)
+      .then((response:any) => {
+        console.log(response)
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      })
+
   }
 
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event)
+    this._service
+      .getHttp(`/api/bi/grade/getGradeByCondition?page=${event.page}&pageSize=${event.pageSize}&gradeName=${this.searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      });
   }
-
+  delete():void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要删除的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      this._service
+        .deleteHttp(`api/bi/grade/delGrade`, this.selectedRows)
+        .then((response:any) => {
+          console.log(response)
+          // this.basicData = response.json().entries;
+          // this.totalCount = response.json().totalCount;
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
+    }
+  }
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
     console.log("firstLast")

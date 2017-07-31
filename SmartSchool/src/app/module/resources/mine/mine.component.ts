@@ -16,6 +16,7 @@ export class MineComponent implements OnInit {
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
+  selectedRows: any[] = [];
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -33,6 +34,9 @@ export class MineComponent implements OnInit {
     });
   }
   ngOnInit() {
+  }
+  selectEvent(e:any):any {
+    this.selectedRows = e;
   }
 
 }

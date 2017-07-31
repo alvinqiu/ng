@@ -52,8 +52,7 @@ export const Menu = [{
 		"url":"/app/basic/personal",
 		"description": "建设中..."
 	}]
-}
-,{
+},{
 	"id": "resource",
 	"name": "资源管理",
 	"children": [{
@@ -71,7 +70,11 @@ export const Menu = [{
 		"name":"资源审核",
 		"url":"/app/resources/review",
 		"description": "建设中..."
-	},{
+	}]
+},{
+	"id": "resource",
+	"name": "资产管理",
+	"children": [{
 		"icon":"school",
 		"name":"资产管理",
 		"url":"/app/resources/assets",

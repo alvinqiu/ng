@@ -15,6 +15,8 @@ import {
   MdMenuModule,
   MdGridListModule,
   MdTabsModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
 } from '@angular/material';
 import { 
   CovalentDataTableModule,
@@ -70,6 +72,8 @@ import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
     MdMenuModule,
     MdGridListModule,
     MdTabsModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,

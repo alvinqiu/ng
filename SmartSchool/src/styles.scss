@@ -87,6 +87,21 @@ app-homepage {
 //pagination
 
 
+//msg
+td-message {
+	&.mat-accent {
+		color: #ef6c00;
+	}
+	.td-message-wrapper {
+		display: flex;
+	    align-items: center;
+	    md-icon {
+	    	margin-right: 16px;
+	    }
+	}
+}
+
+//msg
 
 // search component
 .td-search-container {

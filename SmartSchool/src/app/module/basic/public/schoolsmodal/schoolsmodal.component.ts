@@ -28,7 +28,6 @@ export class SchoolsmodalComponent implements OnInit {
   	private dialogRef: MdDialogRef<SchoolsmodalComponent>,
     private _service: ApiService
   ) { 
-    console.log(groups)
     this.schoollist = groups.schoollist;
     this.selectedRows = groups.selectedRows;
     this.dialogModal = dialogRef;
@@ -44,8 +43,6 @@ export class SchoolsmodalComponent implements OnInit {
           .getHttp(`/api/bi/school/1`)
           .then((response:any) => {
             console.log(response)
-            // this.basicData = response.json().entries;
-            // this.totalCount = response.json().totalCount;
           })
         .catch((e:any) => {console.log(e)});
         break;

@@ -6,7 +6,7 @@ import { FormsModule }   from '@angular/forms';
 import {
   MdCardModule,
   MdChipsModule,
-  // MdSliderModule,
+  MdRadioModule,
   MdToolbarModule,
   MdButtonModule,
   // MdSidenavModule,
@@ -49,7 +49,7 @@ import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.compo
     RouterModule,
     FormsModule,
     MdCardModule,
-    // MdChipsModule,
+    MdRadioModule,
     // MdSliderModule,
     MdToolbarModule,
     MdButtonModule,

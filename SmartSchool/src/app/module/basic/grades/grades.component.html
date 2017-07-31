@@ -13,7 +13,7 @@
         <md-icon>edit</md-icon>
         <span>修改</span>
       </a>
-      <a  md-menu-item (click)="openDialog()">
+      <a  md-menu-item (click)="delete()">
         <md-icon>delete</md-icon>
         <span>删除</span>
       </a>
@@ -51,11 +51,11 @@
         #pagingBar 
         [firstLast]="true" 
         [pageSizeAll]="false" 
-        [pageSizes]="[10,20,50]"
+        [pageSizes]="[2,10,20,50]"
         pageLinkCount="5" 
         [initialPage]="1" 
-        [pageSize]="100" 
-        [total]="1345" 
+        [pageSize]="pageSize" 
+        [total]="totalCount" 
         (change)="change($event)">
         <span td-paging-bar-label>每页:</span>
         {{pagingBar.range}} <span>of {{pagingBar.total}}</span>

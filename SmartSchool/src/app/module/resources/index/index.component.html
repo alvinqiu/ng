@@ -12,14 +12,17 @@
 			    <button md-button>语文</button>
 			  </td-expansion-panel>
 			</td-expansion-panel-group>
+			<md-toolbar>
+				<span fxFlex="1 1 auto"></span>
+				<md-radio-group>
+				  <md-radio-button value=""></md-radio-button>
+				  <md-radio-button value="1">Option 1</md-radio-button>
+				  <md-radio-button value="2">Option 2</md-radio-button>
+				</md-radio-group>
+			</md-toolbar>
 			<div class="td-search-container">
 				<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
 				</td-search-box>
-				<md-select placeholder="匹配类型">
-					<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
-					</md-option>
-				</md-select>
 			</div>
 			<md-toolbar>
 				<span fxFlex="1 1 auto"></span>
