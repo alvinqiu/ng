@@ -5,24 +5,24 @@
 			<!-- <md-input-container fxFlex="50">
 		      <input mdInput placeholder="学校名字"  required required [(ngModel)]="school.name" name="name" [disabled]="status == 'check'">
 		    </md-input-container> -->
-		    <md-input-container fxFlex="50">
+		    <md-input-container fxFlex="100">
 		      <input mdInput placeholder="年级名字" required [(ngModel)]="grade.gradeName" name="gradeName" [disabled]="status == 'check'">
 		    </md-input-container>
-		    <md-select placeholder="年级属性" fxFlex="50" [(ngModel)]="grade.gradeAttr" name="gradeAttr">
+		    <md-select placeholder="年级属性" fxFlex="100" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
 				<md-option *ngFor="let item of propertylist" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
 			<md-input-container fxFlex="50">
-			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间" [(ngModel)]="grade.gradeLevel" name="gradeLevel">
-			  <button mdSuffix [mdDatepickerToggle]="picker"></button>
+			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间"  [disabled]="status == 'check'">
+			  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="status == 'check'"></button>
 			</md-input-container>
 			<md-datepicker #picker  [startAt]="startDate"></md-datepicker>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.gradeManagerName" name="gradeManagerName">
+		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.gradeManagerName" name="gradeManagerName" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="年级描述" [(ngModel)]="grade.gradeDesc" name="gradeDesc"></textarea>
+				<textarea mdInput placeholder="年级描述" [(ngModel)]="grade.gradeDesc" name="gradeDesc" [disabled]="status == 'check'"></textarea>
 			</md-input-container>
 
 		

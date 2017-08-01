@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './router/router.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdToolbarModule,
   MdButtonModule,
