@@ -33,7 +33,7 @@ export class GradesComponent implements OnInit {
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
-  pageSize: number = 2;
+  pageSize: number = 20;
   page: number;
   totalCount: number;
   searchInputTerm: string = "";
@@ -46,7 +46,7 @@ export class GradesComponent implements OnInit {
 
   ngOnInit() {
      this._service
-        .getHttp("/api/bi/grade/getGradeByCondition?page=1&pageSize=2")
+        .getHttp("/api/bi/grade/getGradeByCondition?page=1&pageSize=20")
         .then((response:any) => {
           this.basicData = response.json().entries;
           this.totalCount = response.json().totalCount;
@@ -78,7 +78,6 @@ export class GradesComponent implements OnInit {
     
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
     this.searchInputTerm = searchInputTerm;
     this._service
       .getHttp(`/api/bi/grade/getGradeByCondition?page=1&pageSize=2&gradeName=${searchInputTerm}`)
@@ -114,25 +113,22 @@ export class GradesComponent implements OnInit {
       });
     } else {
       let reqlist = this.selectedRows.map( item => item.id);
-      console.log(reqlist)
-      // this._service
-      //   .deleteHttp(`api/bi/grade/delGrade`, {gradeIds: reqlist})
-      //   .then((response:any) => {
-      //     console.log(response)
-      //     // this.basicData = response.json().entries;
-      //     // this.totalCount = response.json().totalCount;
-      //   })
-      //   .catch((e:any) => {
-      //     console.log(e)
-      //   });
+      this._service
+        .postHttp(`/api/bi/grade/delGrade`, reqlist)
+        .then((response:any) => {
+          console.log(response)
+          // this.basicData = response.json().entries;
+          // this.totalCount = response.json().totalCount;
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
     }
   }
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }

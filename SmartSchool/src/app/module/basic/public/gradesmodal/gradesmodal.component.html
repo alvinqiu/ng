@@ -5,10 +5,10 @@
 			<!-- <md-input-container fxFlex="50">
 		      <input mdInput placeholder="学校名字"  required required [(ngModel)]="school.name" name="name" [disabled]="status == 'check'">
 		    </md-input-container> -->
-		    <md-input-container fxFlex="50">
+		    <md-input-container fxFlex="100">
 		      <input mdInput placeholder="年级名字" required [(ngModel)]="grade.gradeName" name="gradeName" [disabled]="status == 'check'">
 		    </md-input-container>
-		    <md-select placeholder="年级属性" fxFlex="50" [(ngModel)]="grade.gradeAttr" name="gradeAttr">
+		    <md-select placeholder="年级属性" fxFlex="100" [(ngModel)]="grade.gradeAttr" name="gradeAttr">
 				<md-option *ngFor="let item of propertylist" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>

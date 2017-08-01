@@ -27,7 +27,7 @@ export class ApiService {
   	return this._http.post(domain+url,postData,{headers: headers}).toPromise()
   }
 
-  deleteHttp(url?:string, deleteData?:any[]) {
+  deleteHttp(url?:string, deleteData?:any) {
   	return this._http.delete(domain+url, {headers: headers, body: deleteData}).toPromise()
   }
   

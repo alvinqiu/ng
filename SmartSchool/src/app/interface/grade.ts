@@ -1,5 +1,4 @@
 export interface GradeInterface {
-	"id": number;
 	"gradeName": string;
 	"schoolName": string;
 	"gradeManagerName":string;
