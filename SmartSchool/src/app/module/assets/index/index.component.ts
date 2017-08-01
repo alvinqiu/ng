@@ -7,6 +7,8 @@ import {
 import { MdDialog } from '@angular/material';
 import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
+import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';
+import { SupplierModalComponent } from '../public/supplier-modal/supplier-modal.component';
 
 @Component({
   selector: 'app-index',
@@ -132,24 +134,24 @@ export class IndexComponent implements OnInit {
         break;
       case 'qrCode':
         dialogRef = this.dialog.open(QrCodeModalComponent, {
-          width:"60%"
+          width:"40%"
         });
         break;
       case 'type':
-        dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          width:"60%"
+        dialogRef = this.dialog.open(AssetsTypeModalComponent, {
+          width:"40%"
         });
         break;
       case 'supplier':
-        dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          width:"60%"
+        dialogRef = this.dialog.open(SupplierModalComponent, {
+          width:"50%"
         });
         break;
-      case 'rule':
-        dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          width:"60%"
-        });
-        break;
+      // case 'rule':
+      //   dialogRef = this.dialog.open(AssetsAddModalComponent, {
+      //     width:"60%"
+      //   });
+      //   break;
       default:
         break;
     }

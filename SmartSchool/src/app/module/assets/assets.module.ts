@@ -32,6 +32,9 @@ import {
 } from '@covalent/core';
 import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.component';
+import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-stock-modal.component';
+import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
+import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
 
 @NgModule({
   imports: [
@@ -61,10 +64,14 @@ import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.compo
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent],
+  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
-    QrCodeModalComponent
+    QrCodeModalComponent,
+    InOutStockModalComponent,
+    AssetsTypeModalComponent,
+    SupplierModalComponent
   ]
 })
 export class AssetsModule { }
