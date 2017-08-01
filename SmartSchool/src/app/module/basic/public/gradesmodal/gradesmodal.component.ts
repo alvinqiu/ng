@@ -4,6 +4,7 @@ import { GradeClass } from '../../../../class/grade';
 import { GradeInterface } from '../../../../interface/grade';
 import { ApiService } from '../../../../service/api.service';
 
+
 @Component({
   selector: 'app-gradesmodal',
   templateUrl: './gradesmodal.component.html',
@@ -31,23 +32,29 @@ export class GradesmodalComponent implements OnInit {
   	private dialogRef: MdDialogRef<GradesmodalComponent>,
     private _service: ApiService
   	) {
-    this.gradelist = groups.schoollist;
+    this.gradelist = groups.gradelist;
     this.selectedRows = groups.selectedRows;
     this.dialogModal = dialogRef;
     switch(groups.func) {
       case "modify":
         this.status = "modify";
         this.grade = new GradeClass();
+        this._service
+          .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.gradelist[0].id}`)
+          .then((response:any) => {
+            this.grade = response.json().entries[0];
+          })
+          .catch((e:any) => {console.log(e)});
         break;
       case "check":
-        this.grade = new GradeClass();
         this.status = "check";
+        this.grade = new GradeClass();
         this._service
-          .getHttp(`/api/bi/school/1`)
+          .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.gradelist[0].id}`)
           .then((response:any) => {
-            console.log(response)
+            this.grade = response.json().entries[0];
           })
-        .catch((e:any) => {console.log(e)});
+          .catch((e:any) => {console.log(e)});
         break;
       default:
         this.status = "";
@@ -61,9 +68,10 @@ export class GradesmodalComponent implements OnInit {
     this._service
       .postHttp(`/api/bi/grade/addGrade`, this.grade)
       .then((response:any) => {
-        console.log(response)
+        this.dialogModal.close(response.json())
       })
       .catch((e:any) => {console.log(e)});
+    
     
   }
 

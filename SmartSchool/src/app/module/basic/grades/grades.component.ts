@@ -13,10 +13,12 @@ import { GradeInterface } from '../../../interface/grade';
 import { GradeClass } from '../../../class/grade';
 import { Http,Headers  } from '@angular/http';
 
+
 @Component({
   selector: 'app-grades',
   templateUrl: './grades.component.html',
-  styleUrls: ['./grades.component.css']
+  styleUrls: ['./grades.component.css'],
+
 })
 export class GradesComponent implements OnInit {
   basicData: Array<GradeInterface>;
@@ -34,7 +36,7 @@ export class GradesComponent implements OnInit {
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSize: number = 20;
-  page: number;
+  page: number = 1;
   totalCount: number;
   searchInputTerm: string = "";
   sortBy: string = 'gradeName';
@@ -45,18 +47,22 @@ export class GradesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this._service
-        .getHttp("/api/bi/grade/getGradeByCondition?page=1&pageSize=20")
-        .then((response:any) => {
-          this.basicData = response.json().entries;
-          this.totalCount = response.json().totalCount;
-        })
-        .catch((e:any) => {console.log(e)});
+      
+      this._service
+          .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          .then((response:any) => {
+            this.basicData = response.json().entries;
+            this.totalCount = response.json().totalCount;
+          })
+          .catch((e:any) => {console.log(e)});
+      // this.event.page = this.page = 1;
+      // this.event.pageSize = this.pageSize = 20;
+
   }
 
   selectEvent(e:any):any {
-  	console.log(e)
-  	console.log(this.selectedRows)
+  	// console.log(e)
+  	// console.log(this.selectedRows)
   }
 
   openDialog(condition:any):void {
@@ -73,14 +79,22 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
       dialogRef.afterClosed().subscribe(result => {
+        this._service
+          .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          .then((response:any) => {
+            this.basicData = response.json().entries;
+            this.totalCount = response.json().totalCount;
+          })
+          .catch((e:any) => {console.log(e)});
       });
     }
     
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
+    this.page = 1;
     this._service
-      .getHttp(`/api/bi/grade/getGradeByCondition?page=1&pageSize=2&gradeName=${searchInputTerm}`)
+      .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${searchInputTerm}`)
       .then((response:any) => {
         console.log(response)
         this.basicData = response.json().entries;
@@ -94,7 +108,8 @@ export class GradesComponent implements OnInit {
 
 
   change(event: IPageChangeEvent): void {
-    this.event = event;
+    this.page = event.page;
+    this.pageSize = event.pageSize;
     this._service
       .getHttp(`/api/bi/grade/getGradeByCondition?page=${event.page}&pageSize=${event.pageSize}&gradeName=${this.searchInputTerm}`)
       .then((response:any) => {
@@ -112,13 +127,20 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
     } else {
+      
       let reqlist = this.selectedRows.map( item => item.id);
+      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+
       this._service
-        .postHttp(`/api/bi/grade/delGrade`, reqlist)
+        .postDelHttp(`/api/bi/grade/delGrade`, del)
         .then((response:any) => {
-          console.log(response)
-          // this.basicData = response.json().entries;
-          // this.totalCount = response.json().totalCount;
+          this._service
+            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+            })
+            .catch((e:any) => {console.log(e)});
         })
         .catch((e:any) => {
           console.log(e)
