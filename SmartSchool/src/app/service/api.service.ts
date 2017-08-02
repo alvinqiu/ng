@@ -26,16 +26,25 @@ export class ApiService {
   }
 
   postHttp(url?:string, postData?:any) {
-    console.log(qs.stringify(postData))
-  	return this._http.post(domain+url,qs.stringify(postData),{headers: headers}).toPromise()
+    console.log(qs.stringify(postData), { serializeDate: function (d) {return encodeURIComponent(d)}})
+    let param = qs.stringify(postData,{ 
+                        serializeDate: function (d) { 
+                          return d.toString()
+                          // return encodeURIComponent()
+                        }
+                      })
+  	return this._http
+                .post(domain+url,
+                      param,
+                      {headers: headers})
+                .toPromise()
   }
 
   postDelHttp(url?:string, postData?:any) {
     return this._http.post(domain+url,postData,{headers: headers}).toPromise()
   }
   // postHttp2(url?:string, postData?:any) {
-  //   console.log(qs.stringify(postData))
-  //   return this._http.post(domain+url,`gradeName=444444&schoolName=`,{headers: headers}).toPromise()
+  //   return this._http.post(domain+url,"gradeName=2222222&schoolName=&managerName=222222&gradeDesc=222222222&gradeLevel=Wed%2520Aug%252002%25202017%252015%253A38%253A17%2520GMT%252B0800%2520(%25E4%25B8%25AD%25E5%259B%25BD%25E6%25A0%2587%25E5%2587%2586%25E6%2597%25B6%25E9%2597%25B4)&gradeAttr=0&status=0",{headers: headers}).toPromise()
   // }
 
   deleteHttp(url?:string, deleteData?:any) {

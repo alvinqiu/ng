@@ -20,6 +20,13 @@ export class GradesmodalComponent implements OnInit {
   ];
   startDate:Date;
   grade:GradeInterface;
+  error = {
+    label: "",
+    msg:  "",
+    icon: "",
+    color: ""
+  };
+  errorMsg = false;
   selectedRows: Array<GradeInterface>;
   condition:object = {
     func : ""
@@ -40,54 +47,69 @@ export class GradesmodalComponent implements OnInit {
       case "modify":
         this.status = "modify";
         this.grade = new GradeClass();
+        document.getElementById('app-loading').style.display = "flex";
         this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
             this.grade = response.json().entries[0];
+            document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {console.log(e)});
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+            document.getElementById('app-loading').style.display = "none";
+          });
         break;
       case "check":
         this.status = "check";
         this.grade = new GradeClass();
+        document.getElementById('app-loading').style.display = "flex";
+
         this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
             this.grade = response.json().entries[0];
-            this.grade.gradeLevel == 0?
-              this.startDate = new Date()
-              :
-              this.startDate = new Date(this.grade.gradeLevel)
-            
+            document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {console.log(e)});
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+            document.getElementById('app-loading').style.display = "none";
+          });
         break;
       default:
         this.startDate = new Date();
-        this.status = "";
+        this.status = "add";
         this.grade = new GradeClass();
+        break;
     }  
   }
 
   ngOnInit() {
   }
   selectedChanged(e:any) {
-    this.grade.gradeLevel = Date.parse(e)
+    // this.grade.gradeLevel = Date.parse(e)
   }
   save() {
     let url = "";
-    if (this.status = "check") {
+    if (this.status == "modify") {
       url = `/api/bi/grade/updateGrade/${this.grade.id}`
     } else {
       url = "/api/bi/grade/addGrade"
     }
-    
+    console.log(this.grade)
+    document.getElementById('app-loading').style.display = "flex";
     this._service
       .postHttp(url, this.grade)
       .then((response:any) => {
-        this.dialogModal.close({"status":"refresh"})
+        document.getElementById('app-loading').style.display = "none";
+        this.dialogModal.close({"status":"refresh", "data": response.json()})
       })
-      .catch((e:any) => {console.log(e)});
+      .catch((e:any) => {
+        console.log(e.json())
+        this.errorMsg = true;
+        document.getElementById('app-loading').style.display = "none";
+      });
     
     
   }

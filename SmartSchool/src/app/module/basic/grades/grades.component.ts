@@ -49,9 +49,9 @@ export class GradesComponent implements OnInit {
           
       }
     },
-    { name: 'gradeLevel', label: '入学年' },
+    { name: 'gradeLevel', label: '入学年', format: v => v? `${new Date(v).getFullYear()}级`:''},
     { name: 'managerName', label: '年级负责人' },
-    { name: 'status', label: '状态' , format: v => v == 1 ? '结业':'在读'},
+    { name: 'status', label: '状态' , format: v => v && v == 1 ? '结业':'在读'},
     { name: 'schoolName', label: '学校' },
     { name: 'gradeDesc', label: '描述' },
     
@@ -71,22 +71,23 @@ export class GradesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      
+      document.getElementById('app-loading').style.display = "flex";
       this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
           .then((response:any) => {
             this.basicData = response.json().entries;
             this.totalCount = response.json().totalCount;
+            document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {console.log(e)});
-      // this.page = 1;
-      // this.pageSize = 20;
+          .catch((e:any) => {
+            console.log(e)
+            document.getElementById('app-loading').style.display = "none";
+          });
 
   }
 
   selectEvent(e:any):any {
-  	// console.log(e)
-  	// console.log(this.selectedRows)
+    this.selectedRows = e;
   }
 
   openDialog(condition:any):void {
@@ -103,14 +104,18 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
       dialogRef.afterClosed().subscribe(result => {
-        if (result.status == "refresh") {
-          this._service
-          .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          .then((response:any) => {
-            this.basicData = response.json().entries;
-            this.totalCount = response.json().totalCount;
-          })
-          .catch((e:any) => {console.log(e)});
+        if (result && result.status == "refresh") {
+            this.result.basicData.push(data)
+          // this._service
+          // .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          // .then((response:any) => {
+          //   this.basicData = response.json().entries;
+          //   this.totalCount = response.json().totalCount;
+          //   this.selectedRows = [];
+          // })
+          // .catch((e:any) => {
+          //   console.log(e)
+          // });
         }
       });
     }
@@ -164,6 +169,7 @@ export class GradesComponent implements OnInit {
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
+              this.selectedRows = [];
             })
             .catch((e:any) => {console.log(e)});
         })

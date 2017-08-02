@@ -5,7 +5,7 @@ export interface GradeInterface {
 	"schoolName": string;
 	"managerName":string;
 	"gradeDesc":string;
-	"gradeLevel":number;
+	"gradeLevel":Date;
 	"gradeAttr":number;
 	"status":number;
 }
