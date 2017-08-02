@@ -30,11 +30,14 @@ import {
   CovalentExpansionPanelModule,
   CovalentFileModule,
 } from '@covalent/core';
+import { ApiService } from '../../service/api.service';
+import { UtilService } from '../../service/util.service';
 import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.component';
 import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-stock-modal.component';
 import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
+import { SpecificComponent } from './specific/specific.component';
 
 @NgModule({
   imports: [
@@ -65,13 +68,17 @@ import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.c
     CovalentFileModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent],
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
     InOutStockModalComponent,
     AssetsTypeModalComponent,
     SupplierModalComponent
+  ],
+  providers: [
+    ApiService,
+    UtilService
   ]
 })
 export class AssetsModule { }

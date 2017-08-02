@@ -2,13 +2,9 @@
   <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
     <md-card fxFlexFill>
       <md-toolbar>
-        <button md-button (click)="openDialog({func:'add'})">新增资产</button>
-        <button md-button (click)="openDialog({func:'edit'})">编辑资产</button>
-        <button md-button (click)="openDialog({func:'qrCode'})">二维码查询资产</button>
-        <button md-button (click)="openDialog({func:'type'})">资产类别设置</button>
-        <button md-button (click)="openDialog({func:'supplier'})">供应商管理</button>
-        <button md-button (click)="handleSpecific()">查看次级资产</button>
-        <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
+        <button md-button (click)="openDialog({func:'scrap'})">报废</button>
+        <button md-button (click)="openDialog({func:'delete'})">删除</button>
+        <button md-button (click)="openDialog({func:'print'})">打印二维码</button>
       </md-toolbar>
     </md-card>
 
@@ -18,13 +14,21 @@
       [data]="basicData"
       [columns]="columns"
       [selectable]="true"
-      [multiple]="false"
+      [multiple]="true"
       [sortable]="true"
       [sortOrder]="sortOrder"
       [(ngModel)]="selectedRows"
       (rowSelect)="selectEvent($event)"
       (sortChange)="sort($event)"
     >
+      <tr td-data-table-row>
+        <td td-data-table-cell>
+          <button md-button>出/入库</button>
+        </td>
+        <td td-data-table-cell>
+          <button md-button>出入库记录</button>
+        </td>
+      </tr>
     </td-data-table>
     <td-paging-bar
       fxFlexFill
