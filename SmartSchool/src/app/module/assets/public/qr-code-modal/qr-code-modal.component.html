@@ -1,0 +1,19 @@
+<h2 md-dialog-title>二维码查询</h2>
+<md-dialog-content>
+
+  <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+    <h4 fxFlex="100" fxLayoutAlign="center">请使用扫码枪扫描二维码</h4>
+    <md-input-container fxFlex="70">
+      <input mdInput [disabled]="true">
+    </md-input-container>
+  </form>
+</md-dialog-content>
+
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button md-button
+          color="primary"
+          [disabled]="!addForm.form.valid"
+          (click)="getInOutStock()"
+          [(ngModel)]="assets.id"
+          >确定</button>
+</md-dialog-actions>

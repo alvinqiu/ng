@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {
   MdCardModule,
   MdChipsModule,
@@ -19,7 +19,7 @@ import {
   // MdGridListModule,
   // MdTabsModule,
 } from '@angular/material';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 import {
   CovalentDataTableModule,
   CovalentPagingModule,
@@ -28,18 +28,16 @@ import {
   CovalentFileModule,
 } from '@covalent/core';
 import { ApiService } from '../../service/api.service';
-import { UtilService }  from '../../service/util.service';
+import { UtilService } from '../../service/util.service';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { ResourcesrouterModule } from './resourcesrouter/resourcesrouter.module';
 import { ResourcesComponent } from './resources.component';
 import { IndexComponent } from './index/index.component';
 import { DetailComponent } from './detail/detail.component';
-import { AssetsComponent } from './assets/assets.component';
 import { MineComponent } from './mine/mine.component';
 import { ReviewComponent } from './review/review.component';
 import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component';
-import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
-import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.component';
+
 
 @NgModule({
   imports: [
@@ -69,11 +67,10 @@ import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.compo
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [PdfViewerComponent,ResourcesComponent, IndexComponent, DetailComponent, AssetsComponent, MineComponent, ReviewComponent, UploadmodalComponent, AssetsAddModalComponent, QrCodeModalComponent],
+  declarations: [PdfViewerComponent, ResourcesComponent, IndexComponent, DetailComponent,
+    MineComponent, ReviewComponent, UploadmodalComponent],
   entryComponents: [
-    UploadmodalComponent,
-    AssetsAddModalComponent,
-    QrCodeModalComponent,
+    UploadmodalComponent
   ],
   providers:[
     ApiService,

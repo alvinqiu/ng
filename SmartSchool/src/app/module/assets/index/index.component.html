@@ -1,3 +1,43 @@
-<p>
-  index works!
-</p>
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
+  <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+    <md-card fxFlexFill>
+      <md-toolbar>
+        <button md-button (click)="openDialog({func:'add'})">新增资产</button>
+        <button md-button (click)="openDialog({func:'qrCode'})">二维码查询资产</button>
+        <button md-button (click)="openDialog({func:'type'})">资产类别设置</button>
+        <button md-button (click)="openDialog({func:'supplier'})">供应商管理</button>
+        <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
+      </md-toolbar>
+    </md-card>
+
+    <td-data-table
+      fxFlexFill
+      #dataTable
+      [data]="basicData"
+      [columns]="columns"
+      [selectable]="true"
+      [multiple]="true"
+      [sortable]="true"
+      [sortOrder]="sortOrder"
+      [(ngModel)]="selectedRows"
+      (rowSelect)="selectEvent($event)"
+      (sortChange)="sort($event)"
+    >
+    </td-data-table>
+    <td-paging-bar
+      fxFlexFill
+      #pagingBar
+      [firstLast]="true"
+      [pageSizeAll]="false"
+      [pageSizes]="[2,10,20,50]"
+      pageLinkCount="5"
+      [initialPage]="1"
+      [pageSize]="pageSize"
+      [total]="totalCount"
+      (change)="change($event)">
+      <span td-paging-bar-label>每页:</span>
+      {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+    </td-paging-bar>
+  </div>
+
+</div>
