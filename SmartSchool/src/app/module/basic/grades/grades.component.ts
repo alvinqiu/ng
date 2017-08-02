@@ -13,6 +13,7 @@ import { GradeInterface } from '../../../interface/grade';
 import { GradeClass } from '../../../class/grade';
 import { Http,Headers  } from '@angular/http';
 
+ 
 
 @Component({
   selector: 'app-grades',
@@ -24,10 +25,33 @@ export class GradesComponent implements OnInit {
   basicData: Array<GradeInterface>;
   columns: ITdDataTableColumn[] = [
     { name: 'gradeName', label: '年级名字' },
-    { name: 'gradeAttr', label: '年级属性' },
+    { name: 'gradeAttr', label: '年级属性' ,
+      format: v =>  {
+        switch(v){
+          case 0 :
+            return "学前教育";
+            // break;
+          case 1 :
+            return "小学";
+            // break;
+          case 2 :
+            return "初中";
+            // break;
+          case 3 :
+            return "高中";
+            // break;
+          case 4 :
+            return "高等教育";
+            // break;
+          default:
+            return ""
+        }
+          
+      }
+    },
     { name: 'gradeLevel', label: '入学年' },
-    { name: 'gradeManagerName', label: '年级负责人' },
-    { name: 'status', label: '状态' },
+    { name: 'managerName', label: '年级负责人' },
+    { name: 'status', label: '状态' , format: v => v == 1 ? '结业':'在读'},
     { name: 'schoolName', label: '学校' },
     { name: 'gradeDesc', label: '描述' },
     
@@ -55,8 +79,8 @@ export class GradesComponent implements OnInit {
             this.totalCount = response.json().totalCount;
           })
           .catch((e:any) => {console.log(e)});
-      // this.event.page = this.page = 1;
-      // this.event.pageSize = this.pageSize = 20;
+      // this.page = 1;
+      // this.pageSize = 20;
 
   }
 
@@ -79,13 +103,15 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
       dialogRef.afterClosed().subscribe(result => {
-        this._service
+        if (result.status == "refresh") {
+          this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
           .then((response:any) => {
             this.basicData = response.json().entries;
             this.totalCount = response.json().totalCount;
           })
           .catch((e:any) => {console.log(e)});
+        }
       });
     }
     
@@ -105,7 +131,6 @@ export class GradesComponent implements OnInit {
       })
 
   }
-
 
   change(event: IPageChangeEvent): void {
     this.page = event.page;

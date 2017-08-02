@@ -17,9 +17,9 @@
 			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间"  [disabled]="status == 'check'">
 			  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="status == 'check'"></button>
 			</md-input-container>
-			<md-datepicker #picker  [startAt]="startDate"></md-datepicker>
+			<md-datepicker #picker  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.gradeManagerName" name="gradeManagerName" [disabled]="status == 'check'">
+		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.managerName" name="managerName" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="100">
 				<textarea mdInput placeholder="年级描述" [(ngModel)]="grade.gradeDesc" name="gradeDesc" [disabled]="status == 'check'"></textarea>
