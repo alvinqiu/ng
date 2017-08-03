@@ -9,11 +9,11 @@ const headers:Headers = new Headers({
 
 let domain:string = "";
 
-// if (environment.production) {
-// 	domain = "http://dev.slothtek.com:8080";
-// } else {
-// 	domain = "";
-// }
+if (environment.production) {
+	domain = "http://www.marchezvousblue.cn/ss";
+} else {
+	domain = "";
+}
 
 
 @Injectable()

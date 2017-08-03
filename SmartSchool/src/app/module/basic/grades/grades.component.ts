@@ -105,17 +105,17 @@ export class GradesComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.status == "refresh") {
-            this.result.basicData.push(data)
-          // this._service
-          // .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          // .then((response:any) => {
-          //   this.basicData = response.json().entries;
-          //   this.totalCount = response.json().totalCount;
-          //   this.selectedRows = [];
-          // })
-          // .catch((e:any) => {
-          //   console.log(e)
-          // });
+            this.selectedRows = [];
+            this._service
+            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              
+            })
+            .catch((e:any) => {
+              console.log(e)
+            });
         }
       });
     }
@@ -127,7 +127,6 @@ export class GradesComponent implements OnInit {
     this._service
       .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${searchInputTerm}`)
       .then((response:any) => {
-        console.log(response)
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
       })

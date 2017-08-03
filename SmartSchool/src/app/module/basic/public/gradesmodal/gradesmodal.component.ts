@@ -47,34 +47,35 @@ export class GradesmodalComponent implements OnInit {
       case "modify":
         this.status = "modify";
         this.grade = new GradeClass();
-        document.getElementById('app-loading').style.display = "flex";
+        // document.getElementById('app-loading').style.display = "flex";
         this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
             this.grade = response.json().entries[0];
-            document.getElementById('app-loading').style.display = "none";
+            this.grade.gradeLevel = new Date(response.json().entries[0].gradeLevel);
+            // document.getElementById('app-loading').style.display = "none";
           })
           .catch((e:any) => {
             console.log(e)
             this.errorMsg = true;
-            document.getElementById('app-loading').style.display = "none";
+            // document.getElementById('app-loading').style.display = "none";
           });
         break;
       case "check":
         this.status = "check";
         this.grade = new GradeClass();
-        document.getElementById('app-loading').style.display = "flex";
+        // document.getElementById('app-loading').style.display = "flex";
 
         this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
             this.grade = response.json().entries[0];
-            document.getElementById('app-loading').style.display = "none";
+            // document.getElementById('app-loading').style.display = "none";
           })
           .catch((e:any) => {
             console.log(e)
             this.errorMsg = true;
-            document.getElementById('app-loading').style.display = "none";
+            // document.getElementById('app-loading').style.display = "none";
           });
         break;
       default:
@@ -93,11 +94,10 @@ export class GradesmodalComponent implements OnInit {
   save() {
     let url = "";
     if (this.status == "modify") {
-      url = `/api/bi/grade/updateGrade/${this.grade.id}`
+      url = "/api/bi/grade/updateGrade";
     } else {
-      url = "/api/bi/grade/addGrade"
+      url = "/api/bi/grade/addGrade";
     }
-    console.log(this.grade)
     document.getElementById('app-loading').style.display = "flex";
     this._service
       .postHttp(url, this.grade)
