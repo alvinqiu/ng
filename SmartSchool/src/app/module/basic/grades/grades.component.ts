@@ -91,7 +91,6 @@ export class GradesComponent implements OnInit {
   }
 
   openDialog(condition:any):void {
-    condition.gradelist = this.basicData;
     condition.selectedRows = this.selectedRows;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
@@ -107,7 +106,7 @@ export class GradesComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${this.searchInputTerm}`)
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;

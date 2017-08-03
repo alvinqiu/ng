@@ -35,10 +35,10 @@ export class SchoolsComponent implements OnInit {
   firstLast: boolean = false;
   event: IPageChangeEvent;
   pageSize: number = 20;
-  page: number;
+  page: number = 1;
   totalCount: number;
 
-  searchInputTerm: string;
+  searchInputTerm: string = "";
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
@@ -50,13 +50,18 @@ export class SchoolsComponent implements OnInit {
   }
   
   ngOnInit() {
-    this._service
-        .getHttp("/api/bi/school/1/20")
-        .then((response:any) => {
-          this.basicData = response.json().entries;
-          this.totalCount = response.json().totalCount;
-        })
-        .catch((e:any) => {console.log(e)});
+      document.getElementById('app-loading').style.display = "flex";
+      this._service
+          .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          .then((response:any) => {
+            this.basicData = response.json().entries;
+            this.totalCount = response.json().totalCount;
+            document.getElementById('app-loading').style.display = "none";
+          })
+          .catch((e:any) => {
+            console.log(e)
+            document.getElementById('app-loading').style.display = "none";
+          });
   }
 
   selectEvent(e:any):any {
@@ -64,10 +69,10 @@ export class SchoolsComponent implements OnInit {
   }
 
   openDialog(condition:any):void {
-    condition.schoollist = this.basicData;
     condition.selectedRows = this.selectedRows;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
         width:"60%"
       });
     } else {
@@ -76,7 +81,19 @@ export class SchoolsComponent implements OnInit {
         width:"60%"
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result)
+        if (result && result.status == "refresh") {
+            this.selectedRows = [];
+            this._service
+            .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              
+            })
+            .catch((e:any) => {
+              console.log(e)
+            });
+        }
       });
     }
     
@@ -84,27 +101,57 @@ export class SchoolsComponent implements OnInit {
   delete():void {
     if (this.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要删除的信息", "color":"accent","icon":"error"},
         width:"60%"
       });
     } else {
+      
+      // let reqlist = this.selectedRows.map( item => item.id);
+      // let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
+      // this._service
+      //   .postDelHttp(`/api/bi/grade/delGrade`, del)
+      //   .then((response:any) => {
+      //     this._service
+      //       .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+      //       .then((response:any) => {
+      //         this.basicData = response.json().entries;
+      //         this.totalCount = response.json().totalCount;
+      //         this.selectedRows = [];
+      //       })
+      //       .catch((e:any) => {console.log(e)});
+      //   })
+      //   .catch((e:any) => {
+      //     console.log(e)
+      //   });
     }
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
+    this.searchInputTerm = searchInputTerm;
+    this.page = 1;
+    this._service
+      .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      })
   }
 
-
   change(event: IPageChangeEvent): void {
+    this.page = event.page;
+    this.pageSize = event.pageSize;
     this._service
-        .getHttp(`/api/bi/school/${event.page}/${event.pageSize}`)
-        .then((response:any) => {
-          this.basicData = response.json().entries;
-          this.totalCount = response.json().totalCount;
-        })
-        .catch((e:any) => {
-          console.log(e)
-        });
+      .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      });
   }
 
 

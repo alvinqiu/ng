@@ -3,6 +3,19 @@
 	<div class="content" fxLayout="row" fxLayoutAlign="center start" fxFlexFill>
 		<div>
 			<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+				<div fxFlex="100" fxLayoutAlign="center start">
+					<image-upload
+					  [max]="100"
+					  [url]="'https://httpbin.org/status/200'"
+					  [buttonCaption]="'请选择照片!'"
+					  [dropBoxMessage]=""
+					  [extensions]="['jpg','png','gif']"
+					  (onRemove)="imageRemoved($event)"
+					  (onFileUploadFinish)="imageFinishedUploading($event)"
+					  (isPending)="uploadStateChange($event)"
+					  >
+					</image-upload>
+				</div>
 				<h4 fxFlex="100">基本信息</h4>
 				<div class="divider"></div>
 				<md-input-container fxFlex="50">

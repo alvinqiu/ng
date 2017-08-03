@@ -86,6 +86,33 @@ app-homepage {
 }
 //pagination
 
+//image-heaeder
+image-upload {
+ .image-upload {
+ 	display: flex;
+ 	flex-direction: column-reverse;
+ 	.image-container.hr-inline-group {
+		display: flex;
+	    justify-content: center;
+	    .image {
+	    	width: 140px;
+	    	height: 140px;
+	    }
+	 }
+	 .drag-box-message {
+	 	display: none;
+	 }
+	 .clear.button {
+	 	display: none;
+	 }
+	 .upload.button {
+	 	background: #009688;
+	 }
+ }
+ 
+}
+ 
+//image-heaeder
 
 //msg
 td-message {

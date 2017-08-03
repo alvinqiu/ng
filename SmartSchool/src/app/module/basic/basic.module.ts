@@ -25,6 +25,7 @@ import {
   CovalentExpansionPanelModule,
   CovalentMessageModule,
 } from '@covalent/core';
+import { ImageUploadModule } from "angular2-image-upload";
 
 import { ApiService } from '../../service/api.service';
 import { UtilService }  from '../../service/util.service';
@@ -79,6 +80,7 @@ import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentMessageModule,
+    ImageUploadModule.forRoot(),
   ],
   declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent],
   entryComponents: [

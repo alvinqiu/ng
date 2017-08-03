@@ -32,7 +32,6 @@ export class GradesmodalComponent implements OnInit {
     func : ""
   };
   status:string;
-  gradelist:Array<GradeInterface>;
   dialogModal:MdDialogRef<GradesmodalComponent>;
   closefresh:any;
   constructor(
@@ -40,7 +39,6 @@ export class GradesmodalComponent implements OnInit {
   	private dialogRef: MdDialogRef<GradesmodalComponent>,
     private _service: ApiService
   	) {
-    this.gradelist = groups.gradelist;
     this.selectedRows = groups.selectedRows;
     this.dialogModal = dialogRef;
     switch(groups.func) {
@@ -70,6 +68,7 @@ export class GradesmodalComponent implements OnInit {
           .getHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
             this.grade = response.json().entries[0];
+            this.grade.gradeLevel = new Date(response.json().entries[0].gradeLevel);
             // document.getElementById('app-loading').style.display = "none";
           })
           .catch((e:any) => {
