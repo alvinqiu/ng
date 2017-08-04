@@ -17,6 +17,7 @@ export class MineComponent implements OnInit {
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
   selectedRows: any[] = [];
+  searchInputTerm: string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -35,8 +36,8 @@ export class MineComponent implements OnInit {
   }
   ngOnInit() {
   }
-  selectEvent(e:any):any {
-    this.selectedRows = e;
+  handleSearch(searchInputTerm: string):void {
+    console.log(searchInputTerm)
   }
 
 }

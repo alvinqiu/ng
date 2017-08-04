@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit {
   pageSizeAll: boolean = false;
   pageSize: number;
   totalElements: number;
-  searchInputTerm: string;
+  searchInputTerm: string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService

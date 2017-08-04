@@ -1,20 +1,44 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
 		<md-card fxFlexFill>
-			<md-toolbar>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-			</md-toolbar>
-			<md-toolbar>
-				<span fxFlex="1 1 auto"></span>
-				<button md-button (click)="openDialog()">资源上传</button>
-			</md-toolbar>
+			<div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">年级：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>全部</md-checkbox>
+						<md-checkbox>一年级</md-checkbox>
+						<md-checkbox>二年级</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">学科：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>语文</md-checkbox>
+						<md-checkbox>数学</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">分类：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>试卷</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">文件类型：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>doc</md-checkbox>
+					</div>
+					
+				</div>
+				<div class="td-search-container">
+					<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+					</td-search-box>
+					<button md-button (click)="openDialog()">资源上传</button>
+				</div>
+			</div>
 		</md-card>
 
 		<md-list *ngFor="let item of list; let i = index;" fxFlexFill>

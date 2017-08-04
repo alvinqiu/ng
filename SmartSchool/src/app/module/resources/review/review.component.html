@@ -1,28 +1,43 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
 		<md-card fxFlexFill>
-			<td-expansion-panel-group fxFlexFill>
-			  <td-expansion-panel label="状态：">
-			    <button md-button>全部资源</button>
-				<button md-button>审核通过</button>
-				<button md-button>待审核</button>
-				<button md-button>未审核通过</button>
-			  </td-expansion-panel>
-			  <td-expansion-panel label="年级：">
-			    <button md-button>语文</button>
-			  </td-expansion-panel>
-			  <td-expansion-panel label="学校：">
-			    <button md-button>语文</button>
-			  </td-expansion-panel>
-			</td-expansion-panel-group>
-			<div class="td-search-container">
-				<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-				</td-search-box>
-				<md-select placeholder="匹配类型">
-					<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
-					</md-option>
-				</md-select>
+			<div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">年级：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>全部</md-checkbox>
+						<md-checkbox>一年级</md-checkbox>
+						<md-checkbox>二年级</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">学科：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>语文</md-checkbox>
+						<md-checkbox>数学</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">分类：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>试卷</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">文件类型：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>doc</md-checkbox>
+					</div>
+					
+				</div>
+				<div class="td-search-container">
+					<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+					</td-search-box>
+					<button md-button (click)="openDialog()">资源上传</button>
+				</div>
 			</div>
 		</md-card>
 		

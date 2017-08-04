@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit {
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
-  searchInputTerm: string;
+  searchInputTerm: string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService

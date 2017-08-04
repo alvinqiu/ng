@@ -12,6 +12,11 @@
 					{{ food.viewValue }}
 				</md-option>
 			</md-select>
+			<md-select placeholder="资源归属" fxFlex="50">
+				<md-option *ngFor="let food of foods" [value]="food.value">
+					{{ food.viewValue }}
+				</md-option>
+			</md-select>
 			<md-select placeholder="资源年级" fxFlex="50">
 				<md-option *ngFor="let food of foods" [value]="food.value">
 					{{ food.viewValue }}
