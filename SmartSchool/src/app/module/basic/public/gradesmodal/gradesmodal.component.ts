@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { GradeClass } from '../../../../class/grade';
-import { GradeInterface } from '../../../../interface/grade';
+import { GradeClass } from './grade-class';
+// import { GradeInterface } from '../../../../interface/grade';
 import { ApiService } from '../../../../service/api.service';
 
 
@@ -18,8 +18,12 @@ export class GradesmodalComponent implements OnInit {
     {value: 3, viewValue: '高中'},
     {value: 4, viewValue: '高等教育'}
   ];
+  statuslist = [
+    {value: 1, viewValue: '结业'},
+    {value: 2, viewValue: '在读'}
+  ];
   startDate:Date;
-  grade:GradeInterface;
+  grade:GradeClass;
   error = {
     label: "",
     msg:  "",
@@ -27,7 +31,7 @@ export class GradesmodalComponent implements OnInit {
     color: ""
   };
   errorMsg = false;
-  selectedRows: Array<GradeInterface>;
+  selectedRows: Array<GradeClass>;
   condition:object = {
     func : ""
   };

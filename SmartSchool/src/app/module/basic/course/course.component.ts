@@ -1,51 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { 
   ITdDataTableColumn,
-  IPageChangeEvent,
-  TdDataTableSortingOrder,
+  IPageChangeEvent
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
-import { OfficesmodalComponent } from '../public/officesmodal/officesmodal.component';
+import { CoursemodalComponent } from '../public/coursemodal/coursemodal.component';
 import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
-import { OfficeClass } from '../public/officesmodal/office-class';
-import { Http,Headers  } from '@angular/http';
-
+import { CourseClass } from '../public/coursemodal/course-class';
 @Component({
-  selector: 'app-offices',
-  templateUrl: './offices.component.html',
-  styleUrls: ['./offices.component.css']
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css']
 })
-export class OfficesComponent implements OnInit {
-
-  basicData: OfficeClass[];
+export class CourseComponent implements OnInit {
+  basicData: CourseClass[];
   columns: ITdDataTableColumn[] = [
-    { name: 'roomName', label: '教室名字' },
-    { name: 'attributeId', label: '用途属性', format: v =>  {
+    { name: 'courseName', label: '课程名称' },
+    { name: 'subjectName', label: '所属科目' },
+    { name: 'gradeName', label: '所属年级' },
+    { name: 'requiredCour', label: '是否必修课', 
+      format: v =>  {
           switch(v){
             case 0 :
-              return "教室";
+              return "必修";
               // break;
             case 1 :
-              return "办公室";
-              // break;
-            case 2 :
-              return "实验室";
-              // break;
-            case 3 :
-              return "行政室";
+              return "选修";
               // break;
             default:
               return ""
           } 
-        }
+      }
     },
-    { name: 'buildingName', label: '教室地址' },
-    { name: 'maxCapacity', label: '最大容纳人数' },
-    { name: 'roomDesc', label: '描述' },
-    
+    { name: 'period', label: '总学时' },
+    { name: 'courseDesc', label: '课程描述' },
   ];
-  buildinglist = [];
   selectedRows: any[] = [];
   firstLast: boolean = false;
   event: IPageChangeEvent;
@@ -53,18 +43,17 @@ export class OfficesComponent implements OnInit {
   page: number = 1;
   totalCount: number;
   searchInputTerm: string;
-  sortBy: string = 'roomName';
-  sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
+  gradelist = [];
+  subjectlist = [];
   constructor(
-    public dialog: MdDialog,
+  	public dialog: MdDialog,
     private _service: ApiService
-  ) { 
-  }
-  
+  	) { }
+
   ngOnInit() {
       document.getElementById('app-loading').style.display = "flex";
       this._service
-          .getHttp(`/api/bi/room/getRoomByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}`)
           .then((response:any) => {
             this.basicData = response.json().entries;
             this.totalCount = response.json().totalCount;
@@ -75,9 +64,17 @@ export class OfficesComponent implements OnInit {
             document.getElementById('app-loading').style.display = "none";
           });
       this._service
-          .getHttp(`/api/bi/building/getBuildingByCondition`)
+          .getHttp(`/api/bi/subject/getSubjectByCondition`)
           .then((response:any) => {
-            this.buildinglist = response.json().entries;
+            this.subjectlist = response.json().entries;
+          })
+          .catch((e:any) => {
+            console.log(e)
+          });
+    this._service
+          .getHttp(`/api/bi/grade/getGradeByCondition`)
+          .then((response:any) => {
+            this.gradelist = response.json().entries;
           })
           .catch((e:any) => {
             console.log(e)
@@ -85,20 +82,21 @@ export class OfficesComponent implements OnInit {
   }
   
   selectEvent(e:any):any {
-    console.log(e)
-    console.log(this.selectedRows)
+  	console.log(e)
+  	console.log(this.selectedRows)
   }
 
   openDialog(condition:any):void {
     condition.selectedRows = this.selectedRows;
-    condition.buildinglist = this.buildinglist;
+    condition.gradelist = this.gradelist;
+    condition.subjectlist = this.subjectlist;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
         width:"60%"
       });
     } else {
-      let dialogRef = this.dialog.open(OfficesmodalComponent, {
+      let dialogRef = this.dialog.open(CoursemodalComponent, {
         data: condition,
         width:"60%"
       });
@@ -106,7 +104,7 @@ export class OfficesComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/room/getRoomByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
@@ -132,10 +130,10 @@ export class OfficesComponent implements OnInit {
       let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
       this._service
-        .postDelHttp(`/api/bi/room/delRoom`, del)
+        .postDelHttp(`/api/bi/course/delCourse`, del)
         .then((response:any) => {
           this._service
-            .getHttp(`/api/bi/room/getRoomByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
@@ -152,7 +150,7 @@ export class OfficesComponent implements OnInit {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/bi/room/getRoomByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
+      .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
       .then((response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
@@ -166,7 +164,7 @@ export class OfficesComponent implements OnInit {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`/api/bi/room/getRoomByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+      .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
       .then((response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
@@ -174,6 +172,11 @@ export class OfficesComponent implements OnInit {
       .catch((e:any) => {
         console.log(e)
       });
+  }
+
+  toggleFirstLast(): void {
+    this.firstLast = !this.firstLast;
+    console.log("firstLast")
   }
 
 }

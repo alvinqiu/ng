@@ -1,0 +1,41 @@
+<h2 md-dialog-title>新增学校</h2>
+<md-dialog-content>
+	
+	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+			<md-input-container fxFlex="100">
+		      <input mdInput placeholder="课程名称"  required [(ngModel)]="model.courseName" name="courseName" [disabled]="status == 'check'">
+		    </md-input-container>
+		    <md-select placeholder="所属科目" fxFlex="50" [(ngModel)]="model.subjectId" name="subjectId" [disabled]="status == 'check'">
+				<md-option *ngFor="let subject of subjectlist" [value]="subject.id">
+					{{ subject.subjectName }}
+				</md-option>
+			</md-select>
+			<md-select placeholder="所属年级" fxFlex="50" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
+				<md-option *ngFor="let grade of gradelist" [value]="grade.id">
+					{{ grade.gradeName }}
+				</md-option>
+			</md-select>
+			<md-input-container fxFlex="100">
+		      <input mdInput placeholder="总课时"  required [(ngModel)]="model.period" name="period" [disabled]="status == 'check'">
+		    </md-input-container>
+			<md-input-container fxFlex="100" >
+				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.courseDesc" name="courseDesc" [disabled]="status == 'check'"></textarea>
+			</md-input-container>
+		
+	</form>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  
+ 	<button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+    (click)="save()"
+    *ngIf="status != 'check'"
+    >保存</button>
+
+	<button
+	md-button
+	color="primary"
+	md-dialog-close>关闭</button>
+</md-dialog-actions>

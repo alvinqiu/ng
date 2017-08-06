@@ -1,23 +1,96 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-
+import { OfficeClass } from './office-class';
+import { ApiService } from '../../../../service/api.service';
 @Component({
   selector: 'app-officesmodal',
   templateUrl: './officesmodal.component.html',
   styleUrls: ['./officesmodal.component.css']
 })
 export class OfficesmodalComponent implements OnInit {
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ]
+  buildinglist = [];
+  propertylist = [
+    {value: '0', viewValue: '教室'},
+    {value: '1', viewValue: '办公室'},
+    {value: '2', viewValue: '实验室'},
+    {value: '3', viewValue: '行政室'}
+  ];
+  model:OfficeClass;
+  schoollist: Array<OfficeClass>;
+  selectedRows: Array<OfficeClass>;
+  condition:object = {
+    func : ""
+  };
+  errorMsg = false;
+  status:string;
+  dialogModal:MdDialogRef<OfficesmodalComponent>;
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any, 
-  	private dialogRef: MdDialogRef<OfficesmodalComponent>
-  	) { }
+    private dialogRef: MdDialogRef<OfficesmodalComponent>,
+    private _service: ApiService
+  	) { 
+    this.buildinglist = groups.buildinglist;
+    this.selectedRows = groups.selectedRows;
+    this.dialogModal = dialogRef;
+    switch(groups.func) {
+      case "modify":
+        this.status = "modify";
+        this.model = new OfficeClass();
+        this._service
+          .getHttp(`/api/bi/room/getRoomByCondition?id=${this.selectedRows[0].id}`)
+          .then((response:any) => {
+            this.model = response.json().entries[0];
+          })
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+          });
+        break;
+      case "check":
+        this.status = "check";
+        this.model = new OfficeClass();
+
+        this._service
+          .getHttp(`/api/bi/room/getRoomByCondition?id=${this.selectedRows[0].id}`)
+          .then((response:any) => {
+            this.model = response.json().entries[0];
+          })
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+          });
+        break;
+      default:
+        this.status = "add";
+        this.model = new OfficeClass();
+        break;
+    }
+
+
+
+  }
 
   ngOnInit() {
   }
 
+  save() {
+    let url = "";
+    if (this.status == "modify") {
+      url = `/api/bi/room/updateRoom/${this.selectedRows[0].id}`;
+    } else {
+      url = "/api/bi/room/addRoom";
+    }
+    document.getElementById('app-loading').style.display = "flex";
+    this._service
+      .postHttp(url, this.model)
+      .then((response:any) => {
+        document.getElementById('app-loading').style.display = "none";
+        this.dialogModal.close({"status":"refresh", "data": response.json()})
+      })
+      .catch((e:any) => {
+        console.log(e.json())
+        this.errorMsg = true;
+        document.getElementById('app-loading').style.display = "none";
+      });
+  }
 }

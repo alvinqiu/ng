@@ -8,7 +8,12 @@
 		    <md-input-container fxFlex="100">
 		      <input mdInput placeholder="年级名字" required [(ngModel)]="grade.gradeName" name="gradeName" [disabled]="status == 'check'">
 		    </md-input-container>
-		    <md-select placeholder="年级属性" fxFlex="100" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
+		    <md-select placeholder="年级状态" fxFlex="50" [(ngModel)]="grade.status" name="status" [disabled]="status == 'check'">
+				<md-option *ngFor="let item of statuslist" [value]="item.value">
+					{{ item.viewValue }}
+				</md-option>
+			</md-select>
+		    <md-select placeholder="年级属性" fxFlex="50" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
 				<md-option *ngFor="let item of propertylist" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>

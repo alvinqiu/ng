@@ -6,89 +6,140 @@ import {
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
+import { ClassClass } from '../public/classesmodal/class-class';
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
+
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
-  basicData: any[] = [
-    { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-  ];
+  basicData: ClassClass[];
   columns: ITdDataTableColumn[] = [
-    { name: 'name', label: '班级名字' },
-    { name: 'status', label: '所属年级' },
-    { name: 'parent', label: '班级负责人' },
-    { name: 'tel', label: '学生人数' },
-    { name: 'addr', label: '班级位置' },
-    { name: 'addr', label: '班级描述' },
+    { name: 'className', label: '班级名字' },
+    { name: 'gradeId', label: '所属年级' },
+    { name: 'classManager', label: '班级负责人' },
+    { name: 'studentNum', label: '学生人数' },
+    { name: 'classLocation', label: '班级位置' },
+    { name: 'classDesc', label: '班级描述' },
   ];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
   searchInputTerm: string;
+  pageSize: number = 20;
+  page: number = 1;
+  totalCount: number;
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
   ) { }
 
   ngOnInit() {
+    document.getElementById('app-loading').style.display = "flex";
+    this._service
+        .getHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+        .then((response:any) => {
+          this.basicData = response.json().entries;
+          this.totalCount = response.json().totalCount;
+          document.getElementById('app-loading').style.display = "none";
+        })
+        .catch((e:any) => {
+          console.log(e)
+          document.getElementById('app-loading').style.display = "none";
+        });
   }
 
+  openDialog(condition:any):void {
+    condition.selectedRows = this.selectedRows;
+    if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      let dialogRef = this.dialog.open(ClassesmodalComponent, {
+        data: condition,
+        width:"60%"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.status == "refresh") {
+            this.selectedRows = [];
+            this._service
+            .getHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              
+            })
+            .catch((e:any) => {
+              console.log(e)
+            });
+        }
+      });
+    }
+    
+  }
   selectEvent(e:any):any {
-  	console.log(e)
-  	console.log(this.selectedRows)
+    console.log(e)
+    console.log(this.selectedRows)
   }
+  delete():void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要删除的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      
+      let reqlist = this.selectedRows.map( item => item.id);
+      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
-  openDialog():void {
-    let dialogRef = this.dialog.open(ClassesmodalComponent, {
-      data:{"value":"test"},
-      width:"60%"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+      this._service
+        .postDelHttp(`/api/bi/class/delClass`, del)
+        .then((response:any) => {
+          this._service
+            .getHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              this.selectedRows = [];
+            })
+            .catch((e:any) => {console.log(e)});
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
+    }
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
+    this.searchInputTerm = searchInputTerm;
+    this.page = 1;
+    this._service
+      .getHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      })
   }
 
-
   change(event: IPageChangeEvent): void {
-    this.event = event;
-    console.log(event)
+    this.page = event.page;
+    this.pageSize = event.pageSize;
+    this._service
+      .getHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      });
   }
 
   toggleFirstLast(): void {

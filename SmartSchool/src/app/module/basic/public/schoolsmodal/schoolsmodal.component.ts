@@ -36,9 +36,9 @@ export class SchoolsmodalComponent implements OnInit {
         this.status = "modify";
         this.model = new SchoolClass();
         this._service
-          .getHttp(`/api/bi/school/${this.selectedRows[0].id}`)
+          .getHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
-            this.model = response.json();
+            this.model = response.json().entries[0];
           })
           .catch((e:any) => {
             console.log(e)
@@ -50,9 +50,9 @@ export class SchoolsmodalComponent implements OnInit {
         this.model = new SchoolClass();
 
         this._service
-          .getHttp(`/api/bi/school/${this.selectedRows[0].id}`)
+          .getHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
-            this.model = response.json();
+            this.model = response.json().entries[0];
           })
           .catch((e:any) => {
             console.log(e)
@@ -76,9 +76,9 @@ export class SchoolsmodalComponent implements OnInit {
   save() {
     let url = "";
     if (this.status == "modify") {
-      url = `/api/bi/school/${this.model.id}`;
+      url = `/api/bi/school/updateSchool/${this.selectedRows[0].id}`;
     } else {
-      url = "/api/bi/school";
+      url = "/api/bi/school/addSchool";
     }
     document.getElementById('app-loading').style.display = "flex";
     this._service

@@ -2,81 +2,20 @@
 <md-dialog-content>
 	
 	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-		<!-- <div fxLayout='column'> -->
-			<md-input-container fxFlex="50">
-		      <input mdInput placeholder="学校名字"  required >
+		    <md-input-container fxFlex="100">
+		      <input mdInput placeholder="建筑名字"  required [(ngModel)]="model.buildingName" name="buildingName" [disabled]="status == 'check'">
 		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="建筑名字"  required >
-		    </md-input-container>
-		    <md-select placeholder="建筑属性" fxFlex="100">
-				<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
+		    <md-select placeholder="建筑属性" fxFlex="100" [(ngModel)]="model.attributeId" name="attributeId" [disabled]="status == 'check'">
+				<md-option *ngFor="let property of propertylist" [value]="property.value">
+					{{ property.viewValue }}
 				</md-option>
 			</md-select>
 			<md-input-container fxFlex="100">
-		      <input mdInput placeholder="建筑地址"  required >
+		      <input mdInput placeholder="建筑地址"  required [(ngModel)]="model.address" name="address" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="年级描述"></textarea>
+				<textarea mdInput placeholder="建筑描述" [(ngModel)]="model.buildingDesc" name="buildingDesc" [disabled]="status == 'check'"></textarea>
 			</md-input-container>
-
-		<!-- </div> -->
-		<!-- <md-grid-list cols="2" rowHeight="100px" fxFill>
-			<md-grid-tile colspan="1" rowspan="1">
-				<md-input-container>
-			      <input mdInput placeholder="学校名称"  required >
-			    </md-input-container>
-			</md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1">
-				<md-input-container>
-			      <input mdInput placeholder="学校电话"  required >
-			    </md-input-container>
-			</md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-			<md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
-		</md-grid-list> -->
-		<!-- <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="8px" fxLayoutWrap fxFill>
-			<md-select placeholder="Favorite food" fxFlex="30">
-			<md-option *ngFor="let food of foods" [value]="food.value">
-				{{ food.viewValue }}
-			</md-option>
-		</md-select>
-		<md-select placeholder="Favorite food" fxFlex="30">
-			<md-option *ngFor="let food of foods" [value]="food.value">
-				{{ food.viewValue }}
-			</md-option>
-		</md-select>
-		<md-select placeholder="Favorite food" fxFlex="30">
-			<md-option *ngFor="let food of foods" [value]="food.value">
-				{{ food.viewValue }}
-			</md-option>
-		</md-select>
-		</div> -->
-
-		<!-- <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="8px" fxLayoutWrap fxFill>
-			<md-input-container fxFlex="30">
-		      <input mdInput placeholder="学校名称" name="name"  required [(ngModel)]="data.name" #nameinput="ngModel" id="nameinput">
-		    </md-input-container>
-		    <md-input-container fxFlex="30">
-		      <input mdInput placeholder="学校电话" name="tel" required [(ngModel)]="data.tel">
-		    </md-input-container>
-		    <md-input-container fxFlex="30">
-		      <input mdInput placeholder="学校地址" name="address" required [(ngModel)]="data.address">
-		    </md-input-container>
-		</div> -->		
-		<!-- <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="16" fxLayoutWrap fxFill>
-			<md-input-container fxFlex="noshrink">
-		      <input mdInput placeholder="学校名称"  required >
-		    </md-input-container>
-		    <md-input-container fxFlex="noshrink">
-		      <input mdInput placeholder="校长" required >
-		    </md-input-container>
-		</div> -->
 		
 	</form>
 </md-dialog-content>
@@ -86,6 +25,8 @@
     md-button
     color="primary"
     [disabled]="!addForm.form.valid"
+    (click)="save()"
+    *ngIf="status != 'check'"
     >保存</button>
 
 	<button

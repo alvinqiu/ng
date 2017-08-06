@@ -9,8 +9,9 @@ import { MdDialog } from '@angular/material';
 import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { ApiService } from '../../../service/api.service';
 import { GradesmodalComponent } from '../public/gradesmodal/gradesmodal.component';
-import { GradeInterface } from '../../../interface/grade';
-import { GradeClass } from '../../../class/grade';
+import { GradeClass } from '../public/gradesmodal/grade-class';
+// import { GradeInterface } from '../../../interface/grade';
+// import { GradeClass } from '../../..／class/grade';
 import { Http,Headers  } from '@angular/http';
 
  
@@ -22,7 +23,7 @@ import { Http,Headers  } from '@angular/http';
 
 })
 export class GradesComponent implements OnInit {
-  basicData: Array<GradeInterface>;
+  basicData: Array<GradeClass>;
   columns: ITdDataTableColumn[] = [
     { name: 'gradeName', label: '年级名字' },
     { name: 'gradeAttr', label: '年级属性' ,

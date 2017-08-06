@@ -52,7 +52,7 @@ export class SchoolsComponent implements OnInit {
   ngOnInit() {
       document.getElementById('app-loading').style.display = "flex";
       this._service
-          .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+          .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}`)
           .then((response:any) => {
             this.basicData = response.json().entries;
             this.totalCount = response.json().totalCount;
@@ -84,7 +84,7 @@ export class SchoolsComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
@@ -106,31 +106,31 @@ export class SchoolsComponent implements OnInit {
       });
     } else {
       
-      // let reqlist = this.selectedRows.map( item => item.id);
-      // let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+      let reqlist = this.selectedRows.map( item => item.id);
+      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
-      // this._service
-      //   .postDelHttp(`/api/bi/grade/delGrade`, del)
-      //   .then((response:any) => {
-      //     this._service
-      //       .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-      //       .then((response:any) => {
-      //         this.basicData = response.json().entries;
-      //         this.totalCount = response.json().totalCount;
-      //         this.selectedRows = [];
-      //       })
-      //       .catch((e:any) => {console.log(e)});
-      //   })
-      //   .catch((e:any) => {
-      //     console.log(e)
-      //   });
+      this._service
+        .postDelHttp(`/api/bi/school/delSchool`, del)
+        .then((response:any) => {
+          this._service
+            .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              this.selectedRows = [];
+            })
+            .catch((e:any) => {console.log(e)});
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
     }
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
+      .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
       .then((response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
@@ -144,7 +144,7 @@ export class SchoolsComponent implements OnInit {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`/api/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+      .getHttp(`//api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
       .then((response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;

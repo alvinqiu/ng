@@ -35,6 +35,7 @@ import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.compo
 import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-stock-modal.component';
 import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
+import { CodeComponent } from '../assets/code/code.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,7 @@ import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.c
     CovalentFileModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent],
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, CodeComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
