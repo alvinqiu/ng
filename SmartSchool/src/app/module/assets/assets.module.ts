@@ -30,13 +30,16 @@ import {
   CovalentExpansionPanelModule,
   CovalentFileModule,
 } from '@covalent/core';
+import { ApiService } from '../../service/api.service';
+import { UtilService } from '../../service/util.service';
 import { AssetsAddModalComponent } from './public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from './public/qr-code-modal/qr-code-modal.component';
 import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-stock-modal.component';
 import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
+import { SpecificComponent } from './specific/specific.component';
 import { CodeComponent } from '../assets/code/code.component';
-
+import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -66,13 +69,18 @@ import { CodeComponent } from '../assets/code/code.component';
     CovalentFileModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, CodeComponent],
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent, CreateQrCodeModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
     InOutStockModalComponent,
     AssetsTypeModalComponent,
-    SupplierModalComponent
+    SupplierModalComponent,
+    CreateQrCodeModalComponent
+  ],
+  providers: [
+    ApiService,
+    UtilService
   ]
 })
 export class AssetsModule { }

@@ -26,12 +26,15 @@ export class QrCodeModalComponent implements OnInit {
   getInOutStock() {
     this.assets = new AssetsClass();
 
-    this._service.getHttp(`/api/bi/assets/getInOutStock?id=${this.assets.id}`)
-      .then((response: any) => {
-        this.assets = response.json().entries;
-        this.dialogQrCodeModal.close(response.json());
-        this.dialogInOutStockModal.open(InOutStockModalComponent);
-      })
-      .catch((e: any) => {console.log(e)});
+    this.dialogQrCodeModal.close();
+    this.dialogInOutStockModal.open(InOutStockModalComponent);
+
+    // this._service.getHttp(`/api/bi/assets/getInOutStock?id=${this.assets.id}`)
+    //   .then((response: any) => {
+    //     this.assets = response.json().entries;
+    //     this.dialogQrCodeModal.close(response.json());
+    //     this.dialogInOutStockModal.open(InOutStockModalComponent);
+    //   })
+    //   .catch((e: any) => {console.log(e)});
   }
 }
