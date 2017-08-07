@@ -46,4 +46,25 @@ export class ApiService {
   	return this._http.delete(domain+url, {headers: headers, body: deleteData}).toPromise()
   }
   
+  getResourceHttp(url?:string, callback?:any ): Promise<any> {
+    return this._http.get(domain+url).toPromise().then(response => {
+      callback && callback(response.json())
+    }).catch((e:any) => {
+        console.log(e)
+        document.getElementById('app-loading').style.display = "none";
+    });
+  }
+
+  postResourceHttp(url?:string, param?:any,  callback?:any ): Promise<any> {
+    return this._http
+      .post(domain+url, param)
+      .toPromise()
+      .then(response => {
+        callback && callback(response.json())
+      })
+      .catch((e:any) => {
+        console.log(e)
+        document.getElementById('app-loading').style.display = "none";
+      });
+  }
 }

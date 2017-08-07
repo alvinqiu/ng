@@ -7,6 +7,7 @@ import { CodeComponent } from '../code/code.component';
 const AssetsRoutes: Route[] = [
 	{ path: '', redirectTo: 'index',  pathMatch: 'full'},
 	{ path: 'index', component: IndexComponent },
+	{ path: 'code', component: CodeComponent },
   { path: 'specific', component: SpecificComponent },
 	{ path: 'code', component: CodeComponent }
 ]

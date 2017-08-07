@@ -43,16 +43,16 @@ const router: Routes = [
 				// canActivateChild: [AuthGuard],
 				// loadChildren: '../module/basic/basic.module#BasicModule',
 		  //   },
-		  //   {
-				// path: 'resources',
-				// component: ResourcesComponent,
-				// loadChildren: '../module/resources/resources.module#ResourcesModule',
-		  //   },
 		    {
-				path: 'assets',
-				component: AssetsComponent,
-				loadChildren: '../module/assets/assets.module#AssetsModule',
+				path: 'resources',
+				component: ResourcesComponent,
+				loadChildren: '../module/resources/resources.module#ResourcesModule',
 		    },
+		  //   {
+				// path: 'assets',
+				// component: AssetsComponent,
+				// loadChildren: '../module/assets/assets.module#AssetsModule',
+		  //   },
 		]
 	}
 ]

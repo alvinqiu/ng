@@ -130,6 +130,21 @@ td-message {
 
 //msg
 
+
+//modal
+.mat-dialog-container {
+	position: relative;
+	.mat-progress-bar {
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+
+	}
+}
+
+//modal
+
 // search component
 .td-search-container {
 	align-items: center;
