@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { 
-	RouterModule, 
-	Routes 
+import {
+	RouterModule,
+	Routes
 } from '@angular/router';
 import { LoginComponent } from '../module/login/login.component';
 import { PersonalComponent } from '../module/personal/personal.component';
@@ -48,11 +48,11 @@ const router: Routes = [
 				component: ResourcesComponent,
 				loadChildren: '../module/resources/resources.module#ResourcesModule',
 		    },
-		  //   {
-				// path: 'assets',
-				// component: AssetsComponent,
-				// loadChildren: '../module/assets/assets.module#AssetsModule',
-		  //   },
+		    {
+				path: 'assets',
+				component: AssetsComponent,
+				loadChildren: '../module/assets/assets.module#AssetsModule',
+		    },
 		]
 	}
 ]
