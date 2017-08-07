@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MD_DIALOG_DATA } from '@angular/material';
 import * as JsBarcode from 'jsbarcode';
 
@@ -7,7 +7,7 @@ import * as JsBarcode from 'jsbarcode';
   templateUrl: './create-qr-code-modal.component.html',
   styleUrls: ['./create-qr-code-modal.component.css']
 })
-export class CreateQrCodeModalComponent implements OnInit {
+export class CreateQrCodeModalComponent implements OnInit, AfterViewInit {
 
   baseDate: any[] = [];
 
@@ -19,14 +19,33 @@ export class CreateQrCodeModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    // setTimeout(() => {
+    //   this.baseDate.map(data => {
+    //     JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
+    //       width: 4,
+    //       height: 30
+    //     });
+    //   });
+    // }, 0)
+    
+  }
+
+  ngAfterViewInit() {
     this.baseDate.map(data => {
-      JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
-        width: 4,
-        height: 30
+        console.log(data.asset.seriesNumber)
+        JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
+          width: 1,
+          height: 50,
+          textAlign:
+        });
       });
-    });
   }
   print() {
-
+    var newWin=window.open('about:blank', '', '');
+    var titleHTML=document.getElementById("code").innerHTML;
+    newWin.document.write(titleHTML);
+    newWin.document.body.setAttribute("style", "text-align: center");
+    newWin.document.location.reload();
+    newWin.print();
   }
 }

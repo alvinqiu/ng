@@ -1,9 +1,9 @@
 <h2 md-dialog-title>条形码列表</h2>
 
 <md-dialog-content>
-  <ul [(ngModel)]="baseDate">
-    <li *ngFor="let data of baseDate">
-      <img id="barcode{{data.id}}" name="{{data.id}}"/>
+  <ul id="code">
+    <li *ngFor="let data of baseDate; let o = index;" style="list-style: none;">
+      <img id="barcode{{data.id}}" />
     </li>
   </ul>
 
