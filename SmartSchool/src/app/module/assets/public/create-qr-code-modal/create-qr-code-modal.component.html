@@ -1,0 +1,20 @@
+<h2 md-dialog-title>条形码列表</h2>
+
+<md-dialog-content>
+  <ul [(ngModel)]="baseDate">
+    <li *ngFor="let data of baseDate">
+      <img id="barcode{{data.id}}" name="{{data.id}}"/>
+    </li>
+  </ul>
+
+</md-dialog-content>
+
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button md-button
+          color="primary"
+          (click)="print()">打印条形码</button>
+  <button
+    md-button
+    color="primary"
+    md-dialog-close>关闭</button>
+</md-dialog-actions>

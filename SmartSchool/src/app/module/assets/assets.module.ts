@@ -39,7 +39,7 @@ import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
 import { SpecificComponent } from './specific/specific.component';
 import { CodeComponent } from '../assets/code/code.component';
-
+import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -68,13 +68,15 @@ import { CodeComponent } from '../assets/code/code.component';
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent, InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent],
+  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent, CreateQrCodeModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
     InOutStockModalComponent,
     AssetsTypeModalComponent,
-    SupplierModalComponent
+    SupplierModalComponent,
+    CreateQrCodeModalComponent
   ],
   providers: [
     ApiService,

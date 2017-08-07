@@ -6,6 +6,7 @@ import {
   ITdDataTableSortChangeEvent } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
+import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/create-qr-code-modal.component';
 
 @Component({
   selector: 'app-specific',
@@ -35,6 +36,20 @@ export class SpecificComponent implements OnInit {
         'stockStatus': '未出库',
         'person': '',
       }
+    }, {
+      'id': 3,
+      'asset': {
+        'seriesNumber': 'S12347',
+        'stockStatus': '未出库',
+        'person': '',
+      }
+    }, {
+      'id': 4,
+      'asset': {
+        'seriesNumber': 'S12348',
+        'stockStatus': '未出库',
+        'person': '',
+      }
     }
   ];
 
@@ -59,28 +74,20 @@ export class SpecificComponent implements OnInit {
   }
 
   openDialog(condition: any): void {
-    // let dialogRef = null;
-    // switch (condition.func) {
-    //   case 'scrap':
-    //     dialogRef = this.dialog.open(AssetsAddModalComponent, {
-    //       width:"40%"
-    //     });
-    //     break;
-    //   case 'delete':
-    //     dialogRef = this.dialog.open(QrCodeModalComponent, {
-    //       width:"40%"
-    //     });
-    //     break;
-    //   case 'print':
-    //     dialogRef = this.dialog.open(AssetsTypeModalComponent, {
-    //       width:"40%"
-    //     });
-    //     break;
-    //   default:
-    //     break;
-    // }
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    condition.selectedRows = this.selectedRows;
+    let dialogRef = null;
+    switch (condition.func) {
+      case 'create':
+        dialogRef = this.dialog.open(CreateQrCodeModalComponent, {
+          data: condition.selectedRows,
+          width: "60%"
+        });
+        break;
+      default:
+        break;
+    }
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   selectEvent(e: any): any {

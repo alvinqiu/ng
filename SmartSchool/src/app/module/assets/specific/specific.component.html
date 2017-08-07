@@ -2,9 +2,9 @@
   <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
     <md-card fxFlexFill>
       <md-toolbar>
-        <button md-button (click)="openDialog({func:'scrap'})">报废</button>
-        <button md-button (click)="openDialog({func:'delete'})">删除</button>
-        <button md-button (click)="openDialog({func:'print'})">打印二维码</button>
+        <button md-button>报废</button>
+        <button md-button>删除</button>
+        <button md-button (click)="openDialog({func:'create'})">生成条形码</button>
       </md-toolbar>
     </md-card>
 
