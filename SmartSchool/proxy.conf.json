@@ -3,5 +3,10 @@
   "/api/": {
     "target": "http://www.marchezvousblue.cn/ss",
     "secure": false
+  },
+  "/resource": {
+  	"target": "http://dev.slothtek.com:8081",
+    "secure": false
+  	
   }
 }
