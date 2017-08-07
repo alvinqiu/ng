@@ -27,8 +27,8 @@ export class IndexComponent implements OnInit {
     { name: 'asset.totalQuantity', label: '总数量' },
     { name: 'asset.inventoryQuantity', label: '使用数' },
     { name: 'asset.inventoryQuantity', label: '库存数' },
-    { name: 'asset.price', label: '单价' },
-    { name: 'asset.price', label: '总价' },
+    { name: 'asset.price', label: '单价(元)' },
+    { name: 'asset.price', label: '总价(元)' },
     { name: 'asset.purchaseDate', label: '购买时间' },
   ];
 
@@ -122,26 +122,31 @@ export class IndexComponent implements OnInit {
   }
   openDialog(condition:any):void {
     let dialogRef = null;
-    switch(condition.func){
+    switch (condition.func) {
       case 'add':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width: '60%'
+        });
+        break;
       case 'edit':
         dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          width:"60%"
+          data: '',
+          width: '60%'
         });
         break;
       case 'qrCode':
         dialogRef = this.dialog.open(QrCodeModalComponent, {
-          width:"40%"
+          width: '40%'
         });
         break;
       case 'type':
         dialogRef = this.dialog.open(AssetsTypeModalComponent, {
-          width:"40%"
+          width: '40%'
         });
         break;
       case 'supplier':
         dialogRef = this.dialog.open(SupplierModalComponent, {
-          width:"50%"
+          width: '50%'
         });
         break;
       // case 'rule':

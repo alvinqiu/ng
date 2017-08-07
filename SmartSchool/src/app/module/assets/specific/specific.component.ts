@@ -80,7 +80,7 @@ export class SpecificComponent implements OnInit {
       case 'create':
         dialogRef = this.dialog.open(CreateQrCodeModalComponent, {
           data: condition.selectedRows,
-          width: "60%"
+          width: "40%"
         });
         break;
       default:

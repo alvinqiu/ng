@@ -1,7 +1,12 @@
 export interface AssetsInterface {
-  "id": number;
-  "schoolId": number;
-  "assetsName": string;
-  "schoolName": string;
-  "status":number;
+  'id': number;
+  'type': string;
+  'brand': string;
+  'model': string;
+  'phone': string;
+  'schoolId': number;
+  'assetsName': string;
+  'personName': string;
+  'schoolName': string;
+  'status': number;
 }
