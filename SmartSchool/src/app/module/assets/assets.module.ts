@@ -38,6 +38,7 @@ import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-sto
 import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
 import { SpecificComponent } from './specific/specific.component';
+import { CodeComponent } from '../assets/code/code.component';
 
 @NgModule({
   imports: [
@@ -67,8 +68,7 @@ import { SpecificComponent } from './specific/specific.component';
     CovalentExpansionPanelModule,
     CovalentFileModule,
   ],
-  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent],
+  declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent, InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,

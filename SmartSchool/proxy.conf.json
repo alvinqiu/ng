@@ -1,7 +1,12 @@
 {
 
   "/api/": {
-    "target": "http://120.25.149.248:8889",
+    "target": "http://www.marchezvousblue.cn/ss",
     "secure": false
+  },
+  "/resource": {
+  	"target": "http://dev.slothtek.com:8081",
+    "secure": false
+  	
   }
 }

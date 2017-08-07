@@ -9,11 +9,11 @@ const headers:Headers = new Headers({
 
 let domain:string = "";
 
-// if (environment.production) {
-// 	domain = "http://dev.slothtek.com:8080";
-// } else {
-// 	domain = "";
-// }
+if (environment.production) {
+	domain = "http://www.marchezvousblue.cn/ss";
+} else {
+	domain = "";
+}
 
 
 @Injectable()
@@ -26,20 +26,45 @@ export class ApiService {
   }
 
   postHttp(url?:string, postData?:any) {
-    console.log(qs.stringify(postData))
-  	return this._http.post(domain+url,qs.stringify(postData),{headers: headers}).toPromise()
+    let param = qs.stringify(postData,{ 
+                        serializeDate: function (d) { 
+                          return d.toString()
+                        }
+                      })
+  	return this._http
+                .post(domain+url,
+                      param,
+                      {headers: headers})
+                .toPromise()
   }
 
   postDelHttp(url?:string, postData?:any) {
     return this._http.post(domain+url,postData,{headers: headers}).toPromise()
   }
-  // postHttp2(url?:string, postData?:any) {
-  //   console.log(qs.stringify(postData))
-  //   return this._http.post(domain+url,`gradeName=444444&schoolName=`,{headers: headers}).toPromise()
-  // }
 
   deleteHttp(url?:string, deleteData?:any) {
   	return this._http.delete(domain+url, {headers: headers, body: deleteData}).toPromise()
   }
   
+  getResourceHttp(url?:string, callback?:any ): Promise<any> {
+    return this._http.get(domain+url).toPromise().then(response => {
+      callback && callback(response.json())
+    }).catch((e:any) => {
+        console.log(e)
+        document.getElementById('app-loading').style.display = "none";
+    });
+  }
+
+  postResourceHttp(url?:string, param?:any,  callback?:any ): Promise<any> {
+    return this._http
+      .post(domain+url, param)
+      .toPromise()
+      .then(response => {
+        callback && callback(response.json())
+      })
+      .catch((e:any) => {
+        console.log(e)
+        document.getElementById('app-loading').style.display = "none";
+      });
+  }
 }

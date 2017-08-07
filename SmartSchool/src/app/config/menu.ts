@@ -37,6 +37,11 @@ export const Menu = [{
 		"url":"/app/basic/subjects",
 		"description": "建设中..."
 	},{
+		"icon":"subject",
+		"name":"课程管理",
+		"url":"/app/basic/course",
+		"description": "建设中..."
+	},{
 		"icon":"class",
 		"name":"年级管理",
 		"url":"/app/basic/grades",

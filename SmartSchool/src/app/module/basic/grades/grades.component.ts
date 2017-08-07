@@ -9,10 +9,12 @@ import { MdDialog } from '@angular/material';
 import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { ApiService } from '../../../service/api.service';
 import { GradesmodalComponent } from '../public/gradesmodal/gradesmodal.component';
-import { GradeInterface } from '../../../interface/grade';
-import { GradeClass } from '../../../class/grade';
+import { GradeClass } from '../public/gradesmodal/grade-class';
+// import { GradeInterface } from '../../../interface/grade';
+// import { GradeClass } from '../../..／class/grade';
 import { Http,Headers  } from '@angular/http';
 
+ 
 
 @Component({
   selector: 'app-grades',
@@ -21,13 +23,36 @@ import { Http,Headers  } from '@angular/http';
 
 })
 export class GradesComponent implements OnInit {
-  basicData: Array<GradeInterface>;
+  basicData: Array<GradeClass>;
   columns: ITdDataTableColumn[] = [
     { name: 'gradeName', label: '年级名字' },
-    { name: 'gradeAttr', label: '年级属性' },
-    { name: 'gradeLevel', label: '入学年' },
-    { name: 'gradeManagerName', label: '年级负责人' },
-    { name: 'status', label: '状态' },
+    { name: 'gradeAttr', label: '年级属性' ,
+      format: v =>  {
+        switch(v){
+          case 0 :
+            return "学前教育";
+            // break;
+          case 1 :
+            return "小学";
+            // break;
+          case 2 :
+            return "初中";
+            // break;
+          case 3 :
+            return "高中";
+            // break;
+          case 4 :
+            return "高等教育";
+            // break;
+          default:
+            return ""
+        }
+          
+      }
+    },
+    { name: 'gradeLevel', label: '入学年', format: v => v? `${new Date(v).getFullYear()}级`:''},
+    { name: 'managerName', label: '年级负责人' },
+    { name: 'status', label: '状态' , format: v => v && v == 1 ? '结业':'在读'},
     { name: 'schoolName', label: '学校' },
     { name: 'gradeDesc', label: '描述' },
     
@@ -47,26 +72,26 @@ export class GradesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      
+      document.getElementById('app-loading').style.display = "flex";
       this._service
           .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
           .then((response:any) => {
             this.basicData = response.json().entries;
             this.totalCount = response.json().totalCount;
+            document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {console.log(e)});
-      // this.event.page = this.page = 1;
-      // this.event.pageSize = this.pageSize = 20;
+          .catch((e:any) => {
+            console.log(e)
+            document.getElementById('app-loading').style.display = "none";
+          });
 
   }
 
   selectEvent(e:any):any {
-  	// console.log(e)
-  	// console.log(this.selectedRows)
+    this.selectedRows = e;
   }
 
   openDialog(condition:any):void {
-    condition.gradelist = this.basicData;
     condition.selectedRows = this.selectedRows;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
@@ -79,13 +104,19 @@ export class GradesComponent implements OnInit {
         width:"60%"
       });
       dialogRef.afterClosed().subscribe(result => {
-        this._service
-          .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          .then((response:any) => {
-            this.basicData = response.json().entries;
-            this.totalCount = response.json().totalCount;
-          })
-          .catch((e:any) => {console.log(e)});
+        if (result && result.status == "refresh") {
+            this.selectedRows = [];
+            this._service
+            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              
+            })
+            .catch((e:any) => {
+              console.log(e)
+            });
+        }
       });
     }
     
@@ -96,7 +127,6 @@ export class GradesComponent implements OnInit {
     this._service
       .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${searchInputTerm}`)
       .then((response:any) => {
-        console.log(response)
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
       })
@@ -105,7 +135,6 @@ export class GradesComponent implements OnInit {
       })
 
   }
-
 
   change(event: IPageChangeEvent): void {
     this.page = event.page;
@@ -139,6 +168,7 @@ export class GradesComponent implements OnInit {
             .then((response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
+              this.selectedRows = [];
             })
             .catch((e:any) => {console.log(e)});
         })

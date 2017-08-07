@@ -11,7 +11,7 @@ import { BuildingsComponent } from '../buildings/buildings.component';
 import { OfficesComponent } from '../offices/offices.component';
 import { PersonalComponent } from '../personal/personal.component';
 import { AccountComponent } from '../account/account.component';
-
+import { CourseComponent } from '../course/course.component';
 const BasicRoutes: Route[] = [
 	{ path: '', redirectTo: 'schools',  pathMatch: 'full'},
 	{ path: 'schools', component: SchoolsComponent },
@@ -23,7 +23,8 @@ const BasicRoutes: Route[] = [
 	{ path: 'buildings', component: BuildingsComponent},
 	{ path: 'offices', component: OfficesComponent},
 	{ path: 'personal', component: PersonalComponent},
-	{ path: 'account', component: AccountComponent }
+	{ path: 'account', component: AccountComponent },
+	{ path: 'course', component: CourseComponent }
 ];
 
 

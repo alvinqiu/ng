@@ -1,6 +1,6 @@
 <h2 md-dialog-title>新增年级</h2>
 <md-dialog-content>
-	
+	<td-message [label]="label" [sublabel]="msg" [color]="color" [icon]="icon" *ngIf="errorMsg"></td-message>
 	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 			<!-- <md-input-container fxFlex="50">
 		      <input mdInput placeholder="学校名字"  required required [(ngModel)]="school.name" name="name" [disabled]="status == 'check'">
@@ -8,18 +8,23 @@
 		    <md-input-container fxFlex="100">
 		      <input mdInput placeholder="年级名字" required [(ngModel)]="grade.gradeName" name="gradeName" [disabled]="status == 'check'">
 		    </md-input-container>
-		    <md-select placeholder="年级属性" fxFlex="100" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
+		    <md-select placeholder="年级状态" fxFlex="50" [(ngModel)]="grade.status" name="status" [disabled]="status == 'check'">
+				<md-option *ngFor="let item of statuslist" [value]="item.value">
+					{{ item.viewValue }}
+				</md-option>
+			</md-select>
+		    <md-select placeholder="年级属性" fxFlex="50" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
 				<md-option *ngFor="let item of propertylist" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
 			<md-input-container fxFlex="50">
-			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间"  [disabled]="status == 'check'">
+			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="grade.gradeLevel" name="gradeLevel">
 			  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="status == 'check'"></button>
 			</md-input-container>
-			<md-datepicker #picker  [startAt]="startDate"></md-datepicker>
+			<md-datepicker #picker  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.gradeManagerName" name="gradeManagerName" [disabled]="status == 'check'">
+		      <input mdInput placeholder="年级负责人" [(ngModel)]="grade.managerName" name="managerName" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="100">
 				<textarea mdInput placeholder="年级描述" [(ngModel)]="grade.gradeDesc" name="gradeDesc" [disabled]="status == 'check'"></textarea>
@@ -36,7 +41,7 @@
     color="primary"
     (click)="save()"
     [disabled]="!addForm.form.valid"
-    *ngIf="status != 'check'"
+    *ngIf="status == 'add' || status == 'modify'"
     >保存</button>
 
 	<button

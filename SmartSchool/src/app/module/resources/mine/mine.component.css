@@ -9,3 +9,9 @@
 .mat-toolbar {
 	background: white;
 }
+md-card {
+	padding: 0;
+}
+md-card>div {
+	padding: 24px;
+}

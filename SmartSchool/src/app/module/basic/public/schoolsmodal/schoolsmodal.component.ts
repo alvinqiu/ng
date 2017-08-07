@@ -15,40 +15,54 @@ export class SchoolsmodalComponent implements OnInit {
     {value: '0', viewValue: '否'},
     {value: '1', viewValue: '是'},
   ]
-  school:SchoolInterface;
+  model:SchoolInterface;
+  schoollist: Array<SchoolInterface>;
   selectedRows: Array<SchoolInterface>;
   condition:object = {
     func : ""
   };
+  errorMsg = false;
   status:string;
-  schoollist:Array<SchoolInterface>;
   dialogModal:MdDialogRef<SchoolsmodalComponent>;
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
   	private dialogRef: MdDialogRef<SchoolsmodalComponent>,
     private _service: ApiService
   ) { 
-    this.schoollist = groups.schoollist;
     this.selectedRows = groups.selectedRows;
     this.dialogModal = dialogRef;
     switch(groups.func) {
       case "modify":
         this.status = "modify";
-        this.school = new SchoolClass();
+        this.model = new SchoolClass();
+        this._service
+          .getHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`)
+          .then((response:any) => {
+            this.model = response.json().entries[0];
+          })
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+          });
         break;
       case "check":
-        this.school = new SchoolClass();
         this.status = "check";
+        this.model = new SchoolClass();
+
         this._service
-          .getHttp(`/api/bi/school/1`)
+          .getHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`)
           .then((response:any) => {
-            console.log(response)
+            this.model = response.json().entries[0];
           })
-        .catch((e:any) => {console.log(e)});
+          .catch((e:any) => {
+            console.log(e)
+            this.errorMsg = true;
+          });
         break;
       default:
-        this.status = "";
-        this.school = new SchoolClass();
+        this.status = "add";
+        this.model = new SchoolClass();
+        break;
     }
 
     
@@ -60,13 +74,29 @@ export class SchoolsmodalComponent implements OnInit {
   }
 
   save() {
-    console.log(this.school)
-    this.dialogModal.close(this.school);
+    let url = "";
+    if (this.status == "modify") {
+      url = `/api/bi/school/updateSchool/${this.selectedRows[0].id}`;
+    } else {
+      url = "/api/bi/school/addSchool";
+    }
+    document.getElementById('app-loading').style.display = "flex";
+    this._service
+      .postHttp(url, this.model)
+      .then((response:any) => {
+        document.getElementById('app-loading').style.display = "none";
+        this.dialogModal.close({"status":"refresh", "data": response.json()})
+      })
+      .catch((e:any) => {
+        console.log(e.json())
+        this.errorMsg = true;
+        document.getElementById('app-loading').style.display = "none";
+      });
   }
 
   selectChange() {
-    if (this.school.branch == "0") {
-      this.school.parent_school = 0;
+    if (this.model.branch == "0") {
+      this.model.parent_school = 0;
     }
   }
 

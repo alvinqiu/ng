@@ -1,68 +1,70 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="center start">				
 		<div class="left" fxFlex="1 1 auto">
-			<h2 class="text-center">审核通过审核通过审核通过审核通过审核通过</h2>
-			<div class="preview">
-				<img src="../../../../assets/img/angular.jpg" alt="">
-				<img src="../../../../assets/img/angular.jpg" alt="">
-				<img src="../../../../assets/img/angular.jpg" alt="">
-				<img src="../../../../assets/img/angular.jpg" alt="">
-				
+			<h2 class="text-center">{{model.name}}</h2>
+			<div class="preview" *ngIf="model">
+				<img src="{{item}}" alt="" *ngFor="let item of model.previews; let i = index;">
 			</div>
 			<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
-				<button md-button>下载</button>
-				<button md-button>收藏</button>
-				<button md-button>审核通过</button>
-				<button md-button>审核失败</button>
+				<button md-button (click)="download()">下载</button>
+				<button md-button (click)="collection()">收藏</button>
+				<button md-button (click)="reviewPass()">审核通过</button>
+				<button md-button (click)="reviewFailed()">审核失败</button>
 			</div>
 			
 			<div class="comment" fxFlexFill>
 				<h3>评论</h3>
 				<div class="divider"></div>
-				<md-list>
+				<md-list *ngFor="let item of commentlist; let i = index;">
 					<md-list-item >
 						<img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar">
-						<h4 md-line>1234</h4>
-						<p md-line> 1223434 </p>
+						<h4 md-line>{{item.nickname}}</h4>
+						<p md-line> {{item.content}} </p>
 						<div class="slot" fxLayout="column">
-							<bar-rating [(rate)]="rate" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating>
-						</div>
-					</md-list-item>
-					<md-divider></md-divider>
-				</md-list>
-				<md-list>
-					<md-list-item >
-						<img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar">
-						<h4 md-line>1234</h4>
-						<p md-line> 1223434 </p>
-						<div class="slot" fxLayout="column">
-							<bar-rating [(rate)]="rate" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating>
+							<bar-rating [(rate)]="item.star" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating>
 						</div>
 					</md-list-item>
 					<md-divider></md-divider>
 				</md-list>
 				<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 					<div fxLayout="star" fxLayoutAlign="end center" fxFlexFill>
-						<span>评分：</span><bar-rating [(rate)]="rate" [max]="5" [theme]="'default'"></bar-rating>
+						<span>评分：</span><bar-rating [(rate)]="postData.star" [max]="5" [theme]="'default'"></bar-rating>
 					</div>
 					<md-input-container fxFlex="100">
-						<textarea mdInput placeholder="留言"></textarea>
+						<textarea mdInput placeholder="留言" [(ngModel)]="postData.content" name="content"></textarea>
 					</md-input-container>
 				</form>
 				
 				<div fxLayoutAlign="end center">
-					<button md-button>回复</button>
+					<button md-button (click)="save()">回复</button>
+				</div>
+				<div class="page" fxFlexFill>
+					<td-paging-bar 
+						#pagingBar 
+						[firstLast]="true" 
+						[pageSizeAll]="pageSizeAll" 
+						[pageSizes]="[10]"
+						pageLinkCount="5" 
+						[initialPage]="1" 
+						[pageSize]="pageSize" 
+						[total]="totalElements" 
+						(change)="change($event)">
+						<span td-paging-bar-label>每页:</span>
+						{{pagingBar.range}} <span>of {{totalElements}}</span>
+					</td-paging-bar>
 				</div>
 			</div>
 		</div>
 		<div class="right" fxFlex="275px">
 			<md-card>
-				<div>上传作者：</div>
-				<div>上传时间：</div>
-				<div>类型：</div>
-				<div>：</div>
-				<div>作者：</div>
-				<div>作者：</div>
+				<div>上传作者：{{model.authorName}}</div>
+				<div>上传时间：{{model.createTime| date: 'yyyy-MM-dd'}}</div>
+				<div>资源类型：{{model.format}}</div>
+				<div>学科：{{model.courseName}}</div>
+				<div>学级：{{model.stagesName}}</div>
+				<div>学校：{{model.schoolName}}</div>
+				<div>说明：{{model.note}}</div>
+
 			</md-card>	
 		</div>
 		

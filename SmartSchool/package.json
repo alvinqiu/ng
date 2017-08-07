@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot --prod",
-    "dev": "ng serve --aot --prod --proxy-config proxy.conf.json --env=dev",
+    "dev": "ng serve --aot --proxy-config proxy.conf.json --env=dev",
     "dev:prod": "ng serve --aot --prod --proxy-config proxy.conf.json --env=prod",
     "build": "ng build --aot --prod --env=prod",
     "test": "ng test",
@@ -27,9 +27,12 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@covalent/core": "^1.0.0-beta.5-1",
+    "angular2-image-upload": "^0.6.6",
     "axios": "^0.16.2",
     "core-js": "^2.4.1",
+    "jsbarcode": "^3.8.0",
     "material-design-icons": "^3.0.1",
+    "ng2-fancy-image-uploader": "^1.6.1",
     "ng2-pdf-viewer": "^1.1.0",
     "ngx-bar-rating": "^1.1.0",
     "qs": "^6.5.0",
@@ -37,7 +40,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "^1.2.6",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",

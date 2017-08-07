@@ -9,13 +9,14 @@ import {
   MdRadioModule,
   MdToolbarModule,
   MdButtonModule,
-  // MdSidenavModule,
+  MdCheckboxModule,
   MdInputModule,
   MdIconModule,
   MdListModule,
   MdDialogModule,
   MdSelectModule,
   MdMenuModule,
+  MdProgressBarModule,
   // MdGridListModule,
   // MdTabsModule,
 } from '@angular/material';
@@ -24,8 +25,8 @@ import {
   CovalentDataTableModule,
   CovalentPagingModule,
   CovalentSearchModule,
-  CovalentExpansionPanelModule,
   CovalentFileModule,
+  CovalentMessageModule ,
 } from '@covalent/core';
 import { ApiService } from '../../service/api.service';
 import { UtilService } from '../../service/util.service';
@@ -37,6 +38,7 @@ import { DetailComponent } from './detail/detail.component';
 import { MineComponent } from './mine/mine.component';
 import { ReviewComponent } from './review/review.component';
 import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component';
+import { MsgComponent } from './public/msg/msg.component';
 
 
 @NgModule({
@@ -48,29 +50,28 @@ import { UploadmodalComponent } from './public/uploadmodal/uploadmodal.component
     FormsModule,
     MdCardModule,
     MdRadioModule,
-    // MdSliderModule,
+    MdCheckboxModule,
     MdToolbarModule,
     MdButtonModule,
-    // MdSidenavModule,
+    MdProgressBarModule,
     MdInputModule,
     MdIconModule,
     MdListModule,
     MdDialogModule,
     MdSelectModule,
     MdMenuModule,
-    // MdGridListModule,
-    // MdTabsModule,
     BarRatingModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
-    CovalentExpansionPanelModule,
     CovalentFileModule,
+    CovalentMessageModule,
   ],
   declarations: [PdfViewerComponent, ResourcesComponent, IndexComponent, DetailComponent,
-    MineComponent, ReviewComponent, UploadmodalComponent],
+    MineComponent, ReviewComponent, UploadmodalComponent, MsgComponent],
   entryComponents: [
-    UploadmodalComponent
+    UploadmodalComponent,
+    MsgComponent
   ],
   providers:[
     ApiService,

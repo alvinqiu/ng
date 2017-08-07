@@ -13,3 +13,9 @@
 	min-width: 275px;
 	padding-bottom: 3px;
 }
+md-card {
+	padding: 0;
+}
+md-card>div {
+	padding: 24px;
+}

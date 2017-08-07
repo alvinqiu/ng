@@ -8,8 +8,10 @@ import {
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { BuildingsmodalComponent } from '../public/buildingsmodal/buildingsmodal.component';
-
+import { BuildingClass } from '../public/buildingsmodal/building-class';
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { Http,Headers  } from '@angular/http';
+
 @Component({
   selector: 'app-buildings',
   templateUrl: './buildings.component.html',
@@ -17,46 +19,35 @@ import { Http,Headers  } from '@angular/http';
 })
 export class BuildingsComponent implements OnInit {
 
-  basicData: any[] = [
-    { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-  ];
+  basicData: BuildingClass[];
   columns: ITdDataTableColumn[] = [
-    { name: 'code', label: '建筑名字' },
-    { name: 'name', label: '建筑用途' },
-    { name: 'addr', label: '建筑地址' },
-    { name: 'status', label: '建筑描述' },
+    { name: 'buildingName', label: '建筑名字' },
+    { name: 'attributeId', label: '建筑用途', format: v =>  {
+          switch(v){
+            case 0 :
+              return "教学楼";
+              // break;
+            case 1 :
+              return "行政楼";
+              // break;
+            case 2 :
+              return "图书馆";
+              // break;
+            case 3 :
+              return "学生宿舍";
+              // break;
+            case 4 :
+              return "教室宿舍";
+            case 5 :
+              return "实验楼";
+              // break;
+            default:
+              return ""
+          } 
+        }
+    },
+    { name: 'address', label: '建筑地址' },
+    { name: 'buildingDesc', label: '建筑描述' },
     
   ];
   selectedRows: any[] = [];
@@ -64,16 +55,30 @@ export class BuildingsComponent implements OnInit {
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
   searchInputTerm: string;
-  sortBy: string = 'name';
+  pageSize: number = 20;
+  page: number = 1;
+  totalCount: number;
+  sortBy: string = 'buildingName';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
   ) { 
-    this._service.getHttp("/hxwwz/rest/json/info/getUserRisk?name=1").then((e:any) => {console.log(e.json())}).catch((e:any) => {console.log(e)});
   }
   
   ngOnInit() {
+    document.getElementById('app-loading').style.display = "flex";
+    this._service
+        .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}`)
+        .then((response:any) => {
+          this.basicData = response.json().entries;
+          this.totalCount = response.json().totalCount;
+          document.getElementById('app-loading').style.display = "none";
+        })
+        .catch((e:any) => {
+          console.log(e)
+          document.getElementById('app-loading').style.display = "none";
+        });
   }
 
   selectEvent(e:any):any {
@@ -81,22 +86,90 @@ export class BuildingsComponent implements OnInit {
   	console.log(this.selectedRows)
   }
 
-  openDialog():void {
-    let dialogRef = this.dialog.open(BuildingsmodalComponent, {
-      data:{"value":"test"},
-      width:"60%"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+  openDialog(condition:any):void {
+    condition.selectedRows = this.selectedRows;
+    if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      let dialogRef = this.dialog.open(BuildingsmodalComponent, {
+        data: condition,
+        width:"60%"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.status == "refresh") {
+            this.selectedRows = [];
+            this._service
+            .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              
+            })
+            .catch((e:any) => {
+              console.log(e)
+            });
+        }
+      });
+    }
+    
+  }
+  delete():void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要删除的信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      
+      let reqlist = this.selectedRows.map( item => item.id);
+      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+
+      this._service
+        .postDelHttp(`/api/bi/building/delBuilding`, del)
+        .then((response:any) => {
+          this._service
+            .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+            .then((response:any) => {
+              this.basicData = response.json().entries;
+              this.totalCount = response.json().totalCount;
+              this.selectedRows = [];
+            })
+            .catch((e:any) => {console.log(e)});
+        })
+        .catch((e:any) => {
+          console.log(e)
+        });
+    }
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
+    this.searchInputTerm = searchInputTerm;
+    this.page = 1;
+    this._service
+      .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      })
   }
 
-
   change(event: IPageChangeEvent): void {
-    this.event = event;
-    console.log(event)
+    this.page = event.page;
+    this.pageSize = event.pageSize;
+    this._service
+      .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
+      .then((response:any) => {
+        this.basicData = response.json().entries;
+        this.totalCount = response.json().totalCount;
+      })
+      .catch((e:any) => {
+        console.log(e)
+      });
   }
 
   toggleFirstLast(): void {

@@ -25,6 +25,7 @@ import {
   CovalentExpansionPanelModule,
   CovalentMessageModule,
 } from '@covalent/core';
+import { ImageUploadModule } from "angular2-image-upload";
 
 import { ApiService } from '../../service/api.service';
 import { UtilService }  from '../../service/util.service';
@@ -52,6 +53,8 @@ import { StaffpropertyComponent } from './staff/staffproperty/staffproperty.comp
 import { StaffunaccountComponent } from './staff/staffunaccount/staffunaccount.component';
 import { AccountComponent } from './account/account.component';
 import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
+import { CourseComponent } from './course/course.component';
+import { CoursemodalComponent } from './public/coursemodal/coursemodal.component';
 
 
 
@@ -79,8 +82,9 @@ import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentMessageModule,
+    ImageUploadModule.forRoot(),
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent, CourseComponent, CoursemodalComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,
@@ -93,6 +97,7 @@ import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
     StaffsattributemodalComponent,
     StaffpropertyComponent,
     StaffunaccountComponent,
+    CoursemodalComponent,
     MsgmodalComponent,
   ],
   providers:[

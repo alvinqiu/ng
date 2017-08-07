@@ -1,36 +1,67 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
 		<md-card fxFlexFill>
-			<md-toolbar>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-				<button md-button>语文</button>
-			</md-toolbar>
-			<md-toolbar>
-				<span fxFlex="1 1 auto"></span>
-				<button md-button (click)="openDialog()">资源上传</button>
-			</md-toolbar>
+			<div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">年级：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>全部</md-checkbox>
+						<md-checkbox>一年级</md-checkbox>
+						<md-checkbox>二年级</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">学科：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>语文</md-checkbox>
+						<md-checkbox>数学</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">分类：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>试卷</md-checkbox>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">文件类型：</span>
+					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
+						<md-checkbox>doc</md-checkbox>
+					</div>
+					
+				</div>
+				<div class="td-search-container">
+					<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+					</td-search-box>
+					<button md-button (click)="openDialog()">资源上传</button>
+				</div>
+			</div>
 		</md-card>
 
-		<md-list *ngFor="let item of list; let i = index;" fxFlexFill>
-			<h3 md-subheader>热点相关命题（语文2017） （2份打包）</h3>
-			<md-list-item>
-				<md-icon md-list-icon>folder</md-icon>
-				<div class="slot" fxLayout="column">
-					<button md-button>预览</button>
-					<button md-button>下载</button>
-				</div>
-				<p md-line>教材： 语文</p>
-				<p md-line>分类： 试题试卷 ,同步测试 ,山东 ,2017</p>
-				<p md-line><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span><span>时间：2017/7/18 </span></p>
-			</md-list-item>
-			<md-divider></md-divider>
-		</md-list>
+		<table td-data-table fxFlexFill>
+		  <tr td-data-table-row *ngFor="let item of list; let i = index;" fxFlexFill>
+		    <td>
+		    	<md-list >
+					<h3 md-subheader>{{item.name}}</h3>
+					<md-list-item>
+						<md-icon md-list-icon>folder</md-icon>
+						<div class="slot" fxLayout="column">
+							<a md-button routerLink="/app/resources/detail/{{item.uuid}}">预览</a>
+							<button md-button>下载</button>
+						</div>
+						<p md-line>作者：{{item.authorName}}&nbsp;&nbsp;&nbsp;资源类型： {{item.format}}</p>
+						
+						<p md-line>学校： {{item.schoolName}}&nbsp;&nbsp;&nbsp;学级：{{item.stagesName}}</p>
+						<p md-line>资源标签： <span *ngFor="let label of item.lables; let i = index;">{{label}}&nbsp;&nbsp;&nbsp;</span></p>
+						<p md-line>上传时间：{{item.createTime}}&nbsp;&nbsp;&nbsp;下载次数：{{item.downloads}}</p>
+					</md-list-item>
+				</md-list>
+		    </td>
+		  </tr>
+		</table>
 		<div class="page" fxFlexFill>
 			<td-paging-bar 
 				#pagingBar 
@@ -39,8 +70,8 @@
 				[pageSizes]="[10,20,50]"
 				pageLinkCount="5" 
 				[initialPage]="1" 
-				[pageSize]="100" 
-				[total]="1345" 
+				[pageSize]="pageSize" 
+				[total]="totalElements" 
 				(change)="change($event)">
 				<span td-paging-bar-label>每页:</span>
 				{{pagingBar.range}} <span>of {{pagingBar.total}}</span>

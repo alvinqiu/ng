@@ -7,25 +7,21 @@
         </td-search-box>
         <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
         <md-menu #topMenu="mdMenu">
-          <a  md-menu-item (click)="openDialog()">
+          <a  md-menu-item (click)="openDialog({func:'add'})">
             <md-icon>add</md-icon>
             <span>新增</span>
           </a>
-          <a  md-menu-item (click)="openDialog()">
+          <a  md-menu-item (click)="openDialog({func:'modify'})">
             <md-icon>edit</md-icon>
             <span>修改</span>
           </a>
-          <a  md-menu-item (click)="openDialog()">
+          <a  md-menu-item (click)="delete()">
             <md-icon>delete</md-icon>
             <span>删除</span>
           </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>file_upload</md-icon>
-            <span>导出</span>
-          </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>file_download</md-icon>
-            <span>导入</span>
+          <a  md-menu-item (click)="openDialog({func:'check'})">
+            <md-icon>delete</md-icon>
+            <span>查看</span>
           </a>
         </md-menu>
       </div>
@@ -56,8 +52,8 @@
             [pageSizes]="[10,20,50]"
             pageLinkCount="5" 
             [initialPage]="1" 
-            [pageSize]="100" 
-            [total]="1345" 
+            [pageSize]="pageSize" 
+            [total]="totalCount" 
             (change)="change($event)">
             <span td-paging-bar-label>每页:</span>
             {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
@@ -66,7 +62,7 @@
         
       </div>
       </md-tab>
-      <md-tab label="建筑属性">
+      <!-- <md-tab label="建筑属性">
         <md-toolbar>
           <button md-button>
             <md-icon>add</md-icon>
@@ -81,38 +77,9 @@
             <span>删除</span>
           </button>
         </md-toolbar>
-      <!-- <div class="td-search-container"> -->
-        <!-- <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-        </td-search-box> -->
-        <!-- <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
-        <md-menu #topMenu="mdMenu">
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>add</md-icon>
-            <span>新增</span>
-          </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>edit</md-icon>
-            <span>修改</span>
-          </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>delete</md-icon>
-            <span>删除</span>
-          </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>file_upload</md-icon>
-            <span>导出</span>
-          </a>
-          <a  md-menu-item (click)="openDialog()">
-            <md-icon>file_download</md-icon>
-            <span>导入</span>
-          </a>
-        </md-menu>
-      </div> -->
+      
       <div class="divider"></div>
       <div fxLayout="row" fxLayoutAlign="start start">
-        <!-- <div>
-          tree
-        </div> -->
         <div fxFlex="grow" fxLayout="column">
           <td-data-table
             #dataTable
@@ -143,7 +110,7 @@
           </td-paging-bar>
         </div>
         
-      </div></md-tab>
+      </div></md-tab> -->
     </md-tab-group>
     
   

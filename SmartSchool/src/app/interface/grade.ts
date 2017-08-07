@@ -3,9 +3,9 @@ export interface GradeInterface {
 	"schoolId":number;
 	"gradeName": string;
 	"schoolName": string;
-	"gradeManagerName":string;
+	"managerName":string;
 	"gradeDesc":string;
-	"gradeLevel":number;
+	"gradeLevel":Date;
 	"gradeAttr":number;
 	"status":number;
 }
