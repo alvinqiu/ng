@@ -5,6 +5,7 @@ import {
   TdDataTableSortingOrder,
   ITdDataTableSortChangeEvent } from '@covalent/core';
 import { MdDialog } from '@angular/material';
+import { ApiService } from '../../../service/api.service';
 import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';
@@ -29,7 +30,6 @@ export class IndexComponent implements OnInit {
     { name: 'asset.price', label: '单价' },
     { name: 'asset.price', label: '总价' },
     { name: 'asset.purchaseDate', label: '购买时间' },
-    { name: 'operation', label: '操作' },
   ];
 
   basicData: any[] = [
@@ -45,8 +45,7 @@ export class IndexComponent implements OnInit {
         'inventoryQuantity': 'test',
         'price': 'test',
         'purchaseDate': 'test',
-      },
-      'operation':'edit',
+      }
     }, {
       'id': 2,
       'asset': {
@@ -59,8 +58,7 @@ export class IndexComponent implements OnInit {
         'inventoryQuantity': 'test',
         'price': 'test',
         'purchaseDate': 'test',
-      },
-      'operation':'edit',
+      }
     },{
       'id': 3,
       'asset': {
@@ -73,8 +71,7 @@ export class IndexComponent implements OnInit {
         'inventoryQuantity': 'test',
         'price': 'test',
         'purchaseDate': 'test',
-      },
-      'operation':'edit',
+      }
     },{
       'id': 4,
       'asset': {
@@ -87,8 +84,7 @@ export class IndexComponent implements OnInit {
         'inventoryQuantity': 'test',
         'price': 'test',
         'purchaseDate': 'test',
-      },
-      'operation':'edit',
+      }
     },{
       'id': 5,
       'asset': {
@@ -101,8 +97,7 @@ export class IndexComponent implements OnInit {
         'inventoryQuantity': 'test',
         'price': 'test',
         'purchaseDate': 'test',
-      },
-      'operation':'edit',
+      }
     }
   ];
 
@@ -110,7 +105,7 @@ export class IndexComponent implements OnInit {
   firstLast: boolean = false;
   event: IPageChangeEvent;
   pageSize: number = 20;
-  page: number;
+  page: number = 1;
   totalCount: number;
 
   searchInputTerm: string;
@@ -118,7 +113,8 @@ export class IndexComponent implements OnInit {
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
 
   constructor(
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private _service: ApiService
   ) { }
   change(event: IPageChangeEvent): void {
     this.event = event;
@@ -128,6 +124,7 @@ export class IndexComponent implements OnInit {
     let dialogRef = null;
     switch(condition.func){
       case 'add':
+      case 'edit':
         dialogRef = this.dialog.open(AssetsAddModalComponent, {
           width:"60%"
         });
@@ -159,7 +156,7 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  selectEvent(e:any):any {
+  selectEvent(e: any): any {
     this.selectedRows = e;
   }
 
@@ -167,6 +164,23 @@ export class IndexComponent implements OnInit {
     // console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
+  }
+
+  handleSpecific(): void {
+    let equipmentGeneralId = 0;
+    if (this.selectedRows.length > 0) {
+      equipmentGeneralId = this.selectedRows[0].id;
+
+      this._service
+        .getHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
+        .then((response: any) => {
+          console.log(response);
+
+        })
+        .catch((e: any) => {
+          console.log(e);
+        });
+    }
   }
 
   ngOnInit() {

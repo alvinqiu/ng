@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
 import { IndexComponent } from '../index/index.component';
 import { CodeComponent } from '../code/code.component';
+import { SpecificComponent } from '../specific/specific.component';
+
 const AssetsRoutes: Route[] = [
 	{ path: '', redirectTo: 'index',  pathMatch: 'full'},
 	{ path: 'index', component: IndexComponent },
-	{ path: 'code', component: CodeComponent }
+	{ path: 'code', component: CodeComponent },
+  { path: 'specific', component: SpecificComponent },
 ]
 
 @NgModule({
