@@ -42,8 +42,46 @@ export class ApiService {
     return this._http.post(domain+url,postData,{headers: headers}).toPromise()
   }
 
-  deleteHttp(url?:string, deleteData?:any) {
-  	return this._http.delete(domain+url, {headers: headers, body: deleteData}).toPromise()
+  getBasicHttp(url?:string, callback?:any): Promise<any> {
+    return this._http
+               .get(domain+url)
+               .toPromise()
+               .then(res => {
+                 callback && callback(res.json());
+               })
+               .catch(e => {
+                 console.error(e)
+               });
+  }
+  
+  postBasicHttp(url?:string, postData?:any, callback?:any) {
+    let param = qs.stringify(postData,{ 
+                        serializeDate: function (d) { 
+                          return d.toString()
+                        }
+                      })
+    return this._http
+               .post(domain+url, param, {headers: headers})
+               .toPromise()
+               .then( res => {
+                  callback && callback(res.json())
+               })
+               .catch( e => {
+                 console.error(e)
+               })
+
+  }
+
+  postBasicDelHttp(url?:string, postData?:any, callback?:any) {
+    return this._http
+               .post(domain+url,postData,{headers: headers})
+               .toPromise()
+               .then( res => {
+                 callback && callback(res.json())
+               })
+               .catch(e => {
+                 console.error(e)
+               })
   }
   
   getResourceHttp(url?:string, callback?:any ): Promise<any> {

@@ -45,28 +45,20 @@ export class CoursemodalComponent implements OnInit {
         this.status = "modify";
         this.model = new CourseClass();
         this._service
-          .getHttp(`/api/bi/course/getCourseByCondition?id=${this.selectedRows[0].id}`)
-          .then((response:any) => {
+          .getBasicHttp(`/api/bi/course/getCourseByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
             this.model = response.json().entries[0];
           })
-          .catch((e:any) => {
-            console.log(e)
-            this.errorMsg = true;
-          });
+          
         break;
       case "check":
         this.status = "check";
         this.model = new CourseClass();
 
         this._service
-          .getHttp(`/api/bi/course/getCourseByCondition?id=${this.selectedRows[0].id}`)
-          .then((response:any) => {
+          .getBasicHttp(`/api/bi/course/getCourseByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
             this.model = response.json().entries[0];
           })
-          .catch((e:any) => {
-            console.log(e)
-            this.errorMsg = true;
-          });
+          
         break;
       default:
         this.status = "add";
@@ -87,16 +79,11 @@ export class CoursemodalComponent implements OnInit {
     }
     document.getElementById('app-loading').style.display = "flex";
     this._service
-      .postHttp(url, this.model)
-      .then((response:any) => {
+      .postBasicHttp(url, this.model, (response:any) => {
         document.getElementById('app-loading').style.display = "none";
         this.dialogModal.close({"status":"refresh", "data": response.json()})
       })
-      .catch((e:any) => {
-        console.log(e.json())
-        this.errorMsg = true;
-        document.getElementById('app-loading').style.display = "none";
-      });
+      
   }
 
 }

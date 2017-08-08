@@ -74,17 +74,12 @@ export class GradesComponent implements OnInit {
   ngOnInit() {
       document.getElementById('app-loading').style.display = "flex";
       this._service
-          .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          .then((response:any) => {
-            this.basicData = response.json().entries;
-            this.totalCount = response.json().totalCount;
+          .getBasicHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
             document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {
-            console.log(e)
-            document.getElementById('app-loading').style.display = "none";
-          });
-
+          
   }
 
   selectEvent(e:any):any {
@@ -107,15 +102,12 @@ export class GradesComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${this.searchInputTerm}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${this.searchInputTerm}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               
             })
-            .catch((e:any) => {
-              console.log(e)
-            });
+            
         }
       });
     }
@@ -125,14 +117,11 @@ export class GradesComponent implements OnInit {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}&gradeName=${searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      })
+      
 
   }
 
@@ -140,14 +129,11 @@ export class GradesComponent implements OnInit {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`/api/bi/grade/getGradeByCondition?page=${event.page}&pageSize=${event.pageSize}&gradeName=${this.searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/grade/getGradeByCondition?page=${event.page}&pageSize=${event.pageSize}&gradeName=${this.searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      });
+      
   }
   delete():void {
     if (this.selectedRows.length == 0) {
@@ -161,20 +147,16 @@ export class GradesComponent implements OnInit {
       let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
       this._service
-        .postDelHttp(`/api/bi/grade/delGrade`, del)
-        .then((response:any) => {
+        .postBasicDelHttp(`/api/bi/grade/delGrade`, del, (response:any) => {
           this._service
-            .getHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/grade/getGradeByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               this.selectedRows = [];
             })
-            .catch((e:any) => {console.log(e)});
+            
         })
-        .catch((e:any) => {
-          console.log(e)
-        });
+        
     }
   }
   toggleFirstLast(): void {

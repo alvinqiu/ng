@@ -69,16 +69,12 @@ export class BuildingsComponent implements OnInit {
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
     this._service
-        .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-        .then((response:any) => {
+        .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
           this.basicData = response.json().entries;
           this.totalCount = response.json().totalCount;
           document.getElementById('app-loading').style.display = "none";
         })
-        .catch((e:any) => {
-          console.log(e)
-          document.getElementById('app-loading').style.display = "none";
-        });
+        
   }
 
   selectEvent(e:any):any {
@@ -102,15 +98,12 @@ export class BuildingsComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
+            .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
               
             })
-            .catch((e:any) => {
-              console.log(e)
-            });
+            
         }
       });
     }
@@ -128,48 +121,38 @@ export class BuildingsComponent implements OnInit {
       let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
       this._service
-        .postDelHttp(`/api/bi/building/delBuilding`, del)
-        .then((response:any) => {
+        .postBasicDelHttp(`/api/bi/building/delBuilding`, del, (response:any) => {
           this._service
-            .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
+            .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
               this.basicData = response.json().entries;
               this.totalCount = response.json().totalCount;
               this.selectedRows = [];
             })
-            .catch((e:any) => {console.log(e)});
+            
         })
-        .catch((e:any) => {
-          console.log(e)
-        });
+        
     }
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
-      .then((response:any) => {
+      .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`, (response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      })
+      
   }
 
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-      .then((response:any) => {
+      .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
         this.basicData = response.json().entries;
         this.totalCount = response.json().totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      });
+      
   }
 
   toggleFirstLast(): void {
