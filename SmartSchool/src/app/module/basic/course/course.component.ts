@@ -53,32 +53,22 @@ export class CourseComponent implements OnInit {
   ngOnInit() {
       document.getElementById('app-loading').style.display = "flex";
       this._service
-          .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          .then((response:any) => {
-            this.basicData = response.json().entries;
-            this.totalCount = response.json().totalCount;
+          .getBasicHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
             document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {
-            console.log(e)
-            document.getElementById('app-loading').style.display = "none";
-          });
+          
       this._service
-          .getHttp(`/api/bi/subject/getSubjectByCondition`)
-          .then((response:any) => {
-            this.subjectlist = response.json().entries;
+          .getBasicHttp(`/api/bi/subject/getSubjectByCondition`, (response:any) => {
+            this.subjectlist = response.entries;
           })
-          .catch((e:any) => {
-            console.log(e)
-          });
+          
     this._service
-          .getHttp(`/api/bi/grade/getGradeByCondition`)
-          .then((response:any) => {
-            this.gradelist = response.json().entries;
+          .getBasicHttp(`/api/bi/grade/getGradeByCondition`, (response:any) => {
+            this.gradelist = response.entries;
           })
-          .catch((e:any) => {
-            console.log(e)
-          });
+          
   }
   
   selectEvent(e:any):any {
@@ -104,15 +94,12 @@ export class CourseComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               
             })
-            .catch((e:any) => {
-              console.log(e)
-            });
+            
         }
       });
     }
@@ -130,48 +117,38 @@ export class CourseComponent implements OnInit {
       let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
       this._service
-        .postDelHttp(`/api/bi/course/delCourse`, del)
-        .then((response:any) => {
+        .postBasicDelHttp(`/api/bi/course/delCourse`, del, (response:any) => {
           this._service
-            .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               this.selectedRows = [];
             })
-            .catch((e:any) => {console.log(e)});
+            
         })
-        .catch((e:any) => {
-          console.log(e)
-        });
+        
     }
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      })
+      
   }
 
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/course/getCourseByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      });
+      
   }
 
   toggleFirstLast(): void {

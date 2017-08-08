@@ -52,16 +52,12 @@ export class SchoolsComponent implements OnInit {
   ngOnInit() {
       document.getElementById('app-loading').style.display = "flex";
       this._service
-          .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}`)
-          .then((response:any) => {
-            this.basicData = response.json().entries;
-            this.totalCount = response.json().totalCount;
+          .getBasicHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
             document.getElementById('app-loading').style.display = "none";
           })
-          .catch((e:any) => {
-            console.log(e)
-            document.getElementById('app-loading').style.display = "none";
-          });
+          
   }
 
   selectEvent(e:any):any {
@@ -84,15 +80,12 @@ export class SchoolsComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               
             })
-            .catch((e:any) => {
-              console.log(e)
-            });
+            
         }
       });
     }
@@ -110,48 +103,37 @@ export class SchoolsComponent implements OnInit {
       let del = `gradeIds=${reqlist.join('&gradeIds=')}`
 
       this._service
-        .postDelHttp(`/api/bi/school/delSchool`, del)
-        .then((response:any) => {
+        .postBasicDelHttp(`/api/bi/school/delSchool`, del, (response:any) => {
           this._service
-            .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-            .then((response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               this.selectedRows = [];
             })
-            .catch((e:any) => {console.log(e)});
         })
-        .catch((e:any) => {
-          console.log(e)
-        });
+        
     }
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      })
+      
   }
 
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getHttp(`//api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`)
-      .then((response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/school/getSchoolByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
-      .catch((e:any) => {
-        console.log(e)
-      });
+      
   }
 
 

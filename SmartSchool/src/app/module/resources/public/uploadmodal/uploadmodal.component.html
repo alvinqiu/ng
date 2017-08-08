@@ -8,22 +8,26 @@
 		      <input mdInput placeholder="资源名称" required [(ngModel)]="model.name" name="name" >
 		    </md-input-container>
 		    
-		    <md-select placeholder="资源类型" required fxFlex="100" [(ngModel)]="model.courseId" name="courseId" [disabled]="status == 'check'">
-				<md-option *ngFor="let food of foods" [value]="food.value" >
-					{{ food.viewValue }}
+		    <md-select placeholder="资源类型" required fxFlex="50" [(ngModel)]="model.typeId" name="format" >
+				<md-option *ngFor="let type of typelist; let i = index" [value]="type.uuid" >
+					{{ type.name }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="资源归属" required fxFlex="100" [disabled]="status == 'check'">
-				<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
+			<md-select placeholder="资源归属" required fxFlex="50" [(ngModel)]="model.visibility" name="visibility" [disabled]="status == 'check'">
+				<md-option *ngFor="let primary of primarylist; let i = index" [value]="primary.value">
+					{{ primary.viewValue }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="资源年级" required fxFlex="100" [(ngModel)]="model.stagesId" name="stagesId" >
-				<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
+			<md-select placeholder="资源年级" required fxFlex="50" [(ngModel)]="model.stagesId" name="stagesId" >
+				<md-option *ngFor="let grade of gradelist; let i = index" [value]="grade.id">
+					{{ grade.gradeName }}
 				</md-option>
 			</md-select>
-			
+			<md-select placeholder="资源学科" required fxFlex="50" [(ngModel)]="model.courseId" name="courseId" >
+				<md-option *ngFor="let subject of subjectlist; let i = index" [value]="subject.id">
+					{{ subject.subjectName }}
+				</md-option>
+			</md-select>
 			<md-input-container fxFlex="100" >
 				<textarea mdInput placeholder="资源描述" [(ngModel)]="model.note" name="note" ></textarea>
 			</md-input-container>
