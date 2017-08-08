@@ -10,8 +10,13 @@ import { ApiService } from '../../../../service/api.service';
   providers: [ TdFileService ]
 })
 export class UploadmodalComponent implements OnInit {
-  foods = [];
   typelist = [];
+  gradelist = [];
+  subjectlist = [];
+  primarylist = [
+    {value: "PUBLIC", viewValue: '公开'},
+    {value: "PRIVATE", viewValue: '私有'}
+  ]
   file: File;
   status:string;
   uploading: boolean = false;
@@ -26,6 +31,8 @@ export class UploadmodalComponent implements OnInit {
     private _service: ApiService
   	) { 
     this.typelist = groups.typelist
+    this.gradelist = groups.gradelist;
+    this.subjectlist = groups.subjectlist;
     this.dialogModal = dialogRef;
     switch(groups.func) {
       case "modify":
@@ -46,7 +53,7 @@ export class UploadmodalComponent implements OnInit {
     this.fileUploadMsg = file.name;
     this.uploading = true;
     let options: IUploadOptions = {
-      url: '/resource/upload',
+      url: 'http://dev.slothtek.com:8081/resource/upload',
       method: 'post',
       file: file
     };
@@ -64,9 +71,9 @@ export class UploadmodalComponent implements OnInit {
     this.uploading = false;
   }
   save() {
-    // this._service.postResourceHttp() {
+    this._service.postResourceHttp('/resource', this.model, res => {
 
-    // })
+    })
     
   }
 }

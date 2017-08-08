@@ -43,7 +43,7 @@ export class DetailComponent implements OnInit {
         this.model = res;
         document.getElementById('app-loading').style.display = "none";
       })
-      this._service.getResourceHttp(`/resource/${params.id}/comment?page=1&size=10`, res => {
+      this._service.getResourceHttp(`/resource/${params.id}/comment?page=1&pageSize=10`, res => {
         this.commentlist = res.content;
         this.totalElements = res.totalElements;
       })
@@ -69,7 +69,7 @@ export class DetailComponent implements OnInit {
     })
   }
   download():void {
-
+    location.href = `/resource/${this.model.uuid}/download`
   }
   collection():void {
     this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, this.postData, res => {

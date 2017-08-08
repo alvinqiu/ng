@@ -105,4 +105,17 @@ export class ApiService {
         document.getElementById('app-loading').style.display = "none";
       });
   }
+
+  deleteResourceHttp(url?:string, param?:any, callback?:any) {
+    return this._http
+      .delete(domain+url, param)
+      .toPromise()
+      .then(response => {
+        callback && callback(response.json())
+      })
+      .catch((e:any) => {
+        console.log(e)
+        document.getElementById('app-loading').style.display = "none";
+      });
+  }
 }

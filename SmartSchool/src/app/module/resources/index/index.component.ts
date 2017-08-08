@@ -20,6 +20,11 @@ export class IndexComponent implements OnInit {
   totalElements: number;
   searchInputTerm: string = "";
   typelist = [];
+  gradelist = [];
+  subjectlist = [];
+  searchTypeId:string = "";
+  searchStagesId:string = "";
+  searchCourseId:string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -29,24 +34,45 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp('/resource?page=1&size=20', res => {
+    this._service.getResourceHttp('/resource?page=1&pageSize=20', res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
     this._service.getResourceHttp('/resource/type', res => {
+      console.log(res)
       this.typelist = res;
+
+    })
+    this._service.getResourceHttp('/api/bi/grade/getGradeByCondition', res => {
+      console.log(res)
+      this.gradelist = res.entries;
+
+    })
+    this._service.getResourceHttp('/api/bi/subject/getSubjectByCondition', res => {
+      console.log(res)
+      this.subjectlist = res.entries;
 
     })
   }
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
-    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&keyword=${this.searchInputTerm}`, res => {
+    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
+  }
+  radioChange() {
+    setTimeout(() => {
+      this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}`, res => {
+        this.list = res.content;
+        this.totalElements = res.totalElements;
+        document.getElementById('app-loading').style.display = "none";
+      })
+    }, 0);
+    
   }
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
@@ -60,8 +86,10 @@ export class IndexComponent implements OnInit {
   
   openDialog(condition:any):void {
     condition.typelist = this.typelist;
+    condition.gradelist = this.gradelist;
+    condition.subjectlist = this.subjectlist;
     let dialogRef = this.dialog.open(UploadmodalComponent, {
-      data:{"value":"test"},
+      data: condition,
       width:"60%"
     });
     dialogRef.afterClosed().subscribe(result => {

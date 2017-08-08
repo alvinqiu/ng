@@ -4,32 +4,41 @@
 			<div>
 				<div fxLayout="row" fxLayoutAlign="start start">
 					<span fxFlex="10">年级：</span>
-					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
-						<md-checkbox>全部</md-checkbox>
-						<md-checkbox>一年级</md-checkbox>
-						<md-checkbox>二年级</md-checkbox>
+					<div fxFlex="90">
+						<md-radio-group fxFlex="100" fxLayoutWrap fxLayoutGap="16px" [(ngModel)]="searchStagesId">
+							<md-radio-button value="" (change)="radioChange()">全部</md-radio-button>
+  							<md-radio-button *ngFor="let property of gradelist; let i = index" [value]="property.id" (change)="radioChange()">{{property.gradeName}}</md-radio-button>
+  						</md-radio-group>
 					</div>
 					
 				</div>
 				<div fxLayout="row" fxLayoutAlign="start start">
 					<span fxFlex="10">学科：</span>
-					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
-						<md-checkbox>语文</md-checkbox>
-						<md-checkbox>数学</md-checkbox>
-					</div>
-					
-				</div>
-				<div fxLayout="row" fxLayoutAlign="start start">
-					<span fxFlex="10">分类：</span>
-					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
-						<md-checkbox>试卷</md-checkbox>
+					<div fxFlex="90">
+						<md-radio-group fxFlex="100" fxLayoutWrap fxLayoutGap="16px" [(ngModel)]="searchCourseId">
+							<md-radio-button value="" (change)="radioChange()">全部</md-radio-button>
+  							<md-radio-button *ngFor="let property of subjectlist; let i = index" [value]="property.id" (change)="radioChange()">{{property.subjectName}}</md-radio-button>
+  						</md-radio-group>
 					</div>
 					
 				</div>
 				<div fxLayout="row" fxLayoutAlign="start start">
 					<span fxFlex="10">文件类型：</span>
-					<div fxFlex="90" fxLayoutWrap fxLayoutGap="8px">
-						<md-checkbox>doc</md-checkbox>
+					<div fxFlex="90">
+						<md-radio-group fxFlex="100" fxLayoutWrap fxLayoutGap="16px" [(ngModel)]="searchTypeId">
+							<md-radio-button value="" (change)="radioChange()">全部</md-radio-button>
+  							<md-radio-button *ngFor="let property of typelist; let i = index" [value]="property.uuid" (change)="radioChange()">{{property.name}}</md-radio-button>
+  						</md-radio-group>
+					</div>
+					
+				</div>
+				<div fxLayout="row" fxLayoutAlign="start start">
+					<span fxFlex="10">审核状态：</span>
+					<div fxFlex="90">
+						<md-radio-group fxFlex="100" fxLayoutWrap fxLayoutGap="16px" [(ngModel)]="searchAsset">
+							<md-radio-button value="" (change)="radioChange()">全部</md-radio-button>
+  							<md-radio-button *ngFor="let property of reviewStatus; let i = index" [value]="property.value" (change)="radioChange()">{{property.viewValue}}</md-radio-button>
+  						</md-radio-group>
 					</div>
 					
 				</div>

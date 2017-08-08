@@ -19,3 +19,9 @@ md-card {
 md-card>div {
 	padding: 24px;
 }
+md-card>div>div {
+	margin-bottom: 16px;
+}
+md-radio-button {
+	margin-bottom: 8px;
+}
