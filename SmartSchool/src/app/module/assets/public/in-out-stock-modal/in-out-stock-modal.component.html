@@ -1,3 +1,50 @@
-<p>
-  in-out-stock-modal works!
-</p>
+<h2 md-dialog-title>资产出入库</h2>
+<md-dialog-content>
+
+  <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="资产名称" [disabled]="true" [(ngModel)]="assets.name" name="assetsName">
+    </md-input-container>
+    <md-select placeholder="资产类型" fxFlex="25" [disabled]="true" [(ngModel)]="assets.type" name="type">
+      <md-option *ngFor="let type of types" [value]="type.value">
+        {{ type.viewValue }}
+      </md-option>
+    </md-select>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="品牌" [disabled]="true" [(ngModel)]="assets.brand" name="brand">
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="规格型号" [disabled]="true" [(ngModel)]="assets.model" name="model">
+    </md-input-container>
+
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="资产编号" [disabled]="true" [(ngModel)]="assets.model" name="id">
+    </md-input-container>
+    <md-select placeholder="出入库" fxFlex="25" [(ngModel)]="assets.model" name="status" required>
+      <md-option *ngFor="let status of statusList" [value]="status.value">
+        {{ status.viewValue }}
+      </md-option>
+    </md-select>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="姓名" [(ngModel)]="assets.model" name="personName" required >
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="电话" [(ngModel)]="assets.model" name="phone" required >
+    </md-input-container>
+
+  </form>
+</md-dialog-content>
+
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+  >保存</button>
+
+  <button
+    md-button
+    color="primary"
+    md-dialog-close>关闭</button>
+</md-dialog-actions>

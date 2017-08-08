@@ -19,24 +19,25 @@ export class CreateQrCodeModalComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   ngAfterViewInit() {
-    // this.baseDate.map(data => {
-    //     JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
-    //       width: 1,
-    //       height: 50,
-    //       textAlign:
-    //     });
-    //   });
+    this.baseDate.map(data => {
+        console.log(data.asset.seriesNumber);
+        JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
+          width: 1,
+          height: 50
+        });
+      });
   }
+
   print() {
-    // var newWin=window.open('about:blank', '', '');
-    // var titleHTML=document.getElementById("code").innerHTML;
-    // newWin.document.write(titleHTML);
-    // newWin.document.body.setAttribute("style", "text-align: center");
-    // newWin.document.location.reload();
-    // newWin.print();
+    const newWin = window.open('about:blank', '', '');
+    const titleHTML = document.getElementById('code').innerHTML;
+    newWin.document.write(titleHTML);
+    newWin.document.body.setAttribute('style', 'text-align: center');
+    newWin.document.location.reload();
+    newWin.print();
   }
 }

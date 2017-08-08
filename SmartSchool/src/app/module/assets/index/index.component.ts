@@ -6,6 +6,7 @@ import {
   ITdDataTableSortChangeEvent } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
+import { AssetsClass } from '../../../class/assets';
 import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';
@@ -18,89 +19,21 @@ import { SupplierModalComponent } from '../public/supplier-modal/supplier-modal.
 })
 export class IndexComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
-    { name: 'id',  label: '序号' },
+    { name: 'asset.id',  label: '序号' },
     { name: 'asset.name', label: '资产名称' },
-    { name: 'asset.type', label: '类别' },
+    { name: 'asset.equipmentTypeName', label: '类别' },
     { name: 'asset.brand', label: '品牌' },
     { name: 'asset.model', label: '规格型号' },
-    { name: 'asset.supplier', label: '供应商' },
-    { name: 'asset.totalQuantity', label: '总数量' },
-    { name: 'asset.inventoryQuantity', label: '使用数' },
-    { name: 'asset.inventoryQuantity', label: '库存数' },
-    { name: 'asset.price', label: '单价' },
-    { name: 'asset.price', label: '总价' },
+    { name: 'asset.supplierName', label: '供应商' },
+    { name: 'asset.validTotalQuantity', label: '总数量' },
+    { name: 'asset.outStockCount', label: '使用数' },
+    { name: 'asset.stockCount', label: '库存数' },
+    { name: 'asset.price', label: '单价(元)' },
+    { name: 'asset.price', label: '总价(元)' },
     { name: 'asset.purchaseDate', label: '购买时间' },
   ];
 
-  basicData: any[] = [
-    {
-      'id': 1,
-      'asset': {
-        'name': 'test',
-        'type': 'test',
-        'brand': 'test',
-        'model': 'test',
-        'supplier': 'test',
-        'totalQuantity': 'test',
-        'inventoryQuantity': 'test',
-        'price': 'test',
-        'purchaseDate': 'test',
-      }
-    }, {
-      'id': 2,
-      'asset': {
-        'name': 'test',
-        'type': 'test',
-        'brand': 'test',
-        'model': 'test',
-        'supplier': 'test',
-        'totalQuantity': 'test',
-        'inventoryQuantity': 'test',
-        'price': 'test',
-        'purchaseDate': 'test',
-      }
-    },{
-      'id': 3,
-      'asset': {
-        'name': 'test',
-        'type': 'test',
-        'brand': 'test',
-        'model': 'test',
-        'supplier': 'test',
-        'totalQuantity': 'test',
-        'inventoryQuantity': 'test',
-        'price': 'test',
-        'purchaseDate': 'test',
-      }
-    },{
-      'id': 4,
-      'asset': {
-        'name': 'test',
-        'type': 'test',
-        'brand': 'test',
-        'model': 'test',
-        'supplier': 'test',
-        'totalQuantity': 'test',
-        'inventoryQuantity': 'test',
-        'price': 'test',
-        'purchaseDate': 'test',
-      }
-    },{
-      'id': 5,
-      'asset': {
-        'name': 'test',
-        'type': 'test',
-        'brand': 'test',
-        'model': 'test',
-        'supplier': 'test',
-        'totalQuantity': 'test',
-        'inventoryQuantity': 'test',
-        'price': 'test',
-        'purchaseDate': 'test',
-      }
-    }
-  ];
-
+  basicData: Array<AssetsClass>;
   selectedRows: any[] = [];
   firstLast: boolean = false;
   event: IPageChangeEvent;
@@ -120,28 +53,33 @@ export class IndexComponent implements OnInit {
     this.event = event;
     console.log(event);
   }
-  openDialog(condition:any):void {
+  openDialog(condition: any): void {
     let dialogRef = null;
-    switch(condition.func){
+    switch (condition.func) {
       case 'add':
+        dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          width: '60%'
+        });
+        break;
       case 'edit':
         dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          width:"60%"
+          data: '',
+          width: '60%'
         });
         break;
       case 'qrCode':
         dialogRef = this.dialog.open(QrCodeModalComponent, {
-          width:"40%"
+          width: '40%'
         });
         break;
       case 'type':
         dialogRef = this.dialog.open(AssetsTypeModalComponent, {
-          width:"40%"
+          width: '40%'
         });
         break;
       case 'supplier':
         dialogRef = this.dialog.open(SupplierModalComponent, {
-          width:"50%"
+          width: '50%'
         });
         break;
       // case 'rule':
@@ -184,6 +122,13 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('app-loading').style.display = 'flex';
+    this._service
+      .getBasicHttp(`/asset/equipment-valid?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
+        document.getElementById('app-loading').style.display = 'none';
+      });
   }
 
 }

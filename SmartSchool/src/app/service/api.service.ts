@@ -26,8 +26,8 @@ export class ApiService {
   }
 
   postHttp(url?:string, postData?:any) {
-    let param = qs.stringify(postData,{ 
-                        serializeDate: function (d) { 
+    let param = qs.stringify(postData,{
+                        serializeDate: function (d) {
                           return d.toString()
                         }
                       })
@@ -53,10 +53,10 @@ export class ApiService {
                  console.error(e)
                });
   }
-  
+
   postBasicHttp(url?:string, postData?:any, callback?:any) {
-    let param = qs.stringify(postData,{ 
-                        serializeDate: function (d) { 
+    let param = qs.stringify(postData,{
+                        serializeDate: function (d) {
                           return d.toString()
                         }
                       })
@@ -83,7 +83,7 @@ export class ApiService {
                  console.error(e)
                })
   }
-  
+
   getResourceHttp(url?:string, callback?:any ): Promise<any> {
     return this._http.get(domain+url).toPromise().then(response => {
       callback && callback(response.json())

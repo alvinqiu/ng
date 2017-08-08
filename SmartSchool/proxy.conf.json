@@ -7,5 +7,9 @@
   "/resource": {
     "target": "http://dev.slothtek.com:8081",
     "secure": false
+  },
+  "/asset/": {
+    "target": "http://www.marchezvousblue.cn/ss",
+    "secure": false
   }
 }

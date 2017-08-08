@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { TdFileService, IUploadOptions } from '@covalent/core';
 
 @Component({
   selector: 'app-assets-add-modal',
@@ -21,8 +20,7 @@ export class AssetsAddModalComponent implements OnInit {
 
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
-    private dialogRef: MdDialogRef<AssetsAddModalComponent>,
-    private fileUploadService: TdFileService
+    private dialogRef: MdDialogRef<AssetsAddModalComponent>
   ) { }
 
   ngOnInit() {
