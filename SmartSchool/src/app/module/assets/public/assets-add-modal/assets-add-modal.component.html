@@ -4,35 +4,36 @@
   <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="资产名称"  required >
+      <input mdInput placeholder="资产名称" [(ngModel)]="asset.name" name="name" required >
     </md-input-container>
-    <md-select placeholder="资产类型" fxFlex="25">
-      <md-option *ngFor="let type of types" [value]="type.value">
-        {{ type.viewValue }}
+    <md-select placeholder="资产类型" fxFlex="25" [(ngModel)]="asset.type" name="type" required>
+      <md-option *ngFor="let type of types" [value]="type.id">
+        {{ type.equipmentTypeName }}
       </md-option>
     </md-select>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="品牌"  required >
+      <input mdInput placeholder="品牌" [(ngModel)]="asset.brand" name="brand" required >
     </md-input-container>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="规格型号"  required >
+      <input mdInput placeholder="规格型号" [(ngModel)]="asset.model" name="model" required >
     </md-input-container>
 
-    <md-select placeholder="供应商" fxFlex="25">
-      <md-option *ngFor="let supplier of suppliers" [value]="supplier.value">
-        {{ supplier.viewValue }}
+    <md-select placeholder="供应商" fxFlex="25" [(ngModel)]="asset.supplier" name="supplier" required>
+      <md-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+        {{ supplier.supplierName }}
       </md-option>
     </md-select>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="单价（元）"  required >
+      <input mdInput placeholder="单价（元）" [(ngModel)]="asset.price" name="price" required >
     </md-input-container>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="数量"  required >
+      <input mdInput placeholder="数量" [(ngModel)]="asset.validTotalQuantity" name="validTotalQuantity" required >
     </md-input-container>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="购买时间"  required >
+      <input mdInput [mdDatepicker]="picker" placeholder="购买时间" [(ngModel)]="asset.purchaseDate" name="purchaseDate" required>
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
     </md-input-container>
-
+    <md-datepicker #picker  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
   </form>
 </md-dialog-content>
 <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
@@ -40,6 +41,7 @@
     md-button
     color="primary"
     [disabled]="!addForm.form.valid"
+    (click)="handleAddAsset()"
   >保存</button>
 
   <button

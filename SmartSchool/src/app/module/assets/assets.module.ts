@@ -19,6 +19,8 @@ import {
   MdDialogModule,
   MdSelectModule,
   MdMenuModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
   // MdGridListModule,
   // MdTabsModule,
 } from '@angular/material';
@@ -61,6 +63,8 @@ import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create
     MdMenuModule,
     // MdGridListModule,
     // MdTabsModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     BarRatingModule,
     CovalentDataTableModule,
     CovalentPagingModule,

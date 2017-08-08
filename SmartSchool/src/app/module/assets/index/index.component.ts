@@ -110,7 +110,7 @@ export class IndexComponent implements OnInit {
       equipmentGeneralId = this.selectedRows[0].id;
 
       this._service
-        .getHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
+        .getBasicHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
         .then((response: any) => {
           console.log(response);
 
@@ -122,13 +122,13 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.getElementById('app-loading').style.display = 'flex';
-    this._service
-      .getBasicHttp(`/asset/equipment-valid?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
-        this.basicData = response.entries;
-        this.totalCount = response.totalCount;
-        document.getElementById('app-loading').style.display = 'none';
-      });
+    // document.getElementById('app-loading').style.display = 'flex';
+    // this._service
+    //   .getBasicHttp(`/asset/equipment-valid?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+    //     this.basicData = response.entries;
+    //     this.totalCount = response.totalCount;
+    //     document.getElementById('app-loading').style.display = 'none';
+    //   });
   }
 
 }
