@@ -3,7 +3,7 @@ import {
   ITdDataTableColumn,
   TdDataTableSortingOrder,
   ITdDataTableSortChangeEvent } from '@covalent/core';
-
+import { ApiService } from '../../../../service/api.service';
 
 @Component({
   selector: 'app-supplier-modal',
@@ -13,40 +13,19 @@ import {
 export class SupplierModalComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
     { name: 'id',  label: '序号' },
-    { name: 'supplier.name', label: '供应商名称' },
-    { name: 'supplier.phone', label: '供应商电话' },
-    { name: 'supplier.mail', label: '供应商邮箱' },
+    { name: 'supplierName', label: '供应商名称' },
+    { name: 'supplierPhone', label: '供应商电话' },
+    { name: 'supplierEmail', label: '供应商邮箱' },
   ];
-  basicData: any[] = [
-    {
-      'id': 1,
-      'supplier': {
-        'name': '数懒',
-        'phone': '13551067588',
-        'mail': 'xx@c.cn'
-      }
-    }, {
-      'id': 2,
-      'supplier': {
-        'name': 'apple',
-        'phone': '13656789098',
-        'mail': 'yy@c.cn'
-      }
-    }, {
-      'id': 3,
-      'supplier': {
-        'name': '阿里',
-        'phone': '13779862563',
-        'mail': 'zz@c.cn'
-      }
-    }
-  ];
-  sortBy: string = 'name';
+  basicData = [];
+  sortBy: string = 'supplierName';
   selectedRows: any[] = [];
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
-  constructor() { }
+  constructor(
+    private _service: ApiService
+  ) { }
 
-  selectEvent(e:any):any {
+  selectEvent(e: any): any {
     this.selectedRows = e;
   }
 
@@ -55,6 +34,11 @@ export class SupplierModalComponent implements OnInit {
     this.sortOrder = sortEvent.order;
   }
   ngOnInit() {
+    // 获取供应商
+    this._service
+      .getBasicHttp(`/equipment-supplier-names`, (response: any) => {
+        this.basicData = response;
+      });
   }
 
 }

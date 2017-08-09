@@ -9,35 +9,37 @@ import { AssetsClass } from '../../../../class/assets';
   styleUrls: ['./assets-add-modal.component.css']
 })
 export class AssetsAddModalComponent implements OnInit {
-  types = [
-    {id: '1', equipmentTypeName: '点读机'},
-    {id: '2', equipmentTypeName: '复读机'},
-    {id: '3', equipmentTypeName: '大飞机'}
-  ];
-  suppliers = [
-    {id: '1', supplierName: 'test1'},
-    {id: '2', supplierName: 'test2'},
-    {id: '3', supplierName: 'test3'}
-  ];
+  types = [];
+  suppliers = [];
   startDate: Date;
   asset: AssetsClass;
+  status: string;
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
     private dialogRef: MdDialogRef<AssetsAddModalComponent>,
     private _service: ApiService
   ) {
-    this.asset = new AssetsClass();
+    switch (groups.condition.func) {
+      case 'add':
+        this.status = 'add';
+        this.asset = new AssetsClass();
+        break;
+      case 'edit':
+        this.status = 'edit';
+        this.asset = groups.asset;
+        break;
+    }
   }
 
   ngOnInit() {
     // 获取类型
     this._service
-      .getBasicHttp(`/asset/equipment-types`, (response: any) => {
+      .getAssetsHttp(`/equipment-types`, (response: any) => {
         this.types = response;
       });
     // 获取供应商
     this._service
-      .getBasicHttp(`/asset/equipment-supplier-names`, (response: any) => {
+      .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
         this.suppliers = response;
       });
   }
@@ -46,11 +48,18 @@ export class AssetsAddModalComponent implements OnInit {
     // this.asset.purchaseDate = e;
   }
 
-  handleAddAsset() {
-    this._service
-      .postBasicHttp(`/asset/equipment`, this.asset, (response: any) => {
-        this.dialogRef.close({'status': 'refresh', 'data': response.json()});
-      });
+  handleAsset() {
+    if (this.status === 'add') {
+      this._service
+        .postAssetsHttp(`/equipment`, this.asset, (response: any) => {
+          this.dialogRef.close({'status': 'refresh', 'data': response.json()});
+        });
+    } else {
+      this._service
+        .postAssetsHttp(`/equipment-general/${this.asset.id}`, this.asset, (response: any) => {
+          this.dialogRef.close({'status': 'refresh', 'data': response.json()});
+        });
+    }
   }
 
 }

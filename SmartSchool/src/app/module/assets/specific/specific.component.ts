@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  Router,
+  ActivatedRoute,
+  Params
+} from '@angular/router';
+import {
   IPageChangeEvent,
   ITdDataTableColumn,
   TdDataTableSortingOrder,
@@ -16,43 +21,12 @@ import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/creat
 export class SpecificComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
     { name: 'id',  label: '序号' },
-    { name: 'asset.seriesNumber', label: '资产编号' },
-    { name: 'asset.stockStatus', label: '状态' },
-    { name: 'asset.person', label: '使用人员' },
+    { name: 'seriesNumber', label: '资产编号' },
+    { name: 'stockStatus', label: '状态' },
+    { name: 'status', label: '使用人员' },
   ];
 
-  basicData: any[] = [
-    {
-      'id': 1,
-      'asset': {
-        'seriesNumber': 'S12345',
-        'stockStatus': '出库',
-        'person': 'Rain',
-      }
-    }, {
-      'id': 2,
-      'asset': {
-        'seriesNumber': 'S12346',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }, {
-      'id': 3,
-      'asset': {
-        'seriesNumber': 'S12347',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }, {
-      'id': 4,
-      'asset': {
-        'seriesNumber': 'S12348',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }
-  ];
-
+  basicData = [];
   selectedRows: any[] = [];
   firstLast: boolean = false;
   event: IPageChangeEvent;
@@ -64,6 +38,7 @@ export class SpecificComponent implements OnInit {
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
+    private aRoute: ActivatedRoute,
     public dialog: MdDialog,
     private _service: ApiService
   ) { }
@@ -80,7 +55,7 @@ export class SpecificComponent implements OnInit {
       case 'create':
         dialogRef = this.dialog.open(CreateQrCodeModalComponent, {
           data: condition.selectedRows,
-          width: "40%"
+          width: '40%'
         });
         break;
       default:
@@ -101,6 +76,15 @@ export class SpecificComponent implements OnInit {
   }
 
   ngOnInit() {
+    // document.getElementById('app-loading').style.display = 'flex';
+    this.aRoute.params.subscribe((params) => {
+      this._service.getAssetsHttp(`/equipment-specific-valid/${params.equipmentGeneralId}/${this.page}/${this.pageSize}`,
+        (response: any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
+        // document.getElementById('app-loading').style.display = 'none';
+      });
+    });
   }
 
 }

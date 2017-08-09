@@ -4,33 +4,31 @@
   <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="资产名称" [disabled]="true" [(ngModel)]="assets.name" name="assetsName">
-    </md-input-container>
-    <md-select placeholder="资产类型" fxFlex="25" [disabled]="true" [(ngModel)]="assets.type" name="type">
-      <md-option *ngFor="let type of types" [value]="type.value">
-        {{ type.viewValue }}
-      </md-option>
-    </md-select>
-    <md-input-container fxFlex="25">
-      <input mdInput placeholder="品牌" [disabled]="true" [(ngModel)]="assets.brand" name="brand">
+      <input mdInput placeholder="资产名称" [disabled]="true" [(ngModel)]="specific.name" name="assetsName">
     </md-input-container>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="规格型号" [disabled]="true" [(ngModel)]="assets.model" name="model">
+      <input mdInput placeholder="资产类型" [disabled]="true" [(ngModel)]="specific.equipmentTypeName" name="equipmentTypeName">
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="品牌" [disabled]="true" [(ngModel)]="specific.brand" name="brand">
+    </md-input-container>
+    <md-input-container fxFlex="25">
+      <input mdInput placeholder="规格型号" [disabled]="true" [(ngModel)]="specific.model" name="model">
     </md-input-container>
 
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="资产编号" [disabled]="true" [(ngModel)]="assets.model" name="id">
+      <input mdInput placeholder="资产编号" [disabled]="true" [(ngModel)]="specific.seriesNumber" name="seriesNumber">
     </md-input-container>
-    <md-select placeholder="出入库" fxFlex="25" [(ngModel)]="assets.model" name="status" required>
+    <md-select placeholder="出入库" fxFlex="25" [(ngModel)]="specific.stockStatus" name="stockStatus" required>
       <md-option *ngFor="let status of statusList" [value]="status.value">
         {{ status.viewValue }}
       </md-option>
     </md-select>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="姓名" [(ngModel)]="assets.model" name="personName" required >
+      <input mdInput placeholder="姓名" [(ngModel)]="specific.staffId" name="staffId" required >
     </md-input-container>
     <md-input-container fxFlex="25">
-      <input mdInput placeholder="电话" [(ngModel)]="assets.model" name="phone" required >
+      <input mdInput placeholder="电话" [(ngModel)]="specific.phone" name="phone" required >
     </md-input-container>
 
   </form>
@@ -41,6 +39,7 @@
     md-button
     color="primary"
     [disabled]="!addForm.form.valid"
+    (click)="handleSave()"
   >保存</button>
 
   <button
