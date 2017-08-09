@@ -70,8 +70,8 @@ export class BuildingsComponent implements OnInit {
     document.getElementById('app-loading').style.display = "flex";
     this._service
         .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
-          this.basicData = response.json().entries;
-          this.totalCount = response.json().totalCount;
+          this.basicData = response.entries;
+          this.totalCount = response.totalCount;
           document.getElementById('app-loading').style.display = "none";
         })
         
@@ -99,8 +99,8 @@ export class BuildingsComponent implements OnInit {
             this.selectedRows = [];
             this._service
             .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               
             })
             
@@ -124,8 +124,8 @@ export class BuildingsComponent implements OnInit {
         .postBasicDelHttp(`/api/bi/building/delBuilding`, del, (response:any) => {
           this._service
             .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               this.selectedRows = [];
             })
             
@@ -138,8 +138,8 @@ export class BuildingsComponent implements OnInit {
     this.page = 1;
     this._service
       .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`, (response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
       
   }
@@ -149,8 +149,8 @@ export class BuildingsComponent implements OnInit {
     this.pageSize = event.pageSize;
     this._service
       .getBasicHttp(`/api/bi/building/getBuildingByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
       
   }

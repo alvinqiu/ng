@@ -24,14 +24,17 @@ export class ClassesComponent implements OnInit {
     { name: 'classLocation', label: '班级位置' },
     { name: 'classDesc', label: '班级描述' },
   ];
+  nodes = [];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
-  searchInputTerm: string;
+  searchInputTerm: string = "";
   pageSize: number = 20;
   page: number = 1;
   totalCount: number;
+  searchGrade:string = "";
+  gradelist = [];
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -41,15 +44,24 @@ export class ClassesComponent implements OnInit {
     document.getElementById('app-loading').style.display = "flex";
     this._service
         .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response:any) => {
-          this.basicData = response.json().entries;
-          this.totalCount = response.json().totalCount;
+          this.basicData = response.entries;
+          this.totalCount = response.totalCount;
           document.getElementById('app-loading').style.display = "none";
+        })
+    this._service
+        .getBasicHttp(`/api/bi/grade/getGradeAttr`, (response:any) => {
+          this.nodes = response;
+        })
+    this._service
+        .getBasicHttp(`/api/bi/grade/getGradeByCondition`, (response:any) => {
+          this.gradelist = response.entries;
         })
         
   }
 
   openDialog(condition:any):void {
     condition.selectedRows = this.selectedRows;
+    condition.gradelist = this.gradelist;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
@@ -64,9 +76,9 @@ export class ClassesComponent implements OnInit {
         if (result && result.status == "refresh") {
             this.selectedRows = [];
             this._service
-            .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               
             })
             
@@ -93,9 +105,9 @@ export class ClassesComponent implements OnInit {
       this._service
         .postBasicDelHttp(`/api/bi/class/delClass`, del, (response:any) => {
           this._service
-            .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-              this.basicData = response.json().entries;
-              this.totalCount = response.json().totalCount;
+            .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
               this.selectedRows = [];
             })
             
@@ -107,9 +119,9 @@ export class ClassesComponent implements OnInit {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service
-      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${searchInputTerm}`, (response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
       
   }
@@ -118,11 +130,31 @@ export class ClassesComponent implements OnInit {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}`, (response:any) => {
-        this.basicData = response.json().entries;
-        this.totalCount = response.json().totalCount;
+      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
       })
       
+  }
+
+  searchByGrade(e): void {
+    if (e.indexOf("g_") > -1) {
+      this.searchGrade = e.split("g_")[1];
+      this.page = 1;
+      this._service
+      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
+      })
+    } else {
+      this.searchGrade = "";
+      this.page = 1;
+      this._service
+      .getBasicHttp(`/api/bi/class/getClassByCondition?page=${this.page}&pageSize=${this.pageSize}&name=${this.searchInputTerm}&gradeId=${this.searchGrade}`, (response:any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
+      })
+    }
   }
 
   toggleFirstLast(): void {

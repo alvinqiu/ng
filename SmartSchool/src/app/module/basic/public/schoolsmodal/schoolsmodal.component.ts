@@ -37,7 +37,7 @@ export class SchoolsmodalComponent implements OnInit {
         this.model = new SchoolClass();
         this._service
           .getBasicHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
-            this.model = response.json().entries[0];
+            this.model = response.entries[0];
           })
           
         break;
@@ -47,7 +47,7 @@ export class SchoolsmodalComponent implements OnInit {
 
         this._service
           .getBasicHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
-            this.model = response.json().entries[0];
+            this.model = response.entries[0];
           })
           
         break;
@@ -76,7 +76,7 @@ export class SchoolsmodalComponent implements OnInit {
     this._service
       .postBasicHttp(url, this.model, (response:any) => {
         document.getElementById('app-loading').style.display = "none";
-        this.dialogModal.close({"status":"refresh", "data": response.json()})
+        this.dialogModal.close({"status":"refresh", "data": response})
       })
       
   }

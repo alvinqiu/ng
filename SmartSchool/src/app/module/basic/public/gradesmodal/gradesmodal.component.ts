@@ -51,8 +51,8 @@ export class GradesmodalComponent implements OnInit {
         this.grade = new GradeClass();
         this._service
           .getBasicHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
-            this.grade = response.json().entries[0];
-            this.grade.gradeLevel = new Date(response.json().entries[0].gradeLevel);
+            this.grade = response.entries[0];
+            this.grade.gradeLevel = new Date(response.entries[0].gradeLevel);
             // document.getElementById('app-loading').style.display = "none";
           })
           
@@ -63,8 +63,8 @@ export class GradesmodalComponent implements OnInit {
 
         this._service
           .getBasicHttp(`/api/bi/grade/getGradeByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
-            this.grade = response.json().entries[0];
-            this.grade.gradeLevel = new Date(response.json().entries[0].gradeLevel);
+            this.grade = response.entries[0];
+            this.grade.gradeLevel = new Date(response.entries[0].gradeLevel);
             // document.getElementById('app-loading').style.display = "none";
           })
           
@@ -93,7 +93,7 @@ export class GradesmodalComponent implements OnInit {
     this._service
       .postBasicHttp(url, this.grade, (response:any) => {
         document.getElementById('app-loading').style.display = "none";
-        this.dialogModal.close({"status":"refresh", "data": response.json()})
+        this.dialogModal.close({"status":"refresh", "data": response})
       })
 
     
