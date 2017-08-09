@@ -64,7 +64,7 @@ export class ReviewComponent implements OnInit {
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
-    this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status="${this.searchAsset}`, res => {
+    this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -72,7 +72,7 @@ export class ReviewComponent implements OnInit {
   }
   radioChange() {
     setTimeout(() => {
-      this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status="${this.searchAsset}`, res => {
+      this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
         this.list = res.content;
         this.totalElements = res.totalElements;
         document.getElementById('app-loading').style.display = "none";
@@ -83,7 +83,7 @@ export class ReviewComponent implements OnInit {
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
-    this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&keyword=${this.searchInputTerm}`, res => {
+    this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";

@@ -8,12 +8,15 @@ const headers:Headers = new Headers({
 });
 
 let domain:string = "";
+let domainAssets:string = "";
+let domainResource: string = ""; 
 
 if (environment.production) {
 	domain = "http://www.marchezvousblue.cn/ss";
-} else {
-	domain = "";
+  domainAssets = "http://www.marchezvousblue.cn/assets";
+  domainResource = "http://dev.slothtek.com:8081/";
 }
+
 
 
 @Injectable()
@@ -21,27 +24,7 @@ export class ApiService {
 
   constructor(private _http: Http) { }
 
-  getHttp(url?:string): Promise<any> {
-  	return this._http.get(domain+url).toPromise();
-  }
-
-  postHttp(url?:string, postData?:any) {
-    let param = qs.stringify(postData,{
-                        serializeDate: function (d) {
-                          return d.toString()
-                        }
-                      })
-  	return this._http
-                .post(domain+url,
-                      param,
-                      {headers: headers})
-                .toPromise()
-  }
-
-  postDelHttp(url?:string, postData?:any) {
-    return this._http.post(domain+url,postData,{headers: headers}).toPromise()
-  }
-
+  
   getBasicHttp(url?:string, callback?:any): Promise<any> {
     return this._http
                .get(domain+url)
@@ -84,8 +67,50 @@ export class ApiService {
                })
   }
 
+  getAssetsHttp(url?:string, callback?:any): Promise<any> {
+    return this._http
+               .get(domain+url)
+               .toPromise()
+               .then(res => {
+                 callback && callback(res.json());
+               })
+               .catch(e => {
+                 console.error(e)
+               });
+  }
+
+  postAssetsHttp(url?:string, postData?:any, callback?:any) {
+    let param = qs.stringify(postData,{
+                        serializeDate: function (d) {
+                          return d.toString()
+                        }
+                      })
+    return this._http
+               .post(domain+url, param, {headers: headers})
+               .toPromise()
+               .then( res => {
+                  callback && callback(res.json())
+               })
+               .catch( e => {
+                 console.error(e)
+               })
+
+  }
+
+  postAssetsDelHttp(url?:string, postData?:any, callback?:any) {
+    return this._http
+               .post(domain+url,postData,{headers: headers})
+               .toPromise()
+               .then( res => {
+                 callback && callback(res.json())
+               })
+               .catch(e => {
+                 console.error(e)
+               })
+  }
+
   getResourceHttp(url?:string, callback?:any ): Promise<any> {
-    return this._http.get(domain+url).toPromise().then(response => {
+    return this._http.get(domainResource+url).toPromise().then(response => {
       callback && callback(response.json())
     }).catch((e:any) => {
         console.log(e)
@@ -95,7 +120,7 @@ export class ApiService {
 
   postResourceHttp(url?:string, param?:any,  callback?:any ): Promise<any> {
     return this._http
-      .post(domain+url, param)
+      .post(domainResource+url, param)
       .toPromise()
       .then(response => {
         callback && callback(response.json())
@@ -108,7 +133,7 @@ export class ApiService {
 
   deleteResourceHttp(url?:string, param?:any, callback?:any) {
     return this._http
-      .delete(domain+url, param)
+      .delete(domainResource+url, param)
       .toPromise()
       .then(response => {
         callback && callback(response.json())

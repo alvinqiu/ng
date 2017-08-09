@@ -72,7 +72,7 @@ export class UploadmodalComponent implements OnInit {
   }
   save() {
     this._service.postResourceHttp('/resource', this.model, res => {
-
+      this.dialogModal.close({"status":"refresh"})
     })
     
   }

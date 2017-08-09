@@ -8,8 +8,8 @@
     "target": "http://dev.slothtek.com:8081",
     "secure": false
   },
-  "/asset/": {
-    "target": "http://www.marchezvousblue.cn/ss",
+  "/equipment": {
+    "target": "http://www.marchezvousblue.cn/asset",
     "secure": false
   }
 }

@@ -58,7 +58,7 @@ export class IndexComponent implements OnInit {
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
-    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}`, res => {
+    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -77,7 +77,7 @@ export class IndexComponent implements OnInit {
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
-    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&keyword=${this.searchInputTerm}`, res => {
+    this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -93,6 +93,13 @@ export class IndexComponent implements OnInit {
       width:"60%"
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result && result.status == "refresh") {
+        this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&name=${this.searchInputTerm}`, res => {
+          this.list = res.content;
+          this.totalElements = res.totalElements;
+          document.getElementById('app-loading').style.display = "none";
+        })
+      }
     });
   }
 
