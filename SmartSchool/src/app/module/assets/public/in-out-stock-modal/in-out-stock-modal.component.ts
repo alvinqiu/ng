@@ -23,16 +23,15 @@ export class InOutStockModalComponent implements OnInit {
   ) {
     this.specific = new SpecificClass();
 
-    this._service.getAssetsHttp(`/equipment-specific-info/${groups}`)
-      .then((response: any) => {
-        this.specific = response;
-      });
+    this._service.getAssetsHttp(`/equipment-specific-info/${groups}`, (response: any) => {
+      this.specific = response;
+    });
   }
 
   handleSave() {
     this._service
       .postAssetsHttp(`/equipment-specific-stock`, this.specific, (response: any) => {
-        this.dialogRef.close({'status': 'refresh', 'data': response.json()});
+        this.dialogRef.close({'status': 'refresh'});
       });
   }
 

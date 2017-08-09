@@ -42,6 +42,7 @@ import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.c
 import { SpecificComponent } from './specific/specific.component';
 import { CodeComponent } from '../assets/code/code.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
+import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -73,14 +74,16 @@ import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create
     CovalentFileModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent, CreateQrCodeModalComponent],
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
+    CodeComponent, CreateQrCodeModalComponent, StockHistoryModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
     InOutStockModalComponent,
     AssetsTypeModalComponent,
     SupplierModalComponent,
-    CreateQrCodeModalComponent
+    CreateQrCodeModalComponent,
+    StockHistoryModalComponent
   ],
   providers: [
     ApiService,

@@ -44,20 +44,20 @@ export class AssetsAddModalComponent implements OnInit {
       });
   }
 
-  selectedChanged(e: any) {
-    // this.asset.purchaseDate = e;
+  selectedChanged(e) {
+    this.asset.purchaseDate = e;
   }
 
   handleAsset() {
     if (this.status === 'add') {
       this._service
         .postAssetsHttp(`/equipment`, this.asset, (response: any) => {
-          this.dialogRef.close({'status': 'refresh', 'data': response.json()});
+          this.dialogRef.close({'status': 'refresh'});
         });
     } else {
       this._service
         .postAssetsHttp(`/equipment-general/${this.asset.id}`, this.asset, (response: any) => {
-          this.dialogRef.close({'status': 'refresh', 'data': response.json()});
+          this.dialogRef.close({'status': 'refresh'});
         });
     }
   }

@@ -12,6 +12,8 @@ import {
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/create-qr-code-modal.component';
+import { InOutStockModalComponent } from '../public/in-out-stock-modal/in-out-stock-modal.component';
+import { StockHistoryModalComponent } from '../public/stock-history-modal/stock-history-modal.component';
 
 @Component({
   selector: 'app-specific',
@@ -24,6 +26,7 @@ export class SpecificComponent implements OnInit {
     { name: 'seriesNumber', label: '资产编号' },
     { name: 'stockStatus', label: '状态' },
     { name: 'status', label: '使用人员' },
+    { name: 'operation', label: '操作' },
   ];
 
   basicData = [];
@@ -58,6 +61,18 @@ export class SpecificComponent implements OnInit {
           width: '40%'
         });
         break;
+      case 'inOutStock':
+        dialogRef = this.dialog.open(InOutStockModalComponent, {
+          data: condition.seriesNumber,
+          width: '60%'
+        });
+        break;
+      case 'StockHistory':
+        dialogRef = this.dialog.open(StockHistoryModalComponent, {
+          data: condition.id,
+          width: '60%'
+        });
+        break;
       default:
         break;
     }
@@ -76,13 +91,13 @@ export class SpecificComponent implements OnInit {
   }
 
   ngOnInit() {
-    // document.getElementById('app-loading').style.display = 'flex';
+    document.getElementById('app-loading').style.display = 'flex';
     this.aRoute.params.subscribe((params) => {
       this._service.getAssetsHttp(`/equipment-specific-valid/${params.equipmentGeneralId}/${this.page}/${this.pageSize}`,
         (response: any) => {
         this.basicData = response.entries;
         this.totalCount = response.totalCount;
-        // document.getElementById('app-loading').style.display = 'none';
+        document.getElementById('app-loading').style.display = 'none';
       });
     });
   }

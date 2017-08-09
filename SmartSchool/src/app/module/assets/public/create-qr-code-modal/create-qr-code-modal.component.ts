@@ -24,8 +24,8 @@ export class CreateQrCodeModalComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.baseDate.map(data => {
-        console.log(data.asset.seriesNumber);
-        JsBarcode(`#barcode${data.id}`, data.asset.seriesNumber, {
+        console.log(data.seriesNumber);
+        JsBarcode(`#barcode${data.id}`, data.seriesNumber, {
           width: 1,
           height: 50
         });
