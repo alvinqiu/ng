@@ -49,7 +49,7 @@ export class MineComponent implements OnInit {
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
-    this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}`, res => {
+    this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -61,11 +61,18 @@ export class MineComponent implements OnInit {
       width:"60%"
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result && result.status == "refresh") {
+        this._service.getResourceHttp(`/resource?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}&name=${this.searchInputTerm}`, res => {
+          this.list = res.content;
+          this.totalElements = res.totalElements;
+          document.getElementById('app-loading').style.display = "none";
+        })
+      }
     });
   }
   radioChange() {
     setTimeout(() => {
-      this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}`, res => {
+      this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}&name=${this.searchInputTerm}`, res => {
         this.list = res.content;
         this.totalElements = res.totalElements;
         document.getElementById('app-loading').style.display = "none";
@@ -76,7 +83,7 @@ export class MineComponent implements OnInit {
   handleSearch(searchInputTerm: string):void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
-    this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&keyword=${this.searchInputTerm}`, res => {
+    this._service.getResourceHttp(`/resource/me?page=${this.page}&pageSize=${this.pageSize}&sourceType=${this.searchStatus}&status=${this.searchReview}&name=${this.searchInputTerm}`, res => {
       this.list = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";

@@ -14,8 +14,8 @@
 				</md-option>
 			</md-select>
 		    <md-select placeholder="所属年级" fxFlex="100" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
-				<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
+				<md-option *ngFor="let grade of gradelist" [value]="grade.id">
+					{{ grade.gradeName }}
 				</md-option>
 			</md-select>
 			

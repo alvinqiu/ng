@@ -25,6 +25,7 @@ import {
   CovalentExpansionPanelModule,
   CovalentMessageModule,
 } from '@covalent/core';
+import { TreeModule } from 'angular-tree-component';
 import { ImageUploadModule } from "angular2-image-upload";
 
 import { ApiService } from '../../service/api.service';
@@ -82,6 +83,7 @@ import { CoursemodalComponent } from './public/coursemodal/coursemodal.component
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentMessageModule,
+    TreeModule,
     ImageUploadModule.forRoot(),
   ],
   declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent, CourseComponent, CoursemodalComponent],

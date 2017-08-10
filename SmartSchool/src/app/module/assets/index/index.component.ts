@@ -109,22 +109,22 @@ export class IndexComponent implements OnInit {
     if (this.selectedRows.length > 0) {
       equipmentGeneralId = this.selectedRows[0].id;
 
-      this._service
-        .getHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
-        .then((response: any) => {
-          console.log(response);
+      // this._service
+      //   .getHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
+      //   .then((response: any) => {
+      //     console.log(response);
 
-        })
-        .catch((e: any) => {
-          console.log(e);
-        });
+      //   })
+      //   .catch((e: any) => {
+      //     console.log(e);
+      //   });
     }
   }
 
   ngOnInit() {
     document.getElementById('app-loading').style.display = 'flex';
     this._service
-      .getBasicHttp(`/asset/equipment-valid?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+      .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
         this.basicData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
