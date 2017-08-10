@@ -11,12 +11,12 @@
         <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
       </md-toolbar>
     </md-card>
-    <md-tab-group>
+    <md-tab-group fxFlexFill (selectChange)="changeTabs($event)">
       <md-tab label="使用中">
         <td-data-table
           fxFlexFill
           #dataTable
-          [data]="basicData"
+          [data]="basicValidData"
           [columns]="columns"
           [selectable]="true"
           [multiple]="false"
@@ -32,7 +32,7 @@
         <td-data-table
           fxFlexFill
           #dataTable
-          [data]="basicData"
+          [data]="basicInvalidData"
           [columns]="columns"
           [selectable]="true"
           [multiple]="false"

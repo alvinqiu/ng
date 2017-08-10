@@ -1,0 +1,26 @@
+<h2 md-dialog-title>新增供应商</h2>
+<md-dialog-content>
+  <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+    <md-input-container fxFlex="33">
+      <input mdInput placeholder="供应商名称" [(ngModel)]="supplier.supplierName" name="supplierName" required >
+    </md-input-container>
+    <md-input-container fxFlex="33">
+      <input mdInput placeholder="供应商电话" [(ngModel)]="supplier.supplierPhone" name="supplierPhone" required >
+    </md-input-container>
+    <md-input-container fxFlex="33">
+      <input mdInput placeholder="供应商邮箱" [(ngModel)]="supplier.supplierEmail" name="supplierEmail" required >
+    </md-input-container>
+  </form>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+    (click)="add()"
+  >保存</button>
+  <button
+    md-button
+    color="primary"
+    md-dialog-close>关闭</button>
+</md-dialog-actions>

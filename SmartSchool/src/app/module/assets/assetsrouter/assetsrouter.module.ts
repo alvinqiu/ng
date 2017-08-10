@@ -8,7 +8,7 @@ const AssetsRoutes: Route[] = [
 	{ path: '', redirectTo: 'index',  pathMatch: 'full'},
 	{ path: 'index', component: IndexComponent },
 	{ path: 'code', component: CodeComponent },
-  { path: 'specific/:equipmentGeneralId', component: SpecificComponent }
+  { path: 'specific/:equipmentGeneralId/:tabIndex', component: SpecificComponent }
 ]
 
 @NgModule({

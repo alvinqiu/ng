@@ -31,6 +31,7 @@ import {
   CovalentSearchModule,
   CovalentExpansionPanelModule,
   CovalentFileModule,
+  CovalentDialogsModule,
 } from '@covalent/core';
 import { ApiService } from '../../service/api.service';
 import { UtilService } from '../../service/util.service';
@@ -43,6 +44,8 @@ import { SpecificComponent } from './specific/specific.component';
 import { CodeComponent } from '../assets/code/code.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
+import { MsgmodalComponent } from '../basic/public/msgmodal/msgmodal.component';
+import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-add-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -72,10 +75,11 @@ import { StockHistoryModalComponent } from './public/stock-history-modal/stock-h
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentFileModule,
+    CovalentDialogsModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
     InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
-    CodeComponent, CreateQrCodeModalComponent, StockHistoryModalComponent],
+    CodeComponent, CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
@@ -83,7 +87,9 @@ import { StockHistoryModalComponent } from './public/stock-history-modal/stock-h
     AssetsTypeModalComponent,
     SupplierModalComponent,
     CreateQrCodeModalComponent,
-    StockHistoryModalComponent
+    StockHistoryModalComponent,
+    MsgmodalComponent,
+    SupplierAddModalComponent
   ],
   providers: [
     ApiService,

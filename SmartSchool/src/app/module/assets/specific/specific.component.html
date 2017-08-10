@@ -2,8 +2,8 @@
   <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
     <md-card fxFlexFill>
       <md-toolbar>
-        <button md-button>报废</button>
-        <button md-button>删除</button>
+        <button md-button (click)="openConfirm(1)">报废</button>
+        <button md-button (click)="openConfirm(0)">删除</button>
         <button md-button (click)="openDialog({func:'create'})">生成条形码</button>
       </md-toolbar>
     </md-card>
@@ -23,7 +23,7 @@
     >
       <ng-template tdDataTableTemplate="operation" let-value="value" let-row="row" let-column="column">
         <div layout="row">
-          <button md-button (click)="openDialog({func:'inOutStock',seriesNumber:row['seriesNumber']})">出/入库</button>
+          <button md-button *ngIf="tabIndex == '0'" (click)="openDialog({func:'inOutStock',seriesNumber:row['seriesNumber']})">出/入库</button>
           <button md-button (click)="openDialog({func:'StockHistory',id:row['id']})">出入库记录</button>
         </div>
       </ng-template>

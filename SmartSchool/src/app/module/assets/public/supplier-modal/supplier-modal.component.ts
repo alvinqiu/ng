@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 import {
   ITdDataTableColumn,
   TdDataTableSortingOrder,
-  ITdDataTableSortChangeEvent } from '@covalent/core';
+  ITdDataTableSortChangeEvent,
+  TdDialogService
+} from '@covalent/core';
 import { ApiService } from '../../../../service/api.service';
+import { MsgmodalComponent } from '../../../basic/public/msgmodal/msgmodal.component';
+import { SupplierAddModalComponent } from '../supplier-add-modal/supplier-add-modal.component';
 
 @Component({
   selector: 'app-supplier-modal',
@@ -12,7 +17,7 @@ import { ApiService } from '../../../../service/api.service';
 })
 export class SupplierModalComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
-    { name: 'id',  label: '序号' },
+    { name: 'id', label: '序号' },
     { name: 'supplierName', label: '供应商名称' },
     { name: 'supplierPhone', label: '供应商电话' },
     { name: 'supplierEmail', label: '供应商邮箱' },
@@ -22,7 +27,9 @@ export class SupplierModalComponent implements OnInit {
   selectedRows: any[] = [];
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
-    private _service: ApiService
+    public dialog: MdDialog,
+    private _service: ApiService,
+    private _dialogService: TdDialogService
   ) { }
 
   selectEvent(e: any): any {
@@ -36,9 +43,30 @@ export class SupplierModalComponent implements OnInit {
   ngOnInit() {
     // 获取供应商
     this._service
-      .getBasicHttp(`/equipment-supplier-names`, (response: any) => {
+      .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
         this.basicData = response;
       });
   }
+  delete(): void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data: { "label": "错误", "msg": "请选择要删除的信息", "color": "accent", "icon": "error" },
+        width: "40%"
+      });
+    } else {
+      this.selectedRows.map(item => {
+        this._service
+          .postAssetsDelHttp(`/equipment-supplier/${item.id}`, (response: any) => { });
+      });
+      // 获取供应商
+      this._service
+        .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
+          this.basicData = response;
+        });
+    }
+  }
 
+  openDialog(): void {
+    this.dialog.open(SupplierAddModalComponent, { width: '40%' });
+  }
 }

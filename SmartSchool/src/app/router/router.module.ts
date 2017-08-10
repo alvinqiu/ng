@@ -20,35 +20,35 @@ const router: Routes = [
 		canActivate: [AuthGuard],
 		children: [
 			{ path: '', redirectTo: 'login',  pathMatch: 'full' },
-			{
-				path: 'login',
-				component: LoginComponent,
-				canActivateChild: [AuthGuard],
-				loadChildren: '../module/login/login.module#LoginModule',
-		    },
-		    {
-				path: 'homepage',
-				component: HomepageComponent,
-				canActivateChild: [AuthGuard],
-				loadChildren: '../module/homepage/homepage.module#HomepageModule',
-		    },
+			// {
+			// 	path: 'login',
+			// 	component: LoginComponent,
+			// 	canActivateChild: [AuthGuard],
+			// 	loadChildren: '../module/login/login.module#LoginModule',
+		  //   },
+		  //   {
+			// 	path: 'homepage',
+			// 	component: HomepageComponent,
+			// 	canActivateChild: [AuthGuard],
+			// 	loadChildren: '../module/homepage/homepage.module#HomepageModule',
+		  //   },
 		  //   {
 				// path: 'personal',
 				// component: PersonalComponent,
 				// loadChildren: '../module/personal/personal.module#PersonalModule',
 		  //   },
-		    {
-				path: 'basic',
-				component: BasicComponent,
-				canActivateChild: [AuthGuard],
-				loadChildren: '../module/basic/basic.module#BasicModule',
-		    },
-		    {
-		      	path: 'resources',
-		      	component: ResourcesComponent,
-		      	canActivateChild: [AuthGuard],
-		      	loadChildren: '../module/resources/resources.module#ResourcesModule',
-				},
+		    // {
+				// path: 'basic',
+				// component: BasicComponent,
+				// canActivateChild: [AuthGuard],
+				// loadChildren: '../module/basic/basic.module#BasicModule',
+		    // },
+		    // {
+		    //   	path: 'resources',
+		    //   	component: ResourcesComponent,
+		    //   	canActivateChild: [AuthGuard],
+		    //   	loadChildren: '../module/resources/resources.module#ResourcesModule',
+				// },
 		    {
 				path: 'assets',
 				component: AssetsComponent,
