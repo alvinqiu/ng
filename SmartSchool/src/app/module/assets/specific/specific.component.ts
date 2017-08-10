@@ -24,7 +24,17 @@ export class SpecificComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
     { name: 'id',  label: '序号' },
     { name: 'seriesNumber', label: '资产编号' },
-    { name: 'stockStatus', label: '状态' },
+    { name: 'stockStatus', label: '状态' , format: v => {
+          switch (v) {
+            case 0 :
+              return '出库';
+            case 1 :
+              return '入库';
+            default :
+              return ''
+          }
+      }
+    },
     { name: 'status', label: '使用人员' },
     { name: 'operation', label: '操作' },
   ];

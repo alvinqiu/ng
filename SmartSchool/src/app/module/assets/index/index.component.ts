@@ -122,6 +122,10 @@ export class IndexComponent implements OnInit {
     }
   }
 
+  selectChange(e: any) {
+    console.log(e);
+  }
+
   ngOnInit() {
     document.getElementById('app-loading').style.display = 'flex';
     this._service

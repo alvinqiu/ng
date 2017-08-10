@@ -11,21 +11,40 @@
         <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
       </md-toolbar>
     </md-card>
-
-    <td-data-table
-      fxFlexFill
-      #dataTable
-      [data]="basicData"
-      [columns]="columns"
-      [selectable]="true"
-      [multiple]="false"
-      [sortable]="true"
-      [sortOrder]="sortOrder"
-      [(ngModel)]="selectedRows"
-      (rowSelect)="selectEvent($event)"
-      (sortChange)="sort($event)"
-    >
-    </td-data-table>
+    <md-tab-group>
+      <md-tab label="使用中">
+        <td-data-table
+          fxFlexFill
+          #dataTable
+          [data]="basicData"
+          [columns]="columns"
+          [selectable]="true"
+          [multiple]="false"
+          [sortable]="true"
+          [sortOrder]="sortOrder"
+          [(ngModel)]="selectedRows"
+          (rowSelect)="selectEvent($event)"
+          (sortChange)="sort($event)"
+        >
+        </td-data-table>
+      </md-tab>
+      <md-tab label="已报废">
+        <td-data-table
+          fxFlexFill
+          #dataTable
+          [data]="basicData"
+          [columns]="columns"
+          [selectable]="true"
+          [multiple]="false"
+          [sortable]="true"
+          [sortOrder]="sortOrder"
+          [(ngModel)]="selectedRows"
+          (rowSelect)="selectEvent($event)"
+          (sortChange)="sort($event)"
+        >
+        </td-data-table>
+      </md-tab>
+    </md-tab-group>
     <td-paging-bar
       fxFlexFill
       #pagingBar

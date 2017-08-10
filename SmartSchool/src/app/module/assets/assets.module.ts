@@ -22,7 +22,7 @@ import {
   MdDatepickerModule,
   MdNativeDateModule,
   // MdGridListModule,
-  // MdTabsModule,
+  MdTabsModule,
 } from '@angular/material';
 import { BarRatingModule } from 'ngx-bar-rating';
 import {
@@ -63,7 +63,7 @@ import { StockHistoryModalComponent } from './public/stock-history-modal/stock-h
     MdSelectModule,
     MdMenuModule,
     // MdGridListModule,
-    // MdTabsModule,
+    MdTabsModule,
     MdDatepickerModule,
     MdNativeDateModule,
     BarRatingModule,
