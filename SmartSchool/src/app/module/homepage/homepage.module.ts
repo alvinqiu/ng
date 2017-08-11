@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomepageComponent } from './homepage.component';
 import { HomepagerouterModule } from './homepagerouter/homepagerouter.module';
 import { MenusComponent } from './menus/menus.component';
+import { ErrorComponent } from './error/error.component';
 import {
   MdCardModule,
   MdButtonModule,
@@ -12,6 +13,7 @@ import {
   MdIconModule,
   MdChipsModule,
 } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,6 +26,6 @@ import {
     MdButtonModule,
     MdChipsModule,
   ],
-  declarations: [HomepageComponent, MenusComponent]
+  declarations: [HomepageComponent, MenusComponent, ErrorComponent]
 })
 export class HomepageModule { }
