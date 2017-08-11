@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 // import { LoginComponent } from '../module/login/login.component';
 // import { PersonalComponent } from '../module/personal/personal.component';
-import { BasicComponent } from '../module/basic/basic.component';
+// import { BasicComponent } from '../module/basic/basic.component';
 
 // import { ResourcesComponent } from '../module/resources/resources.component';
 import { AssetsComponent } from '../module/assets/assets.component';
@@ -39,12 +39,12 @@ const router: Routes = [
 				// component: PersonalComponent,
 				// loadChildren: '../module/personal/personal.module#PersonalModule',
 		  //   },
-		    {
-				path: 'basic',
-				component: BasicComponent,
-				canActivateChild: [AuthGuard],
-				loadChildren: '../module/basic/basic.module#BasicModule',
-		    },
+		    // {
+				// path: 'basic',
+				// component: BasicComponent,
+				// canActivateChild: [AuthGuard],
+				// loadChildren: '../module/basic/basic.module#BasicModule',
+		    // },
 		  //   {
 		  //     	path: 'resources',
 		  //     	component: ResourcesComponent,
@@ -52,11 +52,11 @@ const router: Routes = [
 		  //     	loadChildren: '../module/resources/resources.module#ResourcesModule',
 				// },
 
-		  //   {
-				// path: 'assets',
-				// component: AssetsComponent,
-				// loadChildren: '../module/assets/assets.module#AssetsModule',
-		  //   },
+		    {
+				path: 'assets',
+				component: AssetsComponent,
+				loadChildren: '../module/assets/assets.module#AssetsModule',
+		    },
 
 		]
 	}

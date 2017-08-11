@@ -67,6 +67,14 @@ export class SupplierModalComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(SupplierAddModalComponent, { width: '40%' });
+    this.dialog.open(SupplierAddModalComponent, { width: '40%' }).afterClosed().subscribe(result => {
+      if (result && result.status == "refresh") {
+        // 获取供应商
+        this._service
+          .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
+            this.basicData = response;
+          });
+      }
+    });
   }
 }

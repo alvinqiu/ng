@@ -67,6 +67,18 @@ export class IndexComponent implements OnInit {
           },
           width: '60%'
         });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result && result.status == "refresh") {
+            this.selectedRows = [];
+            document.getElementById('app-loading').style.display = 'flex';
+            this._service
+              .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+                this.basicValidData = response.entries;
+                this.totalCount = response.totalCount;
+                document.getElementById('app-loading').style.display = 'none';
+              });
+          }
+        });
         break;
       case 'edit':
         if (this.selectedRows.length > 0) {
@@ -76,6 +88,18 @@ export class IndexComponent implements OnInit {
               'asset': this.selectedRows[0]
             },
             width: '60%'
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            if (result && result.status == "refresh") {
+              this.selectedRows = [];
+              document.getElementById('app-loading').style.display = 'flex';
+              this._service
+                .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+                  this.basicValidData = response.entries;
+                  this.totalCount = response.totalCount;
+                  document.getElementById('app-loading').style.display = 'none';
+                });
+            }
           });
         }
         break;

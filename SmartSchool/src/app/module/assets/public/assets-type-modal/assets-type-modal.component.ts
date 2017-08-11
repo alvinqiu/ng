@@ -56,13 +56,8 @@ export class AssetsTypeModalComponent implements OnInit {
     } else {
       this.selectedRows.map(item => {
         this._service
-          .postAssetsHttp(`/equipment-type/${item.id}`, (response: any) => { });
+          .postAssetsHttp(`/equipment-type/${item.id}`, (response: any) => { this.ngOnInit(); });
       });
-      // 获取类型
-      this._service
-        .getAssetsHttp(`/equipment-types`, (response: any) => {
-          this.basicData = response;
-        });
     }
   }
 
@@ -77,7 +72,7 @@ export class AssetsTypeModalComponent implements OnInit {
         // 保存资产类型
         this._service
           .postAssetsHttp(`/equipment-type`, { 'equipmentTypeName': newValue }, (response: any) => {
-            this.basicData.push(response);
+            this.ngOnInit();
           });
       }
     });
