@@ -41,7 +41,6 @@ import { InOutStockModalComponent } from './public/in-out-stock-modal/in-out-sto
 import { AssetsTypeModalComponent } from './public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.component';
 import { SpecificComponent } from './specific/specific.component';
-import { CodeComponent } from '../assets/code/code.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
 import { MsgmodalComponent } from '../basic/public/msgmodal/msgmodal.component';
@@ -79,7 +78,7 @@ import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
     InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
-    CodeComponent, CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent],
+    CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
