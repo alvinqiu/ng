@@ -15,48 +15,7 @@ import { DepartmentmodalComponent } from '../public/departmentmodal/departmentmo
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-  basicData: any[] = [
-    { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-     { name: '清华大学', status: '否', parent: '中国教育部'},
-    { name: '清华大学成都校区', status: '是', parent: '清华大学'},
-    { name: '清华大学深圳校区', status: '是', parent: '清华大学'},
-  ];
-  columns: ITdDataTableColumn[] = [
-    { name: 'name', label: '学校名称' },
-    { name: 'status', label: '分校区' },
-    { name: 'parent', label: '母校' },
-    { name: 'tel', label: '联系电话' },
-    { name: 'addr', label: '地址' },
-  ];
+  nodes = [];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
@@ -85,7 +44,10 @@ export class DepartmentComponent implements OnInit {
   handleSearch(searchInputTerm: string):void {
     console.log(searchInputTerm)
   }
+  
+  searchByid(id:any): void {
 
+  }
 
   change(event: IPageChangeEvent): void {
     this.event = event;

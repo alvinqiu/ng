@@ -32,7 +32,7 @@ export class ClassesComponent implements OnInit {
   searchInputTerm: string = "";
   pageSize: number = 20;
   page: number = 1;
-  totalCount: number;
+  totalCount: number = 0;
   searchGrade:string = "";
   gradelist = [];
   constructor(

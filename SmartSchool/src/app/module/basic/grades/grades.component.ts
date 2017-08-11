@@ -62,7 +62,7 @@ export class GradesComponent implements OnInit {
   firstLast: boolean = false;
   pageSize: number = 20;
   page: number = 1;
-  totalCount: number;
+  totalCount: number = 0;
   searchInputTerm: string = "";
   sortBy: string = 'gradeName';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;

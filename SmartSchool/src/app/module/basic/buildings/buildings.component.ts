@@ -57,7 +57,7 @@ export class BuildingsComponent implements OnInit {
   searchInputTerm: string;
   pageSize: number = 20;
   page: number = 1;
-  totalCount: number;
+  totalCount: number = 0;
   sortBy: string = 'buildingName';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
