@@ -102,9 +102,9 @@ export class ApiService {
 
   }
 
-  postAssetsDelHttp(url?:string, postData?:any, callback?:any) {
+  postAssetsDelHttp(url?:string, callback?:any) {
     return this._http
-               .post(domain+url,postData,{headers: headers})
+              .delete(domain+url)
                .toPromise()
                .then( res => {
                  callback && callback(res.json())

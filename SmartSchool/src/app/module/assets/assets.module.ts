@@ -19,8 +19,10 @@ import {
   MdDialogModule,
   MdSelectModule,
   MdMenuModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
   // MdGridListModule,
-  // MdTabsModule,
+  MdTabsModule,
 } from '@angular/material';
 import { BarRatingModule } from 'ngx-bar-rating';
 import {
@@ -29,6 +31,7 @@ import {
   CovalentSearchModule,
   CovalentExpansionPanelModule,
   CovalentFileModule,
+  CovalentDialogsModule,
 } from '@covalent/core';
 import { ApiService } from '../../service/api.service';
 import { UtilService } from '../../service/util.service';
@@ -40,6 +43,9 @@ import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.c
 import { SpecificComponent } from './specific/specific.component';
 import { CodeComponent } from '../assets/code/code.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
+import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
+import { MsgmodalComponent } from '../basic/public/msgmodal/msgmodal.component';
+import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-add-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -60,23 +66,30 @@ import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create
     MdSelectModule,
     MdMenuModule,
     // MdGridListModule,
-    // MdTabsModule,
+    MdTabsModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     BarRatingModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentExpansionPanelModule,
     CovalentFileModule,
+    CovalentDialogsModule,
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
-    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent, CodeComponent, CreateQrCodeModalComponent],
+    InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
+    CodeComponent, CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
     InOutStockModalComponent,
     AssetsTypeModalComponent,
     SupplierModalComponent,
-    CreateQrCodeModalComponent
+    CreateQrCodeModalComponent,
+    StockHistoryModalComponent,
+    MsgmodalComponent,
+    SupplierAddModalComponent
   ],
   providers: [
     ApiService,

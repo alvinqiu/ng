@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
-import { AssetsInterface } from '../../../../interface/assets';
-import { AssetsClass } from '../../../../class/assets';
+import { SpecificInterface } from '../../../../interface/specific';
+import { SpecificClass } from '../../../../class/specific';
 
 @Component({
   selector: 'app-in-out-stock-modal',
@@ -10,34 +10,33 @@ import { AssetsClass } from '../../../../class/assets';
   styleUrls: ['./in-out-stock-modal.component.css']
 })
 export class InOutStockModalComponent implements OnInit {
-  types = [
-    {value: '1', viewValue: '点读机'},
-    {value: '2', viewValue: '复读机'},
-    {value: '3', viewValue: '大飞机'}
-  ];
   statusList = [
-    {value: 1, viewValue: '出库'},
-    {value: 2, viewValue: '入库'}
+    {value: 0, viewValue: '出库'},
+    {value: 1, viewValue: '入库'}
   ];
-  assets: AssetsInterface;
+  specific: SpecificInterface;
 
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
     private dialogRef: MdDialogRef<InOutStockModalComponent>,
     private _service: ApiService
   ) {
-    this.assets = new AssetsClass();
+    this.specific = new SpecificClass();
 
-    // this._service.getHttp(`/api/bi/assets/getInOutStock?id=${groups}`)
-    //   .then((response: any) => {
-    //     this.assets = response.json().entries;
-    //     this.dialogQrCodeModal.close(response.json());
-    //     this.dialogInOutStockModal.open(InOutStockModalComponent);
-    //   })
-    //   .catch((e: any) => {console.log(e)});
+    this._service.getAssetsHttp(`/equipment-specific-info/${groups}`, (response: any) => {
+      this.specific = response;
+    });
+  }
+
+  handleSave() {
+    this._service
+      .postAssetsHttp(`/equipment-specific-stock`, this.specific, (response: any) => {
+        this.dialogRef.close({'status': 'refresh'});
+      });
   }
 
   ngOnInit() {
+
   }
 
 }

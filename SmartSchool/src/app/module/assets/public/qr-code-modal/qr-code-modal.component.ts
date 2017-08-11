@@ -9,14 +9,11 @@ import { InOutStockModalComponent } from '../in-out-stock-modal/in-out-stock-mod
   styleUrls: ['./qr-code-modal.component.css']
 })
 export class QrCodeModalComponent implements OnInit {
-  assets: AssetsInterface;
-
+  seriesNumber: string;
   constructor(
     private dialogQrCodeModal: MdDialogRef<QrCodeModalComponent>,
     private dialogInOutStockModal: MdDialog
-  ) {
-    this.assets = new AssetsClass();
-  }
+  ) {}
 
   ngOnInit() {
   }
@@ -24,7 +21,7 @@ export class QrCodeModalComponent implements OnInit {
   getInOutStock() {
     this.dialogQrCodeModal.close();
     this.dialogInOutStockModal.open(InOutStockModalComponent, {
-      data: this.assets.id,
+      data: this.seriesNumber,
       width: '60%'
     });
   }

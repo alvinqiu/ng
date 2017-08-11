@@ -1,0 +1,40 @@
+<h2 md-dialog-title>出入库记录</h2>
+<md-dialog-content>
+  <td-data-table
+    fxFlexFill
+    #dataTable
+    [data]="basicData"
+    [columns]="columns"
+    [sortable]="true"
+    [sortOrder]="sortOrder"
+    (sortChange)="sort($event)"
+  >
+    <ng-template tdDataTableTemplate="status" let-value="value" let-row="row" let-column="column">
+      <div layout="row">
+        <span *ngIf="row['returnDate'] === null">未归还</span>
+        <span *ngIf="row['returnDate'] !== null">已归还</span>
+      </div>
+    </ng-template>
+  </td-data-table>
+  <td-paging-bar
+    fxFlexFill
+    #pagingBar
+    [firstLast]="true"
+    [pageSizeAll]="false"
+    [pageSizes]="[2,10,20,50]"
+    pageLinkCount="5"
+    [initialPage]="1"
+    [pageSize]="pageSize"
+    [total]="totalCount"
+    (change)="change($event)">
+    <span td-paging-bar-label>每页:</span>
+    {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+  </td-paging-bar>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button
+    md-button
+    color="primary"
+    md-dialog-close>关闭</button>
+</md-dialog-actions>
+

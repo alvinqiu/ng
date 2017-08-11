@@ -10,7 +10,7 @@ export class AssetsClass {
   'supplierName': string;
   'price': number;
   'supplier': number;
-  'purchaseDate': Date;
+  'purchaseDate': string;
   'invalidTotalQuantity': number;
   'validTotalQuantity': number;
   'schoolId': number;
@@ -26,7 +26,7 @@ export class AssetsClass {
     this.supplierName = '';
     this.price = 0;
     this.supplier = 0;
-    this.purchaseDate = new Date();
+    this.purchaseDate = '';
     this.invalidTotalQuantity = 0;
     this.validTotalQuantity = 0;
     this.schoolId = 0;

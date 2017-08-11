@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  Router,
+  ActivatedRoute,
+  Params
+} from '@angular/router';
+import {
   IPageChangeEvent,
   ITdDataTableColumn,
   TdDataTableSortingOrder,
-  ITdDataTableSortChangeEvent } from '@covalent/core';
+  ITdDataTableSortChangeEvent,
+  TdDialogService
+} from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/create-qr-code-modal.component';
+import { InOutStockModalComponent } from '../public/in-out-stock-modal/in-out-stock-modal.component';
+import { StockHistoryModalComponent } from '../public/stock-history-modal/stock-history-modal.component';
+import { MsgmodalComponent } from '../../basic/public/msgmodal/msgmodal.component';
 
 @Component({
   selector: 'app-specific',
@@ -14,58 +24,25 @@ import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/creat
   styleUrls: ['./specific.component.css']
 })
 export class SpecificComponent implements OnInit {
-  columns: ITdDataTableColumn[] = [
-    { name: 'id',  label: '序号' },
-    { name: 'asset.seriesNumber', label: '资产编号' },
-    { name: 'asset.stockStatus', label: '状态' },
-    { name: 'asset.person', label: '使用人员' },
-  ];
-
-  basicData: any[] = [
-    {
-      'id': 1,
-      'asset': {
-        'seriesNumber': 'S12345',
-        'stockStatus': '出库',
-        'person': 'Rain',
-      }
-    }, {
-      'id': 2,
-      'asset': {
-        'seriesNumber': 'S12346',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }, {
-      'id': 3,
-      'asset': {
-        'seriesNumber': 'S12347',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }, {
-      'id': 4,
-      'asset': {
-        'seriesNumber': 'S12348',
-        'stockStatus': '未出库',
-        'person': '',
-      }
-    }
-  ];
-
+  columns: ITdDataTableColumn[] = [];
+  basicData = [];
   selectedRows: any[] = [];
   firstLast: boolean = false;
   event: IPageChangeEvent;
   pageSize: number = 20;
   page: number = 1;
   totalCount: number;
+  equipmentGeneralId = 0;
+  tabIndex = '0';
 
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   constructor(
+    private aRoute: ActivatedRoute,
     public dialog: MdDialog,
-    private _service: ApiService
+    private _service: ApiService,
+    private _dialogService: TdDialogService
   ) { }
 
   change(event: IPageChangeEvent): void {
@@ -80,7 +57,19 @@ export class SpecificComponent implements OnInit {
       case 'create':
         dialogRef = this.dialog.open(CreateQrCodeModalComponent, {
           data: condition.selectedRows,
-          width: "40%"
+          width: '40%'
+        });
+        break;
+      case 'inOutStock':
+        dialogRef = this.dialog.open(InOutStockModalComponent, {
+          data: condition.seriesNumber,
+          width: '60%'
+        });
+        break;
+      case 'StockHistory':
+        dialogRef = this.dialog.open(StockHistoryModalComponent, {
+          data: condition.id,
+          width: '60%'
         });
         break;
       default:
@@ -101,6 +90,92 @@ export class SpecificComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('app-loading').style.display = 'flex';
+    this.aRoute.params.subscribe((params) => {
+      if (params.tabIndex == '0') {
+        // 使用中二级资产
+        this._service.getAssetsHttp(`/equipment-specific-valid/${params.equipmentGeneralId}/${this.page}/${this.pageSize}`,
+          (response: any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
+            document.getElementById('app-loading').style.display = 'none';
+          });
+
+        this.columns = [
+          { name: 'id', label: '序号' },
+          { name: 'seriesNumber', label: '资产编号' },
+          {
+            name: 'stockStatus', label: '状态', format: v => {
+              switch (v) {
+                case '0':
+                  return '出库';
+                case '1':
+                  return '入库';
+                default:
+                  return ''
+              }
+            }
+          },
+          { name: 'staffId', label: '使用人员' },
+          { name: 'operation', label: '操作' },
+        ];
+
+      } else {
+        // 已报废二级资产
+        this._service.getAssetsHttp(`/equipment-specific-invalid/${params.equipmentGeneralId}/${this.page}/${this.pageSize}`,
+          (response: any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
+            document.getElementById('app-loading').style.display = 'none';
+          });
+
+        this.columns = [
+          { name: 'id', label: '序号' },
+          { name: 'seriesNumber', label: '资产编号' },
+          {
+            name: 'status', label: '状态', format: z => {
+              switch (z) {
+                case 0:
+                  return '使用中';
+                case 1:
+                  return '已报废';
+                default:
+                  return ''
+              }
+            }
+          },
+          { name: 'obsoleteDate', label: '报废日期' },
+          { name: 'operation', label: '操作' },
+        ];
+      }
+      this.equipmentGeneralId = params.equipmentGeneralId;
+      this.tabIndex = params.tabIndex;
+    });
+  }
+
+  openConfirm(status: any): void {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data: { "label": "错误", "msg": "请选择要变更状态的数据", "color": "accent", "icon": "error" },
+        width: "40%"
+      });
+    } else {
+      this._dialogService.openConfirm({
+        message: '确认更改为此状态吗?',
+        disableClose: true,
+        cancelButton: '取消',
+        acceptButton: '确定',
+      }).afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          let equipmentIdArray = this.selectedRows.map(item => item.id);
+          let equipmentGeneralId = this.equipmentGeneralId;
+
+          this._service
+            .postAssetsHttp(`/equipment-specific-status?equipmentIds=${equipmentIdArray}&equipmentGeneralId=${equipmentGeneralId}&status=${status}`
+            , (response: any) => { });
+        }
+      });
+    }
   }
 
 }

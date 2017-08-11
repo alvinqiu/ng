@@ -2,8 +2,8 @@
   <div class="content" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
     <md-card fxFlexFill>
       <md-toolbar>
-        <button md-button>新增</button>
-        <button md-button>删除</button>
+        <button md-button (click)="openDialog()">新增</button>
+        <button md-button (click)="delete()">删除</button>
       </md-toolbar>
     </md-card>
 
@@ -23,11 +23,6 @@
     </td-data-table>
 
     <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
-      <button
-        md-button
-        color="primary"
-      >保存</button>
-
       <button
         md-button
         color="primary"

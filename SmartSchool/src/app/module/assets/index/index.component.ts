@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IPageChangeEvent,
   ITdDataTableColumn,
   TdDataTableSortingOrder,
-  ITdDataTableSortChangeEvent } from '@covalent/core';
+  ITdDataTableSortChangeEvent
+} from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { AssetsClass } from '../../../class/assets';
@@ -19,33 +21,35 @@ import { SupplierModalComponent } from '../public/supplier-modal/supplier-modal.
 })
 export class IndexComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
-    { name: 'asset.id',  label: '序号' },
-    { name: 'asset.name', label: '资产名称' },
-    { name: 'asset.equipmentTypeName', label: '类别' },
-    { name: 'asset.brand', label: '品牌' },
-    { name: 'asset.model', label: '规格型号' },
-    { name: 'asset.supplierName', label: '供应商' },
-    { name: 'asset.validTotalQuantity', label: '总数量' },
-    { name: 'asset.outStockCount', label: '使用数' },
-    { name: 'asset.stockCount', label: '库存数' },
-    { name: 'asset.price', label: '单价(元)' },
-    { name: 'asset.price', label: '总价(元)' },
-    { name: 'asset.purchaseDate', label: '购买时间' },
+    { name: 'id', label: '序号' },
+    { name: 'name', label: '资产名称' },
+    { name: 'equipmentTypeName', label: '类别' },
+    { name: 'brand', label: '品牌' },
+    { name: 'model', label: '规格型号' },
+    { name: 'supplierName', label: '供应商' },
+    { name: 'validTotalQuantity', label: '总数量' },
+    { name: 'outStockCount', label: '使用数' },
+    { name: 'stockCount', label: '库存数' },
+    { name: 'price', label: '单价(元)' },
+    { name: 'price', label: '总价(元)' },
+    { name: 'purchaseDate', label: '购买时间' },
   ];
 
-  basicData: Array<AssetsClass>;
+  basicValidData: Array<AssetsClass>;
+  basicInvalidData: Array<AssetsClass>;
   selectedRows: any[] = [];
   firstLast: boolean = false;
   event: IPageChangeEvent;
   pageSize: number = 20;
   page: number = 1;
   totalCount: number;
-
+  tabIndex = 0;
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
 
   constructor(
+    public router: Router,
     public dialog: MdDialog,
     private _service: ApiService
   ) { }
@@ -58,14 +62,22 @@ export class IndexComponent implements OnInit {
     switch (condition.func) {
       case 'add':
         dialogRef = this.dialog.open(AssetsAddModalComponent, {
+          data: {
+            'condition': condition
+          },
           width: '60%'
         });
         break;
       case 'edit':
-        dialogRef = this.dialog.open(AssetsAddModalComponent, {
-          data: '',
-          width: '60%'
-        });
+        if (this.selectedRows.length > 0) {
+          dialogRef = this.dialog.open(AssetsAddModalComponent, {
+            data: {
+              'condition': condition,
+              'asset': this.selectedRows[0]
+            },
+            width: '60%'
+          });
+        }
         break;
       case 'qrCode':
         dialogRef = this.dialog.open(QrCodeModalComponent, {
@@ -108,16 +120,27 @@ export class IndexComponent implements OnInit {
     let equipmentGeneralId = 0;
     if (this.selectedRows.length > 0) {
       equipmentGeneralId = this.selectedRows[0].id;
+      this.router.navigateByUrl(`/app/assets/specific/${equipmentGeneralId}/${this.tabIndex}`);
+    }
+  }
 
-      // this._service
-      //   .getHttp(`/asset/equipment-specific-valid?equipmentGeneralId=${equipmentGeneralId}&page=${this.page}&pageSize=${this.pageSize}`)
-      //   .then((response: any) => {
-      //     console.log(response);
-
-      //   })
-      //   .catch((e: any) => {
-      //     console.log(e);
-      //   });
+  changeTabs(e: any) {
+    // console.log(e);
+    if (e.index === 1) {
+      this.tabIndex = 1;
+      // 查询已报废资产      
+      this._service
+        .getAssetsHttp(`/equipment-invalid/${this.page}/${this.pageSize}`, (response: any) => {
+          this.basicInvalidData = response.entries;
+          this.totalCount = response.totalCount;
+        });
+    } else {
+      this.tabIndex = 0;
+      this._service
+        .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+          this.basicValidData = response.entries;
+          this.totalCount = response.totalCount;
+        });
     }
   }
 
@@ -125,7 +148,7 @@ export class IndexComponent implements OnInit {
     document.getElementById('app-loading').style.display = 'flex';
     this._service
       .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
-        this.basicData = response.entries;
+        this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
       });
