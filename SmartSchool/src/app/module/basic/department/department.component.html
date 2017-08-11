@@ -1,31 +1,20 @@
 <div class="container fall-in-x">
     <h3>部门管理</h3>
     <div class="td-search-container">
-    <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-    </td-search-box>
-    <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
-    <md-menu #topMenu="mdMenu">
-      <a  md-menu-item (click)="openDialog()">
+    <md-toolbar>
+      <a  md-menu-item (click)="openDialog({func:'add'})">
         <md-icon>add</md-icon>
         <span>新增</span>
       </a>
-      <a  md-menu-item>
+      <a  md-menu-item (click)="openDialog({func:'modify'})">
         <md-icon>edit</md-icon>
         <span>修改</span>
       </a>
-      <a  md-menu-item>
+      <a  md-menu-item (click)="delete()">
         <md-icon>delete</md-icon>
         <span>删除</span>
       </a>
-      <!-- <a  md-menu-item>
-        <md-icon>file_upload</md-icon>
-        <span>导出</span>
-      </a>
-      <a  md-menu-item>
-        <md-icon>file_download</md-icon>
-        <span>导入</span>
-      </a> -->
-    </md-menu>
+    </md-toolbar>
   </div>
   <div class="divider"></div>
   <div fxLayout="row" fxLayoutAlign="center start" fxFlexFill>
@@ -33,33 +22,33 @@
       <tree-root [nodes]="nodes">
           <ng-template #treeNodeTemplate let-node let-index="index">
             <span (click)="searchByid(node.data.id)" >{{ node.data.name }}</span>
-            <!-- <button md-button (click)="searchByGrade(node.data.id)">{{ node.data.name }}</button> -->
           </ng-template>
       </tree-root>
     </div>
     <div class="form-content" fxFlex="grow" fxLayout="column">
       <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-          <md-input-container fxFlex="100">
-            <input mdInput placeholder="部门名称"  required >
-          </md-input-container>
-          <md-input-container fxFlex="100">
-            <input mdInput placeholder="部门名称"  required >
-          </md-input-container>
-          <md-input-container fxFlex="100">
-            <input mdInput placeholder="部门名称"  required >
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="部门名称"  [(ngModel)]="node.name" name="name" [disabled]="true">
           </md-input-container>
           <md-input-container fxFlex="50">
-            <input mdInput placeholder="部门负责人"  required >
+            <input mdInput placeholder="部门负责人"  [(ngModel)]="node.manager" name="manager" [disabled]="true" >
           </md-input-container>
           <md-input-container fxFlex="50">
-            <input mdInput placeholder="办公室电话"   >
+            <input mdInput placeholder="上级部门"  [(ngModel)]="node.parent" name="parent" [disabled]="true" >
           </md-input-container>
           <md-input-container fxFlex="50">
-            <input mdInput placeholder="移动电话"   >
+            <input mdInput placeholder="所在办公楼"  [(ngModel)]="node.address" name="address" [disabled]="true" >
+          </md-input-container>
+          
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="办公室电话"   [(ngModel)]="node.officeNumber" name="officeNumber" [disabled]="true">
+          </md-input-container>
+          <md-input-container fxFlex="50">
+            <input mdInput placeholder="移动电话"   [(ngModel)]="node.mobileNumber" name="mobileNumber" [disabled]="true">
           </md-input-container>
           
         <md-input-container fxFlex="100">
-          <textarea mdInput placeholder="学校描述"></textarea>
+          <textarea mdInput placeholder="部门描述" [(ngModel)]="node.departmentDesc" name="departmentDesc" [disabled]="true"></textarea>
         </md-input-container>
 
       

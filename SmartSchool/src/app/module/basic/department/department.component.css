@@ -7,9 +7,5 @@ h3 {
 .form-content,
 .tree {
 	width: 512px;
-}
-.tree .mat-button {
-	width: 100%;
-    text-align: left;
-    padding-left: 30px;
+	padding-left: 16px;
 }
