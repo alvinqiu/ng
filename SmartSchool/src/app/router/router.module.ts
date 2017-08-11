@@ -9,7 +9,7 @@ import {
 import { BasicComponent } from '../module/basic/basic.component';
 
 // import { ResourcesComponent } from '../module/resources/resources.component';
-// import { AssetsComponent } from '../module/assets/assets.component';
+import { AssetsComponent } from '../module/assets/assets.component';
 // import { HomepageComponent } from '../module/homepage/homepage.component';
 
 import { AuthGuard } from '../guard/auth.guard';
@@ -51,11 +51,13 @@ const router: Routes = [
 		  //     	canActivateChild: [AuthGuard],
 		  //     	loadChildren: '../module/resources/resources.module#ResourcesModule',
 				// },
+
 		  //   {
 				// path: 'assets',
 				// component: AssetsComponent,
 				// loadChildren: '../module/assets/assets.module#AssetsModule',
 		  //   },
+
 		]
 	}
 ]

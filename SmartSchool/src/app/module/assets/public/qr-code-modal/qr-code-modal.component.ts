@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { AssetsClass } from '../../../../class/assets';
-import { AssetsInterface } from '../../../../interface/assets';
+import { AssetsClass } from '../../class/assets';
+import { AssetsInterface } from '../../interface/assets';
 import { InOutStockModalComponent } from '../in-out-stock-modal/in-out-stock-modal.component';
 @Component({
   selector: 'app-qr-code-modal',

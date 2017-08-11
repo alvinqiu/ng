@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
-import { SupplierClass } from '../../../../class/supplier';
+import { SupplierClass } from '../../class/supplier';
 @Component({
   selector: 'app-supplier-add-modal',
   templateUrl: './supplier-add-modal.component.html',

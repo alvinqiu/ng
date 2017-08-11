@@ -8,7 +8,7 @@ import {
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
-import { AssetsClass } from '../../../class/assets';
+import { AssetsClass } from '../class/assets';
 import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-modal.component';
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';

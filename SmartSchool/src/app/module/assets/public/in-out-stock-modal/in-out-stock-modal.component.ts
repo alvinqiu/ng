@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
-import { SpecificInterface } from '../../../../interface/specific';
-import { SpecificClass } from '../../../../class/specific';
+import { SpecificInterface } from '../../interface/specific';
+import { SpecificClass } from '../../class/specific';
 
 @Component({
   selector: 'app-in-out-stock-modal',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
-import { AssetsClass } from '../../../../class/assets';
+import { AssetsClass } from '../../class/assets';
 
 @Component({
   selector: 'app-assets-add-modal',
