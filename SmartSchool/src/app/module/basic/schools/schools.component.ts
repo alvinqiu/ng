@@ -36,8 +36,7 @@ export class SchoolsComponent implements OnInit {
   event: IPageChangeEvent;
   pageSize: number = 20;
   page: number = 1;
-  totalCount: number;
-
+  totalCount: number = 0;
   searchInputTerm: string = "";
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;

@@ -4,12 +4,14 @@ import {
 	RouterModule,
 	Routes
 } from '@angular/router';
-import { LoginComponent } from '../module/login/login.component';
+// import { LoginComponent } from '../module/login/login.component';
 // import { PersonalComponent } from '../module/personal/personal.component';
 import { BasicComponent } from '../module/basic/basic.component';
-import { ResourcesComponent } from '../module/resources/resources.component';
-import { AssetsComponent } from '../module/assets/assets.component';
-import { HomepageComponent } from '../module/homepage/homepage.component';
+
+// import { ResourcesComponent } from '../module/resources/resources.component';
+// import { AssetsComponent } from '../module/assets/assets.component';
+// import { HomepageComponent } from '../module/homepage/homepage.component';
+
 import { AuthGuard } from '../guard/auth.guard';
 
 
@@ -19,19 +21,19 @@ const router: Routes = [
 		path: 'app',
 		canActivate: [AuthGuard],
 		children: [
-			{ path: '', redirectTo: 'login',  pathMatch: 'full' },
+			// { path: '', redirectTo: 'login',  pathMatch: 'full' },
 			// {
 			// 	path: 'login',
 			// 	component: LoginComponent,
 			// 	canActivateChild: [AuthGuard],
 			// 	loadChildren: '../module/login/login.module#LoginModule',
-		  //   },
-		  //   {
+		 //    },
+		 //    {
 			// 	path: 'homepage',
 			// 	component: HomepageComponent,
 			// 	canActivateChild: [AuthGuard],
 			// 	loadChildren: '../module/homepage/homepage.module#HomepageModule',
-		  //   },
+		 //    },
 		  //   {
 				// path: 'personal',
 				// component: PersonalComponent,
@@ -49,11 +51,17 @@ const router: Routes = [
 		    //   	canActivateChild: [AuthGuard],
 		    //   	loadChildren: '../module/resources/resources.module#ResourcesModule',
 				// },
-		    {
-				path: 'assets',
-				component: AssetsComponent,
-				loadChildren: '../module/assets/assets.module#AssetsModule',
-		    },
+		    // {
+		    //   	path: 'resources',
+		    //   	component: ResourcesComponent,
+		    //   	canActivateChild: [AuthGuard],
+		    //   	loadChildren: '../module/resources/resources.module#ResourcesModule',
+	     //     },
+		  //   {
+				// path: 'assets',
+				// component: AssetsComponent,
+				// loadChildren: '../module/assets/assets.module#AssetsModule',
+		  //   },
 		]
 	}
 ]

@@ -51,7 +51,7 @@ export class OfficesComponent implements OnInit {
   event: IPageChangeEvent;
   pageSize: number = 20;
   page: number = 1;
-  totalCount: number;
+  totalCount: number = 0;
   searchInputTerm: string;
   sortBy: string = 'roomName';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;

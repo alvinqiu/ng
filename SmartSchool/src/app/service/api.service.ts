@@ -34,6 +34,7 @@ export class ApiService {
                })
                .catch(e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                });
   }
 
@@ -51,6 +52,7 @@ export class ApiService {
                })
                .catch( e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                })
 
   }
@@ -64,6 +66,7 @@ export class ApiService {
                })
                .catch(e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                })
   }
 
@@ -76,6 +79,7 @@ export class ApiService {
                })
                .catch(e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                });
   }
 
@@ -93,6 +97,7 @@ export class ApiService {
                })
                .catch( e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                })
 
   }
@@ -106,6 +111,7 @@ export class ApiService {
                })
                .catch(e => {
                  console.error(e)
+                 document.getElementById('app-loading').style.display = "none";
                })
   }
 
