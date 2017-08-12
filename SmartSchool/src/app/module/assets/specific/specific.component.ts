@@ -172,7 +172,15 @@ export class SpecificComponent implements OnInit {
 
           this._service
             .postAssetsHttp(`/equipment-specific-status?equipmentIds=${equipmentIdArray}&equipmentGeneralId=${equipmentGeneralId}&status=${status}`
-            , (response: any) => { });
+            , (response: any) => {
+
+              this._service.getAssetsHttp(`/equipment-specific-valid/${equipmentGeneralId}/${this.page}/${this.pageSize}`,
+                (response: any) => {
+                  this.basicData = response.entries;
+                  this.totalCount = response.totalCount;
+                });
+
+            });
         }
       });
     }

@@ -45,7 +45,7 @@ export class AssetsAddModalComponent implements OnInit {
   }
 
   selectedChanged(e) {
-    this.asset.purchaseDate = e;
+    // this.asset.purchaseDate = e;
   }
 
   handleAsset() {
