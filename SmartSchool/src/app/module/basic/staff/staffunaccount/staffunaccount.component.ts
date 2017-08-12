@@ -29,17 +29,17 @@ export class StaffunaccountComponent implements OnInit {
       format: v => {
         switch (v) {
           case 0:
-            return "女";
-          case 1:
             return "男";
+          case 1:
+            return "女";
           default:
             return ""
         }
       }
     },
     { name: 'duty', label: '职务' },
-    { name: 'staffAttribute', label: '属性' },
-    { name: 'deptId', label: '部门' },
+    { name: 'staffAttrName', label: '属性' },
+    { name: 'deptName', label: '部门' },
   ];
   foods = [
     { value: 'staffCode', viewValue: '教职工编号' },
@@ -86,7 +86,7 @@ export class StaffunaccountComponent implements OnInit {
 
   openDialog(condition: any): void {
     condition.selectedRows = this.selectedRows;
-    if (condition.selectedRows.length == 0) {
+    if (condition.func == "edit" && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data: { "label": "错误", "msg": "请选择要操作的信息", "color": "accent", "icon": "error" },
         width: "60%"
@@ -116,6 +116,7 @@ export class StaffunaccountComponent implements OnInit {
       .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}`, (response: any) => {
         this.basicData = response.entries;
         this.totalCount = response.totalCount;
+        this.pageSize = response.pageSize;
       });
   }
 
@@ -151,6 +152,29 @@ export class StaffunaccountComponent implements OnInit {
         .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
           this.basicData = response.entries;
           this.totalCount = response.totalCount;
+        })
+    }
+  }
+
+  delete() {
+    if (this.selectedRows.length == 0) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data: { "label": "错误", "msg": "请选择要操作的信息", "color": "accent", "icon": "error" },
+        width: "60%"
+      });
+    } else {
+      let reqlist = this.selectedRows.map(item => item.id);
+      let del = `staffIds=${reqlist.join('&staffIds=')}`
+
+      this._service
+        .postBasicDelHttp(`/api/bi/staff/delStaff`, del, (response: any) => {
+          this._service
+            .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
+              this.selectedRows = [];
+            });
+
         })
     }
   }
