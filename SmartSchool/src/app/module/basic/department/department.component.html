@@ -1,16 +1,16 @@
 <div class="container fall-in-x">
-    <h3>部门管理</h3>
-    <div class="td-search-container">
+  <h3>部门管理</h3>
+  <div class="td-search-container">
     <md-toolbar>
-      <a  md-menu-item (click)="openDialog({func:'add'})">
+      <a md-menu-item (click)="openDialog({func:'add'})">
         <md-icon>add</md-icon>
         <span>新增</span>
       </a>
-      <a  md-menu-item (click)="openDialog({func:'modify'})">
+      <a md-menu-item (click)="openDialog({func:'modify'})">
         <md-icon>edit</md-icon>
         <span>修改</span>
       </a>
-      <a  md-menu-item (click)="delete()">
+      <a md-menu-item (click)="delete()">
         <md-icon>delete</md-icon>
         <span>删除</span>
       </a>
@@ -20,42 +20,38 @@
   <div fxLayout="row" fxLayoutAlign="center start" fxFlexFill>
     <div class="tree">
       <tree-root [nodes]="nodes">
-          <ng-template #treeNodeTemplate let-node let-index="index">
-            <span (click)="searchByid(node.data.id)" >{{ node.data.name }}</span>
-          </ng-template>
+        <ng-template #treeNodeTemplate let-node let-index="index">
+          <span (click)="searchByid(node.data.id)" *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>
+          <span (click)="searchByid(node.data.id)" *ngIf="node.data.id.indexOf('g_') > -1">{{ node.data.name }}</span>
+        </ng-template>
       </tree-root>
     </div>
     <div class="form-content" fxFlex="grow" fxLayout="column">
       <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="部门名称"  [(ngModel)]="node.name" name="name" [disabled]="true">
-          </md-input-container>
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="部门负责人"  [(ngModel)]="node.manager" name="manager" [disabled]="true" >
-          </md-input-container>
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="上级部门"  [(ngModel)]="node.parent" name="parent" [disabled]="true" >
-          </md-input-container>
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="所在办公楼"  [(ngModel)]="node.address" name="address" [disabled]="true" >
-          </md-input-container>
-          
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="办公室电话"   [(ngModel)]="node.officeNumber" name="officeNumber" [disabled]="true">
-          </md-input-container>
-          <md-input-container fxFlex="50">
-            <input mdInput placeholder="移动电话"   [(ngModel)]="node.mobileNumber" name="mobileNumber" [disabled]="true">
-          </md-input-container>
-          
-        <md-input-container fxFlex="100">
-          <textarea mdInput placeholder="部门描述" [(ngModel)]="node.departmentDesc" name="departmentDesc" [disabled]="true"></textarea>
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="部门名称" [(ngModel)]="departments.name" name="name" [disabled]="true">
+        </md-input-container>
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="部门负责人" [(ngModel)]="departments.manager" name="manager" [disabled]="true">
+        </md-input-container>
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="上级部门" [(ngModel)]="departments.parDeptName" name="parDeptName" [disabled]="true">
+        </md-input-container>
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="所在办公楼" [(ngModel)]="departments.address" name="address" [disabled]="true">
         </md-input-container>
 
-      
-      
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="办公室电话" [(ngModel)]="departments.officeNumber" name="officeNumber" [disabled]="true">
+        </md-input-container>
+        <md-input-container fxFlex="50">
+          <input mdInput placeholder="移动电话" [(ngModel)]="departments.mobileNumber" name="mobileNumber" [disabled]="true">
+        </md-input-container>
+
+        <md-input-container fxFlex="100">
+          <textarea mdInput placeholder="部门描述" [(ngModel)]="departments.departmentDesc" name="departmentDesc" [disabled]="true"></textarea>
+        </md-input-container>
       </form>
     </div>
-    
   </div>
-  
 </div>

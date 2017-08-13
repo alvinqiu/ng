@@ -1,50 +1,36 @@
 <h2 md-dialog-title>新增部门</h2>
-<md-dialog-content>
-	
-	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-			<md-input-container fxFlex="50">
-		      <input mdInput placeholder="部门名称"  required [(ngModel)]="model.name" name="name">
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="部门负责人"  required [(ngModel)]="model.manager" name="manager">
-		    </md-input-container>
-		    <md-select placeholder="上级部门" fxFlex="50" [(ngModel)]="model.parent" name="parent">
-				<md-option *ngFor="let department of departments" [value]="department.id">
-					{{ department.name }}
-				</md-option>
-			</md-select>
-			<md-select placeholder="所在办公楼" fxFlex="50" [(ngModel)]="model.address" name="address">
-				<md-option *ngFor="let building of buildings" [value]="building.buildingName">
-					{{ building.buildingName }}
-				</md-option>
-			</md-select>
-		   
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="办公室电话"   [(ngModel)]="model.officeNumber" name="officeNumber">
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="移动电话"  [(ngModel)]="model.mobileNumber" name="mobileNumber" >
-		    </md-input-container>
-		    
-			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.departmentDesc" name="departmentDesc"></textarea>
-			</md-input-container>
 
-		
-		
+<md-dialog-content>
+<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="部门名称" required [(ngModel)]="model.name" name="name">
+		</md-input-container>
+		<md-select placeholder="上级部门" fxFlex="50" [(ngModel)]="model.parent" name="parent">
+			<md-option *ngFor="let department of departmentList" [value]="department.id">
+				{{ department.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="所在办公楼" fxFlex="50" [(ngModel)]="model.address" name="address">
+			<md-option *ngFor="let building of buildingList" [value]="building.id">
+				{{ building.buildingName }}
+			</md-option>
+		</md-select>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="部门负责人" required [(ngModel)]="model.manager" name="manager">
+		</md-input-container>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="办公室电话" [(ngModel)]="model.officeNumber" name="officeNumber">
+		</md-input-container>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="移动电话" [(ngModel)]="model.mobileNumber" name="mobileNumber">
+		</md-input-container>
+		<md-input-container fxFlex="100">
+			<textarea mdInput placeholder="部门描述" [(ngModel)]="model.departmentDesc" name="departmentDesc"></textarea>
+		</md-input-container>
 	</form>
 </md-dialog-content>
-<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
-  
- 	<button
-    md-button
-    color="primary"
-    [disabled]="!addForm.form.valid"
-    (click)="save()"
-    >保存</button>
 
-	<button
-	md-button
-	color="primary"
-	md-dialog-close>关闭</button>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+	<button md-button color="primary" [disabled]="!addForm.form.valid" (click)="save()">保存</button>
+	<button md-button color="primary" md-dialog-close>关闭</button>
 </md-dialog-actions>
