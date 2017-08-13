@@ -2,6 +2,7 @@
 	<h3>个人信息</h3>
 	<div class="content" fxLayout="row" fxLayoutAlign="center start" fxFlexFill>
 		<div>
+
 			<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 				<div fxFlex="100" fxLayoutAlign="center start">
 					<image-upload
@@ -19,164 +20,204 @@
 				<h4 fxFlex="100">基本信息</h4>
 				<div class="divider"></div>
 				<md-input-container fxFlex="50">
-			      <input mdInput placeholder="学校名称"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="教职工编号"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="姓名"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="性别"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="国籍"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="生日"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="籍贯"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="民族"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="证件类型"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="证件号码"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="政治面貌"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="港澳台侨外"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="是否残疾"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="婚姻状态"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="100">
-					<textarea mdInput placeholder="个人描述"></textarea>
+					<input mdInput placeholder="学校名称" [(ngModel)]="staffData.schoolId" name="schoolId" [disabled]="status == 'check'">
 				</md-input-container>
-				
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="教职工编号" [(ngModel)]="staffData.staffCode" name="staffCode" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="姓名" required [(ngModel)]="staffData.staffName" name="staffName" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="性别" fxFlex="50" [(ngModel)]="staffData.gender" name="gender" [disabled]="status == 'check'">
+					<md-option *ngFor="let gender of genderList" [value]="gender.value">
+						{{ gender.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="国籍" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<!-- <input mdInput placeholder="生日" [(ngModel)]="staffData.birthDate" name="birthDate" [disabled]="status == 'check'"> -->
+					<input mdInput [mdDatepicker]="picker1" placeholder="生日"  [disabled]="status == 'check'" [(ngModel)]="staffData.birthDate" name="birthDate">
+			  		<button mdSuffix [mdDatepickerToggle]="picker1" [disabled]="status == 'check'"></button>
+				</md-input-container>
+				<md-datepicker #picker1  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="籍贯" [(ngModel)]="staffData.hkmt" name="hkmt" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="民族" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="证件类型" fxFlex="50" [(ngModel)]="staffData.passType" name="passType" [disabled]="status == 'check'">
+					<md-option *ngFor="let passType of passTypeList" [value]="passType.value">
+						{{ passType.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="证件号码" [(ngModel)]="staffData.passNumber" name="passNumber" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="政治面貌" fxFlex="50" [(ngModel)]="staffData.politicalStatus" name="politicalStatus" [disabled]="status == 'check'">
+					<md-option *ngFor="let politicalStatus of politicalStatusList" [value]="politicalStatus.value">
+						{{ politicalStatus.viewValue }}
+					</md-option>
+				</md-select>
+				<md-select placeholder="港澳台侨外" fxFlex="50" [(ngModel)]="staffData.hkmt" name="hkmt" [disabled]="status == 'check'">
+					<md-option *ngFor="let hkmt of hkmtList" [value]="hkmt.value">
+						{{ hkmt.viewValue }}
+					</md-option>
+				</md-select>
+				<md-select placeholder="是否残疾" fxFlex="50" [(ngModel)]="staffData.disability" name="disability" [disabled]="status == 'check'">
+					<md-option *ngFor="let disability of disabilityList" [value]="disability.value">
+						{{ disability.viewValue }}
+					</md-option>
+				</md-select>
+				<md-select placeholder="婚姻状态" fxFlex="50" [(ngModel)]="staffData.maritalStatus" name="maritalStatus" [disabled]="status == 'check'">
+					<md-option *ngFor="let maritalStatus of maritalStatusList" [value]="maritalStatus.value">
+						{{ maritalStatus.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="100">
+					<textarea mdInput placeholder="个人描述" [disabled]="status == 'check'"></textarea>
+				</md-input-container>
+
 				<h4 fxFlex="100">在校工作相关信息</h4>
 				<div class="divider"></div>
 				<md-input-container fxFlex="50">
-			      <input mdInput placeholder="教职工属性"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="职务"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="所属部门"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="在职状态"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="兼职职务"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="何时加入"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="何时离开"  required >
-			    </md-input-container>
+					<input mdInput placeholder="教职工属性" [(ngModel)]="staffData.staffAttribute" name="staffAttribute" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="职务" [(ngModel)]="staffData.duty" name="duty" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="所属部门" [(ngModel)]="staffData.deptId" name="deptId" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="在职状态" fxFlex="50" [(ngModel)]="staffData.status" name="status" [disabled]="status == 'check'">
+					<md-option *ngFor="let status of statusList" [value]="status.value">
+						{{ status.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="兼职职务" [(ngModel)]="staffData.partTimeDuty" name="partTimeDuty" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<!-- <input mdInput placeholder="何时加入" [(ngModel)]="staffData.joinTime" name="joinTime" [disabled]="status == 'check'"> -->
+					<input mdInput [mdDatepicker]="picker2" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.joinTime" name="joinTime">
+			  		<button mdSuffix [mdDatepickerToggle]="picker2" [disabled]="status == 'check'"></button>
+				</md-input-container>
+				<md-datepicker #picker2  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+				<md-input-container fxFlex="50">
+					<!-- <input mdInput placeholder="何时离开" [(ngModel)]="staffData.offJobTime" name="offJobTime" [disabled]="status == 'check'"> -->
+					<input mdInput [mdDatepicker]="picker3" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.offJobTime" name="offJobTime">
+			  		<button mdSuffix [mdDatepickerToggle]="picker3" [disabled]="status == 'check'"></button>
+				</md-input-container>
+				<md-datepicker #picker3  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+
 				<h4 fxFlex="100">联系方式</h4>
 				<div class="divider"></div>
 				<md-input-container fxFlex="33">
-				  <input mdInput placeholder="省份"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="33">
-			      <input mdInput placeholder="市"   >
-			    </md-input-container>
-			    <md-input-container fxFlex="33">
-			      <input mdInput placeholder="区/县"   >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="街道信息"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="邮编"  required >
-			    </md-input-container>
-			     <md-input-container fxFlex="50">
-			      <input mdInput placeholder="办公室电话"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="电子邮箱"  required >
-			    </md-input-container>
-			     <md-input-container fxFlex="50">
-			      <input mdInput placeholder="移动电话"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="社交帐号"  required >
-			    </md-input-container>
-			     <md-input-container fxFlex="50">
-			      <input mdInput placeholder="紧急联系人"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="紧急联系人电话"  required >
-			    </md-input-container>
+					<input mdInput placeholder="省份" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="33">
+					<input mdInput placeholder="市" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="33">
+					<input mdInput placeholder="区/县" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="街道信息" [(ngModel)]="staffData.address" name="address" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="邮编" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="办公室电话" [(ngModel)]="staffData.officePhone" name="officePhone" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="电子邮箱" [(ngModel)]="staffData.email" name="email" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="移动电话" [(ngModel)]="staffData.phone" name="phone" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="社交帐号" [(ngModel)]="staffData.qqWechart" name="qqWechart" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="紧急联系人" [(ngModel)]="staffData.emgcyContact" name="emgcyContact" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="紧急联系人电话" [(ngModel)]="staffData.emgcyContactPhone" name="emgcyContactPhone" [disabled]="status == 'check'">
+				</md-input-container>
+
 				<h4 fxFlex="100">个人履历</h4>
 				<div class="divider"></div>
 				<md-input-container fxFlex="50">
-			      <input mdInput placeholder="职称／执业资格"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="最高学历"  required >
-			    </md-input-container>
-			     <md-input-container fxFlex="50">
-			      <input mdInput placeholder="最高学历毕业学校"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="最高学历专业"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="第二学位"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="毕业时间"  required >
-			    </md-input-container>
-			     <md-input-container fxFlex="50">
-			      <input mdInput placeholder="参加工作时间"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="普通话水平"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="计算机水平"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="海外留学经验"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="50">
-			      <input mdInput placeholder="教师资格证"  required >
-			    </md-input-container>
-			    <md-input-container fxFlex="100">
-					<textarea mdInput placeholder="教育经历"></textarea>
+					<input mdInput placeholder="职称／执业资格" [(ngModel)]="staffData.title" name="title" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="最高学历" fxFlex="50" [(ngModel)]="staffData.highestDegree" name="highestDegree" [disabled]="status == 'check'">
+					<md-option *ngFor="let highestDegree of highestDegreeList" [value]="highestDegree.value">
+						{{ highestDegree.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="最高学历毕业学校" [(ngModel)]="staffData.schoolTag" name="schoolTag" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="最高学历专业" [(ngModel)]="staffData.highestMajor" name="highestMajor" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="第二学位" [(ngModel)]="staffData.secMajor" name="secMajor" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="50">
+					<input mdInput [mdDatepicker]="picker4" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.graduateTime" name="graduateTime">
+			  		<button mdSuffix [mdDatepickerToggle]="picker4" [disabled]="status == 'check'"></button>
+					<!-- <input mdInput placeholder="毕业时间" [(ngModel)]="staffData.graduateTime" name="graduateTime" [disabled]="status == 'check'"> -->
+				</md-input-container>
+				<md-datepicker #picker4  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+				<md-input-container fxFlex="50">
+					<!-- <input mdInput placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime" [disabled]="status == 'check'"> -->
+					<input mdInput [mdDatepicker]="picker5" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime">
+			  		<button mdSuffix [mdDatepickerToggle]="picker5" [disabled]="status == 'check'"></button>
+				</md-input-container>
+				<md-datepicker #picker5 [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+				<md-select placeholder="普通话水平" fxFlex="50" [(ngModel)]="staffData.mandarinDegree" name="mandarinDegree" [disabled]="status == 'check'">
+					<md-option *ngFor="let mandarinDegree of mandarinDegreeList" [value]="mandarinDegree.value">
+						{{ mandarinDegree.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="计算机水平" [(ngModel)]="staffData.computerDegree" name="computerDegree" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="海外留学经验" fxFlex="50" [(ngModel)]="staffData.studyAbroad" name="studyAbroad" [disabled]="status == 'check'">
+					<md-option *ngFor="let studyAbroad of studyAbroadList" [value]="studyAbroad.value">
+						{{ studyAbroad.viewValue }}
+					</md-option>
+				</md-select>
+				<md-select placeholder="教师资格证" fxFlex="50" [(ngModel)]="staffData.teacherCert" name="teacherCert" [disabled]="status == 'check'">
+					<md-option *ngFor="let teacherCert of teacherCertList" [value]="teacherCert.value">
+						{{ teacherCert.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="100">
+					<textarea mdInput placeholder="教育经历" [(ngModel)]="staffData.educatExp" name="educatExp" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
 				<md-input-container fxFlex="100">
-					<textarea mdInput placeholder="工作经历"></textarea>
+					<textarea mdInput placeholder="工作经历" [(ngModel)]="staffData.workExp" name="workExp" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
 				<md-input-container fxFlex="100">
-					<textarea mdInput placeholder="获奖及荣誉"></textarea>
+					<textarea mdInput placeholder="获奖及荣誉" [(ngModel)]="staffData.award" name="award" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
 				<md-input-container fxFlex="100">
-					<textarea mdInput placeholder="学术论文及著作"></textarea>
+					<textarea mdInput placeholder="学术论文及著作" [(ngModel)]="staffData.academicPaper" name="academicPaper" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
-					
-				
+
 			</form>
+			
 			<div fxLayoutAlign="center start" fxFlexFill>
 				<button
 				    md-button
 				    color="primary"
 				    [disabled]="!addForm.form.valid"
+				    (click)="save()"
 				    >保存</button>
 			</div>
 		</div>

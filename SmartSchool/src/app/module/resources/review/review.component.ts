@@ -41,22 +41,19 @@ export class ReviewComponent implements OnInit {
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
     this._service.getResourceHttp(`/resource/audit?page=1&pageSize=20`, res => {
-      this.list = res.content;
+      this.list = res.entries;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
     this._service.getResourceHttp('/resource/type', res => {
-      console.log(res)
       this.typelist = res;
 
     })
     this._service.getResourceHttp('/api/bi/grade/getGradeByCondition', res => {
-      console.log(res)
       this.gradelist = res.entries;
 
     })
     this._service.getResourceHttp('/api/bi/subject/getSubjectByCondition', res => {
-      console.log(res)
       this.subjectlist = res.entries;
 
     })
@@ -65,7 +62,7 @@ export class ReviewComponent implements OnInit {
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
-      this.list = res.content;
+      this.list = res.entries;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
@@ -73,7 +70,7 @@ export class ReviewComponent implements OnInit {
   radioChange() {
     setTimeout(() => {
       this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
-        this.list = res.content;
+        this.list = res.entries;
         this.totalElements = res.totalElements;
         document.getElementById('app-loading').style.display = "none";
       })
@@ -84,7 +81,7 @@ export class ReviewComponent implements OnInit {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
     this._service.getResourceHttp(`/resource/audit?page=${this.page}&pageSize=${this.pageSize}&typeId=${this.searchTypeId}&stagesId=${this.searchStagesId}&courseId=${this.searchCourseId}&status=${this.searchAsset}&name=${this.searchInputTerm}`, res => {
-      this.list = res.content;
+      this.list = res.entries;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })

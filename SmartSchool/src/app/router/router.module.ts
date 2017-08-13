@@ -8,8 +8,8 @@ import { LoginComponent } from '../module/login/login.component';
 // import { PersonalComponent } from '../module/personal/personal.component';
 import { BasicComponent } from '../module/basic/basic.component';
 
-// import { ResourcesComponent } from '../module/resources/resources.component';
-// import { AssetsComponent } from '../module/assets/assets.component';
+import { ResourcesComponent } from '../module/resources/resources.component';
+import { AssetsComponent } from '../module/assets/assets.component';
 import { HomepageComponent } from '../module/homepage/homepage.component';
 
 
@@ -42,17 +42,17 @@ const router: Routes = [
 				loadChildren: '../module/basic/basic.module#BasicModule',
 		    },
 
-		  //   {
-		  //     	path: 'resources',
-		  //     	component: ResourcesComponent,
-		  //     	canActivateChild: [AuthGuard],
-		  //     	loadChildren: '../module/resources/resources.module#ResourcesModule',
-				// },
-		    // {
-				// path: 'assets',
-				// component: AssetsComponent,
-				// loadChildren: '../module/assets/assets.module#AssetsModule',
-		    // },
+		    {
+		      	path: 'resources',
+		      	component: ResourcesComponent,
+		      	canActivateChild: [AuthGuard],
+		      	loadChildren: '../module/resources/resources.module#ResourcesModule',
+				},
+		    {
+				path: 'assets',
+				component: AssetsComponent,
+				loadChildren: '../module/assets/assets.module#AssetsModule',
+		    },
 
 		]
 	}
