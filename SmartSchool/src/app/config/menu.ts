@@ -2,6 +2,11 @@ export const Menu = [{
 	"id": "basic",
 	"name": "基础信息管理",
 	"children": [{
+		"icon":"class",
+		"name":"个人中心",
+		"url":"/app/basic/personal",
+		"description": "建设中..."
+	},{
 		"icon":"school",
 		"name":"学校管理",
 		"url":"/app/basic/schools",
@@ -51,10 +56,77 @@ export const Menu = [{
 		"name":"班级管理",
 		"url":"/app/basic/classes",
 		"description": "建设中..."
+	}]
+},{
+	"id": "resource",
+	"name": "资源管理",
+	"children": [{
+		"icon":"school",
+		"name":"智慧云网盘",
+		"url":"/app/resources/index",
+		"description": "建设中..."
 	},{
+		"icon":"school",
+		"name":"我的资源",
+		"url":"/app/resources/mine",
+		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"资源审核",
+		"url":"/app/resources/review",
+		"description": "建设中..."
+	}]
+},{
+	"id": "resource",
+	"name": "资产管理",
+	"children": [{
+		"icon":"school",
+		"name":"资产管理",
+		"url":"/app/resources/assets",
+		"description": "建设中..."
+	}]
+}
+
+]
+
+export const MenuTeacher = [{
+	"id": "basic",
+	"name": "基础信息管理",
+	"children": [
+	{
 		"icon":"class",
 		"name":"个人中心",
 		"url":"/app/basic/personal",
+		"description": "建设中..."
+	}]
+},{
+	"id": "resource",
+	"name": "资源管理",
+	"children": [{
+		"icon":"school",
+		"name":"智慧云网盘",
+		"url":"/app/resources/index",
+		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"我的资源",
+		"url":"/app/resources/mine",
+		"description": "建设中..."
+	}]
+}]
+
+export const MenuSuper = [{
+	"id": "basic",
+	"name": "基础信息管理",
+	"children": [{
+		"icon":"class",
+		"name":"个人中心",
+		"url":"/app/basic/personal",
+		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"学校管理",
+		"url":"/app/basic/schools",
 		"description": "建设中..."
 	}]
 },{

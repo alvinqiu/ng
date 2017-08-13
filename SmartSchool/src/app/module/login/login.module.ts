@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { LoginrouterModule } from './loginrouter/loginrouter.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule }   from '@angular/forms';
-
+import { ApiService } from '../../service/api.service';
 import { 
   MdButtonModule,
   MdInputModule, 
   MdAutocompleteModule,
   MdIconModule,
   MdCardModule,
+  MdCheckboxModule,
 } from '@angular/material';
 
 import { LoginComponent } from './login.component';
@@ -24,13 +25,16 @@ import { IndexComponent } from './index/index.component';
     LoginrouterModule,
     FormsModule,
     FlexLayoutModule,
-
+    MdCheckboxModule,
     MdButtonModule,
     MdInputModule,
     MdAutocompleteModule,
     MdIconModule,
     MdCardModule,
   ],
-  declarations: [LoginComponent, IndexComponent]
+  declarations: [LoginComponent, IndexComponent],
+  providers:[
+    ApiService,
+  ]
 })
 export class LoginModule { }

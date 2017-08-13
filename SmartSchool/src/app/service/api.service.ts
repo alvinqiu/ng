@@ -12,8 +12,8 @@ let domainAssets:string = "";
 let domainResource: string = ""; 
 
 if (environment.production) {
-	domain = "http://www.marchezvousblue.cn/ss";
-  domainAssets = "http://www.marchezvousblue.cn/assets";
+	domain = "http://www.marchezvousblue.cn/auth";
+  domainAssets = "http://www.marchezvousblue.cn/auth";
   domainResource = "http://dev.slothtek.com:8081/";
 }
 

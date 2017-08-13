@@ -1,7 +1,14 @@
 {
-
+  "/user": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/log": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
   "/api/": {
-    "target": "http://www.marchezvousblue.cn/ss",
+    "target": "http://www.marchezvousblue.cn",
     "secure": false
   },
   "/resource": {
@@ -9,7 +16,7 @@
     "secure": false
   },
   "/equipment": {
-    "target": "http://www.marchezvousblue.cn/asset",
+    "target": "http://www.marchezvousblue.cn",
     "secure": false
   }
 }

@@ -6,7 +6,9 @@ import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './router/router.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
+import { ApiService } from './service/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieModule } from 'ngx-cookie';
 import {
   MdToolbarModule,
   MdButtonModule,
@@ -34,9 +36,10 @@ import { AuthGuard } from './guard/auth.guard';
     MdMenuModule,
     MdButtonModule,
     FlexLayoutModule,
+    CookieModule.forRoot(),
 
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

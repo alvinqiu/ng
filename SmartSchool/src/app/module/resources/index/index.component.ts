@@ -40,17 +40,14 @@ export class IndexComponent implements OnInit {
       document.getElementById('app-loading').style.display = "none";
     })
     this._service.getResourceHttp('/resource/type', res => {
-      console.log(res)
       this.typelist = res;
 
     })
     this._service.getResourceHttp('/api/bi/grade/getGradeByCondition', res => {
-      console.log(res)
       this.gradelist = res.entries;
 
     })
     this._service.getResourceHttp('/api/bi/subject/getSubjectByCondition', res => {
-      console.log(res)
       this.subjectlist = res.entries;
 
     })
