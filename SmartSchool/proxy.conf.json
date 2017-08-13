@@ -13,7 +13,7 @@
     "secure": false
   },
   "/resource": {
-    "target": "http://dev.slothtek.com:8081",
+    "target": "http://www.marchezvousblue.cn",
     "secure": false
   },
   "/equipment": {
