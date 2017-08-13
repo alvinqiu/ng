@@ -1,22 +1,22 @@
 <div class="td-search-container">
   <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
   </td-search-box>
-  <md-select placeholder="匹配类型">
+  <md-select placeholder="匹配类型" [(ngModel)]="foodValue" name="foodValue">
     <md-option *ngFor="let food of foods" [value]="food.value">
     {{ food.viewValue }}
     </md-option>
   </md-select>
   <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
   <md-menu #topMenu="mdMenu">
-    <a  md-menu-item (click)="openDialog()">
+    <a  md-menu-item (click)="openDialog({func:'add'})">
       <md-icon>add</md-icon>
       <span>新增</span>
     </a>
-    <a  md-menu-item>
+    <a  md-menu-item (click)="openDialog({func:'edit'})">
       <md-icon>edit</md-icon>
       <span>修改</span>
     </a>
-    <a  md-menu-item>
+    <a  md-menu-item (click)="delete()">
       <md-icon>delete</md-icon>
       <span>删除</span>
     </a>
@@ -33,36 +33,14 @@
 <div class="divider"></div>
 <div fxLayout="row" fxLayoutAlign="start start">
   <div class="tree">
-    <td-expansion-panel-group>
-      <td-expansion-panel label="高中">
-        <div class="md-padding">
-          <button md-button>高一</button>
-          <button md-button>高二</button>
-          <button md-button>高三</button>
-        </div>
-      </td-expansion-panel>
-      <td-expansion-panel label="初中">
-        <div class="md-padding">
-          <button md-button>初一</button>
-          <button md-button>初二</button>
-          <button md-button>初三</button>
-        </div>
-      </td-expansion-panel>
-      <td-expansion-panel label="小学">
-        <div class="md-padding">
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-          <button md-button>一年级</button>
-        </div>
-      </td-expansion-panel>
-    </td-expansion-panel-group>
-  </div>
+      <tree-root [nodes]="nodes">
+          <ng-template #treeNodeTemplate let-node let-index="index">
+            <span *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>
+            <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('g_') > -1">{{ node.data.name }}</span>
+            <!-- <button md-button (click)="searchByDepartment(node.data.id)">{{ node.data.name }}</button> -->
+          </ng-template>
+      </tree-root>
+    </div>
   <div fxFlex="grow" fxLayout="column">
     <td-data-table
       #dataTable
@@ -75,18 +53,18 @@
       >
     </td-data-table>
     <td-paging-bar 
-      #pagingBar 
-      [firstLast]="true" 
-      [pageSizeAll]="false" 
-      [pageSizes]="[10,20,50]"
+        #pagingBar 
+        [firstLast]="true" 
+        [pageSizeAll]="false" 
+        [pageSizes]="[10,20,50]"
         pageLinkCount="5" 
         [initialPage]="1" 
-        [pageSize]="100" 
-        [total]="1345" 
+        [pageSize]="pageSize" 
+        [total]="totalCount" 
         (change)="change($event)">
-      <span td-paging-bar-label>每页:</span>
-      {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
-    </td-paging-bar>
+        <span td-paging-bar-label>每页:</span>
+        {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+    </td-paging-bar> 
   </div>
   
 </div>

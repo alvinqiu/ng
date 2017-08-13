@@ -8,6 +8,7 @@
     "secure": false
   },
   "/api/": {
+
     "target": "http://www.marchezvousblue.cn",
     "secure": false
   },
