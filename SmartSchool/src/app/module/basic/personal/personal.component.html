@@ -175,7 +175,7 @@
 				<md-datepicker #picker4  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
 				<md-input-container fxFlex="50">
 					<!-- <input mdInput placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime" [disabled]="status == 'check'"> -->
-					<input mdInput [mdDatepicker]="picker5" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime">
+					<input mdInput [mdDatepicker]="picker5" placeholder="参加工作时间"  [disabled]="status == 'check'" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime">
 			  		<button mdSuffix [mdDatepickerToggle]="picker5" [disabled]="status == 'check'"></button>
 				</md-input-container>
 				<md-datepicker #picker5 [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
