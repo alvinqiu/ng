@@ -51,7 +51,12 @@ export const Menu = [{
 		"name":"班级管理",
 		"url":"/app/basic/classes",
 		"description": "建设中..."
-	}]
+	},{
+			"icon":"class",
+			"name":"密码管理",
+			"url":"/app/basic/password",
+			"description": "建设中..."
+		}]
 },{
 	"id": "resource",
 	"name": "资源管理",
@@ -93,7 +98,12 @@ export const MenuTeacher = [{
 		"name":"个人中心",
 		"url":"/app/basic/personal",
 		"description": "建设中..."
-	}]
+	},{
+			"icon":"class",
+			"name":"密码管理",
+			"url":"/app/basic/password",
+			"description": "建设中..."
+		}]
 },{
 	"id": "resource",
 	"name": "资源管理",
@@ -128,7 +138,12 @@ export const MenuSuper = [{
 		"name":"学校管理",
 		"url":"/app/basic/schools",
 		"description": "建设中..."
-	}]
+	},{
+			"icon":"class",
+			"name":"密码管理",
+			"url":"/app/basic/password",
+			"description": "建设中..."
+		}]
 },{
 	"id": "resource",
 	"name": "资源管理",
@@ -154,9 +169,18 @@ export const MenuSuper = [{
 	"children": [{
 		"icon":"school",
 		"name":"资产管理",
-		"url":"/app/resources/assets",
+		"url":"/app/assets/index",
 		"description": "建设中..."
 	}]
-}
+},{
+		"id": "shedule",
+		"name": "排课系统",
+		"children": [{
+			"icon":"school",
+			"name":"走班排课",
+			"url":"",
+			"description": "建设中..."
+		}]
+	}
 
 ]

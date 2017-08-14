@@ -1,23 +1,30 @@
-<h2 md-dialog-title>新增学校</h2>
+<h2 md-dialog-title>新增课程</h2>
 <md-dialog-content>
 	
 	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-			<md-input-container fxFlex="100">
+			<md-input-container fxFlex="50">
 		      <input mdInput placeholder="课程名称"  required [(ngModel)]="model.courseName" name="courseName" [disabled]="status == 'check'">
 		    </md-input-container>
+		    <md-input-container fxFlex="50">
+		      <input mdInput placeholder="总课时"  required [(ngModel)]="model.period" name="period" [disabled]="status == 'check'">
+		    </md-input-container>
+		    <md-select placeholder="所属年级" fxFlex="100" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
+				<md-option *ngFor="let grade of gradelist" [value]="grade.id">
+					{{ grade.gradeName }}
+				</md-option>
+			</md-select>
+		    <md-select placeholder="是否必修" fxFlex="50" [(ngModel)]="model.requiredCour" name="requiredCour" [disabled]="status == 'check'">
+				<md-option *ngFor="let require of requirelist" [value]="require.value">
+					{{ require.viewValue }}
+				</md-option>
+			</md-select>
 		    <md-select placeholder="所属科目" fxFlex="50" [(ngModel)]="model.subjectId" name="subjectId" [disabled]="status == 'check'">
 				<md-option *ngFor="let subject of subjectlist" [value]="subject.id">
 					{{ subject.subjectName }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="所属年级" fxFlex="50" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
-				<md-option *ngFor="let grade of gradelist" [value]="grade.id">
-					{{ grade.gradeName }}
-				</md-option>
-			</md-select>
-			<md-input-container fxFlex="100">
-		      <input mdInput placeholder="总课时"  required [(ngModel)]="model.period" name="period" [disabled]="status == 'check'">
-		    </md-input-container>
+			
+			
 			<md-input-container fxFlex="100" >
 				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.courseDesc" name="courseDesc" [disabled]="status == 'check'"></textarea>
 			</md-input-container>

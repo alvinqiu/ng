@@ -33,8 +33,9 @@ export class ClassesComponent implements OnInit {
   pageSize: number = 20;
   page: number = 1;
   totalCount: number = 0;
-  searchGrade:string = "";
+  searchGrade:string = "0";
   gradelist = [];
+  stafflist = [];
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -56,12 +57,17 @@ export class ClassesComponent implements OnInit {
         .getBasicHttp(`/api/bi/grade/getGradeByCondition`, (response:any) => {
           this.gradelist = response.entries;
         })
+    this._service
+        .getBasicHttp(`/api/bi/staff/getStaffByCondition`, (response:any) => {
+          this.stafflist = response.entries;
+        })
         
   }
 
   openDialog(condition:any):void {
     condition.selectedRows = this.selectedRows;
     condition.gradelist = this.gradelist;
+    condition.stafflist = this.stafflist;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
@@ -100,7 +106,7 @@ export class ClassesComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+      let del = `classIds=${reqlist.join('&classIds=')}`
 
       this._service
         .postBasicDelHttp(`/api/bi/class/delClass`, del, (response:any) => {

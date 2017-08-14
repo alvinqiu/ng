@@ -12,9 +12,12 @@ let domainAssets:string = "";
 let domainResource: string = ""; 
 
 if (environment.production) {
-	domain = "http://www.marchezvousblue.cn/auth";
-  domainAssets = "http://www.marchezvousblue.cn/auth";
-  domainResource = "http://dev.slothtek.com:8081/";
+	// domain = "http://www.marchezvousblue.cn/auth";
+ //  domainAssets = "http://www.marchezvousblue.cn/auth";
+ //  domainResource = "http://dev.slothtek.com:8081/";
+  domain = "http://www.marchezvousblue.cn";
+  domainAssets = "http://www.marchezvousblue.cn";
+  domainResource = "http://www.marchezvousblue.cn";
 }
 
 
@@ -33,7 +36,7 @@ export class ApiService {
                  callback && callback(res.json());
                })
                .catch(e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                });
   }
@@ -51,7 +54,7 @@ export class ApiService {
                   callback && callback(res.json())
                })
                .catch( e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                })
 
@@ -65,11 +68,29 @@ export class ApiService {
                  callback && callback(res.json())
                })
                .catch(e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                })
   }
 
+  putBasicHttp(url?:string, postData?:any, callback?:any, error?:any) {
+    let param = qs.stringify(postData,{
+                        serializeDate: function (d) {
+                          return d.toString()
+                        }
+                      })
+     return this._http
+                .put(domain+url, param, {headers: headers})
+                .toPromise()
+                .then( res => {
+                  callback && callback(res.json())
+                })
+                .catch( e => {
+                  // console.error(e)
+                  error && error()
+                  document.getElementById('app-loading').style.display = "none";
+                })
+  }
   getAssetsHttp(url?:string, callback?:any): Promise<any> {
     return this._http
                .get(domain+url)
@@ -78,7 +99,7 @@ export class ApiService {
                  callback && callback(res.json());
                })
                .catch(e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                });
   }
@@ -96,7 +117,7 @@ export class ApiService {
                   callback && callback(res.json())
                })
                .catch( e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                })
 
@@ -110,7 +131,7 @@ export class ApiService {
                  callback && callback(res.json())
                })
                .catch(e => {
-                 console.error(e)
+                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                })
   }

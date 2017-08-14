@@ -8,10 +8,10 @@ import { ApiService } from '../../../../service/api.service';
   styleUrls: ['./coursemodal.component.css']
 })
 export class CoursemodalComponent implements OnInit {
-  // requirelist = [
-  //   {value: '0', viewValue: '是'},
-  //   {value: '1', viewValue: '否'},
-  // ];
+  requirelist = [
+    {value: 0, viewValue: '否'},
+    {value: 1, viewValue: '是'},
+  ];
   // propertylist = [
   //   {value: 'steak-0', viewValue: 'Steak'},
   //   {value: 'pizza-1', viewValue: 'Pizza'},

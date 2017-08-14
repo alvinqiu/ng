@@ -83,7 +83,7 @@ export class SchoolsmodalComponent implements OnInit {
 
   selectChange() {
     if (this.model.branch == 1) {
-      this.model.parent_school = 1;
+      this.model.parentSchool = 1;
     }
   }
 

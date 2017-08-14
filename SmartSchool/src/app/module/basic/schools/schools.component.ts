@@ -36,10 +36,10 @@ export class SchoolsComponent implements OnInit {
             return ""
         }
     }},
-    { name: 'parent_school', label: '隶属学校' },
-    { name: 'nominated_contact_person', label: '校长' },
-    { name: 'office_no', label: '办公室电话' },
-    { name: 'nominated_contact_no', label: '移动电话' },
+    { name: 'parentSchool', label: '隶属学校' },
+    { name: 'nominatedContactPerson', label: '校长' },
+    { name: 'officeNo', label: '办公室电话' },
+    { name: 'nominatedContactNo', label: '移动电话' },
     
   ];
   selectedRows: any[] = [];
@@ -116,7 +116,7 @@ export class SchoolsComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+      let del = `schoolIds=${reqlist.join('&schoolIds=')}`
 
       this._service
         .postBasicDelHttp(`/api/bi/school/delSchool`, del, (response:any) => {

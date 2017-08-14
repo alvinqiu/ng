@@ -9,8 +9,8 @@ import { ApiService } from '../../../../service/api.service';
 })
 export class SubjectsmodalComponent implements OnInit {
   propertylist = [
-    {value: '0', viewValue: '必修'},
-    {value: '1', viewValue: '选修'}
+    {value: 0, viewValue: '必修'},
+    {value: 1, viewValue: '选修'}
   ]
   model:SubjectClass;
   schoollist: Array<SubjectClass>;

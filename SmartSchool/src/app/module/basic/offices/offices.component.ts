@@ -119,7 +119,7 @@ export class OfficesComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+      let del = `roomIds=${reqlist.join('&roomIds=')}`
 
       this._service
         .postBasicDelHttp(`/api/bi/room/delRoom`, del, (response:any) => {

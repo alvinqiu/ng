@@ -57,6 +57,7 @@ import { AccountComponent } from './account/account.component';
 import { MsgmodalComponent } from './public/msgmodal/msgmodal.component';
 import { CourseComponent } from './course/course.component';
 import { CoursemodalComponent } from './public/coursemodal/coursemodal.component';
+import { PasswordComponent } from './password/password.component';
 
 
 
@@ -88,7 +89,7 @@ import { CoursemodalComponent } from './public/coursemodal/coursemodal.component
     CovalentDialogsModule,
     ImageUploadModule.forRoot(),
   ],
-  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent, CourseComponent, CoursemodalComponent],
+  declarations: [BasicComponent, SchoolsComponent, SubjectsComponent, GradesComponent, ClassesComponent, SchoolsmodalComponent, StaffComponent, DepartmentComponent, ClassesmodalComponent, GradesmodalComponent, BuildingsComponent, OfficesComponent, BuildingsmodalComponent, OfficesmodalComponent, SubjectsmodalComponent, DepartmentmodalComponent, StaffsmodalComponent, StaffsattributemodalComponent, PersonalComponent, StaffpropertyComponent, StaffunaccountComponent, AccountComponent, MsgmodalComponent, CourseComponent, CoursemodalComponent, PasswordComponent],
   entryComponents: [
     SchoolsmodalComponent,
     ClassesmodalComponent,

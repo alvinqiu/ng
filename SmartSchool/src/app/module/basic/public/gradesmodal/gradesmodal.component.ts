@@ -35,6 +35,7 @@ export class GradesmodalComponent implements OnInit {
   condition:object = {
     func : ""
   };
+  stafflist = [];
   status:string;
   dialogModal:MdDialogRef<GradesmodalComponent>;
   closefresh:any;
@@ -44,6 +45,7 @@ export class GradesmodalComponent implements OnInit {
     private _service: ApiService
   	) {
     this.selectedRows = groups.selectedRows;
+    this.stafflist = groups.stafflist;
     this.dialogModal = dialogRef;
     switch(groups.func) {
       case "modify":
