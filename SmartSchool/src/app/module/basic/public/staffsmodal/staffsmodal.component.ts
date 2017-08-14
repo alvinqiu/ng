@@ -66,7 +66,7 @@ export class StaffsmodalComponent implements OnInit {
     { value: 1, viewValue: '有' }
   ];
 
-
+  startDate: Date;
   status: string;
   staffData: StaffClass;
   selectedRows: Array<StaffClass>;
