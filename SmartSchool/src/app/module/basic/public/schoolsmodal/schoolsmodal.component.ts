@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, ViewChild  } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { SchoolClass } from '../../../../class/school';
-import { SchoolInterface } from '../../../../interface/school';
+import { SchoolClass } from './school-class';
 import { ApiService } from '../../../../service/api.service';
 
 @Component({
@@ -12,12 +11,12 @@ import { ApiService } from '../../../../service/api.service';
 export class SchoolsmodalComponent implements OnInit {
    
   YesOrNo = [
-    {value: '0', viewValue: '否'},
-    {value: '1', viewValue: '是'},
+    {value: 1, viewValue: '否'},
+    {value: 2, viewValue: '是'},
   ]
-  model:SchoolInterface;
-  schoollist: Array<SchoolInterface>;
-  selectedRows: Array<SchoolInterface>;
+  model:SchoolClass;
+  schoollist: Array<SchoolClass>;
+  selectedRows: Array<SchoolClass>;
   condition:object = {
     func : ""
   };
@@ -31,6 +30,7 @@ export class SchoolsmodalComponent implements OnInit {
   ) { 
     this.selectedRows = groups.selectedRows;
     this.dialogModal = dialogRef;
+    this.schoollist = groups.schoollist;
     switch(groups.func) {
       case "modify":
         this.status = "modify";
@@ -82,8 +82,8 @@ export class SchoolsmodalComponent implements OnInit {
   }
 
   selectChange() {
-    if (this.model.branch == "0") {
-      this.model.parent_school = 0;
+    if (this.model.branch == 1) {
+      this.model.parentSchool = 1;
     }
   }
 

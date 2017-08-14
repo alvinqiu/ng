@@ -9,8 +9,8 @@
 		      <input mdInput placeholder="学生人数"  required [(ngModel)]="model.studentNum" name="studentNum" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-select placeholder="班级负责人" fxFlex="100" [(ngModel)]="model.classManager" name="classManager" [disabled]="status == 'check'">
-				<md-option *ngFor="let food of foods" [value]="food.value">
-					{{ food.viewValue }}
+				<md-option *ngFor="let staff of stafflist" [value]="staff.id">
+					{{ staff.staffName }}
 				</md-option>
 			</md-select>
 		    <md-select placeholder="所属年级" fxFlex="100" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">

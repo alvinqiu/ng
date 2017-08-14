@@ -9,7 +9,7 @@ export class CourseClass {
 	constructor() {
 		this.subjectId = 0;
 		this.courseName = "";
-		this.requiredCour = 0;
+		this.requiredCour = 1;
 		this.courseDesc = "";
 		this.period = 0;
 		this.gradeId = 0;

@@ -20,10 +20,10 @@ export class SubjectsComponent implements OnInit {
     { name: 'requiredSub', label: '必修科目', 
       format: v =>  {
           switch(v){
-            case 0 :
+            case 1 :
               return "必修";
               // break;
-            case 1 :
+            case 0 :
               return "选修";
               // break;
             default:

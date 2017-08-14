@@ -57,6 +57,7 @@ export class GradesComponent implements OnInit {
     { name: 'gradeDesc', label: '描述' },
     
   ];
+  stafflist = [];
   selectedRows: any[] = [];
   event: IPageChangeEvent;
   firstLast: boolean = false;
@@ -79,6 +80,10 @@ export class GradesComponent implements OnInit {
             this.totalCount = response.totalCount;
             document.getElementById('app-loading').style.display = "none";
           })
+      this._service
+        .getBasicHttp(`/api/bi/staff/getStaffByCondition`, (response:any) => {
+          this.stafflist = response.entries;
+        })
           
   }
 
@@ -88,6 +93,7 @@ export class GradesComponent implements OnInit {
 
   openDialog(condition:any):void {
     condition.selectedRows = this.selectedRows;
+    condition.stafflist = this.stafflist;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},

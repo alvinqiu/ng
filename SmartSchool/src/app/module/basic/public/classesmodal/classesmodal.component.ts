@@ -8,11 +8,7 @@ import { ApiService } from '../../../../service/api.service';
   styleUrls: ['./classesmodal.component.css']
 })
 export class ClassesmodalComponent implements OnInit {
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ]
+  stafflist=[];
   model:ClassClass;
   schoollist: Array<ClassClass>;
   selectedRows: Array<ClassClass>;
@@ -29,7 +25,8 @@ export class ClassesmodalComponent implements OnInit {
     private _service: ApiService
   ) {
     this.selectedRows = groups.selectedRows;
-    this.gradelist = groups.gradelist
+    this.gradelist = groups.gradelist;
+    this.stafflist = groups.stafflist;
     this.dialogModal = dialogRef;
     switch(groups.func) {
       case "modify":

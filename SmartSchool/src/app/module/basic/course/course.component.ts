@@ -22,10 +22,10 @@ export class CourseComponent implements OnInit {
     { name: 'requiredCour', label: '是否必修课', 
       format: v =>  {
           switch(v){
-            case 0 :
+            case 1 :
               return "必修";
               // break;
-            case 1 :
+            case 0 :
               return "选修";
               // break;
             default:
@@ -114,7 +114,7 @@ export class CourseComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `gradeIds=${reqlist.join('&gradeIds=')}`
+      let del = `courseIds=${reqlist.join('&courseIds=')}`
 
       this._service
         .postBasicDelHttp(`/api/bi/course/delCourse`, del, (response:any) => {

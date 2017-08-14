@@ -6,20 +6,21 @@
 		      <input mdInput placeholder="学校名称"  required [(ngModel)]="model.name" name="name" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="校长"  required [(ngModel)]="model.nominated_contact_person" name="nominated_contact_person" [disabled]="status == 'check'">
+		      <input mdInput placeholder="校长"  required [(ngModel)]="model.nominatedContactPerson" name="nominatedContactPerson" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="办公室电话"  [(ngModel)]="model.office_no" name="office_no" [disabled]="status == 'check'">
+		      <input mdInput placeholder="办公室电话"  [(ngModel)]="model.officeNo" name="officeNo" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="移动电话"  [(ngModel)]="model.nominated_contact_no" name="nominated_contact_no" [disabled]="status == 'check'">
+		      <input mdInput placeholder="移动电话"  [(ngModel)]="model.nominatedContactNo" name="nominatedContactNo" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-select placeholder="是否是分校" fxFlex="50" [(ngModel)]="model.branch" name="branch" (change)="selectChange()" [disabled]="status == 'check'">
 				<md-option *ngFor="let item of YesOrNo" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="总校" fxFlex="50" [(ngModel)]="model.parent_school" name="parent_school" [disabled]="model.branch == '0' || status == 'check'">
+
+			<md-select placeholder="总校" fxFlex="50" [(ngModel)]="model.parentSchool" name="parentSchool" [disabled]="model.branch == 1 || status == 'check'">
 				<md-option *ngFor="let item of schoollist" [value]="item.id">
 					{{ item.name }}
 				</md-option>
@@ -34,13 +35,13 @@
 		      <input mdInput placeholder="区/县"   [(ngModel)]="model.area" name="area" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="50">
-		      <input mdInput placeholder="街道信息"   [(ngModel)]="model.place_holder1" name="place_holder1" [disabled]="status == 'check'">
+		      <input mdInput placeholder="街道信息"   [(ngModel)]="model.placeHolder1" name="placeHolder1" [disabled]="status == 'check'">
 		    </md-input-container>
 		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="邮编"   [(ngModel)]="model.place_holder2" name="place_holder2" [disabled]="status == 'check'">
+		      <input mdInput placeholder="邮编"   [(ngModel)]="model.placeHolder2" name="placeHolder2" [disabled]="status == 'check'">
 		    </md-input-container>
 			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.school_desc" name="school_desc" [disabled]="status == 'check'"></textarea>
+				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.schoolDesc" name="schoolDesc" [disabled]="status == 'check'"></textarea>
 			</md-input-container>
 
 		
