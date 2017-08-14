@@ -7,7 +7,7 @@
         <button md-button (click)="openDialog({func:'qrCode'})">二维码查询资产</button>
         <button md-button (click)="openDialog({func:'type'})">资产类别设置</button>
         <button md-button (click)="openDialog({func:'supplier'})">供应商管理</button>
-        <button md-button (click)="handleSpecific()">查看次级资产</button>
+        <!-- <button md-button (click)="handleSpecific()">查看次级资产</button> -->
         <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
       </md-toolbar>
     </md-card>
@@ -26,6 +26,11 @@
           (rowSelect)="selectEvent($event)"
           (sortChange)="sort($event)"
         >
+          <ng-template tdDataTableTemplate="name" let-value="value" let-row="row" let-column="column">
+            <div layout="row">
+              <span flex><button md-button routerLink="/app/assets/specific/{{row.id}}/0">{{value}}</button></span>
+            </div>
+          </ng-template>
         </td-data-table>
       </md-tab>
       <md-tab label="已报废">
@@ -42,6 +47,11 @@
           (rowSelect)="selectEvent($event)"
           (sortChange)="sort($event)"
         >
+          <ng-template tdDataTableTemplate="name" let-value="value" let-row="row" let-column="column">
+            <div layout="row">
+              <span flex><button md-button routerLink="/app/assets/specific/{{row.id}}/1">{{value}}</button></span>
+            </div>
+          </ng-template>
         </td-data-table>
       </md-tab>
     </md-tab-group>

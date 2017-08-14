@@ -1,13 +1,13 @@
-<h2 md-dialog-title>新增资产</h2>
+<h2 md-dialog-title>{{title}}</h2>
 <md-dialog-content>
 
   <form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
 
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="资产名称" [(ngModel)]="asset.name" name="name" required >
+      <input mdInput placeholder="资产名称" [(ngModel)]="asset.name" name="name" required>
     </md-input-container>
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="品牌" [(ngModel)]="asset.brand" name="brand" required >
+      <input mdInput placeholder="品牌" [(ngModel)]="asset.brand" name="brand" required>
     </md-input-container>
     <md-select placeholder="资产类型" fxFlex="50" [(ngModel)]="asset.type" name="type" required>
       <md-option *ngFor="let type of types" [value]="type.id">
@@ -20,13 +20,13 @@
       </md-option>
     </md-select>
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="规格型号" [(ngModel)]="asset.model" name="model" required >
+      <input mdInput placeholder="规格型号" [(ngModel)]="asset.model" name="model" required>
     </md-input-container>
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="单价（元）" [(ngModel)]="asset.price" name="price" required >
+      <input mdInput placeholder="单价（元）" [(ngModel)]="asset.price" name="price" required>
     </md-input-container>
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="数量" [(ngModel)]="asset.validTotalQuantity" name="validTotalQuantity" required >
+      <input mdInput placeholder="数量" [(ngModel)]="asset.validTotalQuantity" name="validTotalQuantity" required>
     </md-input-container>
     <md-input-container fxFlex="50">
       <input mdInput [mdDatepicker]="picker" placeholder="购买时间" [(ngModel)]="asset.purchaseDate" name="purchaseDate" required>
@@ -36,15 +36,7 @@
   </form>
 </md-dialog-content>
 <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
-  <button
-    md-button
-    color="primary"
-    [disabled]="!addForm.form.valid"
-    (click)="handleAsset()"
-  >保存</button>
+  <button md-button color="primary" [disabled]="!addForm.form.valid" (click)="handleAsset()">保存</button>
 
-  <button
-    md-button
-    color="primary"
-    md-dialog-close>关闭</button>
+  <button md-button color="primary" md-dialog-close>关闭</button>
 </md-dialog-actions>
