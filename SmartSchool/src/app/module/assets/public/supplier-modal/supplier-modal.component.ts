@@ -54,26 +54,15 @@ export class SupplierModalComponent implements OnInit {
         width: "40%"
       });
     } else {
-      this.selectedRows.map(item => {
-        this._service
-          .postAssetsDelHttp(`/equipment-supplier/${item.id}`, (response: any) => { });
-      });
-      // 获取供应商
       this._service
-        .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
-          this.basicData = response;
-        });
+        .postAssetsDelHttp(`/equipment-supplier/${this.selectedRows[0].id}`, (response: any) => { this.ngOnInit(); });
     }
   }
 
   openDialog(): void {
     this.dialog.open(SupplierAddModalComponent, { width: '40%' }).afterClosed().subscribe(result => {
       if (result && result.status == "refresh") {
-        // 获取供应商
-        this._service
-          .getAssetsHttp(`/equipment-supplier-names`, (response: any) => {
-            this.basicData = response;
-          });
+        this.ngOnInit();
       }
     });
   }

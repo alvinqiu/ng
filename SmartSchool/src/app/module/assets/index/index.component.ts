@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   IPageChangeEvent,
   ITdDataTableColumn,
@@ -43,13 +42,11 @@ export class IndexComponent implements OnInit {
   pageSize: number = 20;
   page: number = 1;
   totalCount: number;
-  tabIndex = 0;
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
 
   constructor(
-    public router: Router,
     public dialog: MdDialog,
     private _service: ApiService
   ) { }
@@ -140,18 +137,9 @@ export class IndexComponent implements OnInit {
     this.sortOrder = sortEvent.order;
   }
 
-  handleSpecific(): void {
-    let equipmentGeneralId = 0;
-    if (this.selectedRows.length > 0) {
-      equipmentGeneralId = this.selectedRows[0].id;
-      this.router.navigateByUrl(`/app/assets/specific/${equipmentGeneralId}/${this.tabIndex}`);
-    }
-  }
-
   changeTabs(e: any) {
     // console.log(e);
     if (e.index === 1) {
-      this.tabIndex = 1;
       // 查询已报废资产      
       this._service
         .getAssetsHttp(`/equipment-invalid/${this.page}/${this.pageSize}`, (response: any) => {
@@ -159,7 +147,6 @@ export class IndexComponent implements OnInit {
           this.totalCount = response.totalCount;
         });
     } else {
-      this.tabIndex = 0;
       this._service
         .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
           this.basicValidData = response.entries;

@@ -14,6 +14,7 @@ export class AssetsAddModalComponent implements OnInit {
   startDate: Date;
   asset: AssetsClass;
   status: string;
+  title: string;
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
     private dialogRef: MdDialogRef<AssetsAddModalComponent>,
@@ -22,10 +23,12 @@ export class AssetsAddModalComponent implements OnInit {
     switch (groups.condition.func) {
       case 'add':
         this.status = 'add';
+        this.title = '新增资产';
         this.asset = new AssetsClass();
         break;
       case 'edit':
         this.status = 'edit';
+        this.title = '编辑资产';
         this.asset = groups.asset;
         break;
     }
@@ -52,12 +55,12 @@ export class AssetsAddModalComponent implements OnInit {
     if (this.status === 'add') {
       this._service
         .postAssetsHttp(`/equipment`, this.asset, (response: any) => {
-          this.dialogRef.close({'status': 'refresh'});
+          this.dialogRef.close({ 'status': 'refresh' });
         });
     } else {
       this._service
         .postAssetsHttp(`/equipment-general/${this.asset.id}`, this.asset, (response: any) => {
-          this.dialogRef.close({'status': 'refresh'});
+          this.dialogRef.close({ 'status': 'refresh' });
         });
     }
   }

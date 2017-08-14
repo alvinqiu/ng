@@ -54,10 +54,10 @@ export class AssetsTypeModalComponent implements OnInit {
         width: "40%"
       });
     } else {
-      this.selectedRows.map(item => {
-        this._service
-          .postAssetsHttp(`/equipment-type/${item.id}`, (response: any) => { this.ngOnInit(); });
-      });
+      this._service
+        .postAssetsDelHttp(`/equipment-type/${this.selectedRows[0].id}`, (response: any) => {
+          this.ngOnInit();
+        });
     }
   }
 
