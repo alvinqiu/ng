@@ -8,11 +8,6 @@ export const Menu = [{
 		"description": "建设中..."
 	},{
 		"icon":"school",
-		"name":"学校管理",
-		"url":"/app/basic/schools",
-		"description": "建设中..."
-	},{
-		"icon":"school",
 		"name":"教职工信息",
 		"url":"/app/basic/staffs",
 		"description": "建设中..."
@@ -122,6 +117,11 @@ export const MenuSuper = [{
 		"icon":"class",
 		"name":"个人中心",
 		"url":"/app/basic/personal",
+		"description": "建设中..."
+	},{
+		"icon":"school",
+		"name":"教职工信息",
+		"url":"/app/basic/staffs",
 		"description": "建设中..."
 	},{
 		"icon":"school",

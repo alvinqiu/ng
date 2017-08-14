@@ -23,8 +23,19 @@ export class SchoolsComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
     { name: 'code', label: '学校ID' },
     { name: 'name', label: '学校名称' },
-    // { name: 'addr', label: '学校地址' },
-    { name: 'branch', label: '是否是分校' },
+    { name: 'branch', label: '是否是分校', format: v =>  {
+      switch(v){
+          
+          case 1 :
+            return "是";
+            // break;
+          case 2 :
+            return "否";
+            // break;
+          default:
+            return ""
+        }
+    }},
     { name: 'parent_school', label: '隶属学校' },
     { name: 'nominated_contact_person', label: '校长' },
     { name: 'office_no', label: '办公室电话' },
@@ -40,6 +51,7 @@ export class SchoolsComponent implements OnInit {
   searchInputTerm: string = "";
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
+  schoollist = [];
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -56,6 +68,10 @@ export class SchoolsComponent implements OnInit {
             this.totalCount = response.totalCount;
             document.getElementById('app-loading').style.display = "none";
           })
+      this._service
+          .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response:any) => {
+            this.schoollist = response.entries;
+          })
           
   }
 
@@ -65,6 +81,7 @@ export class SchoolsComponent implements OnInit {
 
   openDialog(condition:any):void {
     condition.selectedRows = this.selectedRows;
+    condition.schoollist = this.schoollist;
     if ( (condition.func == 'check' || condition.func == 'modify') && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},

@@ -19,7 +19,8 @@
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
-			<md-select placeholder="总校" fxFlex="50" [(ngModel)]="model.parent_school" name="parent_school" [disabled]="model.branch == '0' || status == 'check'">
+
+			<md-select placeholder="总校" fxFlex="50" [(ngModel)]="model.parent_school" name="parent_school" [disabled]="model.branch == 1 || status == 'check'">
 				<md-option *ngFor="let item of schoollist" [value]="item.id">
 					{{ item.name }}
 				</md-option>
