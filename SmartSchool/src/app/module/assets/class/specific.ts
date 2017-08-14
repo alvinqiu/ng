@@ -7,6 +7,7 @@ export class SpecificClass {
   'seriesNumber': string;
   'staffId': number;
   'stockStatus': string;
+  'staffName': string;
   constructor() {
     this.brand = '';
     this.equipmentTypeName = '';
@@ -16,5 +17,6 @@ export class SpecificClass {
     this.seriesNumber = '';
     this.staffId = 0;
     this.stockStatus = '';
+    this.staffName = '';
   }
 }

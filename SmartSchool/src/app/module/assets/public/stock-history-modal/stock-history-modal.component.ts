@@ -15,7 +15,7 @@ import { ApiService } from '../../../../service/api.service';
 export class StockHistoryModalComponent implements OnInit {
   columns: ITdDataTableColumn[] = [
     { name: 'id',  label: '序号' },
-    { name: 'staffId', label: '姓名' },
+    { name: 'staffName', label: '姓名' },
     { name: 'phone', label: '电话' },
     { name: 'lendDate', label: '借出日期' },
     { name: 'returnDate', label: '归还日期' },

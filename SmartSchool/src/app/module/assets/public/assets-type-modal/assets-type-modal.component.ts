@@ -55,7 +55,7 @@ export class AssetsTypeModalComponent implements OnInit {
       });
     } else {
       this._service
-        .postAssetsDelHttp(`/equipment-type/${this.selectedRows[0].id}`, (response: any) => {
+        .postAssetsHttp(`/equipment-type/${this.selectedRows[0].id}`, (response: any) => {
           this.ngOnInit();
         });
     }
