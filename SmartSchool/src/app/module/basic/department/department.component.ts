@@ -75,7 +75,7 @@ export class DepartmentComponent implements OnInit {
     }
     this._service
       .getBasicHttp(`/api/bi/department/getDepartmentByCondition?id=${this.departments.id}`, (response: any) => {
-        this.departments = response.entries;
+        this.departments = response.entries[0];
         this.ref.markForCheck();
         this.ref.detectChanges();
       });
