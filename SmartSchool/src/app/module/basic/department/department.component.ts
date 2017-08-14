@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { 
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
   ITdDataTableColumn,
   IPageChangeEvent,
   TdDataTableSortingOrder,
   ITdDataTableSortChangeEvent,
+  TdDialogService
 } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { DepartmentmodalComponent } from '../public/departmentmodal/departmentmodal.component';
 import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
 import { DepartmentClass } from '../public/departmentmodal/department-class';
-import { BuildingClass } from '../public/buildingsmodal/building-class';
 
 @Component({
   selector: 'app-department',
@@ -19,104 +19,65 @@ import { BuildingClass } from '../public/buildingsmodal/building-class';
 })
 export class DepartmentComponent implements OnInit {
   nodes = [];
-  node:DepartmentClass;
-  selectedRows: any[] = [];
-  event: IPageChangeEvent;
-  firstLast: boolean = false;
-  pageSizeAll: boolean = false;
-  searchInputTerm: number;
-  departments:Array<DepartmentClass>;
-  buildings: Array<BuildingClass>;
+  departments: DepartmentClass;
   constructor(
     public dialog: MdDialog,
-    private _service: ApiService
-    ) { }
+    private _service: ApiService,
+    private _dialogService: TdDialogService,
+    private ref: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
-    this.node = new DepartmentClass();
+    this.departments = new DepartmentClass();
+
     this._service
-        .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response:any) => {
-          this.nodes = response;
-          document.getElementById('app-loading').style.display = "none";
-        })
-    this._service
-        .getBasicHttp(`/api/bi/building/getBuildingByCondition`, (response:any) => {
-          this.buildings = response.entries;
-        })
-    this._service
-        .getBasicHttp(`/api/bi/department/getDepartmentByCondition`, (response:any) => {
-          this.departments = response.entries;
-        })
-  }
-  selectEvent(e:any):any {
-  	console.log(e)
-  	console.log(this.selectedRows)
+      .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response: any) => {
+        this.nodes = response;
+      });
   }
 
-  openDialog(condition:any):void {
-    condition.buildings = this.buildings;
+  openDialog(condition: any): void {
     condition.departments = this.departments;
-    condition.node = this.node;
-    if ( condition.func == 'modify' && condition.node == undefined) {
-      let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data:{"label":"错误","msg":"请选择要操作的信息", "color":"accent","icon":"error"},
-        width:"60%"
-      });
-    } else {
-      let dialogRef = this.dialog.open(DepartmentmodalComponent, {
-        data: condition,
-        width:"60%"
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.status == "add") {
-            this._service
-            .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response:any) => {
-              this.nodes = response;
-              
-            })  
-        }
-        if (result && result.status == "modify") {
-            this._service
-            .getBasicHttp(`/api/bi/department/getDepartmentByCondition`, (response:any) => {
-              // this.nodes = response;
-              
-            })  
-        }
-      });
-    }
+    let dialogRef = this.dialog.open(DepartmentmodalComponent, {
+      data: condition,
+      width: "60%"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this._service
+        .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response: any) => {
+          this.nodes = response;
+        });
+    });
   }
-  delete():void {
-    
+
+  delete(): void {
+    this._dialogService.openConfirm({
+      message: '确认删除此部门吗?',
+      disableClose: true,
+      cancelButton: '取消',
+      acceptButton: '确定',
+    }).afterClosed().subscribe((accept: boolean) => {
+      if (accept) {
+        let del = `departmentIds=${this.departments.id}`;
+        this._service
+          .postBasicDelHttp(`/api/bi/department/delDepartment`, del, (response: any) => {
+            this.departments = new DepartmentClass();
+          });
+      }
+    });
   }
-  filter(id): string {
-    if (id.indexOf("a_") > -1) {
-      return id.split("a_")[1];
-    }
+
+  searchByid(id: any): void {
     if (id.indexOf("g_") > -1) {
-      return id.split("g_")[1];
+      this.departments.id = id.split("g_")[1];
+    } else {
+      this.departments.id = id.split("a_")[1];
     }
-    return "";
-  }
-  handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
-  }
-  
-  searchByid(id:any): void {
-    this.searchInputTerm = id;
     this._service
-        .getBasicHttp(`/api/bi/department/getDepartmentByCondition`, (response:any) => {
-          this.node = response.entries[0];
-        })
-
-  }
-
-  change(event: IPageChangeEvent): void {
-    this.event = event;
-    console.log(event)
-  }
-
-  toggleFirstLast(): void {
-    this.firstLast = !this.firstLast;
-    console.log("firstLast")
+      .getBasicHttp(`/api/bi/department/getDepartmentByCondition?id=${this.departments.id}`, (response: any) => {
+        this.departments = response.entries;
+        this.ref.markForCheck();
+        this.ref.detectChanges();
+      });
   }
 }
