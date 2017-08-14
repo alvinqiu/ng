@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ITdDataTableColumn,
   IPageChangeEvent,
@@ -23,8 +23,7 @@ export class DepartmentComponent implements OnInit {
   constructor(
     public dialog: MdDialog,
     private _service: ApiService,
-    private _dialogService: TdDialogService,
-    private ref: ChangeDetectorRef
+    private _dialogService: TdDialogService
   ) { }
 
   ngOnInit() {
@@ -76,8 +75,6 @@ export class DepartmentComponent implements OnInit {
     this._service
       .getBasicHttp(`/api/bi/department/getDepartmentByCondition?id=${this.departments.id}`, (response: any) => {
         this.departments = response.entries[0];
-        this.ref.markForCheck();
-        this.ref.detectChanges();
       });
   }
 }

@@ -67,35 +67,35 @@ export class PersonalComponent implements OnInit {
   startDate = new Date();
   status: string;
   staffData: StaffClass;
+  headImg:any;
   constructor(
     private _service: ApiService
-    ) {
+  ) {
     this.staffData = new StaffClass();
   }
-
   ngOnInit() {
-    this._service.getBasicHttp(`/user/profile` ,res => {
+    this._service.getBasicHttp(`/user/profile`, res => {
       this.staffData = Object.assign({}, res.staff, res.user)
     });
   }
-
-  imageFinishedUploading(e:any) {
-    console.log(e)
+  imageFinishedUploading(e: any) {
+    console.log("imageFinishedUploading " + e);
+    this.headImg = e;
   }
-  imageRemoved(e:any) {
-    console.log(e)
+  imageRemoved(e: any) {
+    console.log("imageRemoved " + e);
+    this.headImg = [];
   }
-  uploadStateChange(e:any) {
-    console.log(e)
+  uploadStateChange(e: any) {
+    console.log("uploadStateChange " + e);
   }
   save() {
-    this._service.postBasicHttp(`/api/bi/staff/updateStaff/${this.staffData.id}`, this.staffData , res => {
-
-    })
+    this._service.postBasicHttp(`/user/uploadFile/`, this.headImg, res => {
+      this.ngOnInit();
+    });
+    this._service.postBasicHttp(`/api/bi/staff/updateStaff/${this.staffData.id}`, this.staffData, res => {
+      this.ngOnInit();
+    });
   }
-
-  selectedChanged(e:any) {
-    
-  }
-
+  selectedChanged(e: any) { }
 }

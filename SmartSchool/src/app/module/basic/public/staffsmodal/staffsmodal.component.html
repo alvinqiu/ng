@@ -24,8 +24,10 @@
 			<input mdInput placeholder="国籍" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
 		</md-input-container>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="生日" [(ngModel)]="staffData.birthDate" name="birthDate" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="birthDate" placeholder="生日" [(ngModel)]="staffData.birthDate" name="birthDate" [disabled]="status == 'check'">
+			<button mdSuffix [mdDatepickerToggle]="birthDate"></button>
 		</md-input-container>
+		<md-datepicker #birthDate [startAt]="startDate"></md-datepicker>
 		<md-input-container fxFlex="50">
 			<input mdInput placeholder="籍贯" [(ngModel)]="staffData.hkmt" name="hkmt" [disabled]="status == 'check'">
 		</md-input-container>
@@ -84,11 +86,15 @@
 			<input mdInput placeholder="兼职职务" [(ngModel)]="staffData.partTimeDuty" name="partTimeDuty" [disabled]="status == 'check'">
 		</md-input-container>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="何时加入" [(ngModel)]="staffData.joinTime" name="joinTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="joinTime" placeholder="何时加入" [(ngModel)]="staffData.joinTime" name="joinTime" [disabled]="status == 'check'">
+			<button mdSuffix [mdDatepickerToggle]="joinTime"></button>
 		</md-input-container>
+		<md-datepicker #joinTime [startAt]="startDate"></md-datepicker>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="何时离开" [(ngModel)]="staffData.offJobTime" name="offJobTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="offJobTime" placeholder="何时离开" [(ngModel)]="staffData.offJobTime" name="offJobTime" [disabled]="status == 'check'">
+			<button mdSuffix [mdDatepickerToggle]="offJobTime"></button>
 		</md-input-container>
+		<md-datepicker #offJobTime [startAt]="startDate"></md-datepicker>
 
 		<h4 fxFlex="100">联系方式</h4>
 		<div class="divider"></div>
@@ -146,11 +152,15 @@
 			<input mdInput placeholder="第二学位" [(ngModel)]="staffData.secMajor" name="secMajor" [disabled]="status == 'check'">
 		</md-input-container>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="毕业时间" [(ngModel)]="staffData.graduateTime" name="graduateTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="graduateTime" placeholder="毕业时间" [(ngModel)]="staffData.graduateTime" name="graduateTime" [disabled]="status == 'check'">
+			<button mdSuffix [mdDatepickerToggle]="graduateTime"></button>
 		</md-input-container>
+		<md-datepicker #graduateTime [startAt]="startDate"></md-datepicker>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="beginWorkTime" placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime" [disabled]="status == 'check'">
+			<button mdSuffix [mdDatepickerToggle]="beginWorkTime"></button>
 		</md-input-container>
+		<md-datepicker #beginWorkTime [startAt]="startDate"></md-datepicker>
 		<md-select placeholder="普通话水平" fxFlex="50" [(ngModel)]="staffData.mandarinDegree" name="mandarinDegree" [disabled]="status == 'check'">
 			<md-option *ngFor="let mandarinDegree of mandarinDegreeList" [value]="mandarinDegree.value">
 				{{ mandarinDegree.viewValue }}
