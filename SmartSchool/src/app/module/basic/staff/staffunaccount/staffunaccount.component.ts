@@ -59,6 +59,7 @@ export class StaffunaccountComponent implements OnInit {
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   searchDepartment: string = "";
   foodValue: string = "";
+  foodType: string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -122,10 +123,13 @@ export class StaffunaccountComponent implements OnInit {
 
 
   change(event: IPageChangeEvent): void {
+    if (this.foodValue != "") {
+      this.foodType = "&" + this.foodValue + "=";
+    } else { this.foodType = ""; }
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
+      .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
         this.basicData = response.entries;
         this.totalCount = response.totalCount;
       });
@@ -137,11 +141,16 @@ export class StaffunaccountComponent implements OnInit {
   }
 
   searchByDepartment(e): void {
+
+    if (this.foodValue != "") {
+      this.foodType = "&" + this.foodValue + "=";
+    } else { this.foodType = ""; }
+
     if (e.indexOf("g_") > -1) {
       this.searchDepartment = e.split("g_")[1];
       this.page = 1;
       this._service
-        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
+        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
           this.basicData = response.entries;
           this.totalCount = response.totalCount;
         })
@@ -149,7 +158,7 @@ export class StaffunaccountComponent implements OnInit {
       this.searchDepartment = "";
       this.page = 1;
       this._service
-        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
+        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
           this.basicData = response.entries;
           this.totalCount = response.totalCount;
         })
