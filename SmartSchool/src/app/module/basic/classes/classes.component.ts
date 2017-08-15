@@ -18,8 +18,8 @@ export class ClassesComponent implements OnInit {
   basicData: ClassClass[];
   columns: ITdDataTableColumn[] = [
     { name: 'className', label: '班级名字' },
-    { name: 'gradeId', label: '所属年级' },
-    { name: 'classManager', label: '班级负责人' },
+    { name: 'gradeName', label: '所属年级' },
+    { name: 'classManagerName', label: '班级负责人' },
     { name: 'studentNum', label: '学生人数' },
     { name: 'classLocation', label: '班级位置' },
     { name: 'classDesc', label: '班级描述' },

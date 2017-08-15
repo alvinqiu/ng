@@ -20,13 +20,17 @@
       <md-icon>delete</md-icon>
       <span>删除</span>
     </a>
-    <a  md-menu-item>
+    <a  md-menu-item (click)="createAccount()">
       <md-icon>file_upload</md-icon>
-      <span>导出</span>
+      <span>批量生成用户</span>
     </a>
-    <a  md-menu-item>
+    <a  md-menu-item (click)="resetPassword()">
+      <md-icon>file_upload</md-icon>
+      <span>批量重置密码</span>
+    </a>
+    <a  md-menu-item (click)="createAdmin()">
       <md-icon>file_download</md-icon>
-      <span>导入</span>
+      <span>生成管理员</span>
     </a>
   </md-menu>
 </div>

@@ -155,7 +155,66 @@ export class StaffunaccountComponent implements OnInit {
         })
     }
   }
+  createAdmin() {
+    if ( this.selectedRows.length == 1) {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择操作信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    } else {
+      this._service
+        .postBasicDelHttp(`/user/generateUsers`, {staffCode:this.selectedRows[0].staffCode, roleType: 2}, (response:any) => {
+          let dialogRef = this.dialog.open(MsgmodalComponent, {
+            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
+            width:"60%"
+          });
+            
+        })
+        
+    }
+  }
+  resetPassword() {
+    if ( this.selectedRows.length > 0) {
+      let reqlist = this.selectedRows.map( item => item.id);
+      let del = `staffCodes=${reqlist.join('&staffCodes=')}`
 
+      this._service
+        .postBasicDelHttp(`/user/resetUserPasswd`, del, (response:any) => {
+          let dialogRef = this.dialog.open(MsgmodalComponent, {
+            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
+            width:"60%"
+          });
+            
+        })
+        
+    } else {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要一条信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    }
+  }
+  createAccount() {
+    if ( this.selectedRows.length > 0) {
+      let reqlist = this.selectedRows.map( item => item.id);
+      let del = `staffCodes=${reqlist.join('&staffCodes=')}`
+
+      this._service
+        .postBasicDelHttp(`/user/generateUsers`, del, (response:any) => {
+          let dialogRef = this.dialog.open(MsgmodalComponent, {
+            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
+            width:"60%"
+          });
+            
+        })
+        
+    } else {
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"错误","msg":"请选择要一条信息", "color":"accent","icon":"error"},
+        width:"60%"
+      });
+    }
+  }
   delete() {
     if (this.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
