@@ -196,7 +196,11 @@ export class StaffunaccountComponent implements OnInit {
   }
   createAccount() {
     if ( this.selectedRows.length > 0) {
-      let reqlist = this.selectedRows.map( item => item.id);
+      let reqlist = this.selectedRows.map( item => {
+        if (!item.register) {
+          return item.id
+        }
+      });
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
 
       this._service
