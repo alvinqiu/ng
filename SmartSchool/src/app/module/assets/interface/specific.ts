@@ -7,4 +7,5 @@ export interface SpecificInterface {
   'seriesNumber': string;
   'staffId': number;
   'stockStatus': string;
+  'staffName': string;
 }

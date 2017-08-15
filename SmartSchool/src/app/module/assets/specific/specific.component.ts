@@ -116,7 +116,7 @@ export class SpecificComponent implements OnInit {
               }
             }
           },
-          { name: 'staffId', label: '使用人员' },
+          { name: 'staffName', label: '使用人员' },
           { name: 'operation', label: '操作' },
         ];
 
