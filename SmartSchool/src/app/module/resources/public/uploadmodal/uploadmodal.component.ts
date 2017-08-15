@@ -53,7 +53,7 @@ export class UploadmodalComponent implements OnInit {
     this.fileUploadMsg = file.name;
     this.uploading = true;
     let options: IUploadOptions = {
-      url: 'http://dev.slothtek.com:8081/resource/upload',
+      url: '/resource/upload',
       method: 'post',
       file: file
     };

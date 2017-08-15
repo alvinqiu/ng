@@ -7,7 +7,7 @@
 				<div fxFlex="100" fxLayoutAlign="center start">
 					<image-upload
 					  [max]="100"
-					  [url]="'https://httpbin.org/status/200'"
+					  [url]="'/user/uploadFile'"
 					  [buttonCaption]="'请选择照片!'"
 					  [dropBoxMessage]=""
 					  [extensions]="['jpg','png','gif']"
@@ -96,7 +96,7 @@
 						{{ status.viewValue }}
 					</md-option>
 				</md-select>
-				<md-input-container fxFlex="50">
+				<md-input-container fxFlex="100">
 					<input mdInput placeholder="兼职职务" [(ngModel)]="staffData.partTimeDuty" name="partTimeDuty" [disabled]="status == 'check'">
 				</md-input-container>
 				<md-input-container fxFlex="50">
@@ -153,17 +153,23 @@
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="职称／执业资格" [(ngModel)]="staffData.title" name="title" [disabled]="status == 'check'">
 				</md-input-container>
-				<md-select placeholder="最高学历" fxFlex="50" [(ngModel)]="staffData.highestDegree" name="highestDegree" [disabled]="status == 'check'">
-					<md-option *ngFor="let highestDegree of highestDegreeList" [value]="highestDegree.value">
-						{{ highestDegree.viewValue }}
-					</md-option>
-				</md-select>
+				
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="最高学历毕业学校" [(ngModel)]="staffData.schoolTag" name="schoolTag" [disabled]="status == 'check'">
 				</md-input-container>
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="最高学历专业" [(ngModel)]="staffData.highestMajor" name="highestMajor" [disabled]="status == 'check'">
 				</md-input-container>
+				<md-select placeholder="最高学历" fxFlex="50" [(ngModel)]="staffData.highestDegree" name="highestDegree" [disabled]="status == 'check'">
+					<md-option *ngFor="let highestDegree of highestDegreeList" [value]="highestDegree.value">
+						{{ highestDegree.viewValue }}
+					</md-option>
+				</md-select>
+				<md-select placeholder="普通话水平" fxFlex="50" [(ngModel)]="staffData.mandarinDegree" name="mandarinDegree" [disabled]="status == 'check'">
+					<md-option *ngFor="let mandarinDegree of mandarinDegreeList" [value]="mandarinDegree.value">
+						{{ mandarinDegree.viewValue }}
+					</md-option>
+				</md-select>
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="第二学位" [(ngModel)]="staffData.secMajor" name="secMajor" [disabled]="status == 'check'">
 				</md-input-container>
@@ -179,14 +185,8 @@
 			  		<button mdSuffix [mdDatepickerToggle]="picker5" [disabled]="status == 'check'"></button>
 				</md-input-container>
 				<md-datepicker #picker5 [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
-				<md-select placeholder="普通话水平" fxFlex="50" [(ngModel)]="staffData.mandarinDegree" name="mandarinDegree" [disabled]="status == 'check'">
-					<md-option *ngFor="let mandarinDegree of mandarinDegreeList" [value]="mandarinDegree.value">
-						{{ mandarinDegree.viewValue }}
-					</md-option>
-				</md-select>
-				<md-input-container fxFlex="50">
-					<input mdInput placeholder="计算机水平" [(ngModel)]="staffData.computerDegree" name="computerDegree" [disabled]="status == 'check'">
-				</md-input-container>
+				
+				
 				<md-select placeholder="海外留学经验" fxFlex="50" [(ngModel)]="staffData.studyAbroad" name="studyAbroad" [disabled]="status == 'check'">
 					<md-option *ngFor="let studyAbroad of studyAbroadList" [value]="studyAbroad.value">
 						{{ studyAbroad.viewValue }}
@@ -197,6 +197,9 @@
 						{{ teacherCert.viewValue }}
 					</md-option>
 				</md-select>
+				<md-input-container fxFlex="100">
+					<input mdInput placeholder="计算机水平" [(ngModel)]="staffData.computerDegree" name="computerDegree" [disabled]="status == 'check'">
+				</md-input-container>
 				<md-input-container fxFlex="100">
 					<textarea mdInput placeholder="教育经历" [(ngModel)]="staffData.educatExp" name="educatExp" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
