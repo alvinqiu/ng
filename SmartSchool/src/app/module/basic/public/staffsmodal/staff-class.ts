@@ -21,7 +21,7 @@ export class StaffClass {
     highestMajor: string;
     hkmt: number;
     id: number;
-    joinTime:Date;
+    joinTime: Date;
     mandarinDegree: number;
     maritalStatus: number;
     nationality: string;
@@ -44,7 +44,12 @@ export class StaffClass {
     studyAbroad: number;
     teacherCert: number;
     title: string;
-    workExp: string
+    workExp: string;
+    schoolName: string;
+    staffAttrName: string;
+    deptName: string;
+    addr1: string;
+    addr2: string;
     constructor() {
         this.academicPaper = "";
         this.address = 0;
@@ -91,6 +96,11 @@ export class StaffClass {
         this.studyAbroad = 0;
         this.teacherCert = 0;
         this.title = "";
-        this.workExp = ""
+        this.workExp = "";
+        this.schoolName = "";
+        this.staffAttrName = "";
+        this.deptName = "";
+        this.addr1 = "";
+        this.addr2 = "";
     }
 }
