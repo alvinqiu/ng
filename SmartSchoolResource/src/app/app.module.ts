@@ -7,14 +7,29 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './component/index/index.component';
 import { ReviewComponent } from './component/review/review.component';
 import { MineComponent } from './component/mine/mine.component';
-
-
-
+import { ApiGuardGuard } from './component/guard/api-guard.guard';
+import {
+  MdToolbarModule,
+  MdButtonModule,
+  MdIconModule,
+  MdListModule,
+  MdMenuModule,
+} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 const appRoutes:Routes = [
-  {path: '', component: IndexComponent},
-  {path:'resource', component:IndexComponent},
-  {path:'review', component:ReviewComponent},
-  {path:'mine', component:MineComponent},
+  {path: '', redirectTo: 'resource',  pathMatch: 'full'},
+  { 
+    path:'resource', 
+    canActivate: [ApiGuardGuard],
+    children: [
+      { path: '', redirectTo: 'index',  pathMatch: 'full' },
+      { path:'index', component:IndexComponent },
+      { path:'review', component:ReviewComponent },
+      { path:'mine', component:MineComponent }
+    ]
+  },
+  
 ]
 
 @NgModule({
@@ -28,9 +43,15 @@ const appRoutes:Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{ useHash: true }),
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdIconModule,
+    MdMenuModule,
   ],
-  providers: [],
+  providers: [ApiGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

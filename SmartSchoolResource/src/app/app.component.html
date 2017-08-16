@@ -1,1 +1,28 @@
-<router-outlet></router-outlet>
+<md-toolbar id="app-nav" class="slide-in-down hide" color="primary" fxLayout="row" fxLayoutAlign="space-between center" >
+	<button md-button [mdMenuTriggerFor]="topMenu">SmartSchool智慧校园系统<md-icon>more_vert</md-icon></button>
+	
+	<md-menu #topMenu="mdMenu">
+	  <a md-menu-item routerLink="/app/homepage/">
+	  	<md-icon>home</md-icon>
+	    <span>首页</span>
+	  </a>
+	  <a md-menu-item routerLink="/app/basic/">
+	  	<md-icon>settings</md-icon>
+	    <span>基础信息模块管理</span>
+	  </a>
+	  <a md-menu-item routerLink="/app/resources/">
+	  	<md-icon>cloud</md-icon>
+	    <span>资源模块管理</span>
+	  </a>
+	  
+	</md-menu>
+	<span fxFlex="grow"></span>
+	<button md-button (click)="logout()">退出登录</button>
+</md-toolbar>
+<div fxLayout="row" fxLayoutAlign="center center">
+	<div class="content">
+		<router-outlet></router-outlet>
+	</div>
+</div>
+
+
