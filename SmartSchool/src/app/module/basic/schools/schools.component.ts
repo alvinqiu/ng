@@ -21,22 +21,22 @@ import { Http,Headers  } from '@angular/http';
 export class SchoolsComponent implements OnInit {
   basicData: Array<SchoolInterface>;
   columns: ITdDataTableColumn[] = [
-    { name: 'code', label: '学校ID' },
+    { name: 'id', label: '学校ID' },
     { name: 'name', label: '学校名称' },
     { name: 'branch', label: '是否是分校', format: v =>  {
       switch(v){
           
           case 1 :
-            return "是";
+            return "否";
             // break;
           case 2 :
-            return "否";
+            return "是";
             // break;
           default:
             return ""
         }
     }},
-    { name: 'parentSchool', label: '隶属学校' },
+    { name: 'parent.name', label: '隶属学校' },
     { name: 'nominatedContactPerson', label: '校长' },
     { name: 'officeNo', label: '办公室电话' },
     { name: 'nominatedContactNo', label: '移动电话' },
@@ -116,7 +116,7 @@ export class SchoolsComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `schoolIds=${reqlist.join('&schoolIds=')}`
+      let del = `schoolIds=${reqlist.join('&schoolIds=')}`;
 
       this._service
         .postBasicDelHttp(`/api/bi/school/delSchool`, del, (response:any) => {

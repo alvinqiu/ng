@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
 import { StaffClass } from './staff-class';
+import { SchoolClass } from '../schoolsmodal/school-class';
 @Component({
   selector: 'app-staffsmodal',
   templateUrl: './staffsmodal.component.html',
@@ -65,7 +66,7 @@ export class StaffsmodalComponent implements OnInit {
     { value: 0, viewValue: '无' },
     { value: 1, viewValue: '有' }
   ];
-
+  schoolsList: Array<SchoolClass>;
   startDate: Date;
   status: string;
   staffData: StaffClass;
@@ -83,6 +84,23 @@ export class StaffsmodalComponent implements OnInit {
         this._service
           .getBasicHttp(`/api/bi/staff/getStaffById/${this.selectedRows[0].id}`, (response: any) => {
             this.staffData = response;
+            this.staffData.beginWorkTime = new Date(response.beginWorkTime);
+            this.staffData.birthDate = new Date(response.birthDate);
+            this.staffData.graduateTime = new Date(response.graduateTime);
+            this.staffData.joinTime = new Date(response.joinTime);
+            this.staffData.offJobTime = new Date(response.offJobTime);
+          });
+        break;
+      case "check":
+        this.status = "check";
+        this._service
+          .getBasicHttp(`/api/bi/staff/getStaffById/${this.selectedRows[0].id}`, (response: any) => {
+            this.staffData = response;
+            this.staffData.beginWorkTime = new Date(response.beginWorkTime);
+            this.staffData.birthDate = new Date(response.birthDate);
+            this.staffData.graduateTime = new Date(response.graduateTime);
+            this.staffData.joinTime = new Date(response.joinTime);
+            this.staffData.offJobTime = new Date(response.offJobTime);
           });
         break;
       case "add":
@@ -91,6 +109,11 @@ export class StaffsmodalComponent implements OnInit {
       default:
         break;
     }
+
+    this._service
+      .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
+        this.schoolsList = response.entries;
+      });
   }
 
   ngOnInit() {

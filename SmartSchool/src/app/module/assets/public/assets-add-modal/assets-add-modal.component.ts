@@ -30,6 +30,7 @@ export class AssetsAddModalComponent implements OnInit {
         this.status = 'edit';
         this.title = '编辑资产';
         this.asset = groups.asset;
+        this.asset.purchaseDate = new Date(groups.asset.purchaseDate);
         break;
     }
   }
