@@ -1,0 +1,23 @@
+{
+  "/user": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/log": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/api/": {
+
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/resource": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/equipment": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  }
+}
