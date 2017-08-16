@@ -27,10 +27,10 @@ export class SchoolsComponent implements OnInit {
       switch(v){
           
           case 1 :
-            return "是";
+            return "否";
             // break;
           case 2 :
-            return "否";
+            return "是";
             // break;
           default:
             return ""
@@ -116,7 +116,7 @@ export class SchoolsComponent implements OnInit {
     } else {
       
       let reqlist = this.selectedRows.map( item => item.id);
-      let del = `schoolIds=${reqlist.join('&schoolIds=')}`
+      let del = `schoolIds=${reqlist.join('&schoolIds=')}`;
 
       this._service
         .postBasicDelHttp(`/api/bi/school/delSchool`, del, (response:any) => {

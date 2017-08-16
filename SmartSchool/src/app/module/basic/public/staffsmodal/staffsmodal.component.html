@@ -6,11 +6,13 @@
 
 		<h4 fxFlex="100">基本信息</h4>
 		<div class="divider"></div>
+		<md-select placeholder="学校名称" fxFlex="50" [(ngModel)]="staffData.schoolId" name="schoolId" [disabled]="status == 'check'">
+			<md-option *ngFor="let item of schoolsList" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="学校名称" [(ngModel)]="staffData.schoolName" name="schoolName" [disabled]="true">
-		</md-input-container>
-		<md-input-container fxFlex="50">
-			<input mdInput placeholder="教职工编号" [(ngModel)]="staffData.staffCode" name="staffCode" [disabled]="status == 'check'">
+			<input mdInput placeholder="教职工编号" [(ngModel)]="staffData.staffCode" name="staffCode" [disabled]="true">
 		</md-input-container>
 		<md-input-container fxFlex="50">
 			<input mdInput placeholder="姓名" required [(ngModel)]="staffData.staffName" name="staffName" [disabled]="status == 'check'">
@@ -152,12 +154,14 @@
 			<input mdInput placeholder="第二学位" [(ngModel)]="staffData.secMajor" name="secMajor" [disabled]="status == 'check'">
 		</md-input-container>
 		<md-input-container fxFlex="50">
-			<input mdInput [mdDatepicker]="graduateTime" placeholder="毕业时间" [(ngModel)]="staffData.graduateTime" name="graduateTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="graduateTime" placeholder="毕业时间" [(ngModel)]="staffData.graduateTime" name="graduateTime"
+			 [disabled]="status == 'check'">
 			<button mdSuffix [mdDatepickerToggle]="graduateTime"></button>
 		</md-input-container>
 		<md-datepicker #graduateTime [startAt]="startDate"></md-datepicker>
 		<md-input-container fxFlex="50">
-			<input mdInput [mdDatepicker]="beginWorkTime" placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime" [disabled]="status == 'check'">
+			<input mdInput [mdDatepicker]="beginWorkTime" placeholder="参加工作时间" [(ngModel)]="staffData.beginWorkTime" name="beginWorkTime"
+			 [disabled]="status == 'check'">
 			<button mdSuffix [mdDatepickerToggle]="beginWorkTime"></button>
 		</md-input-container>
 		<md-datepicker #beginWorkTime [startAt]="startDate"></md-datepicker>

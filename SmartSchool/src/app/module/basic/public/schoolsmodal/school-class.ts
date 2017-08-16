@@ -3,17 +3,18 @@ export class SchoolClass {
 	"name": string;
 	"nickName": string;
 	"addressId": number;
-	"branch":number;
-	"parentSchool":number;
-	"officeNo":string;
-	"nominatedContactNo":string;
-	"nominatedContactPerson":string;
-	"schoolDesc":string;
-	"placeHolder1":string;
-	"placeHolder2":string;
-	"area":string;
-	"city":string;
-	"province":string;
+	"branch": number;
+	"parentSchool": number;
+	"officeNo": string;
+	"nominatedContactNo": string;
+	"nominatedContactPerson": string;
+	"schoolDesc": string;
+	"placeHolder1": string;
+	"placeHolder2": string;
+	"area": string;
+	"city": string;
+	"province": string;
+	"address": any;
 	constructor() {
 		this.name = "";
 		this.nickName = "";
@@ -29,6 +30,6 @@ export class SchoolClass {
 		this.province = "";
 		this.placeHolder1 = "";
 		this.placeHolder2 = "";
-		
+		this.address = {};
 	}
 }

@@ -51,7 +51,7 @@ export class StaffunaccountComponent implements OnInit {
   event: IPageChangeEvent;
   firstLast: boolean = false;
   pageSizeAll: boolean = false;
-  searchInputTerm: string;
+  searchInputTerm: string = "";
   totalCount: number = 0;
   page: number = 1;
   pageSize: number = 20;
@@ -59,7 +59,6 @@ export class StaffunaccountComponent implements OnInit {
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   searchDepartment: string = "";
   foodValue: string = "";
-  foodType: string = "";
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
@@ -113,6 +112,7 @@ export class StaffunaccountComponent implements OnInit {
   handleSearch(searchInputTerm: string): void {
     this.searchInputTerm = searchInputTerm;
     this.page = 1;
+    this.pageSize = 20;
     this._service
       .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}`, (response: any) => {
         this.basicData = response.entries;
@@ -123,13 +123,16 @@ export class StaffunaccountComponent implements OnInit {
 
 
   change(event: IPageChangeEvent): void {
+    let url = "";
     if (this.foodValue != "") {
-      this.foodType = "&" + this.foodValue + "=";
-    } else { this.foodType = ""; }
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&deptId=${this.searchDepartment}`;
+    } else {
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&deptId=${this.searchDepartment}`;
+    }
     this.page = event.page;
     this.pageSize = event.pageSize;
     this._service
-      .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
+      .getBasicHttp(url, (response: any) => {
         this.basicData = response.entries;
         this.totalCount = response.totalCount;
       });
@@ -141,71 +144,63 @@ export class StaffunaccountComponent implements OnInit {
   }
 
   searchByDepartment(e): void {
-
+    this.searchDepartment = e.split("_")[1];
+    this.page = 1;
+    let url = "";
     if (this.foodValue != "") {
-      this.foodType = "&" + this.foodValue + "=";
-    } else { this.foodType = ""; }
-
-    if (e.indexOf("g_") > -1) {
-      this.searchDepartment = e.split("g_")[1];
-      this.page = 1;
-      this._service
-        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
-          this.basicData = response.entries;
-          this.totalCount = response.totalCount;
-        })
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&deptId=${this.searchDepartment}`;
     } else {
-      this.searchDepartment = "";
-      this.page = 1;
-      this._service
-        .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}${this.foodType}${this.searchInputTerm}&departmentId=${this.searchDepartment}`, (response: any) => {
-          this.basicData = response.entries;
-          this.totalCount = response.totalCount;
-        })
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&deptId=${this.searchDepartment}`;
     }
+
+    this._service
+      .getBasicHttp(url, (response: any) => {
+        this.basicData = response.entries;
+        this.totalCount = response.totalCount;
+      });
   }
   createAdmin() {
-    if ( this.selectedRows.length == 1) {
+    if (this.selectedRows.length == 1) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data:{"label":"错误","msg":"请选择操作信息", "color":"accent","icon":"error"},
-        width:"60%"
+        data: { "label": "错误", "msg": "请选择操作信息", "color": "accent", "icon": "error" },
+        width: "60%"
       });
     } else {
       this._service
-        .postBasicDelHttp(`/user/generateUsers`, {staffCode:this.selectedRows[0].staffCode, roleType: 2}, (response:any) => {
+        .postBasicDelHttp(`/user/generateUsers`, { staffCode: this.selectedRows[0].staffCode, roleType: 2 }, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
-            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
-            width:"60%"
+            data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
+            width: "60%"
           });
-            
+
         })
-        
+
     }
   }
   resetPassword() {
-    if ( this.selectedRows.length > 0) {
-      let reqlist = this.selectedRows.map( item => item.id);
+    if (this.selectedRows.length > 0) {
+      let reqlist = this.selectedRows.map(item => item.id);
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
 
       this._service
-        .postBasicDelHttp(`/user/resetUserPasswd`, del, (response:any) => {
+        .postBasicDelHttp(`/user/resetUserPasswd`, del, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
-            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
-            width:"60%"
+            data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
+            width: "60%"
           });
-            
+
         })
-        
+
     } else {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data:{"label":"错误","msg":"请选择要一条信息", "color":"accent","icon":"error"},
-        width:"60%"
+        data: { "label": "错误", "msg": "请选择要一条信息", "color": "accent", "icon": "error" },
+        width: "60%"
       });
     }
   }
   createAccount() {
-    if ( this.selectedRows.length > 0) {
-      let reqlist = this.selectedRows.map( item => {
+    if (this.selectedRows.length > 0) {
+      let reqlist = this.selectedRows.map(item => {
         if (!item.register) {
           return item.id
         }
@@ -213,18 +208,18 @@ export class StaffunaccountComponent implements OnInit {
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
 
       this._service
-        .postBasicDelHttp(`/user/generateUsers`, del, (response:any) => {
+        .postBasicDelHttp(`/user/generateUsers`, del, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
-            data:{"label":"成功","msg":"创建成功", "color":"accent","icon":"error"},
-            width:"60%"
+            data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
+            width: "60%"
           });
-            
+
         })
-        
+
     } else {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data:{"label":"错误","msg":"请选择要一条信息", "color":"accent","icon":"error"},
-        width:"60%"
+        data: { "label": "错误", "msg": "请选择要一条信息", "color": "accent", "icon": "error" },
+        width: "60%"
       });
     }
   }

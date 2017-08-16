@@ -38,6 +38,7 @@ export class SchoolsmodalComponent implements OnInit {
         this._service
           .getBasicHttp(`/api/bi/school/getSchoolByCondition?id=${this.selectedRows[0].id}`, (response:any) => {
             this.model = response.entries[0];
+            this.model.address = new SchoolClass().address;
           })
           
         break;
