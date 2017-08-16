@@ -91,6 +91,18 @@ export class StaffsmodalComponent implements OnInit {
             this.staffData.offJobTime = new Date(response.offJobTime);
           });
         break;
+      case "check":
+        this.status = "check";
+        this._service
+          .getBasicHttp(`/api/bi/staff/getStaffById/${this.selectedRows[0].id}`, (response: any) => {
+            this.staffData = response;
+            this.staffData.beginWorkTime = new Date(response.beginWorkTime);
+            this.staffData.birthDate = new Date(response.birthDate);
+            this.staffData.graduateTime = new Date(response.graduateTime);
+            this.staffData.joinTime = new Date(response.joinTime);
+            this.staffData.offJobTime = new Date(response.offJobTime);
+          });
+        break;
       case "add":
         this.status = "add";
         break;

@@ -86,7 +86,7 @@ export class StaffunaccountComponent implements OnInit {
 
   openDialog(condition: any): void {
     condition.selectedRows = this.selectedRows;
-    if (condition.func == "edit" && condition.selectedRows.length == 0) {
+    if ((condition.func == "edit" || condition.func == "check") && condition.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data: { "label": "错误", "msg": "请选择要操作的信息", "color": "accent", "icon": "error" },
         width: "60%"
