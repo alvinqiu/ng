@@ -12,7 +12,7 @@ import { CookieModule } from 'ngx-cookie';
 import {
   MdToolbarModule,
   MdButtonModule,
-  MdSidenavModule,
+  // MdSidenavModule,
   MdIconModule,
   MdListModule,
   MdMenuModule,
@@ -29,7 +29,6 @@ import { AuthGuard } from './guard/auth.guard';
     RouterModule,
     AppRouterModule,
     BrowserAnimationsModule,
-    MdSidenavModule,
     MdListModule,
     MdIconModule,
     MdToolbarModule,
