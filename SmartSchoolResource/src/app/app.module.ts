@@ -14,7 +14,16 @@ import {
   MdIconModule,
   MdListModule,
   MdMenuModule,
+  MdRadioModule,
 } from '@angular/material';
+import {
+  CovalentPagingModule,
+  CovalentSearchModule,
+  CovalentFileModule,
+} from '@covalent/core';
+import { TreeModule } from 'angular-tree-component';
+
+import { BarRatingModule } from 'ngx-bar-rating';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 const appRoutes:Routes = [
@@ -50,6 +59,11 @@ const appRoutes:Routes = [
     MdButtonModule,
     MdIconModule,
     MdMenuModule,
+    MdRadioModule,
+    TreeModule,
+    CovalentPagingModule,
+    CovalentSearchModule,
+    CovalentFileModule,
   ],
   providers: [ApiGuardGuard],
   bootstrap: [AppComponent]
