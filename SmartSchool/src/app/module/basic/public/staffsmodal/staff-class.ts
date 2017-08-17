@@ -50,6 +50,7 @@ export class StaffClass {
     deptName: string;
     addr1: string;
     addr2: string;
+    register: boolean;
     constructor() {
         this.academicPaper = "";
         this.address = 0;
@@ -102,5 +103,6 @@ export class StaffClass {
         this.deptName = "";
         this.addr1 = "";
         this.addr2 = "";
+        this.register = false;
     }
 }

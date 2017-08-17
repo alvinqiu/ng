@@ -40,6 +40,16 @@ export class StaffunaccountComponent implements OnInit {
     { name: 'duty', label: '职务' },
     { name: 'staffAttrName', label: '属性' },
     { name: 'deptName', label: '部门' },
+    {
+      name: 'register', label: '是否已生成账户',
+      format: v => {
+        if (v) {
+          return "是";
+        } else {
+          return "否";
+        }
+      }
+    },
   ];
   foods = [
     { value: 'staffCode', viewValue: '教职工编号' },
@@ -76,7 +86,7 @@ export class StaffunaccountComponent implements OnInit {
     this._service
       .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response: any) => {
         this.nodes = response;
-      })
+      });
   }
 
   selectEvent(e: any): any {
@@ -160,21 +170,19 @@ export class StaffunaccountComponent implements OnInit {
       });
   }
   createAdmin() {
-    if (this.selectedRows.length == 1) {
+    if (this.selectedRows.length == 0) {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data: { "label": "错误", "msg": "请选择操作信息", "color": "accent", "icon": "error" },
         width: "60%"
       });
     } else {
       this._service
-        .postBasicDelHttp(`/user/generateUsers`, { staffCode: this.selectedRows[0].staffCode, roleType: 2 }, (response: any) => {
+        .postBasicDelHttp(`/user/generateRoleUser`, { staffCode: this.selectedRows[0].staffCode, roleType: 2 }, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
             data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
             width: "60%"
           });
-
-        })
-
+        });
     }
   }
   resetPassword() {
@@ -213,9 +221,7 @@ export class StaffunaccountComponent implements OnInit {
             data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
             width: "60%"
           });
-
-        })
-
+        });
     } else {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
         data: { "label": "错误", "msg": "请选择要一条信息", "color": "accent", "icon": "error" },

@@ -1,45 +1,37 @@
 <h2 md-dialog-title>新增房间</h2>
 <md-dialog-content>
-	
+
 	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-		<!-- <div fxLayout='column'> -->
-			<md-input-container fxFlex="100">
-		      <input mdInput placeholder="学校名称"  required [(ngModel)]="model.schoolId" name="schoolId" [disabled]="status == 'check'">
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="房间名称"  required [(ngModel)]="model.roomName" name="roomName" [disabled]="status == 'check'">
-		    </md-input-container>
-		    <md-input-container fxFlex="50">
-		      <input mdInput placeholder="容纳人数"  required [(ngModel)]="model.maxCapacity" name="maxCapacity" [disabled]="status == 'check'">
-		    </md-input-container>
-		    <md-select placeholder="房间用途" fxFlex="50" [(ngModel)]="model.attributeId" name="attributeId" [disabled]="status == 'check'">
-				<md-option *ngFor="let property of propertylist" [value]="property.value">
-					{{ property.viewValue }}
-				</md-option>
-			</md-select>
-			<md-select placeholder="所在大楼" fxFlex="50" [(ngModel)]="model.buildingId" name="buildingId" [disabled]="status == 'check'">
-				<md-option *ngFor="let property of buildinglist" [value]="property.id">
-					{{ property.buildingName }}
-				</md-option>
-			</md-select>
-			<md-input-container fxFlex="100" >
-				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.roomDesc" name="roomDesc" [disabled]="status == 'check'"></textarea>
-			</md-input-container>
-		
+		<md-select placeholder="学校名称" required fxFlex="100" [(ngModel)]="model.schoolId" name="schoolId" [disabled]="status == 'check'">
+			<md-option *ngFor="let property of schoolsList" [value]="property.id">
+				{{ property.name }}
+			</md-option>
+		</md-select>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="房间名称" required [(ngModel)]="model.roomName" name="roomName" [disabled]="status == 'check'">
+		</md-input-container>
+		<md-input-container fxFlex="50">
+			<input mdInput placeholder="容纳人数" required [(ngModel)]="model.maxCapacity" name="maxCapacity" [disabled]="status == 'check'">
+		</md-input-container>
+		<md-select placeholder="房间用途" fxFlex="50" [(ngModel)]="model.attributeId" name="attributeId" [disabled]="status == 'check'">
+			<md-option *ngFor="let property of propertylist" [value]="property.value">
+				{{ property.viewValue }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="所在大楼" fxFlex="50" [(ngModel)]="model.buildingId" name="buildingId" [disabled]="status == 'check'">
+			<md-option *ngFor="let property of buildinglist" [value]="property.id">
+				{{ property.buildingName }}
+			</md-option>
+		</md-select>
+		<md-input-container fxFlex="100">
+			<textarea mdInput placeholder="房间描述" [(ngModel)]="model.roomDesc" name="roomDesc" [disabled]="status == 'check'"></textarea>
+		</md-input-container>
+
 	</form>
 </md-dialog-content>
 <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
-  
- 	<button
-    md-button
-    color="primary"
-    [disabled]="!addForm.form.valid"
-    (click)="save()"
-    *ngIf="status != 'check'"
-    >保存</button>
 
-	<button
-	md-button
-	color="primary"
-	md-dialog-close>关闭</button>
+	<button md-button color="primary" [disabled]="!addForm.form.valid" (click)="save()" *ngIf="status != 'check'">保存</button>
+
+	<button md-button color="primary" md-dialog-close>关闭</button>
 </md-dialog-actions>
