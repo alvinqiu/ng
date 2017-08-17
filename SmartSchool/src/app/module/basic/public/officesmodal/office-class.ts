@@ -7,6 +7,9 @@ export class OfficeClass {
 	roomDesc: string;
 	multiMedia: number;
 	maxCapacity: number;
+	schoolName: string;
+	buildingName: string;
+
 	constructor() {
 		this.buildingId = 0;
 		this.schoolId = 0;
@@ -15,5 +18,7 @@ export class OfficeClass {
 		this.roomDesc = "";
 		this.multiMedia = 0;
 		this.maxCapacity = 0;
+		this.schoolName = "";
+		this.buildingName = "";
 	}
 }

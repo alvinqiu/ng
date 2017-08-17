@@ -48,8 +48,9 @@ export class StaffClass {
     schoolName: string;
     staffAttrName: string;
     deptName: string;
-    addr1: string;
-    addr2: string;
+    addr1: any;
+    addr2: any;
+    register: boolean;
     constructor() {
         this.academicPaper = "";
         this.address = 0;
@@ -100,7 +101,8 @@ export class StaffClass {
         this.schoolName = "";
         this.staffAttrName = "";
         this.deptName = "";
-        this.addr1 = "";
-        this.addr2 = "";
+        this.addr1 = {};
+        this.addr2 = {};
+        this.register = false;
     }
 }

@@ -19,12 +19,15 @@ export class PersonalComponent implements OnInit {
   hkmtList = [
     { value: 1, viewValue: '香港' },
     { value: 2, viewValue: '澳门' },
-    { value: 3, viewValue: '台湾' }
+    { value: 3, viewValue: '台湾' },
+    { value: 4, viewValue: '否' }
   ];
   politicalStatusList = [
-    { value: 1, viewValue: '共产党' },
-    { value: 2, viewValue: '国民党' },
-    { value: 3, viewValue: '共青团员' }
+    { value: 1, viewValue: '共产党员' },
+    { value: 2, viewValue: '共青团员' },
+    { value: 3, viewValue: '民主党派' },
+    { value: 4, viewValue: '其他党派' },
+    { value: 5, viewValue: '无' }
   ];
   maritalStatusList = [
     { value: 1, viewValue: '未婚' },
@@ -67,7 +70,7 @@ export class PersonalComponent implements OnInit {
   startDate = new Date();
   status: string;
   staffData: StaffClass;
-  headImg:any;
+  headImg: any;
   constructor(
     private _service: ApiService
   ) {
@@ -75,7 +78,12 @@ export class PersonalComponent implements OnInit {
   }
   ngOnInit() {
     this._service.getBasicHttp(`/user/profile`, res => {
-      this.staffData = Object.assign({}, res.staff, res.user)
+      this.staffData = Object.assign({}, res.staff, res.user);
+      this.staffData.beginWorkTime = new Date(res.staff.beginWorkTime);
+      this.staffData.birthDate = new Date(res.staff.birthDate);
+      this.staffData.graduateTime = new Date(res.staff.graduateTime);
+      this.staffData.joinTime = new Date(res.staff.joinTime);
+      this.staffData.offJobTime = new Date(res.staff.offJobTime);
     });
   }
   imageFinishedUploading(e: any) {

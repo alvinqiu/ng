@@ -61,6 +61,10 @@ export class DepartmentComponent implements OnInit {
         this._service
           .postBasicDelHttp(`/api/bi/department/delDepartment`, del, (response: any) => {
             this.departments = new DepartmentClass();
+            this._service
+              .getBasicHttp(`/api/bi/department/getDepartmentAttr`, (response: any) => {
+                this.nodes = response;
+              });
           });
       }
     });
