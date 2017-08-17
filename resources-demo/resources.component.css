@@ -1,0 +1,7 @@
+router-outlet {
+	display: block;
+	padding: 8px 16px;
+}
+.active {
+    background-color: rgba(0,0,0,.12);
+}

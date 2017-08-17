@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:aot": "ng build --prod",
-    "dev": "ng serve --aot --proxy-config proxy.conf.json --prod",
+    "dev": "ng serve --proxy-config proxy.conf.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

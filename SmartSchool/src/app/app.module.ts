@@ -8,15 +8,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { ApiService } from './service/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CookieModule } from 'ngx-cookie';
 import {
   MdToolbarModule,
   MdButtonModule,
-  // MdSidenavModule,
   MdIconModule,
   MdListModule,
   MdMenuModule,
 } from '@angular/material';
+import { LoginModule } from './module/login/login.module';
+import { HomepageModule } from './module/homepage/homepage.module';
+import { BasicModule } from './module/basic/basic.module';
+import { AssetsModule } from './module/assets/assets.module';
+import { ResourceModule } from './module/resource/resource.module';
 import { AuthGuard } from './guard/auth.guard';
 @NgModule({
   declarations: [
@@ -35,7 +38,11 @@ import { AuthGuard } from './guard/auth.guard';
     MdMenuModule,
     MdButtonModule,
     FlexLayoutModule,
-    CookieModule.forRoot(),
+    LoginModule,
+    HomepageModule,
+    BasicModule,
+    AssetsModule,
+    ResourceModule,
 
   ],
   providers: [AuthGuard, ApiService],

@@ -1,39 +1,85 @@
 <div class="menu">
 	<div fxLayout="row" fxLayoutAlign="start start" >
 		<div fxFlex="60px">学段:</div>
-		<md-radio-group fxLayoutWrap>
-		  <md-radio-button value="1">Option 1</md-radio-button>
-		  <md-radio-button value="2">Option 2</md-radio-button>
-		  <md-radio-button value="1">Option 1</md-radio-button>
+		<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
+		  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.period; let o = index;">{{child.name}}</md-radio-button>
 		</md-radio-group>
 	</div>
-	<div fxLayout="row" fxLayoutAlign="start center">
-		<div fxFlex="60px" fxLayoutAlign="start start">学科:</div>
-		<md-radio-group fxLayoutWrap>
-		  <md-radio-button value="1">Option 1</md-radio-button>
-		  <md-radio-button value="2">Option 2</md-radio-button>
+	<div class="divider"></div>
+	<div fxLayout="row" fxLayoutAlign="start start">
+		<div fxFlex="60px">学科:</div>
+		<md-radio-group fxLayoutWrap  [(ngModel)]="searchMenu.subject" name="subject" (change)="subjectChange()">
+		  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.subject; let o = index;">{{child.name}}</md-radio-button>
 		</md-radio-group>
 	</div>
-	<div fxLayout="row" fxLayoutAlign="start center">
+	<div class="divider"></div>
+	<div fxLayout="row" fxLayoutAlign="start start">
 		<div fxFlex="60px">版本:</div>
-		<md-radio-group>
-		  <md-radio-button value="1">Option 1</md-radio-button>
-		  <md-radio-button value="2">Option 2</md-radio-button>
+		<md-radio-group [(ngModel)]="searchMenu.version" name="version" (change)="versionChange()">
+		  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.version; let o = index;">{{child.name}}</md-radio-button>
 		</md-radio-group>
 	</div>
-	<div fxLayout="row" fxLayoutAlign="start center">
+	<div class="divider"></div>
+	<div fxLayout="row" fxLayoutAlign="start start">
 		<div fxFlex="60px">教材:</div>
-		<md-radio-group>
-		  <md-radio-button value="1">Option 1</md-radio-button>
-		  <md-radio-button value="2">Option 2</md-radio-button>
+		<md-radio-group [(ngModel)]="searchMenu.textbook" name="textbook" (change)="textbookChange()">
+		  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.textbook; let o = index;">{{child.name}}</md-radio-button>
 		</md-radio-group>
 	</div>
+	<div class="divider"></div>
 </div>
-<div class="content" fxLayout="row" fxLayoutAlign="start center">
+<div class="content" fxLayout="row" fxLayoutAlign="start start">
 	<div class="tree">
-		
+		<tree-root [nodes]="tree">
+			<ng-template #treeNodeTemplate let-node let-index="index">
+				<span>{{ node.data.name }}</span>
+			</ng-template>
+		</tree-root>
 	</div>
-	<div fxFlex="grow">
-		
+	<div fxFlex="grow" fxLayoutAlign="start start" fxLayout="column">
+		<div fxLayout="row" fxLayoutAlign="start center" class="filter">
+			<div fxFlex="grow">
+				筛选：
+				<md-select placeholder="文件类型">
+				  <md-option *ngFor="let item of fileTypes; let o = index;" [value]="item.value">
+				    {{ item.text }}
+				  </md-option>
+				</md-select>
+			</div>
+			<div fxFlex="grow">
+				<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+        		</td-search-box>
+			</div>
+			<div fxFlex="grow" fxLayoutAlign="center center">
+				<button md-button (click)="openDialog({})">上传资源</button>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<md-list fxFlex="100">
+		  <h3 md-subheader>Folders</h3>
+		  <md-list-item>
+		    <md-icon md-list-icon>folder</md-icon>
+		    <h4 md-line>测试数据</h4>
+		    <p md-line>测试数据</p>
+		    <div class="slot">
+		    	<a md-button routerLink="">预览</a>
+		    	<button md-button>下载</button>
+		    </div>
+		  </md-list-item>
+		  <md-divider></md-divider>
+		</md-list>
+		<td-paging-bar 
+			#pagingBar 
+			[firstLast]="true" 
+			[pageSizeAll]="false" 
+			[pageSizes]="[10,20,50]"
+			pageLinkCount="5" 
+			[initialPage]="1" 
+			[pageSize]="pageSize" 
+			[total]="totalCount" 
+			(change)="change($event)" fxFlex="100">
+			<span td-paging-bar-label>每页:</span>
+			{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+		</td-paging-bar>
 	</div>
 </div>
