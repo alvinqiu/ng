@@ -32,7 +32,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UploadModalComponent } from './component/public/upload-modal/upload-modal.component';
 import { DetailComponent } from './component/detail/detail.component';
-
+import { ApiServiceService } from './component/service/api-service.service';
 const appRoutes:Routes = [
   {path: '', redirectTo: 'resource',  pathMatch: 'full'},
   { 
@@ -82,7 +82,7 @@ const appRoutes:Routes = [
     BarRatingModule,
   ],
   entryComponents: [UploadModalComponent],
-  providers: [ApiGuardGuard],
+  providers: [ApiGuardGuard, ApiServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

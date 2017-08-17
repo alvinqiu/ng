@@ -5,6 +5,7 @@ import {
 } from '@covalent/core';
 import { UploadModalComponent } from '../public/upload-modal/upload-modal.component';
 import { MdDialog } from '@angular/material';
+import { ApiServiceService } from '../service/api-service.service';
 function toTree(data, parent_id) {
     var tree = [];
     var temp;
@@ -51,7 +52,8 @@ export class IndexComponent implements OnInit {
   page: number = 1;
   totalCount: number = 0;
   constructor(
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private service: ApiServiceService
     ) { }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ import { BasicComponent } from '../module/basic/basic.component';
 
 import { AssetsComponent } from '../module/assets/assets.component';
 import { HomepageComponent } from '../module/homepage/homepage.component';
-
+import { ResourceComponent } from '../module/resource/resource.component'
 
 import { AuthGuard } from '../guard/auth.guard';
 
@@ -46,6 +46,13 @@ const router: Routes = [
 				canActivateChild: [AuthGuard],
 				component: AssetsComponent,
 				loadChildren: '../module/assets/assets.module#AssetsModule',
+		    },
+
+		    {
+				path: 'resource',
+				canActivateChild: [AuthGuard],
+				component: ResourceComponent,
+				loadChildren: '../module/resource/resource.module#ResourceModule',
 		    },
 
 		]

@@ -58,17 +58,17 @@ export const Menu = [{
 	"children": [{
 		"icon":"school",
 		"name":"智慧云网盘",
-		"url":"/app/resources/index",
+		"url":"/app/resource/index",
 		"description": "建设中..."
 	},{
 		"icon":"school",
 		"name":"我的资源",
-		"url":"/app/resources/mine",
+		"url":"/app/resource/mine",
 		"description": "建设中..."
 	},{
 		"icon":"school",
 		"name":"资源审核",
-		"url":"/app/resources/review",
+		"url":"/app/resource/review",
 		"description": "建设中..."
 	}]
 },{
@@ -105,12 +105,12 @@ export const MenuTeacher = [{
 	"children": [{
 		"icon":"school",
 		"name":"智慧云网盘",
-		"url":"/app/resources/index",
+		"url":"/app/resource/index",
 		"description": "建设中..."
 	},{
 		"icon":"school",
 		"name":"我的资源",
-		"url":"/app/resources/mine",
+		"url":"/app/resource/mine",
 		"description": "建设中..."
 	}]
 }]
@@ -145,17 +145,17 @@ export const MenuSuper = [{
 	"children": [{
 		"icon":"school",
 		"name":"智慧云网盘",
-		"url":"/app/resources/index",
+		"url":"/app/resource/index",
 		"description": "建设中..."
 	},{
 		"icon":"school",
 		"name":"我的资源",
-		"url":"/app/resources/mine",
+		"url":"/app/resource/mine",
 		"description": "建设中..."
 	},{
 		"icon":"school",
 		"name":"资源审核",
-		"url":"/app/resources/review",
+		"url":"/app/resource/review",
 		"description": "建设中..."
 	}]
 },{
