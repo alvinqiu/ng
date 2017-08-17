@@ -16,6 +16,10 @@
       <md-icon>edit</md-icon>
       <span>修改</span>
     </a>
+    <a  md-menu-item (click)="openDialog({func:'check'})">
+      <md-icon>edit</md-icon>
+      <span>查看</span>
+    </a>
     <a  md-menu-item (click)="delete()">
       <md-icon>delete</md-icon>
       <span>删除</span>
@@ -39,9 +43,8 @@
   <div class="tree">
       <tree-root [nodes]="nodes">
           <ng-template #treeNodeTemplate let-node let-index="index">
-            <span *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>
+            <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>
             <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('g_') > -1">{{ node.data.name }}</span>
-            <!-- <button md-button (click)="searchByDepartment(node.data.id)">{{ node.data.name }}</button> -->
           </ng-template>
       </tree-root>
     </div>

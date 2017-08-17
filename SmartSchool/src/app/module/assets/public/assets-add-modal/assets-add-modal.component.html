@@ -26,7 +26,7 @@
       <input mdInput placeholder="单价（元）" [(ngModel)]="asset.price" name="price" required>
     </md-input-container>
     <md-input-container fxFlex="50">
-      <input mdInput placeholder="数量" [(ngModel)]="asset.validTotalQuantity" name="validTotalQuantity" required>
+      <input mdInput placeholder="数量" [disabled]="status == 'edit'" [(ngModel)]="asset.validTotalQuantity" name="validTotalQuantity" required>
     </md-input-container>
     <md-input-container fxFlex="50">
       <input mdInput [mdDatepicker]="picker" placeholder="购买时间" [(ngModel)]="asset.purchaseDate" name="purchaseDate" required>

@@ -10,7 +10,7 @@ export interface AssetsInterface {
   'supplierName': string;
   'price': number;
   'supplier': number;
-  'purchaseDate': string;
+  'purchaseDate': Date;
   'invalidTotalQuantity': number;
   'validTotalQuantity': number;
   'schoolId': number;
