@@ -23,16 +23,13 @@
 			</md-option>
 		</md-select>
 		<md-input-container fxFlex="50">
-			<input mdInput placeholder="国籍" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
+			<input mdInput placeholder="国籍" [(ngModel)]="staffData.country" name="country" [disabled]="status == 'check'">
 		</md-input-container>
 		<md-input-container fxFlex="50">
 			<input mdInput [mdDatepicker]="birthDate" placeholder="生日" [(ngModel)]="staffData.birthDate" name="birthDate" [disabled]="status == 'check'">
 			<button mdSuffix [mdDatepickerToggle]="birthDate" [disabled]="status == 'check'"></button>
 		</md-input-container>
 		<md-datepicker #birthDate [startAt]="startDate"></md-datepicker>
-		<md-input-container fxFlex="50">
-			<input mdInput placeholder="籍贯" [(ngModel)]="staffData.hkmt" name="hkmt" [disabled]="status == 'check'">
-		</md-input-container>
 		<md-input-container fxFlex="50">
 			<input mdInput placeholder="民族" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
 		</md-input-container>
@@ -70,15 +67,17 @@
 
 		<h4 fxFlex="100">在校工作相关信息</h4>
 		<div class="divider"></div>
-		<md-input-container fxFlex="50">
+		<!-- <md-input-container fxFlex="50">
 			<input mdInput placeholder="教职工属性" [(ngModel)]="staffData.staffAttribute" name="staffAttribute" [disabled]="status == 'check'">
-		</md-input-container>
+		</md-input-container> -->
 		<md-input-container fxFlex="50">
 			<input mdInput placeholder="职务" [(ngModel)]="staffData.duty" name="duty" [disabled]="status == 'check'">
 		</md-input-container>
-		<md-input-container fxFlex="50">
-			<input mdInput placeholder="所属部门" [(ngModel)]="staffData.deptName" name="deptName" [disabled]="status == 'check'">
-		</md-input-container>
+		<md-select placeholder="所属部门" fxFlex="50" [(ngModel)]="staffData.deptId" name="deptId" [disabled]="status == 'check'">
+			<md-option *ngFor="let department of departmentList" [value]="department.id">
+				{{ department.name }}
+			</md-option>
+		</md-select>
 		<md-select placeholder="在职状态" fxFlex="50" [(ngModel)]="staffData.status" name="status" [disabled]="status == 'check'">
 			<md-option *ngFor="let status of statusList" [value]="status.value">
 				{{ status.viewValue }}
@@ -200,7 +199,6 @@
 </md-dialog-content>
 
 <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
-	<button md-button color="primary" [disabled]="!addForm.form.valid" (click)="save()"
-	 *ngIf="status == 'add' || status == 'edit'">保存</button>
+	<button md-button color="primary" [disabled]="!addForm.form.valid" (click)="save()" *ngIf="status == 'add' || status == 'edit'">保存</button>
 	<button md-button color="primary" md-dialog-close>关闭</button>
 </md-dialog-actions>

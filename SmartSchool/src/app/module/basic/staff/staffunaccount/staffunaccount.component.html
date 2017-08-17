@@ -41,6 +41,7 @@
 <div class="divider"></div>
 <div fxLayout="row" fxLayoutAlign="start start">
   <div class="tree">
+      <span (click)="searchByDepartment('a_0')">全部</span>
       <tree-root [nodes]="nodes">
           <ng-template #treeNodeTemplate let-node let-index="index">
             <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>

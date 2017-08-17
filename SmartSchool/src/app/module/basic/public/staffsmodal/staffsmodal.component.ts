@@ -3,6 +3,7 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ApiService } from '../../../../service/api.service';
 import { StaffClass } from './staff-class';
 import { SchoolClass } from '../schoolsmodal/school-class';
+import { DepartmentClass } from '../departmentmodal/department-class';
 @Component({
   selector: 'app-staffsmodal',
   templateUrl: './staffsmodal.component.html',
@@ -21,12 +22,15 @@ export class StaffsmodalComponent implements OnInit {
   hkmtList = [
     { value: 1, viewValue: '香港' },
     { value: 2, viewValue: '澳门' },
-    { value: 3, viewValue: '台湾' }
+    { value: 3, viewValue: '台湾' },
+    { value: 4, viewValue: '否' }
   ];
   politicalStatusList = [
-    { value: 1, viewValue: '共产党' },
-    { value: 2, viewValue: '国民党' },
-    { value: 3, viewValue: '共青团员' }
+    { value: 1, viewValue: '共产党员' },
+    { value: 2, viewValue: '共青团员' },
+    { value: 3, viewValue: '民主党派' },
+    { value: 4, viewValue: '其他党派' },
+    { value: 5, viewValue: '无' }
   ];
   maritalStatusList = [
     { value: 1, viewValue: '未婚' },
@@ -67,6 +71,7 @@ export class StaffsmodalComponent implements OnInit {
     { value: 1, viewValue: '有' }
   ];
   schoolsList: Array<SchoolClass>;
+  departmentList: Array<DepartmentClass>;
   startDate: Date;
   status: string;
   staffData: StaffClass;
@@ -113,6 +118,11 @@ export class StaffsmodalComponent implements OnInit {
     this._service
       .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
         this.schoolsList = response.entries;
+      });
+
+    this._service
+      .getBasicHttp(`/api/bi/department/getDepartmentByCondition`, (response: any) => {
+        this.departmentList = response.entries;
       });
   }
 

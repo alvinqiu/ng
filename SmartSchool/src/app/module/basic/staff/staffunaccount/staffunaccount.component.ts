@@ -38,7 +38,7 @@ export class StaffunaccountComponent implements OnInit {
       }
     },
     { name: 'duty', label: '职务' },
-    { name: 'staffAttrName', label: '属性' },
+    // { name: 'staffAttrName', label: '属性' },
     { name: 'deptName', label: '部门' },
     {
       name: 'register', label: '是否已生成账户',
@@ -210,7 +210,7 @@ export class StaffunaccountComponent implements OnInit {
     if (this.selectedRows.length > 0) {
       let reqlist = this.selectedRows.map(item => {
         if (!item.register) {
-          return item.id
+          return item.staffCode;
         }
       });
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
