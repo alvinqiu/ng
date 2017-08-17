@@ -31,6 +31,61 @@ app-root {
 .content {
 	width: 1024px;
 }
+
+// divider
+.divider {
+	width: 100%;
+	border-bottom: 1px solid rgba(0,0,0,.06);
+	margin-top: 8px;
+	margin-bottom: 8px;
+} 
+// divider
+
+
+
+//pagination
+.md-caption.td-paging-bar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+	font-size: 12px;
+    letter-spacing: .02em;
+    .mat-select-trigger {
+    	width: 44px;
+    }
+}
+//pagination
+
+// search component
+.td-search-container {
+	align-items: center;
+}
+.td-search-box,
+
+
+.td-search-input {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+
+	md-input-container {
+		width: 100%;
+		input::-webkit-search-cancel-button {
+			display: none;
+		}
+	}
+}
+// search component
+
+// modal
+.mat-dialog-container {
+	position: relative;
+}
+// modal
+
 // loading animate
 #app-loading {
 	opacity: 100;

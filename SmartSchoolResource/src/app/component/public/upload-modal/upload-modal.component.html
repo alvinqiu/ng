@@ -1,0 +1,76 @@
+
+<div class="Masking" *ngIf="false">
+	<md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<h2 md-dialog-title>上传资源</h2>
+<md-dialog-content>
+	<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
+	    <md-input-container fxFlex="100">
+	      <input mdInput placeholder="资源名称" required >
+	    </md-input-container>
+	    
+	    <md-select placeholder="学段" required fxFlex="50" (change)="periodChange()" required [(ngModel)]="resource.period" name="period">
+			<md-option  *ngFor="let item of showMenu.period; let o = index;" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="学科" required fxFlex="50" (change)="subjectChange()" required [(ngModel)]="resource.subject" name="subject">
+			<md-option *ngFor="let item of showMenu.subject; let o = index;" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="版本" required fxFlex="50" (change)="versionChange()" required [(ngModel)]="resource.version" name="version">
+			<md-option *ngFor="let item of showMenu.version; let o = index;" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="教材" required fxFlex="50" (change)="textbookChange()" required [(ngModel)]="resource.textbook" name="textbook">
+			<md-option *ngFor="let item of showMenu.textbook; let o = index;" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="章节" required fxFlex="100">
+			<md-option *ngFor="let item of showMenu.period; let o = index;" [value]="item.id">
+				{{ item.name }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="状态" required fxFlex="50">
+			<md-option *ngFor="let item of belongs; let o = index;" [value]="item.value">
+				{{ item.viewValue }}
+			</md-option>
+		</md-select>
+		<md-select placeholder="类型" required fxFlex="50">
+			<md-option *ngFor="let item of fileTypes; let o = index;" [value]="item.value">
+				{{ item.text }}
+			</md-option>
+		</md-select>
+		<div fxFlex="100" fxLayoutAlign="start center" fxLayout="column">
+			<p>选择文件: {{fileSelectMsg}}</p >
+			<p>上传文件: {{fileUploadMsg}}</p >
+			<td-file-upload #singleFileUpload (select)="selectEvent($event)" (upload)="uploadEvent($event)" (cancel)="cancelEvent()">
+			  <md-icon>file_upload</md-icon><span>{{ singleFileUpload.files?.name }}</span>
+			  <ng-template td-file-input-label>
+			    <md-icon>attach_file</md-icon><span>选择一个文件...</span>
+			  </ng-template>
+			</td-file-upload>
+		</div>
+		<md-input-container fxFlex="100" >
+			<textarea mdInput placeholder="资源描述"></textarea>
+		</md-input-container>  
+		
+	</form>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+  
+ 	<button
+    md-button
+    color="primary"
+    [disabled]="!addForm.form.valid"
+    (click)="save()"
+    >保存</button>
+
+	<button
+	md-button
+	color="primary"
+	md-dialog-close>关闭</button>
+</md-dialog-actions>

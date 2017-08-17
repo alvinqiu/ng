@@ -15,6 +15,10 @@ import {
   MdListModule,
   MdMenuModule,
   MdRadioModule,
+  MdSelectModule,
+  MdDialogModule,
+  MdInputModule,
+  MdProgressBarModule,
 } from '@angular/material';
 import {
   CovalentPagingModule,
@@ -26,6 +30,9 @@ import { TreeModule } from 'angular-tree-component';
 import { BarRatingModule } from 'ngx-bar-rating';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UploadModalComponent } from './component/public/upload-modal/upload-modal.component';
+import { DetailComponent } from './component/detail/detail.component';
+
 const appRoutes:Routes = [
   {path: '', redirectTo: 'resource',  pathMatch: 'full'},
   { 
@@ -34,6 +41,7 @@ const appRoutes:Routes = [
     children: [
       { path: '', redirectTo: 'index',  pathMatch: 'full' },
       { path:'index', component:IndexComponent },
+      { path:'detail/:id', component:DetailComponent },
       { path:'review', component:ReviewComponent },
       { path:'mine', component:MineComponent }
     ]
@@ -46,7 +54,9 @@ const appRoutes:Routes = [
     AppComponent,
     IndexComponent,
     ReviewComponent,
-    MineComponent
+    MineComponent,
+    UploadModalComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -60,11 +70,18 @@ const appRoutes:Routes = [
     MdIconModule,
     MdMenuModule,
     MdRadioModule,
+    MdListModule,
     TreeModule,
+    MdSelectModule,
     CovalentPagingModule,
     CovalentSearchModule,
     CovalentFileModule,
+    MdDialogModule,
+    MdInputModule,
+    MdProgressBarModule,
+    BarRatingModule,
   ],
+  entryComponents: [UploadModalComponent],
   providers: [ApiGuardGuard],
   bootstrap: [AppComponent]
 })
