@@ -24,8 +24,11 @@ export class IndexComponent implements OnInit {
     version:0,
     textbook:0
   }
+  serarchSectionId = 0;
   resourcelist = [];
   searchInputTerm: string = "";
+  firstLast: boolean = false;
+  initialPage: number = 1;
   fileTypes = [];
   formatValue = "";
   event: IPageChangeEvent;
@@ -68,9 +71,7 @@ export class IndexComponent implements OnInit {
         this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
           this.nodesTree = res
         })
-        this.page = 1;
-        this.event.page = 1;
-        console.log(this.event)
+        this.serarchSectionId = 0;
         this.searchResource();
       }
     })
@@ -86,6 +87,7 @@ export class IndexComponent implements OnInit {
         this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
           this.nodesTree = res
         })
+        this.serarchSectionId = 0;
         this.searchResource();
       }
     })
@@ -98,6 +100,7 @@ export class IndexComponent implements OnInit {
       this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
         this.nodesTree = res
       })
+      this.serarchSectionId = 0;
       this.searchResource();
     })
   }
@@ -106,30 +109,36 @@ export class IndexComponent implements OnInit {
     this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
       this.nodesTree = res
     })
+    this.serarchSectionId = 0;
     this.searchResource();
   }
 
+  chapterSearch(e: number) {
+    this.serarchSectionId = e;
+    this.searchResource()
+
+  }
   change(event: IPageChangeEvent): void {
-    console.log(event)
     this.page = event.page;
     this.pageSize = event.pageSize;
     this.searchResource();
   }
 
   handleSearch(searchInputTerm: string):void {
-
+    this.serarchSectionId = 0;
+    this.searchInputTerm = searchInputTerm;
+    this.searchResource()
   }
 
-  search () {
+  download(e) {
+    this._service.postBasicHttp(`/resource/${e}/download`, {uuid: e}, res => {
 
+    })
   }
-  
   searchResource() {
-    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
-      // this.page = res.page;
-      // this.pageSize = res.size;
     })
   }
   openDialog(condition: any): void {
@@ -140,11 +149,38 @@ export class IndexComponent implements OnInit {
       width: "60%"
     });
     dialogRef.afterClosed().subscribe(result => {
-
+      
+      if (this.page == 1) {
+        this.searchResource();
+      }
+      
     });
   }
   formatChange() {
     this.searchResource()
   }
+  toggleFirstLast(): void {
+    this.firstLast = !this.firstLast;
+  }
+  iconfont(e) {
+    switch(e) {
+      case "WORD":
+        return "iconfont icon-word"
+      case "PPT":
+        return "iconfont icon-PPT"
+      case "PDF":
+        return "iconfont icon-pdf"
+      case "TEXT":
+        return "iconfont icon-txt"
+      case "IMAGE":
+        return "iconfont icon-image"
+      case "VIDEO":
+        return "iconfont icon-vedio"
+      case "VOICE":
+        return "iconfont icon-voice"
+      default:
+        return "iconfont icon-file"
 
+    }
+  }
 }

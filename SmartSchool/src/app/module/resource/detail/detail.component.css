@@ -1,0 +1,38 @@
+.container {
+	width: 100%;
+	padding-bottom: 40px;
+}
+.content {
+	width: 1024px;
+	padding-bottom: 80px;
+}
+
+.preview {
+	height: 600px;
+	border: 1px solid grey;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.preview img {
+	width: 100%;
+}
+.right {
+	padding-left: 16px;
+	padding-top: 28px;
+}
+
+.toolbar,
+.func {
+	padding: 10px 0px;
+}
+
+.mat-list .mat-list-item .mat-list-icon.avatar {
+	height: 48px;
+	width: 48px;
+}
+/*.star {
+	padding: 20px 0px 10px;
+}
+md-slider {
+	width: 50%;
+}*/
