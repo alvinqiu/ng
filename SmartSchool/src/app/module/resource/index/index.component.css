@@ -1,0 +1,29 @@
+
+.container-content {
+	width: 1024px;
+}
+
+.menu {
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+md-radio-button {
+	margin-left: 8px;
+	margin-bottom: 8px;
+}
+.tree {
+	width: 235px;
+	border-right: 1px solid rgba(0,0,0,.06);
+	margin-right: 16px;
+	padding: 8px;
+	min-height: 300px;
+}
+.content .filter,
+.content td-paging-bar,
+.content md-list{
+	width: 100%;
+}
+
+.divider {
+	margin: 4px 0px 8px 0px;
+}

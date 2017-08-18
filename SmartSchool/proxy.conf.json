@@ -12,6 +12,10 @@
     "target": "http://www.marchezvousblue.cn",
     "secure": false
   },
+  "/category": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
   "/resource": {
     "target": "http://www.marchezvousblue.cn",
     "secure": false

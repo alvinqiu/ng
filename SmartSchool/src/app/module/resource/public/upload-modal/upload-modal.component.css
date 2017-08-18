@@ -1,0 +1,21 @@
+.mat-select {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.mat-select,
+.mat-input-container {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+
+.Masking {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(255, 255, 255, 0.58);
+    z-index: 100;
+}

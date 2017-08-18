@@ -1,3 +1,98 @@
+export const fileTypeList = [
+	{
+        "text": "全部",
+        "value": "",
+        "format": [
+
+        ]
+    },
+    {
+        "text": "文档",
+        "value": "WORD",
+        "format": [
+            ".doc",
+            ".docx"
+        ]
+    },
+    {
+        "text": "表格",
+        "value": "EXCEL",
+        "format": [
+            ".xls",
+            ".xlsx"
+        ]
+    },
+    {
+        "text": "演示",
+        "value": "PPT",
+        "format": [
+            ".ppt",
+            ".pptx"
+        ]
+    },
+    {
+        "text": "Pdf",
+        "value": "PDF",
+        "format": [
+            ".pdf"
+        ]
+    },
+    {
+        "text": "文本",
+        "value": "TEXT",
+        "format": [
+            ".txt"
+        ]
+    },
+    {
+        "text": "图片",
+        "value": "IMAGE",
+        "format": [
+            ".bmp",
+            ".gif",
+            ".jpg",
+            ".jpeg",
+            ".pic",
+            ".png",
+            ".tif"
+        ]
+    },
+    {
+        "text": "视频",
+        "value": "VIDEO",
+        "format": [
+            ".avi",
+            ".rmvb",
+            ".rm",
+            ".asf",
+            ".divx",
+            ".mpg",
+            ".mpeg",
+            ".mpe",
+            ".wmv",
+            ".mp4",
+            ".mkv",
+            ".vob"
+        ]
+    },
+    {
+        "text": "音频",
+        "value": "VOICE",
+        "format": [
+            ".wav",
+            ".aif",
+            ".au",
+            ".mp3",
+            ".ram",
+            ".wma",
+            ".mmf",
+            ".amr",
+            ".aac",
+            ".flac"
+        ]
+    }
+]
+
 export const Menu = [{
 	"id": "basic",
 	"name": "基础信息管理",
