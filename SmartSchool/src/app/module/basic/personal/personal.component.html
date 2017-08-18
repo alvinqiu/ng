@@ -84,9 +84,9 @@
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="职务" [(ngModel)]="staffData.duty" name="duty" [disabled]="status == 'check'">
 				</md-input-container>
-				<md-input-container fxFlex="50">
+				<!-- <md-input-container fxFlex="50">
 					<input mdInput placeholder="所属部门" [(ngModel)]="staffData.deptName" name="deptName" [disabled]="true">
-				</md-input-container>
+				</md-input-container> -->
 				<md-select placeholder="在职状态" fxFlex="50" [(ngModel)]="staffData.status" name="status" [disabled]="status == 'check'">
 					<md-option *ngFor="let status of statusList" [value]="status.value">
 						{{ status.viewValue }}

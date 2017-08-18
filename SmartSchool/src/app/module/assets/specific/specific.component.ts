@@ -76,6 +76,7 @@ export class SpecificComponent implements OnInit {
         break;
     }
     dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
     });
   }
 
@@ -172,7 +173,7 @@ export class SpecificComponent implements OnInit {
 
           this._service
             .postAssetsHttp(`/equipment-specific-status?equipmentIds=${equipmentIdArray}&equipmentGeneralId=${equipmentGeneralId}&status=${status}`
-            , (response: any) => {
+            , {}, (response: any) => {
 
               this._service.getAssetsHttp(`/equipment-specific-valid/${equipmentGeneralId}/${this.page}/${this.pageSize}`,
                 (response: any) => {
