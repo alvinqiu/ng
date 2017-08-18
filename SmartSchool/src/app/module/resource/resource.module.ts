@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { ResourceComponent } from './resource.component';
 import { ResourceModuleModule } from './resource-module/resource-module.module';
 import { IndexComponent } from './index/index.component';
-import { UploadModalComponent } from './public/upload-modal/upload-modal.component'
+import { DetailComponent } from './detail/detail.component';
+import { UploadModalComponent } from './public/upload-modal/upload-modal.component';
+import { MsgComponent } from './public/msg/msg.component';
 import { TreeModule } from 'angular-tree-component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -25,6 +27,7 @@ import {
   CovalentPagingModule,
   CovalentSearchModule,
   CovalentFileModule,
+  CovalentMessageModule,
 } from '@covalent/core';
 
 import { BarRatingModule } from 'ngx-bar-rating';
@@ -51,8 +54,9 @@ import { BarRatingModule } from 'ngx-bar-rating';
 	TreeModule,
 	FormsModule,
 	FlexLayoutModule,
+	CovalentMessageModule,
   ],
-  entryComponents: [UploadModalComponent],
-  declarations: [ResourceComponent, IndexComponent, UploadModalComponent]
+  entryComponents: [UploadModalComponent, MsgComponent],
+  declarations: [ResourceComponent, IndexComponent, UploadModalComponent, DetailComponent, MsgComponent]
 })
 export class ResourceModule { }

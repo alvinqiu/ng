@@ -5,7 +5,7 @@
 // @import '../node_modules/@angular/material/prebuilt-themes/purple-green.css';
 @import '../node_modules/material-design-icons/iconfont/material-icons.css';
 @import '../node_modules/ngx-bar-rating/themes/br-default-theme.css';
-
+@import './assets/font/iconfont.css';
 /* Defining a custom theme */
 @import '../node_modules/@angular/material/theming';
 @include mat-core();
@@ -119,6 +119,32 @@ image-upload {
 }
  
 //image-heaeder
+
+
+.iconfont.icon-word {
+	color: #039be5;
+}
+.iconfont.icon-PPT {
+	color: #d32f2f;
+}
+.iconfont.icon-pdf {
+	color: #303f9f;
+}
+.iconfont.icon-txt {
+	color: #455a64;
+}
+.iconfont.icon-image {
+	color: #0097a7;
+}
+.iconfont.icon-vedio {
+	color: #fbc02d;
+}
+.iconfont.icon-voice {
+	color: #e64a19;
+}
+.iconfont.icon-file {
+	color: #e65100;
+}
 
 //msg
 td-message {
