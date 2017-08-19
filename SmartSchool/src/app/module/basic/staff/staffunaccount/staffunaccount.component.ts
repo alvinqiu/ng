@@ -23,7 +23,7 @@ export class StaffunaccountComponent implements OnInit {
     { name: 'staffCode', label: '教职工编号' },
     { name: 'staffName', label: '姓名' },
     { name: 'passNumber', label: '证件号' },
-    { name: 'birthDate', label: '出生年月' },
+    { name: 'birthDate', label: '出生年月', format: v => v ? `${new Date(v)}` : '' },
     {
       name: 'gender', label: '性别',
       format: v => {
@@ -39,7 +39,7 @@ export class StaffunaccountComponent implements OnInit {
     },
     { name: 'duty', label: '职务' },
     // { name: 'staffAttrName', label: '属性' },
-    { name: 'deptName', label: '部门' },
+    // { name: 'deptName', label: '部门' },
     {
       name: 'register', label: '是否已生成账户',
       format: v => {
@@ -177,7 +177,7 @@ export class StaffunaccountComponent implements OnInit {
       });
     } else {
       this._service
-        .postBasicDelHttp(`/user/generateRoleUser`, { staffCode: this.selectedRows[0].staffCode, roleType: 2 }, (response: any) => {
+        .postBasicHttp(`/user/generateRoleUser`, { "staffCode": this.selectedRows[0].staffCode, "roleType": 2 }, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
             data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
             width: "60%"
