@@ -140,6 +140,18 @@ export class IndexComponent implements OnInit {
   changeTabs(e: any) {
     // console.log(e);
     if (e.index === 1) {
+      this.columns = [
+        { name: 'id', label: '序号' },
+        { name: 'name', label: '资产名称' },
+        { name: 'equipmentTypeName', label: '类别' },
+        { name: 'brand', label: '品牌' },
+        { name: 'model', label: '规格型号' },
+        { name: 'supplierName', label: '供应商' },
+        { name: 'validTotalQuantity', label: '总数量' },
+        { name: 'price', label: '单价(元)' },
+        { name: 'price', label: '总价(元)' },
+        { name: 'purchaseDate', label: '购买时间' },
+      ];
       // 查询已报废资产      
       this._service
         .getAssetsHttp(`/equipment-invalid/${this.page}/${this.pageSize}`, (response: any) => {
@@ -147,6 +159,21 @@ export class IndexComponent implements OnInit {
           this.totalCount = response.totalCount;
         });
     } else {
+      this.columns = [
+        { name: 'id', label: '序号' },
+        { name: 'name', label: '资产名称' },
+        { name: 'equipmentTypeName', label: '类别' },
+        { name: 'brand', label: '品牌' },
+        { name: 'model', label: '规格型号' },
+        { name: 'supplierName', label: '供应商' },
+        { name: 'validTotalQuantity', label: '总数量' },
+        { name: 'outStockCount', label: '使用数' },
+        { name: 'stockCount', label: '库存数' },
+        { name: 'price', label: '单价(元)' },
+        { name: 'price', label: '总价(元)' },
+        { name: 'purchaseDate', label: '购买时间' },
+      ];
+
       this._service
         .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
           this.basicValidData = response.entries;
