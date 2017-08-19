@@ -1,6 +1,5 @@
-<div class="container"  fxLayout="row" fxLayoutAlign="center start">
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="container-content">
-		
 		<div class="menu">
 			<div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px">学段:</div>
@@ -30,17 +29,7 @@
 				</md-radio-group>
 			</div>
 			<div class="divider"></div>
-		</div>
-		<div class="content" fxLayout="row" fxLayoutAlign="start start">
-			<div class="tree">
-				<tree-root [nodes]="nodesTree">
-					<ng-template #treeNodeTemplate let-node let-index="index">
-						<span (click)="chapterSearch(node.data.id)">{{ node.data.name }}</span>
-					</ng-template>
-				</tree-root>
-			</div>
-			<div fxFlex="grow" fxLayoutAlign="start start" fxLayout="column">
-				<div fxLayout="row" fxLayoutAlign="start center" class="filter">
+			<div fxLayout="row" fxLayoutAlign="start center" class="filter">
 					<div fxFlex="grow">
 						筛选：
 						<md-select placeholder="文件类型" (change)="formatChange()" [(ngModel)]="formatValue" name="formatValue">
@@ -51,41 +40,47 @@
 					</div>
 					<div fxFlex="grow">
 						<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-		        		</td-search-box>
+						</td-search-box>
 					</div>
 					<div fxFlex="grow" fxLayoutAlign="center center">
-						<button md-button (click)="openDialog({})">上传资源</button>
+						<button md-button (click)="openDialog({})">资源上传</button>
 					</div>
 				</div>
-				<div class="divider"></div>
-				<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
-				  <h3 md-subheader>{{item.name}}</h3>
-				  <md-list-item>
-				  	<i [class]="iconfont(item.format)" md-list-icon></i>
-				    <h4 md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</h4>
-				    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
-				    <div class="slot">
-				    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
-				    	<button md-button (click)="download(item.uuid)">下载</button>
-				    </div>
-				  </md-list-item>
-				  <md-divider></md-divider>
-				</md-list>
+			
+			<div class="divider"></div>
+		</div>
+			
+		<div class="content" fxLayout="row" fxLayoutAlign="start start">
+			<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
+			  <h3 md-subheader>{{item.name}}</h3>
+			  <md-list-item>
+			  	<i [class]="iconfont(item.format)" md-list-icon></i>
+			    <h4 md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</h4>
+			    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
+			    <div class="slot">
+			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
+			    	<button md-button (click)="delete(item.uuid)" *ngIf="item.sourceType == 0">删除</button>
+			    	<button md-button (click)="cancelFavorite(item.uuid)" *ngIf="!(item.sourceType == 0)">取消收藏</button>
+			    </div>
+			  </md-list-item>
+			  <md-divider></md-divider>
+			</md-list>
+			<div class="page" fxFlexFill>
 				<td-paging-bar 
 					#pagingBar 
 					[firstLast]="true" 
 					[pageSizeAll]="false" 
 					[pageSizes]="[10,20,50]"
 					pageLinkCount="5" 
-					[initialPage]="initialPage"
+					[initialPage]="1" 
 					[pageSize]="pageSize" 
-					[total]="totalCount" 
-					(change)="change($event)" fxFlex="100">
+					[total]="totalElements" 
+					(change)="change($event)">
 					<span td-paging-bar-label>每页:</span>
 					{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
 				</td-paging-bar>
 			</div>
 		</div>
 	</div>
+	
 </div>
-

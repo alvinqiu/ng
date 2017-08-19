@@ -27,6 +27,11 @@ export class DetailComponent implements OnInit {
   page: number = 1;
   totalElements: number = 0;
   postData:CommetClass;
+  user = {
+    user: {
+      
+    }
+  }
   constructor(
     private aRoute: ActivatedRoute, 
     private _service: ApiService,
@@ -39,14 +44,16 @@ export class DetailComponent implements OnInit {
     this.postData = new CommetClass();
     this.aRoute.params.subscribe((params) => {
       this._service.getResourceHttp(`/resource/${params.id}`, res => {
-        console.log(res)
         this.model = res;
         document.getElementById('app-loading').style.display = "none";
-      })
+      });
       this._service.getResourceHttp(`/resource/${params.id}/comment?page=1&pageSize=10`, res => {
         this.commentlist = res.content;
         this.totalElements = res.totalElements;
-      })
+      });
+      this._service.getBasicHttp(`/user/profile`, res => {
+        this.user = res;
+      });
     });
   }
 
@@ -72,7 +79,7 @@ export class DetailComponent implements OnInit {
     location.href = `/resource/${this.model.uuid}/download`
   }
   collection():void {
-    this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, this.postData, res => {
+    this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, {"favorite":true}, res => {
       let dialogRef = this.dialog.open(MsgComponent, {
         data:{"label":"收藏成功","msg":"", "color":"primary","icon":"success"},
         width:"60%"

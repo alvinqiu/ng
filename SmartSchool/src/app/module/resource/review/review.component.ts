@@ -1,63 +1,74 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../service/api.service';
+import { 
+  IPageChangeEvent,
+} from '@covalent/core';
 import { MdDialog } from '@angular/material';
-import { IPageChangeEvent } from '@covalent/core';
+import { ApiService } from '../../../service/api.service';
 import { UploadModalComponent } from '../public/upload-modal/upload-modal.component';
 import { fileTypeList } from '../../../config/menu';
+
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-review',
+  templateUrl: './review.component.html',
+  styleUrls: ['./review.component.css']
 })
-export class IndexComponent implements OnInit {
-  showMenu = {
-  	period:[],
-  	subject:[],
-  	version:[],
-  	textbook:[]
-  }
+export class ReviewComponent implements OnInit {
+  resourcelist:any = [];
+  userData = {};
   tree = [];
-  nodesTree = [];
+  fileTypes = [];
+  event: IPageChangeEvent;
+  firstLast: boolean = false;
+  pageSizeAll: boolean = false;
+  pageSize: number = 20;
+  page: number = 1;
+  totalElements: number = 0;
+  searchInputTerm: string = "";
+  searchReview: string = "";
+  searchStatus: string = "";
+  showMenu = {
+    period:[],
+    subject:[],
+    version:[],
+    textbook:[]
+  };
   searchMenu = {
     period:0,
     subject:0,
     version:0,
     textbook:0
-  }
-  serarchSectionId = 0;
-  resourcelist = [];
-  searchInputTerm: string = "";
-  firstLast: boolean = false;
-  initialPage: number = 1;
-  fileTypes = [];
+  };
+  reviewStatus = [{
+    value: 'UNAIDED', viewValue: '待审核'
+  },{
+    value: 'PUBLISH', viewValue: '审核通过'
+  },{
+    value: 'REJECT', viewValue: '审核失败'
+  }];
+  resourceStatus = [{
+    value: 1, viewValue: '公开资源'
+  },{
+    value: 2, viewValue: '收藏资源'
+  }];
   formatValue = "";
-  event: IPageChangeEvent;
-  pageSizeAll: boolean = false;
-  pageSize: number = 20;
-  page: number = 1;
-  totalCount: number = 0;
   constructor(
-  	private _service: ApiService,
-    public dialog: MdDialog
-  	) { }
-
+    public dialog: MdDialog,
+    private _service: ApiService
+    ) { }
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
-  	this._service.getResourceHttp('/category/tree', res => {
-	    this.fileTypes = fileTypeList;
-	  	this.showMenu.period = this.tree = res;
-	    this.searchMenu.period = this.showMenu.period.length>0?this.showMenu.period[0].id:0;
-	  	this.showMenu.subject = this.showMenu.period.length>0?this.showMenu.period[0].children:[];
-	    this.searchMenu.subject = this.showMenu.subject.length>0?this.showMenu.subject[0].id:0;
-	  	this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
-	    this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
-	    this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-	    this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-      this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
-        this.nodesTree = res
-      })
+    this._service.getResourceHttp('/category/tree', res => {
+      this.fileTypes = fileTypeList;
+      this.showMenu.period = this.tree = res;
+      this.searchMenu.period = this.showMenu.period.length>0?this.showMenu.period[0].id:0;
+      this.showMenu.subject = this.showMenu.period.length>0?this.showMenu.period[0].children:[];
+      this.searchMenu.subject = this.showMenu.subject.length>0?this.showMenu.subject[0].id:0;
+      this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
+      this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
+      this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
+      this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
       this.searchResource();
-  	})
+    })
   }
 
   periodChange(): void {
@@ -69,10 +80,7 @@ export class IndexComponent implements OnInit {
         this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
         this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
         this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-        this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
-          this.nodesTree = res
-        })
-        this.serarchSectionId = 0;
+        
         this.searchResource();
       }
     })
@@ -85,10 +93,7 @@ export class IndexComponent implements OnInit {
         this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
         this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
         this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-        this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
-          this.nodesTree = res
-        })
-        this.serarchSectionId = 0;
+        
         this.searchResource();
       }
     })
@@ -98,27 +103,16 @@ export class IndexComponent implements OnInit {
     this.showMenu.version.map( item => {
       this.showMenu.textbook = item.children;
       this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-      this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
-        this.nodesTree = res
-      })
-      this.serarchSectionId = 0;
+      
       this.searchResource();
     })
   }
 
   textbookChange(): void {
-    this._service.getResourceHttp(`/category/sections?gradeId=${this.searchMenu.textbook}`, res => {
-      this.nodesTree = res
-    })
-    this.serarchSectionId = 0;
     this.searchResource();
   }
-
-  chapterSearch(e: number) {
-    this.serarchSectionId = e;
-    this.searchResource()
-
-  }
+  
+  
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
@@ -126,20 +120,13 @@ export class IndexComponent implements OnInit {
   }
 
   handleSearch(searchInputTerm: string):void {
-    this.serarchSectionId = 0;
     this.searchInputTerm = searchInputTerm;
     this.searchResource()
   }
-
-  download(e) {
-    this._service.postBasicHttp(`/resource/${e}/download`, {uuid: e}, res => {
-
-    })
-  }
   searchResource() {
-    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
+    this._service.getResourceHttp(`/resource/audit?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
-      this.totalCount = res.totalElements;
+      this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
   }
@@ -185,4 +172,5 @@ export class IndexComponent implements OnInit {
 
     }
   }
+
 }
