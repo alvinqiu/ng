@@ -13,6 +13,7 @@ import {
   MdCardModule,
   MdCheckboxModule,
 } from '@angular/material';
+import { CookieModule } from 'ngx-cookie';
 
 import { LoginComponent } from './login.component';
 import { IndexComponent } from './index/index.component';
@@ -31,6 +32,7 @@ import { IndexComponent } from './index/index.component';
     MdAutocompleteModule,
     MdIconModule,
     MdCardModule,
+    CookieModule.forRoot(),
   ],
   declarations: [LoginComponent, IndexComponent],
   providers:[

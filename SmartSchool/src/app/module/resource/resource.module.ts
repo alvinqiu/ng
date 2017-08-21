@@ -24,6 +24,9 @@ import {
   MdDialogModule,
   MdInputModule,
   MdProgressBarModule,
+  MdSidenavModule,
+  MdButtonToggleModule,
+  MdCardModule,
 } from '@angular/material';
 import {
   CovalentPagingModule,
@@ -57,6 +60,9 @@ import { BarRatingModule } from 'ngx-bar-rating';
 	FormsModule,
 	FlexLayoutModule,
 	CovalentMessageModule,
+	MdSidenavModule,
+	MdButtonToggleModule,
+	MdCardModule,
   ],
   entryComponents: [UploadModalComponent, MsgComponent],
   declarations: [ResourceComponent, MineComponent, ReviewComponent, IndexComponent, UploadModalComponent, DetailComponent, MsgComponent]

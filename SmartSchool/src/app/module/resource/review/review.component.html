@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="container-content">
-		<div class="menu">
+		<md-card class="menu">
 			<div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px">学段:</div>
 				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
@@ -47,10 +47,9 @@
 					</div>
 				</div>
 			
-			<div class="divider"></div>
-		</div>
+		</md-card>
 			
-		<div class="content" fxLayout="column" fxLayoutAlign="start start">
+		<md-card class="content" fxLayout="column" fxLayoutAlign="start start">
 			<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
 			  <h3 md-subheader>{{item.name}}</h3>
 			  <md-list-item>
@@ -59,8 +58,8 @@
 			    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
 			    <div class="slot">
 			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
-			    	<button md-button (click)="reviewPass(item.uuid)" >审核通过</button>
-			    	<button md-button (click)="reviewFail(item.uuid)">审核失败</button>
+			    	<button md-button (click)="reviewPass(item.uuid)" ><i class="material-icons primary">done</i>审核通过</button>
+			    	<button md-button (click)="reviewFail(item.uuid)"><i class="material-icons red">clear</i>审核失败</button>
 			    </div>
 			  </md-list-item>
 			  <md-divider></md-divider>
@@ -80,7 +79,7 @@
 					{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
 				</td-paging-bar>
 			</div>
-		</div>
+		</md-card>
 	</div>
 	
 </div>

@@ -6,10 +6,10 @@
 				<img src="{{item}}" alt="" *ngFor="let item of model.previews; let i = index;">
 			</div>
 			<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
-				<button md-button (click)="download()">下载</button>
-				<button md-button (click)="collection()">收藏</button>
-				<button md-button (click)="reviewPass()" *ngIf="user.user.roleId == 1 || user.user.roleId == 0 ">审核通过</button>
-				<button md-button (click)="reviewFailed()" *ngIf="user.user.roleId == 1 || user.user.roleId == 0 ">审核失败</button>
+				<button md-button (click)="download()"><i class="material-icons blue">file_download</i>资源下载</button>
+				<button md-button (click)="collection()"><i class="material-icons orange">bookmark</i>资源收藏</button>
+				<button md-button (click)="reviewPass()" *ngIf="user.user.roleId == 1 || user.user.roleId == 2 "><i class="material-icons primary">done</i>审核通过</button>
+				<button md-button (click)="reviewFailed()" *ngIf="user.user.roleId == 1 || user.user.roleId == 2 "><i class="material-icons red">clear</i>审核失败</button>
 			</div>
 		</div>
 		<div fxFlexFill>
@@ -19,7 +19,7 @@
 					<div class="divider"></div>
 					<md-list *ngFor="let item of commentlist; let i = index;">
 						<md-list-item >
-							<img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar">
+							<!-- <img md-list-icon src="../../../../assets/img/header.jpeg" class="avatar"> -->
 							<h4 md-line>{{item.nickname}}</h4>
 							<p md-line> {{item.content}} </p>
 							<div class="slot" fxLayout="column">

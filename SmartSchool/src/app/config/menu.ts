@@ -97,85 +97,79 @@ export const Menu = [{
 	"id": "basic",
 	"name": "基础信息管理",
 	"children": [{
-		"icon": "class",
+		"icon": "account_circle",
 		"name": "个人中心",
 		"url": "/app/basic/personal",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "people",
 		"name": "教职工信息",
 		"url": "/app/basic/staffs",
-		"description": "建设中..."
+		"description": ""
 	},
-	// {
-	// 	"icon":"school",
-	// 	"name":"部门管理",
-	// 	"url":"/app/basic/departs",
-	// 	"description": "建设中..."
-	// },
 	{
-		"icon": "subject",
+		"icon": "account_balance",
 		"name": "教学楼管理",
 		"url": "/app/basic/buildings",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "class",
+		"icon": "local_post_office",
 		"name": "教室办公室管理",
 		"url": "/app/basic/offices",
-		"description": "建设中..."
+		"description": ""
 	}, {
 		"icon": "subject",
 		"name": "学科管理",
 		"url": "/app/basic/subjects",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "subject",
+		"icon": "golf_course",
 		"name": "课程管理",
 		"url": "/app/basic/course",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "class",
+		"icon": "grade",
 		"name": "年级管理",
 		"url": "/app/basic/grades",
-		"description": "建设中..."
+		"description": ""
 	}, {
 		"icon": "class",
 		"name": "班级管理",
 		"url": "/app/basic/classes",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "class",
+		"icon": "lock",
 		"name": "密码管理",
 		"url": "/app/basic/password",
-		"description": "建设中..."
+		"description": ""
 	}]
 }, {
 	"id": "resource",
 	"name": "资源管理",
 	"children": [{
-		"icon": "school",
+		"icon": "cloud",
 		"name": "智慧云网盘",
 		"url": "/app/resource/index",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "my_location",
 		"name": "我的资源",
 		"url": "/app/resource/mine",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "rate_review",
 		"name": "资源审核",
 		"url": "/app/resource/review",
-		"description": "建设中..."
+		"description": ""
 	}]
 }, {
 	"id": "resource",
 	"name": "资产管理",
 	"children": [{
-		"icon": "school",
+		"icon": "web_asset",
 		"name": "资产管理",
 		"url": "/app/assets/index",
-		"description": "建设中..."
+		"description": ""
 	}]
 }
 
@@ -186,29 +180,29 @@ export const MenuTeacher = [{
 	"name": "基础信息管理",
 	"children": [
 		{
-			"icon": "class",
+			"icon": "account_circle",
 			"name": "个人中心",
 			"url": "/app/basic/personal",
-			"description": "建设中..."
+			"description": ""
 		}, {
-			"icon": "class",
+			"icon": "lock",
 			"name": "密码管理",
 			"url": "/app/basic/password",
-			"description": "建设中..."
+			"description": ""
 		}]
 }, {
 	"id": "resource",
 	"name": "资源管理",
 	"children": [{
-		"icon": "school",
+		"icon": "cloud",
 		"name": "智慧云网盘",
 		"url": "/app/resource/index",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "my_location",
 		"name": "我的资源",
 		"url": "/app/resource/mine",
-		"description": "建设中..."
+		"description": ""
 	}]
 }]
 
@@ -216,53 +210,53 @@ export const MenuSuper = [{
 	"id": "basic",
 	"name": "基础信息管理",
 	"children": [{
-		"icon": "class",
+		"icon": "account_circle",
 		"name": "个人中心",
 		"url": "/app/basic/personal",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "people",
 		"name": "教职工信息",
 		"url": "/app/basic/staffs",
-		"description": "建设中..."
+		"description": ""
 	}, {
 		"icon": "school",
 		"name": "学校管理",
 		"url": "/app/basic/schools",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "class",
+		"icon": "lock",
 		"name": "密码管理",
 		"url": "/app/basic/password",
-		"description": "建设中..."
+		"description": ""
 	}]
 }, {
 	"id": "resource",
 	"name": "资源管理",
 	"children": [{
-		"icon": "school",
+		"icon": "cloud",
 		"name": "智慧云网盘",
 		"url": "/app/resource/index",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "my_location",
 		"name": "我的资源",
 		"url": "/app/resource/mine",
-		"description": "建设中..."
+		"description": ""
 	}, {
-		"icon": "school",
+		"icon": "rate_review",
 		"name": "资源审核",
 		"url": "/app/resource/review",
-		"description": "建设中..."
+		"description": ""
 	}]
 }, {
 	"id": "resource",
 	"name": "资产管理",
 	"children": [{
-		"icon": "school",
+		"icon": "web_asset",
 		"name": "资产管理",
 		"url": "/app/assets/index",
-		"description": "建设中..."
+		"description": ""
 	}]
 }, {
 	"id": "shedule",
@@ -271,7 +265,7 @@ export const MenuSuper = [{
 		"icon": "school",
 		"name": "走班排课",
 		"url": "",
-		"description": "建设中..."
+		"description": ""
 	}]
 }
 

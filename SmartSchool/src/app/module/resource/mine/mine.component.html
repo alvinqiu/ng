@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="container-content">
-		<div class="menu">
+		<md-card class="menu">
 			<div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px">学段:</div>
 				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
@@ -46,11 +46,9 @@
 						<button md-button (click)="openDialog({})">资源上传</button>
 					</div>
 				</div>
+		</md-card>
 			
-			<div class="divider"></div>
-		</div>
-			
-		<div class="content" fxLayout="column" fxLayoutAlign="start start">
+		<md-card class="content" fxLayout="column" fxLayoutAlign="start start">
 			<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
 			  <h3 md-subheader>{{item.name}}</h3>
 			  <md-list-item>
@@ -60,9 +58,9 @@
 			    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
 			    <p md-line>资源状态：{{filterStatus(item.status)}} </p>
 			    <div class="slot">
-			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
-			    	<button md-button (click)="delete(item.uuid)" *ngIf="item.sourceType == 0">删除</button>
-			    	<button md-button (click)="cancelFavorite(item.uuid)" *ngIf="!(item.sourceType == 0)">取消收藏</button>
+			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}"><i class="material-icons primary">view_module</i>资源预览</a>
+			    	<button md-button (click)="delete(item.uuid)" *ngIf="item.sourceType == 0"><i class="material-icons red">delete_forever</i>资源删除</button>
+			    	<button md-button (click)="cancelFavorite(item.uuid)" *ngIf="!(item.sourceType == 0)"><i class="material-icons orange">cancel</i>取消收藏</button>
 			    </div>
 			  </md-list-item>
 			  <md-divider></md-divider>
@@ -82,7 +80,7 @@
 					{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
 				</td-paging-bar>
 			</div>
-		</div>
+		</md-card>
 	</div>
 	
 </div>

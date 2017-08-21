@@ -1,27 +1,50 @@
 
-<div class="menus-container light-speed-in">
-	<div *ngFor="let item of Menu; let i = index;" fxLayout="row" fxLayoutAlign="start center">
+<div class="menus-container light-speed-in" fxLayout="row" fxLayoutAlign="center start">
+	<div class="menus-container-container">
+		<div *ngFor="let item of Menu; let i = index;" fxLayout="row" fxLayoutAlign="start center">
 
-		<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap fxFlex="100">
-			<div fxFlex="100">
-				<md-chip-list >
-				  <md-chip class="title" color="primary" selected="true">
-						{{item.name}}
-				  </md-chip>
-				</md-chip-list>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap fxFlex="100">
+				<div fxFlex="100">
+					<md-chip-list >
+					  <md-chip class="title" color="primary" selected="true">
+							{{item.name}}
+					  </md-chip>
+					</md-chip-list>
+				</div>
+				
+				<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
+					<md-card >
+						<a md-button routerLink="{{child.url}}">
+							<md-icon>{{child.icon}}</md-icon>
+							<span>{{child.name}}</span>
+							<div>{{child.description}}</div>
+						</a>
+					</md-card>
+				</div>
 			</div>
-			
-			<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
-				<md-card >
-					<a md-button routerLink="{{child.url}}">
-						<md-icon>{{child.icon}}</md-icon>
-						<span>{{child.name}}</span>
-						<div>{{child.description}}</div>
-					</a>
-				</md-card>
+		</div>	
+		<div *ngIf="user.user.roleId == 1 || user.user.roleId == 2">
+
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap fxFlex="100">
+				<div fxFlex="100">
+					<md-chip-list >
+					  <md-chip class="title" color="primary" selected="true">
+							排课系统
+					  </md-chip>
+					</md-chip-list>
+				</div>
+				<div class="card-container" fxFlex="20">
+					<md-card >
+						<a md-button routerLink="{{link}}">
+							<md-icon>date_range</md-icon>
+							<span>走班排课</span>
+						</a>
+					</md-card>
+				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 </div>
 
 

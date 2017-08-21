@@ -65,13 +65,20 @@ app-root {
 }
 
 app-homepage {
-	app-menus {
+	apps {
 		display: flex;
 	    justify-content: center;
 	}
 }
 
-
+.rememberme {
+	.mat-checkbox-layout {
+		.mat-checkbox-inner-container {
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
 // divider
 .divider {
 	width: 100%;
@@ -145,6 +152,7 @@ image-upload {
 .iconfont.icon-file {
 	color: #e65100;
 }
+
 
 //msg
 td-message {
@@ -222,6 +230,111 @@ td-expansion-panel {
 }
 // stars
 
+.menu {
+	margin: 16px 0px;
+	md-radio-group {
+		// padding: 16px 0px;
+		height: 41px;
+    	overflow: hidden;
+	}
+	.mat-radio-button {
+		position: relative;
+		margin-right: 8px;
+		margin-bottom: 8px;
+	}
+	 .mat-radio-container {
+		position: static;
+		width: auto;
+		height: auto;
+	}
+	 .mat-radio-label {
+		position: relative;
+		padding: 6px 24px;
+	}
+	 .mat-radio-inner-circle {
+		display: none;
+	}
+	 .mat-radio-outer-circle {
+		top: 0px;
+	    right: 0px;
+	    bottom: 0px;
+	    left: 0px;
+	    border-radius: 0px;
+	    width: auto;
+	    height: auto;
+	}
+	 .mat-radio-label-content {
+		padding: 0px;
+	}
+	 .mat-radio-ripple {
+		border-radius: 0px;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+	}
+	md-radio-group.height-auto {
+		height: auto;
+	}
+	// .height {
+	// 	height: 41px;
+	// 	overflow: hidden;
+	// }
+	// .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+	// 	border-color: #009688;
+	// }
+}
+ 
+.content {
+	md-sidenav {
+		padding: 8px;
+		width: 245px;
+	}
+	.filter {
+		margin-bottom: 40px;
+	}
+	.mat-sidenav-content {
+		padding: 8px;
+		background: white;
+	}
+	.mat-list .mat-subheader {
+		color: #246ac9;
+		height: 32px;
+		line-height: 32px;
+		font-size: 16px;
+		padding: 0px;
+	}
+	.mat-list .mat-subheader:first-child {
+		margin: 0px;
+	}
+	.mat-list .mat-list-item .mat-list-text>*,
+	.mat-list .mat-list-item .mat-line:nth-child(n+2) {
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.54);
+	}
+	.tree {
+		tree-node-content {
+			display: flex;
+			md-icon {
+				margin-right: 8px;
+				color: #dca400;
+			}
+		}
+	}
+}
+
+.primary {
+	color: #009688;
+}
+.blue {
+	color: #0277bd;
+}
+.orange {
+	color: #ffb300;
+}
+.red {
+	color: #c62828;
+}
 // loading animate
 #app-loading {
 	opacity: 100;

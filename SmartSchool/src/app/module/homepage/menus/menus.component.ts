@@ -14,7 +14,12 @@ import { ApiService } from '../../../service/api.service';
 })
 export class MenusComponent implements OnInit {
   Menu = [];
-  user = new UserClass();
+  user = {
+    user: {
+      roleId:3
+    }
+  }
+  link = "";
   constructor(
     private _service: ApiService,
     private _utilservice: UtilService,
@@ -23,7 +28,8 @@ export class MenusComponent implements OnInit {
   
   ngOnInit() {
     this._service.getBasicHttp("/user/profile", res => {
-      
+      this.user = res;
+      this.link = `/paike/pk/login/login.do?schoolId=${res.user.schoolId}&userId=${res.user.id}`;
       switch (res.user.roleId) {
         case 1:
           this.Menu = MenuSuper;
