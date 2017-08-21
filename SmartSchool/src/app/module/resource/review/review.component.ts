@@ -6,7 +6,7 @@ import { MdDialog } from '@angular/material';
 import { ApiService } from '../../../service/api.service';
 import { UploadModalComponent } from '../public/upload-modal/upload-modal.component';
 import { fileTypeList } from '../../../config/menu';
-
+import { MsgComponent } from '../public/msg/msg.component';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -123,8 +123,28 @@ export class ReviewComponent implements OnInit {
     this.searchInputTerm = searchInputTerm;
     this.searchResource()
   }
+
+  reviewPass(itemId: number): void {
+    this._service.postResourceHttp(`/resource/${itemId}/audit`, {"status":"PUBLISH","note":"同意发布"}, res => {
+      let dialogRef = this.dialog.open(MsgComponent, {
+        data:{"label":"审核成功","msg":"", "color":"primary","icon":"success"},
+        width:"60%"
+      });
+      this.searchResource();
+    })
+  }
+
+  reviewFail(itemId: number): void {
+    this._service.postResourceHttp(`/resource/${itemId}/audit`, {"status":"REJECT","note":"拒绝发布"}, res => {
+      let dialogRef = this.dialog.open(MsgComponent, {
+        data:{"label":"审核成功","msg":"", "color":"primary","icon":"success"},
+        width:"60%"
+      });
+      this.searchResource();
+    })
+  }
   searchResource() {
-    this._service.getResourceHttp(`/resource/audit?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
+    this._service.getResourceHttp(`/resource/audit?status=UNAIDED&keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";

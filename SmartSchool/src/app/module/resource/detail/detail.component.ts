@@ -29,7 +29,7 @@ export class DetailComponent implements OnInit {
   postData:CommetClass;
   user = {
     user: {
-      
+      roleId:3
     }
   }
   constructor(

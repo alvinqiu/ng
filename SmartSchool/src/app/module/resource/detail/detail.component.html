@@ -9,7 +9,7 @@
 				<button md-button (click)="download()">下载</button>
 				<button md-button (click)="collection()">收藏</button>
 				<button md-button (click)="reviewPass()" *ngIf="user.user.roleId == 1 || user.user.roleId == 0 ">审核通过</button>
-				<button md-button (click)="reviewFailed()" *ngIf="true ">审核失败</button>
+				<button md-button (click)="reviewFailed()" *ngIf="user.user.roleId == 1 || user.user.roleId == 0 ">审核失败</button>
 			</div>
 		</div>
 		<div fxFlexFill>

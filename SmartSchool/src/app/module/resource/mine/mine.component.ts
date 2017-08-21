@@ -128,7 +128,16 @@ export class MineComponent implements OnInit {
 
 
   }
-  
+  filterStatus(v) {
+    switch(v){
+      case 'REJECT':
+        return '审核失败';
+      case 'PUBLISH':
+        return '审核通过'
+      default:
+        return "待审核"
+    }
+  }
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;

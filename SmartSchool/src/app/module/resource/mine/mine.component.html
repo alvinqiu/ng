@@ -56,7 +56,9 @@
 			  <md-list-item>
 			  	<i [class]="iconfont(item.format)" md-list-icon></i>
 			    <h4 md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</h4>
+
 			    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
+			    <p md-line>资源状态：{{filterStatus(item.status)}} </p>
 			    <div class="slot">
 			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
 			    	<button md-button (click)="delete(item.uuid)" *ngIf="item.sourceType == 0">删除</button>

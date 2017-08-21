@@ -7,7 +7,6 @@ import {
   TdDialogService
 } from '@covalent/core';
 import { ApiService } from '../../../../service/api.service';
-import { MsgmodalComponent } from '../../../basic/public/msgmodal/msgmodal.component';
 import { SupplierAddModalComponent } from '../supplier-add-modal/supplier-add-modal.component';
 
 @Component({
@@ -49,10 +48,7 @@ export class SupplierModalComponent implements OnInit {
   }
   delete(): void {
     if (this.selectedRows.length == 0) {
-      let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data: { "label": "错误", "msg": "请选择要删除的信息", "color": "accent", "icon": "error" },
-        width: "40%"
-      });
+      console.log();
     } else {
       this._service
         .postAssetsDelHttp(`/equipment-supplier/${this.selectedRows[0].id}`, (response: any) => { this.ngOnInit(); });

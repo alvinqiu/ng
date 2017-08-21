@@ -43,7 +43,6 @@ import { SupplierModalComponent } from './public/supplier-modal/supplier-modal.c
 import { SpecificComponent } from './specific/specific.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
-import { MsgmodalComponent } from '../basic/public/msgmodal/msgmodal.component';
 import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-add-modal.component';
 @NgModule({
   imports: [
@@ -87,7 +86,6 @@ import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-
     SupplierModalComponent,
     CreateQrCodeModalComponent,
     StockHistoryModalComponent,
-    MsgmodalComponent,
     SupplierAddModalComponent
   ],
   providers: [

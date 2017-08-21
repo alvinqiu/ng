@@ -16,7 +16,6 @@ import { ApiService } from '../../../service/api.service';
 import { CreateQrCodeModalComponent } from '../public/create-qr-code-modal/create-qr-code-modal.component';
 import { InOutStockModalComponent } from '../public/in-out-stock-modal/in-out-stock-modal.component';
 import { StockHistoryModalComponent } from '../public/stock-history-modal/stock-history-modal.component';
-import { MsgmodalComponent } from '../../basic/public/msgmodal/msgmodal.component';
 
 @Component({
   selector: 'app-specific',
@@ -156,10 +155,7 @@ export class SpecificComponent implements OnInit {
 
   openConfirm(status: any): void {
     if (this.selectedRows.length == 0) {
-      let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data: { "label": "错误", "msg": "请选择要变更状态的数据", "color": "accent", "icon": "error" },
-        width: "40%"
-      });
+      console.log();
     } else {
       this._dialogService.openConfirm({
         message: '确认更改为此状态吗?',

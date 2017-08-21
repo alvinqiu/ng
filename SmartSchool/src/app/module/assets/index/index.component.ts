@@ -30,7 +30,7 @@ export class IndexComponent implements OnInit {
     { name: 'outStockCount', label: '使用数' },
     { name: 'stockCount', label: '库存数' },
     { name: 'price', label: '单价(元)' },
-    { name: 'price', label: '总价(元)' },
+    // { name: 'price', label: '总价(元)' },
     { name: 'purchaseDate', label: '购买时间' },
   ];
 
@@ -147,9 +147,9 @@ export class IndexComponent implements OnInit {
         { name: 'brand', label: '品牌' },
         { name: 'model', label: '规格型号' },
         { name: 'supplierName', label: '供应商' },
-        { name: 'validTotalQuantity', label: '总数量' },
+        { name: 'invalidTotalQuantity', label: '总数量' },
         { name: 'price', label: '单价(元)' },
-        { name: 'price', label: '总价(元)' },
+        // { name: 'price', label: '总价(元)' , },
         { name: 'purchaseDate', label: '购买时间' },
       ];
       // 查询已报废资产      
@@ -170,7 +170,7 @@ export class IndexComponent implements OnInit {
         { name: 'outStockCount', label: '使用数' },
         { name: 'stockCount', label: '库存数' },
         { name: 'price', label: '单价(元)' },
-        { name: 'price', label: '总价(元)' },
+        // { name: 'price', label: '总价(元)', filter: true},
         { name: 'purchaseDate', label: '购买时间' },
       ];
 
@@ -189,7 +189,12 @@ export class IndexComponent implements OnInit {
         this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
+         this.filter();
       });
+  }
+
+  filter(): void {
+
   }
 
 }

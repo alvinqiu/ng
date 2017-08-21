@@ -13,6 +13,9 @@
 	min-width: 275px;
 	padding-bottom: 3px;
 }
+.mat-list {
+	width: 100%;
+}
 md-radio-button {
 	margin-left: 8px;
 	margin-bottom: 8px;
