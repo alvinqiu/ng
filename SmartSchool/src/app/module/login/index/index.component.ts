@@ -31,7 +31,7 @@ export class IndexComponent implements OnInit {
       this._cookieService.remove("useraccount")
     }
   	this._service.postBasicHttp(`/login`, this.model, res => {
-  		this.router.navigate(['/app/homepage']);
+  		this.router.navigate(['app/resource']);
   	})
   }
 

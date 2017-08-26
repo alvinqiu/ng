@@ -3,11 +3,11 @@
 		<div fxFlexFill>
 			<h2 class="text-center">{{model.name}}</h2>
 			<div class="preview" *ngIf="model">
-				<img src="{{item}}" alt="" *ngFor="let item of model.previews; let i = index;">
+				<img src="{{item}}" alt="" *ngFor="let item of previews.previews; let i = index;">
 			</div>
 			<div fxLayout="func" fxLayoutAlign="center center" fxFlexFill>
 				<button md-button (click)="download()"><i class="material-icons blue">file_download</i>资源下载</button>
-				<button md-button (click)="collection()"><i class="material-icons orange">bookmark</i>资源收藏</button>
+				<button md-button (click)="collection()" *ngIf="model.sourceType != 1"><i class="material-icons orange">bookmark</i>资源收藏</button>
 				<button md-button (click)="reviewPass()" *ngIf="user.user.roleId == 1 || user.user.roleId == 2 "><i class="material-icons primary">done</i>审核通过</button>
 				<button md-button (click)="reviewFailed()" *ngIf="user.user.roleId == 1 || user.user.roleId == 2 "><i class="material-icons red">clear</i>审核失败</button>
 			</div>

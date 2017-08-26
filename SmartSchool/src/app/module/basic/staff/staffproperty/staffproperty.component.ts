@@ -88,18 +88,15 @@ export class StaffpropertyComponent implements OnInit {
     });
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
   }
 
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event)
   }
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
 
 }

@@ -9,6 +9,7 @@ export class ResourceClass {
 	note:string;
 	name:string;
 	previews:Array<string>;
+	sourceType: number;
 	constructor() {
 		this.authorName = "";
 		this.createTime = "";
@@ -19,5 +20,6 @@ export class ResourceClass {
 		this.note = "";
 		this.name = "";
 		this.previews = [];
+		this.sourceType = 0;
 	}
 }

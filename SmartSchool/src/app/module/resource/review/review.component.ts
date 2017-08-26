@@ -26,18 +26,7 @@ export class ReviewComponent implements OnInit {
   searchInputTerm: string = "";
   searchReview: string = "";
   searchStatus: string = "";
-  showMenu = {
-    period:[],
-    subject:[],
-    version:[],
-    textbook:[]
-  };
-  searchMenu = {
-    period:0,
-    subject:0,
-    version:0,
-    textbook:0
-  };
+  status: string = "UNAIDED";
   reviewStatus = [{
     value: 'UNAIDED', viewValue: '待审核'
   },{
@@ -57,62 +46,71 @@ export class ReviewComponent implements OnInit {
     ) { }
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp('/category/tree', res => {
-      this.fileTypes = fileTypeList;
-      this.showMenu.period = this.tree = res;
-      this.searchMenu.period = this.showMenu.period.length>0?this.showMenu.period[0].id:0;
-      this.showMenu.subject = this.showMenu.period.length>0?this.showMenu.period[0].children:[];
-      this.searchMenu.subject = this.showMenu.subject.length>0?this.showMenu.subject[0].id:0;
-      this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
-      this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
-      this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-      this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-      this.searchResource();
-    })
+    this.fileTypes = fileTypeList;
+    this.searchResource();
+    // this._service.getResourceHttp('/category/tree', res => {
+    //   this.fileTypes = fileTypeList;
+    //   this.showMenu.period = this.tree = res;
+    //   this.searchMenu.period = this.showMenu.period.length>0?this.showMenu.period[0].id:0;
+    //   this.showMenu.subject = this.showMenu.period.length>0?this.showMenu.period[0].children:[];
+    //   this.searchMenu.subject = this.showMenu.subject.length>0?this.showMenu.subject[0].id:0;
+    //   this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
+    //   this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
+    //   this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
+    //   this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
+    //   this.searchResource();
+    // })
   }
 
-  periodChange(): void {
-    this.showMenu.period.map( item => {
-      if (item.id == this.searchMenu.period) {
-        this.showMenu.subject = item.children;
-        this.searchMenu.subject = this.showMenu.subject.length > 0?this.showMenu.subject[0].id: 0;
-        this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
-        this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
-        this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
+  // periodChange(): void {
+  //   this.showMenu.period.map( item => {
+  //     if (item.id == this.searchMenu.period) {
+  //       this.showMenu.subject = item.children;
+  //       this.searchMenu.subject = this.showMenu.subject.length > 0?this.showMenu.subject[0].id: 0;
+  //       this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
+  //       this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
+  //       this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
+  //       this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
         
-        this.searchResource();
-      }
-    })
-  }
+  //       this.searchResource();
+  //     }
+  //   })
+  // }
 
-  subjectChange(): void {
-    this.showMenu.subject.map( item => {
-      if (item.id == this.searchMenu.subject) {
-        this.showMenu.version = item.children;
-        this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
-        this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
+  // subjectChange(): void {
+  //   this.showMenu.subject.map( item => {
+  //     if (item.id == this.searchMenu.subject) {
+  //       this.showMenu.version = item.children;
+  //       this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
+  //       this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
+  //       this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
         
-        this.searchResource();
-      }
-    })
-  }
+  //       this.searchResource();
+  //     }
+  //   })
+  // }
 
-  versionChange(): void {
-    this.showMenu.version.map( item => {
-      this.showMenu.textbook = item.children;
-      this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
+  // versionChange(): void {
+  //   this.showMenu.version.map( item => {
+  //     this.showMenu.textbook = item.children;
+  //     this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
       
-      this.searchResource();
-    })
-  }
+  //     this.searchResource();
+  //   })
+  // }
 
-  textbookChange(): void {
+  // textbookChange(): void {
+  //   this.searchResource();
+  // }
+  
+  statusChange() {
     this.searchResource();
   }
-  
-  
+  download(e) {
+    this._service.getBasicHttp(`/resource/${e}/download`, res => {
+
+    })
+  }
   change(event: IPageChangeEvent): void {
     this.page = event.page;
     this.pageSize = event.pageSize;
@@ -127,7 +125,7 @@ export class ReviewComponent implements OnInit {
   reviewPass(itemId: number): void {
     this._service.postResourceHttp(`/resource/${itemId}/audit`, {"status":"PUBLISH","note":"同意发布"}, res => {
       let dialogRef = this.dialog.open(MsgComponent, {
-        data:{"label":"审核成功","msg":"", "color":"primary","icon":"success"},
+        data:{"label":"审核通过成功","msg":"", "color":"primary","icon":"success"},
         width:"60%"
       });
       this.searchResource();
@@ -137,14 +135,14 @@ export class ReviewComponent implements OnInit {
   reviewFail(itemId: number): void {
     this._service.postResourceHttp(`/resource/${itemId}/audit`, {"status":"REJECT","note":"拒绝发布"}, res => {
       let dialogRef = this.dialog.open(MsgComponent, {
-        data:{"label":"审核成功","msg":"", "color":"primary","icon":"success"},
+        data:{"label":"审核不通过成功","msg":"", "color":"primary","icon":"success"},
         width:"60%"
       });
       this.searchResource();
     })
   }
   searchResource() {
-    this._service.getResourceHttp(`/resource/audit?status=UNAIDED&keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
+    this._service.getResourceHttp(`/resource/audit?status=${this.status}&keyword=${this.searchInputTerm}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalElements = res.totalElements;
       document.getElementById('app-loading').style.display = "none";

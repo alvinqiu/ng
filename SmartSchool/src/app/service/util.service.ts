@@ -6,7 +6,6 @@ export class UtilService {
   constructor() { }
 
   getMenuObject(e:any):any {
-  	console.log(e)
   	return e;
   }
 

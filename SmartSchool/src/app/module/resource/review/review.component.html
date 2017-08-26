@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="container-content">
 		<md-card class="menu">
-			<div fxLayout="row" fxLayoutAlign="start start" >
+			<!-- <div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px">学段:</div>
 				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
 				  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.period; let o = index;">{{child.name}}</md-radio-button>
@@ -27,6 +27,12 @@
 				<md-radio-group [(ngModel)]="searchMenu.textbook" name="textbook" (change)="textbookChange()">
 				  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.textbook; let o = index;">{{child.name}}</md-radio-button>
 				</md-radio-group>
+			</div> -->
+			<div fxLayout="row" fxLayoutAlign="start start">
+				<div fxFlex="80px">审核状态</div>
+				<md-radio-group [(ngModel)]="status" name="status" (change)="statusChange()">
+				  <md-radio-button value="{{child.value}}" *ngFor="let child of reviewStatus; let o = index;">{{child.viewValue}}</md-radio-button>
+				</md-radio-group>
 			</div>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start center" class="filter">
@@ -42,9 +48,9 @@
 						<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
 						</td-search-box>
 					</div>
-					<div fxFlex="grow" fxLayoutAlign="center center">
+					<!-- <div fxFlex="grow" fxLayoutAlign="center center">
 						<button md-button (click)="openDialog({})">资源上传</button>
-					</div>
+					</div> -->
 				</div>
 			
 		</md-card>
@@ -57,7 +63,8 @@
 			    <h4 md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</h4>
 			    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
 			    <div class="slot">
-			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}">预览</a>
+			    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}"><i class="material-icons primary">view_module</i>资源预览</a>
+			    	<button md-button (click)="download(item.uuid)"><i class="material-icons blue">file_download</i>资源下载</button>
 			    	<button md-button (click)="reviewPass(item.uuid)" ><i class="material-icons primary">done</i>审核通过</button>
 			    	<button md-button (click)="reviewFail(item.uuid)"><i class="material-icons red">clear</i>审核失败</button>
 			    </div>

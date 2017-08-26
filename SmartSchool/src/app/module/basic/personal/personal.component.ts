@@ -87,15 +87,12 @@ export class PersonalComponent implements OnInit {
     });
   }
   imageFinishedUploading(e: any) {
-    console.log("imageFinishedUploading " + e);
     this.headImg = e;
   }
   imageRemoved(e: any) {
-    console.log("imageRemoved " + e);
     this.headImg = [];
   }
   uploadStateChange(e: any) {
-    console.log("uploadStateChange " + e);
   }
   save() {
     this._service.postBasicHttp(`/user/uploadFile/`, this.headImg, res => {

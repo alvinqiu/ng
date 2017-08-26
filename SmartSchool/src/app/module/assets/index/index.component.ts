@@ -52,7 +52,6 @@ export class IndexComponent implements OnInit {
   ) { }
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event);
   }
   openDialog(condition: any): void {
     let dialogRef = null;
@@ -132,13 +131,11 @@ export class IndexComponent implements OnInit {
   }
 
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    // console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }
 
   changeTabs(e: any) {
-    // console.log(e);
     if (e.index === 1) {
       this.columns = [
         { name: 'id', label: '序号' },

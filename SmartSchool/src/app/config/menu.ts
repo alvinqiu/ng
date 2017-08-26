@@ -148,7 +148,7 @@ export const Menu = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
@@ -161,6 +161,11 @@ export const Menu = [{
 		"name": "资源审核",
 		"url": "/app/resource/review",
 		"description": ""
+	},{
+		"icon": "book",
+		"name": "数字图书",
+		"url": "http://localhost:9000",
+		"description": ""
 	}]
 }, {
 	"id": "resource",
@@ -171,9 +176,7 @@ export const Menu = [{
 		"url": "/app/assets/index",
 		"description": ""
 	}]
-}
-
-]
+}]
 
 export const MenuTeacher = [{
 	"id": "basic",
@@ -195,7 +198,7 @@ export const MenuTeacher = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
@@ -235,7 +238,7 @@ export const MenuSuper = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
@@ -267,6 +270,4 @@ export const MenuSuper = [{
 		"url": "",
 		"description": ""
 	}]
-}
-
-]
+}]

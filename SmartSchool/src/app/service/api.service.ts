@@ -15,9 +15,9 @@ if (environment.production) {
 	// domain = "http://www.marchezvousblue.cn/auth";
  //  domainAssets = "http://www.marchezvousblue.cn/auth";
  //  domainResource = "http://dev.slothtek.com:8081/";
-  domain = "http://www.marchezvousblue.cn";
-  domainAssets = "http://www.marchezvousblue.cn";
-  domainResource = "http://www.marchezvousblue.cn";
+  // domain = "http://www.marchezvousblue.cn";
+  // domainAssets = "http://www.marchezvousblue.cn";
+  // domainResource = "http://www.marchezvousblue.cn";
 }
 
 
@@ -33,10 +33,10 @@ export class ApiService {
                .get(domain+url)
                .toPromise()
                .then(res => {
+                 
                  callback && callback(res.json());
                })
                .catch(e => {
-                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                });
   }
@@ -140,7 +140,6 @@ export class ApiService {
     return this._http.get(domainResource+url).toPromise().then(response => {
       callback && callback(response.json())
     }).catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
     });
   }
@@ -153,7 +152,6 @@ export class ApiService {
         callback && callback(response.json())
       })
       .catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
       });
   }
@@ -166,7 +164,6 @@ export class ApiService {
         callback && callback(response.json())
       })
       .catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
       });
   }

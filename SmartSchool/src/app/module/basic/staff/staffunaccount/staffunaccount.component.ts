@@ -23,7 +23,7 @@ export class StaffunaccountComponent implements OnInit {
     { name: 'staffCode', label: '教职工编号' },
     { name: 'staffName', label: '姓名' },
     { name: 'passNumber', label: '证件号' },
-    { name: 'birthDate', label: '出生年月', format: v => v ? `${new Date(v)}` : '' },
+    { name: 'birthDate', label: '出生年月', format: v => v ? `${new Date(v).getFullYear()}-${new Date(v).getMonth()+1}-${new Date(v).getDay()}` : '' },
     {
       name: 'gender', label: '性别',
       format: v => {
@@ -90,8 +90,7 @@ export class StaffunaccountComponent implements OnInit {
   }
 
   selectEvent(e: any): any {
-    console.log(e)
-    console.log(this.selectedRows)
+
   }
 
   openDialog(condition: any): void {
@@ -150,7 +149,6 @@ export class StaffunaccountComponent implements OnInit {
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
 
   searchByDepartment(e): void {
@@ -182,12 +180,17 @@ export class StaffunaccountComponent implements OnInit {
             data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
             width: "60%"
           });
+          this._service
+            .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+              this.basicData = response.entries;
+              this.totalCount = response.totalCount;
+            });
         });
     }
   }
   resetPassword() {
     if (this.selectedRows.length > 0) {
-      let reqlist = this.selectedRows.map(item => item.id);
+      let reqlist = this.selectedRows.map(item => item.staffCode);
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
 
       this._service
@@ -221,10 +224,15 @@ export class StaffunaccountComponent implements OnInit {
             data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
             width: "60%"
           });
+          this._service
+          .getBasicHttp(`/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`, (response: any) => {
+            this.basicData = response.entries;
+            this.totalCount = response.totalCount;
+          });
         });
     } else {
       let dialogRef = this.dialog.open(MsgmodalComponent, {
-        data: { "label": "错误", "msg": "请选择要一条信息", "color": "accent", "icon": "error" },
+        data: { "label": "错误", "msg": "请选择一条信息", "color": "accent", "icon": "error" },
         width: "60%"
       });
     }

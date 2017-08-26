@@ -38,7 +38,6 @@ export class InOutStockModalComponent implements OnInit {
   }
 
   changeStaff() {
-    console.log("changeStaff");
 
     this._service
       .getBasicHttp(`/api/bi/staff/getStaffByCondition?staffName=${this.specific.staffName}`, (response: any) => {

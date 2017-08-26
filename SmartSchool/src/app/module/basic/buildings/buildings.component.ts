@@ -78,8 +78,7 @@ export class BuildingsComponent implements OnInit {
   }
 
   selectEvent(e:any):any {
-  	console.log(e)
-  	console.log(this.selectedRows)
+  	
   }
 
   openDialog(condition:any):void {
@@ -157,10 +156,8 @@ export class BuildingsComponent implements OnInit {
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }

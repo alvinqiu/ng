@@ -10,23 +10,47 @@
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start">
 				<div fxFlex="60px">学科:</div>
-				<md-radio-group fxLayoutWrap  [(ngModel)]="searchMenu.subject" name="subject" (change)="subjectChange()">
+				<md-radio-group fxLayoutWrap  [(ngModel)]="searchMenu.subject" name="subject" (change)="subjectChange()" fxFlex="grow" class="{{group1.value}}">
 				  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.subject; let o = index;">{{child.name}}</md-radio-button>
 				</md-radio-group>
+				<md-button-toggle-group #group1="mdButtonToggleGroup">
+				  <md-button-toggle value="" *ngIf = "group1.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group1.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
 			</div>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start">
 				<div fxFlex="60px">版本:</div>
-				<md-radio-group [(ngModel)]="searchMenu.version" name="version" (change)="versionChange()">
+				<md-radio-group [(ngModel)]="searchMenu.version" name="version" (change)="versionChange()" fxFlex="grow" class="{{group2.value}}">
 				  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.version; let o = index;">{{child.name}}</md-radio-button>
 				</md-radio-group>
+				<md-button-toggle-group #group2="mdButtonToggleGroup">
+				  <md-button-toggle value="" *ngIf = "group2.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group2.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
 			</div>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start">
 				<div fxFlex="60px">教材:</div>
-				<md-radio-group [(ngModel)]="searchMenu.textbook" name="textbook" (change)="textbookChange()">
+				<md-radio-group [(ngModel)]="searchMenu.textbook" name="textbook" (change)="textbookChange()" fxFlex="grow" class="{{group3.value}}">
 				  <md-radio-button value="{{child.id}}" *ngFor="let child of showMenu.textbook; let o = index;">{{child.name}}</md-radio-button>
 				</md-radio-group>
+				<md-button-toggle-group #group3="mdButtonToggleGroup">
+				  <md-button-toggle value="" *ngIf = "group3.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group3.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
 			</div>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start center" class="filter">
