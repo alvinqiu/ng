@@ -1,0 +1,61 @@
+Searching 51 files for "AMsgmodalComponent" (whole word)
+
+/Users/Jesse/Desktop/ng/SmartSchool/src/app/module/assets/assets.module.ts:
+   44  import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
+   45  import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
+   46: import { AMsgmodalComponent } from '../basic/public/msgmodal/msgmodal.component';
+   47  import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-add-modal.component';
+   48  @NgModule({
+   ..
+   79    declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
+   80      InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
+   81:     CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent,AMsgmodalComponent],
+   82    entryComponents: [
+   83      AssetsAddModalComponent,
+   ..
+   88      CreateQrCodeModalComponent,
+   89      StockHistoryModalComponent,
+   90:     AMsgmodalComponent,
+   91      SupplierAddModalComponent
+   92    ],
+
+/Users/Jesse/Desktop/ng/SmartSchool/src/app/module/assets/public/assets-type-modal/assets-type-modal.component.ts:
+    8  } from '@covalent/core';
+    9  import { ApiService } from '../../../../service/api.service';
+   10: import { AMsgmodalComponent } from '../../../basic/public/msgmodal/msgmodal.component';
+   11  
+   12  @Component({
+   ..
+   50    delete(): void {
+   51      if (this.selectedRows.length == 0) {
+   52:       let dialogRef = this.dialog.open(AMsgmodalComponent, {
+   53          data: { "label": "错误", "msg": "请选择要删除的信息", "color": "accent", "icon": "error" },
+   54          width: "40%"
+
+/Users/Jesse/Desktop/ng/SmartSchool/src/app/module/assets/public/supplier-modal/supplier-modal.component.ts:
+    8  } from '@covalent/core';
+    9  import { ApiService } from '../../../../service/api.service';
+   10: import { AMsgmodalComponent } from '../../../basic/public/msgmodal/msgmodal.component';
+   11  import { SupplierAddModalComponent } from '../supplier-add-modal/supplier-add-modal.component';
+   12  
+   ..
+   50    delete(): void {
+   51      if (this.selectedRows.length == 0) {
+   52:       let dialogRef = this.dialog.open(AMsgmodalComponent, {
+   53          data: { "label": "错误", "msg": "请选择要删除的信息", "color": "accent", "icon": "error" },
+   54          width: "40%"
+
+/Users/Jesse/Desktop/ng/SmartSchool/src/app/module/assets/specific/specific.component.ts:
+   17  import { InOutStockModalComponent } from '../public/in-out-stock-modal/in-out-stock-modal.component';
+   18  import { StockHistoryModalComponent } from '../public/stock-history-modal/stock-history-modal.component';
+   19: import { AMsgmodalComponent } from '../../basic/public/msgmodal/msgmodal.component';
+   20  
+   21  @Component({
+   ..
+  157    openConfirm(status: any): void {
+  158      if (this.selectedRows.length == 0) {
+  159:       let dialogRef = this.dialog.open(AMsgmodalComponent, {
+  160          data: { "label": "错误", "msg": "请选择要变更状态的数据", "color": "accent", "icon": "error" },
+  161          width: "40%"
+
+9 matches across 4 files

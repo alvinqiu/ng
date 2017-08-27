@@ -13,8 +13,15 @@
 				</div>
 				
 				<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
-					<md-card >
+					<md-card *ngIf="!child.key">
 						<a md-button routerLink="{{child.url}}">
+							<md-icon>{{child.icon}}</md-icon>
+							<span>{{child.name}}</span>
+							<div>{{child.description}}</div>
+						</a>
+					</md-card>
+					<md-card *ngIf="child.key">
+						<a md-button href="{{child.url}}">
 							<md-icon>{{child.icon}}</md-icon>
 							<span>{{child.name}}</span>
 							<div>{{child.description}}</div>
@@ -35,7 +42,7 @@
 				</div>
 				<div class="card-container" fxFlex="20">
 					<md-card >
-						<a md-button routerLink="{{link}}">
+						<a md-button href="{{link}}">
 							<md-icon>date_range</md-icon>
 							<span>走班排课</span>
 						</a>

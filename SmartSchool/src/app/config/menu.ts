@@ -162,8 +162,15 @@ export const Menu = [{
 		"url": "/app/resource/review",
 		"description": ""
 	},{
-		"icon": "book",
+		"icon": "library_books",
 		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
 		"url": "http://localhost:9000",
 		"description": ""
 	}]
@@ -205,6 +212,18 @@ export const MenuTeacher = [{
 		"icon": "my_location",
 		"name": "我的资源",
 		"url": "/app/resource/mine",
+		"description": ""
+	},{
+		"icon": "library_books",
+		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
+		"url": "http://localhost:9000",
 		"description": ""
 	}]
 }]
@@ -250,6 +269,18 @@ export const MenuSuper = [{
 		"icon": "rate_review",
 		"name": "资源审核",
 		"url": "/app/resource/review",
+		"description": ""
+	},{
+		"icon": "library_books",
+		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
+		"url": "http://localhost:9000",
 		"description": ""
 	}]
 }, {

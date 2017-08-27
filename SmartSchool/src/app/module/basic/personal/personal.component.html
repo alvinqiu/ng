@@ -4,7 +4,7 @@
 		<div>
 
 			<form #addForm="ngForm" fxLayout="row" fxLayoutAlign="space-around start" fxLayoutWrap>
-				<div fxFlex="100" fxLayoutAlign="center start">
+				<!-- <div fxFlex="100" fxLayoutAlign="center start">
 					<image-upload
 					  [max]="100"
 					  [url]="'/user/uploadFile'"
@@ -16,9 +16,12 @@
 					  (isPending)="uploadStateChange($event)"
 					  >
 					</image-upload>
-				</div>
+				</div> -->
 				<h4 fxFlex="100">基本信息</h4>
 				<div class="divider"></div>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="姓名" required [(ngModel)]="staffData.staffName" name="staffName" [disabled]="true">
+				</md-input-container>
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="学校名称" [(ngModel)]="staffData.schoolName" name="schoolName" [disabled]="true">
 				</md-input-container>
@@ -26,29 +29,26 @@
 					<input mdInput placeholder="教职工编号" [(ngModel)]="staffData.staffCode" name="staffCode" [disabled]="true">
 				</md-input-container>
 				<md-input-container fxFlex="50">
-					<input mdInput placeholder="姓名" required [(ngModel)]="staffData.staffName" name="staffName" [disabled]="true">
+					<input mdInput placeholder="民族" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
 				</md-input-container>
 				<md-select placeholder="性别" fxFlex="50" [(ngModel)]="staffData.gender" name="gender" [disabled]="status == 'check'">
 					<md-option *ngFor="let gender of genderList" [value]="gender.value">
 						{{ gender.viewValue }}
 					</md-option>
 				</md-select>
-				<md-input-container fxFlex="50">
-					<input mdInput placeholder="国籍" [(ngModel)]="staffData.country" name="country" [disabled]="status == 'check'">
-				</md-input-container>
-				<md-input-container fxFlex="50">
-					<input mdInput [mdDatepicker]="picker1" placeholder="生日"  [disabled]="status == 'check'" [(ngModel)]="staffData.birthDate" name="birthDate">
-			  		<button mdSuffix [mdDatepickerToggle]="picker1" [disabled]="status == 'check'"></button>
-				</md-input-container>
-				<md-datepicker #picker1  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
-				<md-input-container fxFlex="50">
-					<input mdInput placeholder="民族" [(ngModel)]="staffData.nationality" name="nationality" [disabled]="status == 'check'">
-				</md-input-container>
 				<md-select placeholder="证件类型" fxFlex="50" [(ngModel)]="staffData.passType" name="passType" [disabled]="status == 'check'">
 					<md-option *ngFor="let passType of passTypeList" [value]="passType.value">
 						{{ passType.viewValue }}
 					</md-option>
 				</md-select>
+				
+				<md-input-container fxFlex="50">
+					<input mdInput [mdDatepicker]="picker1" placeholder="生日"  [disabled]="status == 'check'" [(ngModel)]="staffData.birthDate" name="birthDate">
+			  		<button mdSuffix [mdDatepickerToggle]="picker1" [disabled]="status == 'check'"></button>
+				</md-input-container>
+				<md-datepicker #picker1  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
+				
+				
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="证件号码" [(ngModel)]="staffData.passNumber" name="passNumber" [disabled]="status == 'check'">
 				</md-input-container>
@@ -73,9 +73,12 @@
 					</md-option>
 				</md-select>
 				<md-input-container fxFlex="100">
+					<input mdInput placeholder="国籍" [(ngModel)]="staffData.country" name="country" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-input-container fxFlex="100">
 					<textarea mdInput placeholder="个人描述" [disabled]="status == 'check'"></textarea>
 				</md-input-container>
-
+				
 				<h4 fxFlex="100">在校工作相关信息</h4>
 				<div class="divider"></div>
 				<!-- <md-input-container fxFlex="50">
@@ -87,14 +90,15 @@
 				<!-- <md-input-container fxFlex="50">
 					<input mdInput placeholder="所属部门" [(ngModel)]="staffData.deptName" name="deptName" [disabled]="true">
 				</md-input-container> -->
-				<md-select placeholder="在职状态" fxFlex="50" [(ngModel)]="staffData.status" name="status" [disabled]="status == 'check'">
+				
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="兼职职务" [(ngModel)]="staffData.partTimeDuty" name="partTimeDuty" [disabled]="status == 'check'">
+				</md-input-container>
+				<md-select placeholder="在职状态" fxFlex="100" [(ngModel)]="staffData.status" name="status" [disabled]="status == 'check'">
 					<md-option *ngFor="let status of statusList" [value]="status.value">
 						{{ status.viewValue }}
 					</md-option>
 				</md-select>
-				<md-input-container fxFlex="50">
-					<input mdInput placeholder="兼职职务" [(ngModel)]="staffData.partTimeDuty" name="partTimeDuty" [disabled]="status == 'check'">
-				</md-input-container>
 				<md-input-container fxFlex="50">
 					<input mdInput [mdDatepicker]="picker2" placeholder="何时加入"  [disabled]="status == 'check'" [(ngModel)]="staffData.joinTime" name="joinTime">
 			  		<button mdSuffix [mdDatepickerToggle]="picker2" [disabled]="status == 'check'"></button>
@@ -151,19 +155,20 @@
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="最高学历毕业学校" [(ngModel)]="staffData.schoolTag" name="schoolTag" [disabled]="status == 'check'">
 				</md-input-container>
-				<md-input-container fxFlex="50">
-					<input mdInput placeholder="最高学历专业" [(ngModel)]="staffData.highestMajor" name="highestMajor" [disabled]="status == 'check'">
-				</md-input-container>
-				<md-select placeholder="最高学历" fxFlex="50" [(ngModel)]="staffData.highestDegree" name="highestDegree" [disabled]="status == 'check'">
-					<md-option *ngFor="let highestDegree of highestDegreeList" [value]="highestDegree.value">
-						{{ highestDegree.viewValue }}
-					</md-option>
-				</md-select>
+				
 				<md-select placeholder="普通话水平" fxFlex="50" [(ngModel)]="staffData.mandarinDegree" name="mandarinDegree" [disabled]="status == 'check'">
 					<md-option *ngFor="let mandarinDegree of mandarinDegreeList" [value]="mandarinDegree.value">
 						{{ mandarinDegree.viewValue }}
 					</md-option>
 				</md-select>
+				<md-select placeholder="最高学历" fxFlex="50" [(ngModel)]="staffData.highestDegree" name="highestDegree" [disabled]="status == 'check'">
+					<md-option *ngFor="let highestDegree of highestDegreeList" [value]="highestDegree.value">
+						{{ highestDegree.viewValue }}
+					</md-option>
+				</md-select>
+				<md-input-container fxFlex="50">
+					<input mdInput placeholder="最高学历专业" [(ngModel)]="staffData.highestMajor" name="highestMajor" [disabled]="status == 'check'">
+				</md-input-container>
 				<md-input-container fxFlex="50">
 					<input mdInput placeholder="第二学位" [(ngModel)]="staffData.secMajor" name="secMajor" [disabled]="status == 'check'">
 				</md-input-container>

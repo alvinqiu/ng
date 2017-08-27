@@ -107,9 +107,10 @@ export class ReviewComponent implements OnInit {
     this.searchResource();
   }
   download(e) {
-    this._service.getBasicHttp(`/resource/${e}/download`, res => {
+    location.href = `/resource/${e}/download`;
+    // this._service.getBasicHttp(`/resource/${e}/download`, res => {
 
-    })
+    // })
   }
   change(event: IPageChangeEvent): void {
     this.page = event.page;

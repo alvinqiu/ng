@@ -80,9 +80,10 @@ export class DetailComponent implements OnInit {
     })
   }
   download():void {
-    this._service.getBasicHttp(`/resource/${this.model.uuid}/download`, res => {
+    location.href = `/resource/${this.model.uuid}/download`;
+    // this._service.getBasicHttp(`/resource/${this.model.uuid}/download`, res => {
 
-    })
+    // })
   }
   collection():void {
     this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, {"favorite":true}, res => {
