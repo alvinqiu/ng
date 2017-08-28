@@ -29,9 +29,6 @@ function toTree(data, parent_id) {
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  primary:object;
-  junior:object;
-  senior:object;
   showMenu = {
   	period:[],
   	subject:[],

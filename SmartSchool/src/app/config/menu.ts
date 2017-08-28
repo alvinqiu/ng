@@ -171,7 +171,7 @@ export const Menu = [{
 		"icon": "radio",
 		"name": "视频",
 		"key":"true",
-		"url": "http://localhost:9000",
+		"url": "ftp://10.1.1.62",
 		"description": ""
 	}]
 }, {
@@ -223,7 +223,7 @@ export const MenuTeacher = [{
 		"icon": "radio",
 		"name": "视频",
 		"key":"true",
-		"url": "http://localhost:9000",
+		"url": "ftp://10.1.1.62",
 		"description": ""
 	}]
 }]
@@ -280,7 +280,7 @@ export const MenuSuper = [{
 		"icon": "radio",
 		"name": "视频",
 		"key":"true",
-		"url": "http://localhost:9000",
+		"url": "ftp://10.1.1.62",
 		"description": ""
 	}]
 }, {
