@@ -258,15 +258,6 @@ export const MenuSuper = [{
 		"url": "/app/assets/index",
 		"description": ""
 	}]
-}, {
-	"id": "shedule",
-	"name": "排课系统",
-	"children": [{
-		"icon": "school",
-		"name": "走班排课",
-		"url": "",
-		"description": ""
-	}]
 }
 
 ]
