@@ -79,8 +79,7 @@ export class OfficesComponent implements OnInit {
   }
 
   selectEvent(e: any): any {
-    console.log(e)
-    console.log(this.selectedRows)
+
   }
 
   openDialog(condition: any): void {

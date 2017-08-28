@@ -94,8 +94,7 @@ export class ClassesComponent implements OnInit {
     
   }
   selectEvent(e:any):any {
-    console.log(e)
-    console.log(this.selectedRows)
+
   }
   delete():void {
     if (this.selectedRows.length == 0) {
@@ -165,6 +164,5 @@ export class ClassesComponent implements OnInit {
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
 }

@@ -48,7 +48,6 @@ export class AssetsTypeModalComponent implements OnInit {
 
   delete(): void {
     if (this.selectedRows.length == 0) {
-      console.log();
     } else {
       this._service
         .postBasicDelHttp(`/equipment-type/${this.selectedRows[0].id}`, [], (response: any) => {

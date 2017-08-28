@@ -17,6 +17,7 @@ export class InOutStockModalComponent implements OnInit {
     { value: '1', viewValue: '入库' }
   ];
   specific: SpecificInterface;
+  isDisabled: string;
   constructor(
     @Inject(MD_DIALOG_DATA) groups: any,
     private dialogRef: MdDialogRef<InOutStockModalComponent>,
@@ -27,6 +28,14 @@ export class InOutStockModalComponent implements OnInit {
 
     this._service.getAssetsHttp(`/equipment-specific-info/${groups}`, (response: any) => {
       this.specific = response;
+      if (this.specific.stockStatus == "0") {
+        this.specific.stockStatus = "1";
+        this.isDisabled = "true";
+      } else {
+        this.specific.stockStatus = "0";
+        this.isDisabled = "false";
+      }
+
     });
   }
 
@@ -38,7 +47,6 @@ export class InOutStockModalComponent implements OnInit {
   }
 
   changeStaff() {
-    console.log("changeStaff");
 
     this._service
       .getBasicHttp(`/api/bi/staff/getStaffByCondition?staffName=${this.specific.staffName}`, (response: any) => {

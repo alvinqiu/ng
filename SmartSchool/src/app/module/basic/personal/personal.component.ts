@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffClass } from '../public/staffsmodal/staff-class';
 import { ApiService } from '../../../service/api.service';
+import { MdDialog } from '@angular/material';
+
+import { MsgmodalComponent } from '../public/msgmodal/msgmodal.component';
+
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
@@ -72,13 +76,14 @@ export class PersonalComponent implements OnInit {
   staffData: StaffClass;
   headImg: any;
   constructor(
+    public dialog: MdDialog,
     private _service: ApiService
   ) {
     this.staffData = new StaffClass();
   }
   ngOnInit() {
     this._service.getBasicHttp(`/user/profile`, res => {
-      this.staffData = Object.assign({}, res.staff, res.user);
+      this.staffData = Object.assign({}, res.user, res.staff);
       this.staffData.beginWorkTime = new Date(res.staff.beginWorkTime);
       this.staffData.birthDate = new Date(res.staff.birthDate);
       this.staffData.graduateTime = new Date(res.staff.graduateTime);
@@ -87,22 +92,22 @@ export class PersonalComponent implements OnInit {
     });
   }
   imageFinishedUploading(e: any) {
-    console.log("imageFinishedUploading " + e);
     this.headImg = e;
   }
   imageRemoved(e: any) {
-    console.log("imageRemoved " + e);
     this.headImg = [];
   }
   uploadStateChange(e: any) {
-    console.log("uploadStateChange " + e);
   }
   save() {
-    this._service.postBasicHttp(`/user/uploadFile/`, this.headImg, res => {
-      this.ngOnInit();
-    });
+    // this._service.postBasicHttp(`/user/uploadFile/`, this.headImg, res => {
+    //   this.ngOnInit();
+    // });
     this._service.postBasicHttp(`/api/bi/staff/updateStaff/${this.staffData.id}`, this.staffData, res => {
-      this.ngOnInit();
+      let dialogRef = this.dialog.open(MsgmodalComponent, {
+        data:{"label":"成功","msg":"个人信息修改成功", "color":"accent","icon":"error"},
+        width:"60%"
+      });
     });
   }
   selectedChanged(e: any) { }

@@ -60,8 +60,7 @@ export class SubjectsComponent implements OnInit {
   }
 
   selectEvent(e: any): any {
-    console.log(e)
-    console.log(this.selectedRows)
+
   }
 
   openDialog(condition: any): void {
@@ -137,6 +136,5 @@ export class SubjectsComponent implements OnInit {
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
 }

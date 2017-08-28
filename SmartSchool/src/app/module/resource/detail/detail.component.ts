@@ -27,6 +27,7 @@ export class DetailComponent implements OnInit {
   page: number = 1;
   totalElements: number = 0;
   postData:CommetClass;
+  previews = [];
   user = {
     user: {
       roleId:3
@@ -46,6 +47,9 @@ export class DetailComponent implements OnInit {
       this._service.getResourceHttp(`/resource/${params.id}`, res => {
         this.model = res;
         document.getElementById('app-loading').style.display = "none";
+      });
+      this._service.getResourceHttp(`/resource/${params.id}/preview`, res => {
+        this.previews = res;
       });
       this._service.getResourceHttp(`/resource/${params.id}/comment?page=1&pageSize=10`, res => {
         this.commentlist = res.content;
@@ -76,7 +80,10 @@ export class DetailComponent implements OnInit {
     })
   }
   download():void {
-    location.href = `/resource/${this.model.uuid}/download`
+    location.href = `/resource/${this.model.uuid}/download`;
+    // this._service.getBasicHttp(`/resource/${this.model.uuid}/download`, res => {
+
+    // })
   }
   collection():void {
     this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, {"favorite":true}, res => {

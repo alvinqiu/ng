@@ -10,6 +10,7 @@ export class ResourceClass {
     note:string;
     visibility: string;
     typeId: number;
+    sourceType: number;
     constructor() {
         this.name = '';
     	this.period = 0;
@@ -22,5 +23,6 @@ export class ResourceClass {
         this.note = "";
         this.visibility = "PUBLIC";
         this.typeId = 0;
+        this.sourceType = 1; 
     }
 }

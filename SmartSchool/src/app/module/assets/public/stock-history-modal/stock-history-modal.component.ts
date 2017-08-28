@@ -39,14 +39,12 @@ export class StockHistoryModalComponent implements OnInit {
   }
 
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    // console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event);
   }
 
   ngOnInit() {

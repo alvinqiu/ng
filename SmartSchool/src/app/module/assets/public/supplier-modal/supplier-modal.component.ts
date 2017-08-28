@@ -48,7 +48,6 @@ export class SupplierModalComponent implements OnInit {
   }
   delete(): void {
     if (this.selectedRows.length == 0) {
-      console.log();
     } else {
       this._service
         .postAssetsDelHttp(`/equipment-supplier/${this.selectedRows[0].id}`, (response: any) => { this.ngOnInit(); });

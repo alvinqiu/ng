@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 import * as qs from 'qs';
 
 const headers:Headers = new Headers({
@@ -15,9 +16,9 @@ if (environment.production) {
 	// domain = "http://www.marchezvousblue.cn/auth";
  //  domainAssets = "http://www.marchezvousblue.cn/auth";
  //  domainResource = "http://dev.slothtek.com:8081/";
-  domain = "http://www.marchezvousblue.cn";
-  domainAssets = "http://www.marchezvousblue.cn";
-  domainResource = "http://www.marchezvousblue.cn";
+  // domain = "http://www.marchezvousblue.cn";
+  // domainAssets = "http://www.marchezvousblue.cn";
+  // domainResource = "http://www.marchezvousblue.cn";
 }
 
 
@@ -25,7 +26,7 @@ if (environment.production) {
 @Injectable()
 export class ApiService {
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, private router: Router) { }
 
   
   getBasicHttp(url?:string, callback?:any): Promise<any> {
@@ -33,10 +34,13 @@ export class ApiService {
                .get(domain+url)
                .toPromise()
                .then(res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                  callback && callback(res.json());
                })
                .catch(e => {
-                 // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
                });
   }
@@ -51,6 +55,10 @@ export class ApiService {
                .post(domain+url, param, {headers: headers})
                .toPromise()
                .then( res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                   callback && callback(res.json())
                })
                .catch( e => {
@@ -65,6 +73,10 @@ export class ApiService {
                .post(domain+url,postData,{headers: headers})
                .toPromise()
                .then( res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                  callback && callback(res.json())
                })
                .catch(e => {
@@ -74,15 +86,15 @@ export class ApiService {
   }
 
   putBasicHttp(url?:string, postData?:any, callback?:any, error?:any) {
-    let param = qs.stringify(postData,{
-                        serializeDate: function (d) {
-                          return d.toString()
-                        }
-                      })
+     console.log(postData)
      return this._http
-                .put(domain+url, param, {headers: headers})
+                .put(domain+url, postData, {headers: headers})
                 .toPromise()
                 .then( res => {
+                  if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                   callback && callback(res.json())
                 })
                 .catch( e => {
@@ -96,6 +108,10 @@ export class ApiService {
                .get(domain+url)
                .toPromise()
                .then(res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                  callback && callback(res.json());
                })
                .catch(e => {
@@ -114,6 +130,10 @@ export class ApiService {
                .post(domain+url, param, {headers: headers})
                .toPromise()
                .then( res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                   callback && callback(res.json())
                })
                .catch( e => {
@@ -128,6 +148,10 @@ export class ApiService {
               .delete(domain+url)
                .toPromise()
                .then( res => {
+                 if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
                  callback && callback(res.json())
                })
                .catch(e => {
@@ -137,10 +161,13 @@ export class ApiService {
   }
 
   getResourceHttp(url?:string, callback?:any ): Promise<any> {
-    return this._http.get(domainResource+url).toPromise().then(response => {
-      callback && callback(response.json())
+    return this._http.get(domainResource+url).toPromise().then(res => {
+      if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
+      callback && callback(res.json())
     }).catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
     });
   }
@@ -149,11 +176,14 @@ export class ApiService {
     return this._http
       .post(domainResource+url, param)
       .toPromise()
-      .then(response => {
-        callback && callback(response.json())
+      .then(res => {
+        if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
+        callback && callback(res.json())
       })
       .catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
       });
   }
@@ -162,11 +192,14 @@ export class ApiService {
     return this._http
       .delete(domainResource+url, param)
       .toPromise()
-      .then(response => {
-        callback && callback(response.json())
+      .then(res => {
+        if (res.json().isLogin && res.json().isLogin == "false") {
+                   this.router.navigate(['/app/login']);
+                   return
+                 }
+        callback && callback(res.json())
       })
       .catch((e:any) => {
-        console.log(e)
         document.getElementById('app-loading').style.display = "none";
       });
   }

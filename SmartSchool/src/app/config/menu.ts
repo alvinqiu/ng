@@ -148,7 +148,7 @@ export const Menu = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
@@ -161,6 +161,18 @@ export const Menu = [{
 		"name": "资源审核",
 		"url": "/app/resource/review",
 		"description": ""
+	},{
+		"icon": "library_books",
+		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
+		"url": "http://localhost:9000",
+		"description": ""
 	}]
 }, {
 	"id": "resource",
@@ -171,9 +183,7 @@ export const Menu = [{
 		"url": "/app/assets/index",
 		"description": ""
 	}]
-}
-
-]
+}]
 
 export const MenuTeacher = [{
 	"id": "basic",
@@ -195,13 +205,25 @@ export const MenuTeacher = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
 		"icon": "my_location",
 		"name": "我的资源",
 		"url": "/app/resource/mine",
+		"description": ""
+	},{
+		"icon": "library_books",
+		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
+		"url": "http://localhost:9000",
 		"description": ""
 	}]
 }]
@@ -235,7 +257,7 @@ export const MenuSuper = [{
 	"name": "资源管理",
 	"children": [{
 		"icon": "cloud",
-		"name": "智慧云网盘",
+		"name": "资源中心",
 		"url": "/app/resource/index",
 		"description": ""
 	}, {
@@ -248,6 +270,18 @@ export const MenuSuper = [{
 		"name": "资源审核",
 		"url": "/app/resource/review",
 		"description": ""
+	},{
+		"icon": "library_books",
+		"name": "数字图书",
+		"key":"true",
+		"url": "/ss_k12",
+		"description": ""
+	},{
+		"icon": "radio",
+		"name": "视频",
+		"key":"true",
+		"url": "http://localhost:9000",
+		"description": ""
 	}]
 }, {
 	"id": "resource",
@@ -258,6 +292,13 @@ export const MenuSuper = [{
 		"url": "/app/assets/index",
 		"description": ""
 	}]
-}
-
-]
+}, {
+	"id": "shedule",
+	"name": "排课系统",
+	"children": [{
+		"icon": "school",
+		"name": "走班排课",
+		"url": "",
+		"description": ""
+	}]
+}]

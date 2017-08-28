@@ -114,16 +114,17 @@ export class MineComponent implements OnInit {
   cancelFavorite(id) {
     this._service.postResourceHttp(`/resource/${id}/favorite`, {"favorite":false}, res => {
       let dialogRef = this.dialog.open(MsgComponent, {
-        data:{"label":"收藏成功","msg":"", "color":"primary","icon":"success"},
+        data:{"label":"取消收藏成功","msg":"", "color":"primary","icon":"success"},
         width:"60%"
       });
-      dialogRef.afterClosed().subscribe(result => {
+      this.searchResource();
+      // dialogRef.afterClosed().subscribe(result => {
       
-        if (this.page == 1) {
-          this.searchResource();
-        }
+      //   if (this.page == 1) {
+      //     this.searchResource();
+      //   }
         
-      });
+      // });
     })
 
 
@@ -137,6 +138,15 @@ export class MineComponent implements OnInit {
       default:
         return "待审核"
     }
+  }
+  delete(id):void {
+    this._service.deleteResourceHttp(`/resource/${id}`, {}, (res) => {
+      let dialogRef = this.dialog.open(MsgComponent, {
+        data:{"label":"删除成功","msg":"", "color":"primary","icon":"success"},
+        width:"60%"
+      });
+      this.searchResource();
+    })
   }
   change(event: IPageChangeEvent): void {
     this.page = event.page;

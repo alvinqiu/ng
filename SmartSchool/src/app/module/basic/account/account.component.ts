@@ -81,8 +81,7 @@ export class AccountComponent implements OnInit {
   }
 
   selectEvent(e:any):any {
-    console.log(e)
-    console.log(this.selectedRows)
+    
   }
 
   openDialog():void {
@@ -94,18 +93,15 @@ export class AccountComponent implements OnInit {
     });
   }
   handleSearch(searchInputTerm: string):void {
-    console.log(searchInputTerm)
   }
 
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event)
   }
 
   toggleFirstLast(): void {
     this.firstLast = !this.firstLast;
-    console.log("firstLast")
   }
 
 }

@@ -14,7 +14,7 @@ import { AccountComponent } from '../account/account.component';
 import { CourseComponent } from '../course/course.component';
 import { PasswordComponent } from '../password/password.component';
 const BasicRoutes: Route[] = [
-	{ path: '', redirectTo: 'schools',  pathMatch: 'full'},
+	{ path: '', redirectTo: 'personal',  pathMatch: 'full'},
 	{ path: 'schools', component: SchoolsComponent },
 	{ path: 'grades', component: GradesComponent },
 	{ path: 'subjects', component: SubjectsComponent },

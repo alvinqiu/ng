@@ -57,7 +57,6 @@ export class UploadModalComponent implements OnInit {
   }
 
   periodChange() {
-    console.log("periodChange")
     this.showMenu.period.map( item => {
       if (item.id == this.resource.period) {
         this.showMenu.subject = item.children;
@@ -67,7 +66,6 @@ export class UploadModalComponent implements OnInit {
     })
   }
   subjectChange() {
-    console.log("subjectChange")
     this.showMenu.subject.map( item => {
       if (item.id == this.resource.subject) {
         this.showMenu.version = item.children;

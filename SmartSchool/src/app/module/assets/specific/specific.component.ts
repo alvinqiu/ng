@@ -46,7 +46,6 @@ export class SpecificComponent implements OnInit {
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    console.log(event);
   }
 
   openDialog(condition: any): void {
@@ -84,7 +83,6 @@ export class SpecificComponent implements OnInit {
   }
 
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    // console.log(sortEvent)
     this.sortBy = sortEvent.name;
     this.sortOrder = sortEvent.order;
   }
@@ -155,7 +153,6 @@ export class SpecificComponent implements OnInit {
 
   openConfirm(status: any): void {
     if (this.selectedRows.length == 0) {
-      console.log();
     } else {
       this._dialogService.openConfirm({
         message: '确认更改为此状态吗?',
