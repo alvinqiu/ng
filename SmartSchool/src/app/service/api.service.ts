@@ -86,13 +86,9 @@ export class ApiService {
   }
 
   putBasicHttp(url?:string, postData?:any, callback?:any, error?:any) {
-    let param = qs.stringify(postData,{
-                        serializeDate: function (d) {
-                          return d.toString()
-                        }
-                      })
+     console.log(postData)
      return this._http
-                .put(domain+url, param, {headers: headers})
+                .put(domain+url, postData, {headers: headers})
                 .toPromise()
                 .then( res => {
                   if (res.json().isLogin && res.json().isLogin == "false") {

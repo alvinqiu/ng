@@ -192,11 +192,11 @@ export class StaffunaccountComponent implements OnInit {
     if (this.selectedRows.length > 0) {
       let reqlist = this.selectedRows.map(item => item.staffCode);
       let del = `staffCodes=${reqlist.join('&staffCodes=')}`
-
+      console.log(del)
       this._service
-        .postBasicDelHttp(`/user/resetUserPasswd`, del, (response: any) => {
+        .putBasicHttp(`/user/resetUserPasswd`, del, (response: any) => {
           let dialogRef = this.dialog.open(MsgmodalComponent, {
-            data: { "label": "成功", "msg": "创建成功", "color": "accent", "icon": "error" },
+            data: { "label": "成功", "msg": "重置密码成功", "color": "accent", "icon": "error" },
             width: "60%"
           });
 

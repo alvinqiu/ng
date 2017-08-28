@@ -83,7 +83,7 @@ export class PersonalComponent implements OnInit {
   }
   ngOnInit() {
     this._service.getBasicHttp(`/user/profile`, res => {
-      this.staffData = Object.assign({}, res.staff, res.user);
+      this.staffData = Object.assign({}, res.user, res.staff);
       this.staffData.beginWorkTime = new Date(res.staff.beginWorkTime);
       this.staffData.birthDate = new Date(res.staff.birthDate);
       this.staffData.graduateTime = new Date(res.staff.graduateTime);
