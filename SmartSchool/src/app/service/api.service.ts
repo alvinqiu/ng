@@ -45,7 +45,7 @@ export class ApiService {
                });
   }
 
-  postBasicHttp(url?:string, postData?:any, callback?:any) {
+  postBasicHttp(url?:string, postData?:any, callback?:any, error?:any) {
     let param = qs.stringify(postData,{
                         serializeDate: function (d) {
                           return d.toString()
@@ -64,6 +64,7 @@ export class ApiService {
                .catch( e => {
                  // console.error(e)
                  document.getElementById('app-loading').style.display = "none";
+                 error && error(e)
                })
 
   }

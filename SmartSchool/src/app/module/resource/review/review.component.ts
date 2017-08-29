@@ -143,6 +143,7 @@ export class ReviewComponent implements OnInit {
     })
   }
   searchResource() {
+    document.getElementById('app-loading').style.display = "flex";
     this._service.getResourceHttp(`/resource/audit?status=${this.status}&keyword=${this.searchInputTerm}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalElements = res.totalElements;

@@ -9,3 +9,9 @@
     text-align: left;
     padding-left: 30px;
 }
+.td-search-container {
+	align-items: center;
+}
+.select {
+	padding-bottom: 2px;
+}
