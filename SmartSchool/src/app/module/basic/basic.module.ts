@@ -17,6 +17,7 @@ import {
   MdTabsModule,
   MdDatepickerModule,
   MdNativeDateModule,
+  MdCardModule,
 } from '@angular/material';
 import { 
   CovalentDataTableModule,
@@ -80,6 +81,7 @@ import { PasswordComponent } from './password/password.component';
     MdTabsModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    MdCardModule,
     CovalentDataTableModule,
     CovalentPagingModule,
     CovalentSearchModule,

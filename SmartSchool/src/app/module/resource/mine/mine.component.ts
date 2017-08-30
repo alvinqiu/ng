@@ -159,6 +159,7 @@ export class MineComponent implements OnInit {
     this.searchResource()
   }
   searchResource() {
+    document.getElementById('app-loading').style.display = "flex";
     this._service.getResourceHttp(`/resource/me?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period}&courseId=${this.searchMenu.subject}&versionId=${this.searchMenu.version}&gradeId=${this.searchMenu.textbook}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalElements = res.totalElements;

@@ -169,7 +169,7 @@ export const Menu = [{
 		"description": ""
 	},{
 		"icon": "radio",
-		"name": "视频",
+		"name": "视频资源",
 		"key":"true",
 		"url": "ftp://10.1.1.62",
 		"description": ""
@@ -221,7 +221,7 @@ export const MenuTeacher = [{
 		"description": ""
 	},{
 		"icon": "radio",
-		"name": "视频",
+		"name": "视频资源",
 		"key":"true",
 		"url": "ftp://10.1.1.62",
 		"description": ""
@@ -278,7 +278,7 @@ export const MenuSuper = [{
 		"description": ""
 	},{
 		"icon": "radio",
-		"name": "视频",
+		"name": "视频资源",
 		"key":"true",
 		"url": "ftp://10.1.1.62",
 		"description": ""

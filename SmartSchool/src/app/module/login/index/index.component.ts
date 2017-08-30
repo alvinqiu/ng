@@ -3,6 +3,8 @@ import { LoginClass } from "../public/login-class";
 import { ApiService } from '../../../service/api.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { MdSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -13,7 +15,8 @@ export class IndexComponent implements OnInit {
   constructor(
   	private _service: ApiService,
   	private router: Router,
-    private _cookieService:CookieService
+    private _cookieService:CookieService,
+    public snackBar: MdSnackBar
   	) { }
 
   ngOnInit() {
@@ -32,7 +35,11 @@ export class IndexComponent implements OnInit {
     }
   	this._service.postBasicHttp(`/login`, this.model, res => {
   		this.router.navigate(['app/homepage']);
-  	})
+  	}, error => {
+      this.snackBar.open("用户名和密码不匹配，请重新输入！","",{
+        duration: 1000
+      });
+    })
   }
 
 }

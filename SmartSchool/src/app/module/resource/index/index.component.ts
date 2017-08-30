@@ -135,6 +135,7 @@ export class IndexComponent implements OnInit {
     location.href = `/resource/${e}/download`;
   }
   searchResource() {
+    document.getElementById('app-loading').style.display = "flex";
     this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;

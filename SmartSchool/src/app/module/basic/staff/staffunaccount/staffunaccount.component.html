@@ -1,55 +1,52 @@
-<div class="td-search-container">
-  <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
-  </td-search-box>
-  <md-select placeholder="匹配类型" [(ngModel)]="foodValue" name="foodValue">
-    <md-option *ngFor="let food of foods" [value]="food.value">
-    {{ food.viewValue }}
-    </md-option>
-  </md-select>
-  <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
-  <md-menu #topMenu="mdMenu">
-    <a  md-menu-item (click)="openDialog({func:'add'})">
-      <md-icon>add</md-icon>
-      <span>新增</span>
-    </a>
-    <a  md-menu-item (click)="openDialog({func:'edit'})">
-      <md-icon>edit</md-icon>
-      <span>修改</span>
-    </a>
-    <a  md-menu-item (click)="openDialog({func:'check'})">
-      <md-icon>rate_review</md-icon>
-      <span>查看</span>
-    </a>
-    <a  md-menu-item (click)="delete()">
-      <md-icon>delete</md-icon>
-      <span>删除</span>
-    </a>
-    <a  md-menu-item (click)="createAccount()">
+<div fxLayout="column">
+<div fxLayout="row" fxLayoutAlign="start center" class="filter" fxFlex="100">
+      <div fxFlex="grow">
+        <td-search-box backIcon="search" placeholder="搜索" [showUnderline]="true" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+        </td-search-box>
+      </div>
+      <div class="select">
+        <md-select placeholder="匹配类型" [(ngModel)]="foodValue" name="foodValue">
+          <md-option *ngFor="let food of foods" [value]="food.value">
+          {{ food.viewValue }}
+          </md-option>
+        </md-select>
+      </div>
+      <div fxFlex="grow" fxLayout="row" fxLayoutAlign="start center">
+      <a  md-menu-item (click)="openDialog({func:'add'})">
+        <md-icon>add</md-icon>
+        <span>新增</span>
+      </a>
+      <a  md-menu-item (click)="openDialog({func:'edit'})">
+        <md-icon>edit</md-icon>
+        <span>修改</span>
+      </a>
+      <a  md-menu-item (click)="openDialog({func:'check'})">
+        <md-icon>rate_review</md-icon>
+        <span>查看</span>
+      </a>
+      <a  md-menu-item (click)="delete()">
+        <md-icon>delete</md-icon>
+        <span>删除</span>
+      </a>
+      <a  md-menu-item (click)="createAccount()">
 
-      <md-icon>account_circle</md-icon>
-      <span>批量生成用户</span>
-    </a>
-    <a  md-menu-item (click)="resetPassword()">
-      <md-icon>lock</md-icon>
-      <span>批量重置密码</span>
-    </a>
-    <a  md-menu-item (click)="createAdmin()">
-      <md-icon>supervisor_account</md-icon>
-      <span>生成管理员</span>
-    </a>
-  </md-menu>
-</div>
+        <md-icon>account_circle</md-icon>
+        <span>批量生成用户</span>
+      </a>
+      <a  md-menu-item (click)="resetPassword()">
+        <md-icon>lock</md-icon>
+        <span>批量重置密码</span>
+      </a>
+      <a  md-menu-item (click)="createAdmin()">
+        <md-icon>supervisor_account</md-icon>
+        <span>生成管理员</span>
+      </a>
+      </div>
+  </div>   
+
+
 <div class="divider"></div>
 <div fxLayout="row" fxLayoutAlign="start start">
-  <!-- <div class="tree">
-      <span (click)="searchByDepartment('a_0')">全部</span>
-      <tree-root [nodes]="nodes">
-          <ng-template #treeNodeTemplate let-node let-index="index">
-            <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('a_') > -1">{{ node.data.name }}</span>
-            <span (click)="searchByDepartment(node.data.id)" *ngIf="node.data.id.indexOf('g_') > -1">{{ node.data.name }}</span>
-          </ng-template>
-      </tree-root>
-    </div> -->
   <div fxFlex="grow" fxLayout="column">
     <td-data-table
       #dataTable
@@ -76,4 +73,5 @@
     </td-paging-bar> 
   </div>
   
+</div>
 </div>

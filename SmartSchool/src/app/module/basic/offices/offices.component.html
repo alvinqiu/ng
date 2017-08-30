@@ -3,10 +3,9 @@
     <md-tab-group>
       <md-tab label="教室列表">
         <div class="td-search-container">
-    <td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
+    <td-search-box backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)">
     </td-search-box>
-    <button md-icon-button [mdMenuTriggerFor]="topMenu"><md-icon>more_vert</md-icon></button>
-    <md-menu #topMenu="mdMenu">
+   
       <a  md-menu-item (click)="openDialog({func:'add'})">
         <md-icon>add</md-icon>
         <span>新增</span>
@@ -23,7 +22,6 @@
         <md-icon>rate_review</md-icon>
         <span>查看</span>
       </a>
-    </md-menu>
   </div>
   <div class="divider"></div>
   <div fxLayout="row" fxLayoutAlign="start start">
