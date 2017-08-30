@@ -165,7 +165,7 @@ export const Menu = [{
 		"icon": "library_books",
 		"name": "数字图书",
 		"key":"true",
-		"url": "/ss_k12",
+		"url": "http://10.1.1.62:9000",
 		"description": ""
 	},{
 		"icon": "radio",
@@ -217,7 +217,7 @@ export const MenuTeacher = [{
 		"icon": "library_books",
 		"name": "数字图书",
 		"key":"true",
-		"url": "/ss_k12",
+		"url": "http://10.1.1.62:9000",
 		"description": ""
 	},{
 		"icon": "radio",
@@ -274,7 +274,7 @@ export const MenuSuper = [{
 		"icon": "library_books",
 		"name": "数字图书",
 		"key":"true",
-		"url": "/ss_k12",
+		"url": "http://10.1.1.62:9000",
 		"description": ""
 	},{
 		"icon": "radio",
@@ -290,15 +290,6 @@ export const MenuSuper = [{
 		"icon": "web_asset",
 		"name": "资产管理",
 		"url": "/app/assets/index",
-		"description": ""
-	}]
-}, {
-	"id": "shedule",
-	"name": "排课系统",
-	"children": [{
-		"icon": "school",
-		"name": "走班排课",
-		"url": "",
 		"description": ""
 	}]
 }]

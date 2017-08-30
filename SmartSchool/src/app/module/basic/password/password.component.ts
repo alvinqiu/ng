@@ -20,7 +20,7 @@ export class PasswordComponent implements OnInit {
   }
 
   save() {
-  	this._service.putBasicHttp(`/user`,{oldPassword: this.oldPassword, newPassword: this.newPassword}, res => {
+  	this._service.putBasicHttp(`/user?oldPassword=${this.oldPassword}&newPassword=${this.newPassword}`,{oldPassword: this.oldPassword, newPassword: this.newPassword}, res => {
   		let dialogRef = this.dialog.open(MsgmodalComponent, {
 	        data:{"label":"成功","msg":"密码修改成功", "color":"accent","icon":"error"},
 	        width:"60%"
