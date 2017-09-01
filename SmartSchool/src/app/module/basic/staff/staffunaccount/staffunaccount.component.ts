@@ -134,9 +134,9 @@ export class StaffunaccountComponent implements OnInit {
   change(event: IPageChangeEvent): void {
     let url = "";
     if (this.foodValue != "") {
-      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&deptId=${this.searchDepartment}`;
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}`;
     } else {
-      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&deptId=${this.searchDepartment}`;
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`;
     }
     this.page = event.page;
     this.pageSize = event.pageSize;
@@ -156,9 +156,9 @@ export class StaffunaccountComponent implements OnInit {
     this.page = 1;
     let url = "";
     if (this.foodValue != "") {
-      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}&deptId=${this.searchDepartment}`;
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}`;
     } else {
-      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&deptId=${this.searchDepartment}`;
+      url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`;
     }
 
     this._service
