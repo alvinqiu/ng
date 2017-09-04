@@ -27,9 +27,12 @@ export class DetailComponent implements OnInit {
   page: number = 1;
   totalElements: number = 0;
   postData:CommetClass;
-  previews = [];
+  previews = {
+    previews: undefined
+  };
   user = {
     user: {
+      id:0,
       roleId:3
     }
   }
@@ -87,6 +90,7 @@ export class DetailComponent implements OnInit {
   }
   collection():void {
     this._service.postResourceHttp(`/resource/${this.model.uuid}/favorite`, {"favorite":true}, res => {
+      this.model.sourceType = 1
       let dialogRef = this.dialog.open(MsgComponent, {
         data:{"label":"收藏成功","msg":"", "color":"primary","icon":"success"},
         width:"60%"

@@ -9,12 +9,12 @@ import { ApiService } from '../../../../service/api.service';
 })
 export class BuildingsmodalComponent implements OnInit {
   propertylist = [
-    {value: '0', viewValue: '教学楼'},
-    {value: '1', viewValue: '行政楼'},
-    {value: '2', viewValue: '图书馆'},
-    {value: '3', viewValue: '学生宿舍'},
-    {value: '4', viewValue: '教室宿舍'},
-    {value: '5', viewValue: '实验楼'}
+    {value: 0, viewValue: '教学楼'},
+    {value: 1, viewValue: '行政楼'},
+    {value: 2, viewValue: '图书馆'},
+    {value: 3, viewValue: '学生宿舍'},
+    {value: 4, viewValue: '教室宿舍'},
+    {value: 5, viewValue: '实验楼'}
 
   ]
   model:BuildingClass;

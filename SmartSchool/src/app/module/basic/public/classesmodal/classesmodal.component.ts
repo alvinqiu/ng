@@ -51,6 +51,7 @@ export class ClassesmodalComponent implements OnInit {
       default:
         this.status = "add";
         this.model = new ClassClass();
+        this.model.gradeId = this.gradelist[0].id;
         break;
     }
   }

@@ -11,10 +11,10 @@ import { SchoolClass } from '../schoolsmodal/school-class';
 export class OfficesmodalComponent implements OnInit {
   buildinglist = [];
   propertylist = [
-    { value: '0', viewValue: '教室' },
-    { value: '1', viewValue: '办公室' },
-    { value: '2', viewValue: '实验室' },
-    { value: '3', viewValue: '行政室' }
+    { value: 0, viewValue: '教室' },
+    { value: 1, viewValue: '办公室' },
+    { value: 2, viewValue: '实验室' },
+    { value: 3, viewValue: '行政室' }
   ];
   model: OfficeClass;
   schoolsList: Array<SchoolClass>;

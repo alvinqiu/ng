@@ -27,6 +27,7 @@ export class MenusComponent implements OnInit {
   	) { }
   
   ngOnInit() {
+    document.getElementById('app-loading').style.display = "flex";
     this._service.getBasicHttp("/user/profile", res => {
       this.user = res;
       this.link = `/paike/pk/login/login.do?schoolId=${res.user.schoolId}&userId=${res.user.id}`;
@@ -44,6 +45,7 @@ export class MenusComponent implements OnInit {
           this.Menu = MenuTeacher;
           break;
       }
+      document.getElementById('app-loading').style.display = "none";
     })
   	
     

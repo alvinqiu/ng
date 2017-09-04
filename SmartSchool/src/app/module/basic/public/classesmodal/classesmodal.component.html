@@ -13,14 +13,14 @@
 					{{ staff.staffName }}
 				</md-option>
 			</md-select>
-		    <md-select placeholder="所属年级" fxFlex="100" [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
+		    <md-select placeholder="所属年级" fxFlex="100" required [(ngModel)]="model.gradeId" name="gradeId" [disabled]="status == 'check'">
 				<md-option *ngFor="let grade of gradelist" [value]="grade.id">
 					{{ grade.gradeName }}
 				</md-option>
 			</md-select>
 			
 			<md-input-container fxFlex="100">
-				<textarea mdInput placeholder="学校描述" [(ngModel)]="model.classDesc" name="classDesc" [disabled]="status == 'check'"></textarea>
+				<textarea mdInput placeholder="班级描述" [(ngModel)]="model.classDesc" name="classDesc" [disabled]="status == 'check'"></textarea>
 			</md-input-container>
 		
 	</form>

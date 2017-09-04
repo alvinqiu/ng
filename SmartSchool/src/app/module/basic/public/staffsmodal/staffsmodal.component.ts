@@ -118,6 +118,7 @@ export class StaffsmodalComponent implements OnInit {
     this._service
       .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
         this.schoolsList = response.entries;
+        this.staffData.schoolId = response.entries[0].id
       });
 
     this._service

@@ -8,6 +8,7 @@ export class ResourceClass {
 	schoolName:string;
 	note:string;
 	name:string;
+	ownerId: number;
 	previews:Array<string>;
 	sourceType: number;
 	constructor() {

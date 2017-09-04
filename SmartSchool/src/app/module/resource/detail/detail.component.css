@@ -16,6 +16,12 @@
 .preview img {
 	width: 100%;
 }
+.no-message {
+	text-align: center;
+    border: 1px solid grey;
+    padding: 48px;
+    color: red;
+}
 .left {
 	padding: 16px;
 }

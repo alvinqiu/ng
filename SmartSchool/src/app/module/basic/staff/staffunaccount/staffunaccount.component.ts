@@ -133,13 +133,13 @@ export class StaffunaccountComponent implements OnInit {
 
   change(event: IPageChangeEvent): void {
     let url = "";
+    this.page = event.page;
+    this.pageSize = event.pageSize;
     if (this.foodValue != "") {
       url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}&${this.foodValue}=${this.searchInputTerm}`;
     } else {
       url = `/api/bi/staff/getStaffByCondition?page=${this.page}&pageSize=${this.pageSize}`;
     }
-    this.page = event.page;
-    this.pageSize = event.pageSize;
     this._service
       .getBasicHttp(url, (response: any) => {
         this.basicData = response.entries;

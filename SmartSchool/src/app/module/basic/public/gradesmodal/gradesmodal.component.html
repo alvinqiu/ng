@@ -23,7 +23,7 @@
 			  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="status == 'check'"></button>
 			</md-input-container>
 			<md-datepicker #picker  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
-			<md-select placeholder="年级负责人" fxFlex="100" [(ngModel)]="grade.managerName" name="managerName" [disabled]="status == 'check'">
+			<md-select placeholder="年级负责人" fxFlex="100" [(ngModel)]="grade.gradeManager" name="gradeManager" [disabled]="status == 'check'">
 				<md-option *ngFor="let staff of stafflist" [value]="staff.id">
 					{{ staff.staffName }}
 				</md-option>

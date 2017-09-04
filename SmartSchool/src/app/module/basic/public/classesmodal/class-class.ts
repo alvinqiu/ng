@@ -7,7 +7,7 @@ export class ClassClass {
 	studentNum: number;
 	classDesc: string;
 	constructor() {
-		this.gradeId = 0;
+		// this.gradeId = 0;
 		this.className = "";
 		this.classManager = 0;
 		this.classLocation = "";

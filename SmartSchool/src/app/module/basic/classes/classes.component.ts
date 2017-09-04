@@ -21,7 +21,7 @@ export class ClassesComponent implements OnInit {
     { name: 'gradeName', label: '所属年级' },
     { name: 'classManagerName', label: '班级负责人' },
     { name: 'studentNum', label: '学生人数' },
-    { name: 'classLocation', label: '班级位置' },
+    // { name: 'classLocation', label: '班级位置' },
     { name: 'classDesc', label: '班级描述' },
   ];
   nodes = [];

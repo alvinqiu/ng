@@ -3,7 +3,7 @@ export class GradeClass {
 	"schoolId": number;
 	"gradeName": string;
 	"schoolName": string;
-	"managerName":string;
+	"gradeManager":number;
 	"gradeDesc":string;
 	"gradeLevel":Date;
 	"gradeAttr":number;
@@ -11,7 +11,7 @@ export class GradeClass {
 	constructor() {
 		this.gradeName = "";
 		this.schoolName = "";
-		this.managerName = "";
+		this.gradeManager = 0;
 		this.gradeDesc = "";
 		this.gradeLevel = new Date();
 		this.gradeAttr = 0;
