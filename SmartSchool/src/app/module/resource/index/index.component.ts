@@ -23,7 +23,9 @@ export class IndexComponent implements OnInit {
     subject:0,
     version:0,
     textbook:0
-  }
+  };
+  keyword = "name";
+  keywordlist = [{"text":"名称", "value":"name"},{"text":"作者", "value":"authorName"},{"text":"时间", "value":"createTime"}];
   serarchSectionId = 0;
   resourcelist = [];
   searchInputTerm: string = "";
@@ -36,6 +38,7 @@ export class IndexComponent implements OnInit {
   pageSize: number = 20;
   page: number = 1;
   totalCount: number = 0;
+  sort = "ascend";
   constructor(
   	private _service: ApiService,
     public dialog: MdDialog
@@ -136,11 +139,19 @@ export class IndexComponent implements OnInit {
   }
   searchResource() {
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}`, res => {
+    this._service.getResourceHttp(`/resource?${this.keyword}=${this.keyword == "createTime"?Date.parse(this.searchInputTerm):this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}&sort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
     })
+  }
+  ascending() {
+    this.sort = "ascend";
+    this.searchResource()
+  }
+  descending() {
+    this.sort = "descend";
+    this.searchResource()
   }
   openDialog(condition: any): void {
     condition.tree = this.tree;
