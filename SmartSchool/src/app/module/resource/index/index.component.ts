@@ -38,7 +38,7 @@ export class IndexComponent implements OnInit {
   pageSize: number = 20;
   page: number = 1;
   totalCount: number = 0;
-  sort = "ascend";
+  sort = "asc";
   constructor(
   	private _service: ApiService,
     public dialog: MdDialog
@@ -146,11 +146,11 @@ export class IndexComponent implements OnInit {
     })
   }
   ascending() {
-    this.sort = "ascend";
+    this.sort = "asc";
     this.searchResource()
   }
   descending() {
-    this.sort = "descend";
+    this.sort = "des";
     this.searchResource()
   }
   openDialog(condition: any): void {
