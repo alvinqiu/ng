@@ -1,20 +1,10 @@
-.container {
-	width: 100%;
-	padding-top: 16px;
-}
 .container-content {
-	width: 1024px;
-	padding-bottom: 80px;
-	display: block;
+	width: 1200px;
+	flex-wrap: wrap;
+	font-size: 12px;
+	padding-top: 16px;
 }
 
 .divider {
-	margin: 4px 0px 8px 0px;
-}
-.mat-list {
-	width: 100%;
-}
-md-radio-button {
-	margin-left: 8px;
-	margin-bottom: 8px;
+	margin: 8px;
 }

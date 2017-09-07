@@ -1,22 +1,10 @@
-.container {
-	width: 100%;
+.container-content {
+	width: 1200px;
+	flex-wrap: wrap;
+	font-size: 12px;
 	padding-top: 16px;
 }
-.container-content {
-	width: 1024px;
-	padding-bottom: 80px;
-}
-.mat-toolbar {
-	background: white;
-}
-.td-search-container md-select {
-	min-width: 275px;
-	padding-bottom: 3px;
-}
-.mat-list {
-	width: 100%;
-}
-md-radio-button {
-	margin-left: 8px;
-	margin-bottom: 8px;
+
+.divider {
+	margin: 8px;
 }

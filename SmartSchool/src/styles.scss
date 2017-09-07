@@ -232,60 +232,75 @@ td-expansion-panel {
 }
 // stars
 
+// menu
 .menu {
-	margin: 16px 0px;
-	md-radio-group {
-		// padding: 16px 0px;
-		height: 41px;
-    	overflow: hidden;
+	margin-bottom: 40px;
+	.menu-brand {
+		padding: 6px 16px;
 	}
-	.mat-radio-button {
-		position: relative;
-		margin-right: 8px;
-		margin-bottom: 8px;
+	.radio-select {
+		&.mat-radio-checked {
+			background: #009688;
+			color: white;
+		}
+		.mat-radio-container {
+			display: none;
+		}
+		.mat-radio-label-content {
+			padding: 6px 16px;
+		}
 	}
-	 .mat-radio-container {
-		position: static;
-		width: auto;
-		height: auto;
+	.menu-md-button-toggle-group {
+		box-shadow: none;
+		height: 29px;
 	}
-	 .mat-radio-label {
-		position: relative;
-		padding: 6px 24px;
+	.mat-radio-group  {
+		height: 29px;
+		overflow: hidden;
+		&.height-auto {
+			height: auto;
+		}
 	}
-	 .mat-radio-inner-circle {
-		display: none;
+	.tree-menu {
+		padding-right: 8px;
+		margin-right: 16px;
+		border-right: 1px solid rgba(0, 0, 0, 0.06);
+		font-size: 13px;
+		tree-node-content {
+			display: flex;
+			align-items: center;
+			md-icon {
+				color: #dca400;
+				margin-right: 4px;
+			}
+		}
 	}
-	 .mat-radio-outer-circle {
-		top: 0px;
-	    right: 0px;
-	    bottom: 0px;
-	    left: 0px;
-	    border-radius: 0px;
-	    width: auto;
-	    height: auto;
+	.mat-subheader {
+		color: #0455A1;
+		font-size: 14px;
 	}
-	 .mat-radio-label-content {
-		padding: 0px;
+	.br[_ngcontent-c14] {
+		margin: 0px;
 	}
-	 .mat-radio-ripple {
-		border-radius: 0px;
-		top: 0px;
-		left: 0px;
-		right: 0px;
-		bottom: 0px;
+	.br-default {
+		.br-unit {
+			font-size: 12px;
+			width: 12px;
+		}	
 	}
-	md-radio-group.height-auto {
-		height: auto;
-	}
-	// .height {
-	// 	height: 41px;
-	// 	overflow: hidden;
-	// }
-	// .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-	// 	border-color: #009688;
-	// }
+	.mat-list {
+		.mat-list-item {
+			.mat-line {
+				font-size: 12px;
+			}
+		}
+	} 
+	// .mat-radio-group .height-auto {
+	// 	height: auto;
+	// }	
 }
+
+// menu
  
 .content {
 	md-sidenav {
@@ -322,6 +337,24 @@ td-expansion-panel {
 				color: #dca400;
 			}
 		}
+	}
+	
+	
+}
+
+.menus-container-container {
+	.mat-button-wrapper {
+		display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    text-align: center;
+	    align-items: center;
+	    md-icon {
+	    	margin-left: 16px;
+	    	height: 48px;
+    		width: 48px;
+    		font-size: 48px
+	    }
 	}
 }
 

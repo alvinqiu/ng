@@ -1,6 +1,116 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
 	<div class="container-content">
-		<md-card class="menu">
+		<md-card class="menu" fxFlex="100">
+			<div fxLayout="row" fxLayoutAlign="start start" >
+				<div fxFlex="60px" class="menu-brand">学段:</div>
+				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
+				  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.period; let o = index;">{{child.name}}</md-radio-button>
+				</md-radio-group>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="start start" >
+				<div fxFlex="60px" class="menu-brand">学科:</div>
+				<md-radio-group fxLayoutWrap  [(ngModel)]="searchMenu.subject" name="subject" (change)="subjectChange()" fxFlex="grow" class="{{group1.value}}">
+				  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.subject; let o = index;">{{child.name}}</md-radio-button>
+				</md-radio-group>
+				<md-button-toggle-group #group1="mdButtonToggleGroup" class="menu-md-button-toggle-group">
+				  <md-button-toggle value="" *ngIf = "group1.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group1.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="start start">
+				<div fxFlex="60px" class="menu-brand">版本:</div>
+				<md-radio-group [(ngModel)]="searchMenu.version" name="version" (change)="versionChange()" fxFlex="grow" class="{{group2.value}}">
+				  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.version; let o = index;">{{child.name}}</md-radio-button>
+				</md-radio-group>
+				<md-button-toggle-group #group2="mdButtonToggleGroup" class="menu-md-button-toggle-group">
+				  <md-button-toggle value="" *ngIf = "group2.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group2.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="start start">
+				<div fxFlex="60px" class="menu-brand">教材:</div>
+				<md-radio-group [(ngModel)]="searchMenu.textbook" name="textbook" (change)="textbookChange()" fxFlex="grow" class="{{group3.value}}">
+				  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.textbook; let o = index;">{{child.name}}</md-radio-button>
+				</md-radio-group>
+				<md-button-toggle-group #group3="mdButtonToggleGroup" class="menu-md-button-toggle-group">
+				  <md-button-toggle value="" *ngIf = "group3.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group3.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="start start">
+				<div fxFlex="60px" class="menu-brand">类型:</div>
+				<md-radio-group [(ngModel)]="formatValue" name="formatValue" (change)="formatChange()" fxFlex="grow" class="{{group4.value}}">
+				  <md-radio-button class="radio-select" value="{{item.value}}" *ngFor="let item of fileTypes; let o = index;">{{item.text}}</md-radio-button>
+				</md-radio-group>
+				<md-button-toggle-group #group4="mdButtonToggleGroup" class="menu-md-button-toggle-group">
+				  <md-button-toggle value="" *ngIf = "group4.value == 'height-auto'">
+				    收起<md-icon>keyboard_arrow_up</md-icon>
+				  </md-button-toggle>
+				  <md-button-toggle value="height-auto" *ngIf = "!(group4.value == 'height-auto')">
+				    展开<md-icon>keyboard_arrow_down</md-icon>
+				  </md-button-toggle>
+				</md-button-toggle-group>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="end start">
+				<td-search-box fxFlex="grow" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)" fxFlex="200px">
+				</td-search-box>
+				<button md-button (click)="openDialog({})">资源上传</button>
+			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+				<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
+				  <a md-subheader routerLink="/app/resource/detail/{{item.uuid}}"><h4>{{item.name}}</h4></a>
+				  <md-list-item>
+				  	<i [class]="iconfont(item.format)" md-list-icon></i>
+				    <h4 md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</h4>
+
+				    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
+				    <p md-line>资源状态：{{filterStatus(item.status)}} </p>
+				    <p md-line><bar-rating [(rate)]="item.hots" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating></p>
+				    <div class="slot">
+				    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}"><i class="material-icons primary">view_module</i>资源预览</a>
+				    	<button md-button (click)="delete(item.uuid)" *ngIf="item.sourceType == 0"><i class="material-icons red">delete_forever</i>资源删除</button>
+				    	<button md-button (click)="cancelFavorite(item.uuid)" *ngIf="!(item.sourceType == 0)"><i class="material-icons orange">cancel</i>取消收藏</button>
+				    </div>
+				  </md-list-item>
+				  <md-divider></md-divider>
+				</md-list>
+				<div fxFlex="100" fxLayout="row" fxLayoutAlign="end start">
+					<td-paging-bar 
+						#pagingBar 
+						[firstLast]="true" 
+						[pageSizeAll]="false" 
+						[pageSizes]="[10,20,50]"
+						pageLinkCount="5" 
+						[initialPage]="1" 
+						[pageSize]="pageSize" 
+						[total]="totalElements" 
+						(change)="change($event)">
+						<span td-paging-bar-label>每页:</span>
+						{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+					</td-paging-bar>
+				</div>
+				
+			</div>
+		</md-card>
+		<!-- <md-card class="menu">
 			<div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px">学段:</div>
 				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()">
@@ -104,7 +214,7 @@
 					{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
 				</td-paging-bar>
 			</div>
-		</md-card>
+		</md-card> -->
 	</div>
 	
 </div>
