@@ -139,7 +139,7 @@ export class IndexComponent implements OnInit {
   }
   searchResource() {
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp(`/resource?${this.keyword}=${this.keyword == "createTime"?Date.parse(this.searchInputTerm):this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}&sort=${this.sort}`, res => {
+    this._service.getResourceHttp(`/resource?${this.keyword}=${this.keyword == "createTime"?Date.parse(this.searchInputTerm):this.searchInputTerm}&stagesId=${this.searchMenu.period == 0?'':this.searchMenu.period}&courseId=${this.searchMenu.subject == 0?'':this.searchMenu.subject}&versionId=${this.searchMenu.version == 0?'':this.searchMenu.version}&gradeId=${this.searchMenu.textbook == 0?'':this.searchMenu.textbook}&sectionId=${this.serarchSectionId == 0?"":this.serarchSectionId}&format=${this.formatValue}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
