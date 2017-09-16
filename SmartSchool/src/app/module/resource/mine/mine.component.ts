@@ -79,8 +79,7 @@ export class MineComponent implements OnInit {
         this.showMenu.version = this.showMenu.subject.length>0?this.showMenu.subject[0].children:[];
         this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
         this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-        
+        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;     
         this.searchResource();
       }
     })
@@ -92,8 +91,7 @@ export class MineComponent implements OnInit {
         this.showMenu.version = item.children;
         this.searchMenu.version = this.showMenu.version.length>0?this.showMenu.version[0].id:0;
         this.showMenu.textbook = this.showMenu.version.length>0?this.showMenu.version[0].children:[];
-        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-        
+        this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;    
         this.searchResource();
       }
     })
@@ -103,7 +101,6 @@ export class MineComponent implements OnInit {
     this.showMenu.version.map( item => {
       this.showMenu.textbook = item.children;
       this.searchMenu.textbook = this.showMenu.textbook.length>0?this.showMenu.textbook[0].id:0;
-      
       this.searchResource();
     })
   }
@@ -173,12 +170,10 @@ export class MineComponent implements OnInit {
       data: condition,
       width: "60%"
     });
-    dialogRef.afterClosed().subscribe(result => {
-      
+    dialogRef.afterClosed().subscribe(result => {      
       if (this.page == 1) {
         this.searchResource();
-      }
-      
+      }     
     });
   }
   formatChange() {

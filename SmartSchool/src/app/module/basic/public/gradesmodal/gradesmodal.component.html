@@ -18,10 +18,10 @@
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
-			<md-input-container fxFlex="50">
+			<!-- <md-input-container fxFlex="50">
 			  <input mdInput [mdDatepicker]="picker" placeholder="入学时间"  [disabled]="status == 'check'" [(ngModel)]="grade.gradeLevel" name="gradeLevel">
 			  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="status == 'check'"></button>
-			</md-input-container>
+			</md-input-container> -->
 			<md-datepicker #picker  [startAt]="startDate" (selectedChanged)="selectedChanged($event)"></md-datepicker>
 			<md-select placeholder="年级负责人" fxFlex="100" [(ngModel)]="grade.gradeManager" name="gradeManager" [disabled]="status == 'check'">
 				<md-option *ngFor="let staff of stafflist" [value]="staff.id">

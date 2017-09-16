@@ -294,10 +294,18 @@ td-expansion-panel {
 				font-size: 12px;
 			}
 		}
+	}
+	.search {
+		md-form-field {
+			width: 100%;
+		}
 	} 
-	// .mat-radio-group .height-auto {
-	// 	height: auto;
-	// }	
+	.sort {
+		md-icon {
+			font-size: 16px;
+			height: 18px;
+		}
+	}	
 }
 
 // menu

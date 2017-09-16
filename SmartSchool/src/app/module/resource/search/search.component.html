@@ -1,0 +1,40 @@
+<div class="container"  fxLayout="row" fxLayoutAlign="center start">
+	<div class="container-content">
+		<div fxLayout="column" class="menu" fxFlex="100">
+			<div fxLayout="row" fxLayoutAlign="center center" class="search">
+				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
+				</td-search-box>
+			</div>
+			<div fxLayout="column">
+				<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
+				  <a md-subheader routerLink="/app/resource/detail/{{item.uuid}}"><h4>{{item.name}}</h4></a>
+				  <md-list-item>
+				  	<i [class]="iconfont(item.format)" md-list-icon></i>
+				    <p md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</p>
+				    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
+				    <p md-line><bar-rating [(rate)]="item.hots" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating></p>
+				    <div class="slot">
+				    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}" ><i class="material-icons primary">view_module</i>资源预览</a>
+
+				    	<button md-button (click)="download(item.uuid)" class="primary"><i class="material-icons blue">file_download</i>资源下载</button>
+				    </div>
+				  </md-list-item>
+				  <md-divider></md-divider>
+				</md-list>
+			</div>
+			<div>
+				<td-paging-bar 
+					#pagingBar 
+					[firstLast]="true" 
+					pageLinkCount="5" 
+					[initialPage]="initialPage"
+					[pageSize]="pageSize" 
+					[total]="totalCount" 
+					(change)="change($event)" fxFlex="100">
+					<span td-paging-bar-label>每页:</span>
+					{{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+				</td-paging-bar>
+			</div>
+		</div>
+	</div>
+</div>

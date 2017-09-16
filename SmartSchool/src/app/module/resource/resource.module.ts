@@ -36,6 +36,7 @@ import {
 } from '@covalent/core';
 
 import { BarRatingModule } from 'ngx-bar-rating';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -65,6 +66,13 @@ import { BarRatingModule } from 'ngx-bar-rating';
 	MdCardModule,
   ],
   entryComponents: [UploadModalComponent, MsgComponent],
-  declarations: [ResourceComponent, MineComponent, ReviewComponent, IndexComponent, UploadModalComponent, DetailComponent, MsgComponent]
+  declarations: [
+  ResourceComponent, 
+  MineComponent, 
+  ReviewComponent, 
+  IndexComponent, 
+  UploadModalComponent, 
+  DetailComponent, 
+  MsgComponent, SearchComponent]
 })
 export class ResourceModule { }

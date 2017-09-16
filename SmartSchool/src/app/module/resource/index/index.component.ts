@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../../../service/api.service';
 import { MdDialog } from '@angular/material';
 import { IPageChangeEvent } from '@covalent/core';
@@ -41,7 +42,8 @@ export class IndexComponent implements OnInit {
   sort = "asc";
   constructor(
   	private _service: ApiService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private router: Router
   	) { }
 
   ngOnInit() {
@@ -129,9 +131,7 @@ export class IndexComponent implements OnInit {
   }
 
   handleSearch(searchInputTerm: string):void {
-    this.serarchSectionId = 0;
-    this.searchInputTerm = searchInputTerm;
-    this.searchResource()
+     this.router.navigate(['/app/resource/search']);
   }
 
   download(e) {
