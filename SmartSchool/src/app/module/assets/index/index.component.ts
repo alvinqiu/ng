@@ -46,6 +46,8 @@ export class IndexComponent implements OnInit {
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   schoolList = [];
+  schoolId: number;
+  userRole: any;
 
   constructor(
     public dialog: MdDialog,
@@ -69,7 +71,7 @@ export class IndexComponent implements OnInit {
             this.selectedRows = [];
             document.getElementById('app-loading').style.display = 'flex';
             this._service
-              .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+              .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
                 this.basicValidData = response.entries;
                 this.totalCount = response.totalCount;
                 document.getElementById('app-loading').style.display = 'none';
@@ -91,7 +93,7 @@ export class IndexComponent implements OnInit {
               this.selectedRows = [];
               document.getElementById('app-loading').style.display = 'flex';
               this._service
-                .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+                .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
                   this.basicValidData = response.entries;
                   this.totalCount = response.totalCount;
                   document.getElementById('app-loading').style.display = 'none';
@@ -173,7 +175,7 @@ export class IndexComponent implements OnInit {
       ];
 
       this._service
-        .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+        .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
           this.basicValidData = response.entries;
           this.totalCount = response.totalCount;
         });
@@ -181,9 +183,13 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._service.getBasicHttp("/user/profile", res => {
+      this.userRole = res;
+    });
+
     document.getElementById('app-loading').style.display = 'flex';
     this._service
-      .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+      .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
         this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
