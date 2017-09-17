@@ -33,7 +33,8 @@ export class SpecificComponent implements OnInit {
   totalCount: number;
   equipmentGeneralId = 0;
   tabIndex = '0';
-
+  msg: string;
+  returnMsg: string;
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
@@ -154,8 +155,23 @@ export class SpecificComponent implements OnInit {
   openConfirm(status: any): void {
     if (this.selectedRows.length == 0) {
     } else {
+      switch (status) {
+        case 0:
+          this.msg = "是否确定删除资产?";
+          this.returnMsg = "删除成功!";
+          break;
+        case 1:
+          this.msg = "是否确定申请报废?";
+          this.returnMsg = "申请成功, 请等待审核";
+          break;
+        default:
+          this.msg = "是否确定更改此状态?";
+          this.returnMsg = "状态更改成功!";
+          break;
+      }
+
       this._dialogService.openConfirm({
-        message: '确认更改为此状态吗?',
+        message: this.msg,
         disableClose: true,
         cancelButton: '取消',
         acceptButton: '确定',
@@ -175,9 +191,19 @@ export class SpecificComponent implements OnInit {
                 });
 
             });
+          this.openAlert(this.returnMsg);
         }
       });
     }
+  }
+
+  openAlert(msg: any): void {
+    this._dialogService.openAlert({
+      message: msg,
+      disableClose: true,
+      title: '提示',
+      closeButton: '关闭',
+    });
   }
 
 }

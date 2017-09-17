@@ -1,16 +1,27 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
   <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
     <md-card fxFlexFill>
+
       <md-toolbar>
         <button md-button (click)="openDialog({func:'add'})">新增资产</button>
         <button md-button (click)="openDialog({func:'edit'})">编辑资产</button>
         <button md-button (click)="openDialog({func:'qrCode'})">条形码查询资产</button>
         <button md-button (click)="openDialog({func:'type'})">资产类别设置</button>
         <button md-button (click)="openDialog({func:'supplier'})">供应商管理</button>
-        <!-- <button md-button (click)="handleSpecific()">查看次级资产</button> -->
+        <button md-button (click)="openDialog({func:'supplier'})">报废待审核</button>
         <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
       </md-toolbar>
+
+      <md-toolbar>
+        <md-select placeholder="学校列表" fxFlex="50" [(ngModel)]="schoolId" name="schoolId">
+          <md-option *ngFor="let item of schoolList" [value]="item.id">
+            {{ item.name }}
+          </md-option>
+        </md-select>
+      </md-toolbar>
+
     </md-card>
+
     <md-tab-group fxFlexFill (selectChange)="changeTabs($event)">
       <md-tab label="使用中">
         <td-data-table
@@ -60,7 +71,7 @@
       #pagingBar
       [firstLast]="true"
       [pageSizeAll]="false"
-      [pageSizes]="[2,10,20,50]"
+      [pageSizes]="[10,20,50]"
       pageLinkCount="5"
       [initialPage]="1"
       [pageSize]="pageSize"
