@@ -12,6 +12,7 @@ import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-m
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from '../public/supplier-modal/supplier-modal.component';
+import { PreObsoleteModalComponent } from '../public/pre-obsolete-modal/pre-obsolete-modal.component';
 
 @Component({
   selector: 'app-index',
@@ -46,7 +47,7 @@ export class IndexComponent implements OnInit {
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   schoolList = [];
-  schoolId: number;
+  schoolId: number = 0;
   userRole: any;
 
   constructor(
@@ -117,6 +118,11 @@ export class IndexComponent implements OnInit {
           width: '50%'
         });
         break;
+      case 'preObsolete':
+        dialogRef = this.dialog.open(PreObsoleteModalComponent, {
+          width: '80%'
+        });
+        break;
       // case 'rule':
       //   dialogRef = this.dialog.open(AssetsAddModalComponent, {
       //     width:"60%"
@@ -180,6 +186,10 @@ export class IndexComponent implements OnInit {
           this.totalCount = response.totalCount;
         });
     }
+  }
+
+  schoolChange() {
+    this.ngOnInit();
   }
 
   ngOnInit() {

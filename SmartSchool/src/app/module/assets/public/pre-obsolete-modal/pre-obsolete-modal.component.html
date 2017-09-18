@@ -1,0 +1,33 @@
+<div class="container fall-in-x">
+  <td-data-table
+    fxFlexFill
+    #dataTable
+    [data]="basicData"
+    [columns]="columns"
+    [sortable]="true"
+    [sortOrder]="sortOrder"
+    (sortChange)="sort($event)"
+  >
+    <ng-template tdDataTableTemplate="btn" let-value="批准" let-row="row" let-column="column">
+      <div layout="row">
+        <span flex><button md-button (click)="changeStatus(1)">批准</button></span>
+        <span flex><button md-button (click)="changeStatus(2)">拒绝</button></span>
+      </div>
+    </ng-template>
+  </td-data-table>
+
+  <td-paging-bar
+    fxFlexFill
+    #pagingBar
+    [firstLast]="true"
+    [pageSizeAll]="false"
+    [pageSizes]="[10,20,50]"
+    pageLinkCount="5"
+    [initialPage]="1"
+    [pageSize]="pageSize"
+    [total]="totalCount"
+    (change)="change($event)">
+    <span td-paging-bar-label>每页:</span>
+    {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+  </td-paging-bar>
+</div>

@@ -23,5 +23,9 @@
   "/equipment": {
     "target": "http://www.marchezvousblue.cn",
     "secure": false
+  },
+  "/preObsolete": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
   }
 }

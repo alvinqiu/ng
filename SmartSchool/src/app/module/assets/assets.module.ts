@@ -44,6 +44,7 @@ import { SpecificComponent } from './specific/specific.component';
 import { CreateQrCodeModalComponent } from './public/create-qr-code-modal/create-qr-code-modal.component';
 import { StockHistoryModalComponent } from './public/stock-history-modal/stock-history-modal.component';
 import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-add-modal.component';
+import { PreObsoleteModalComponent } from './public/pre-obsolete-modal/pre-obsolete-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -77,7 +78,7 @@ import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-
   ],
   declarations: [AssetsComponent, IndexComponent, AssetsAddModalComponent, QrCodeModalComponent,
     InOutStockModalComponent, AssetsTypeModalComponent, SupplierModalComponent, SpecificComponent,
-    CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent],
+    CreateQrCodeModalComponent, StockHistoryModalComponent, SupplierAddModalComponent, SupplierAddModalComponent, PreObsoleteModalComponent],
   entryComponents: [
     AssetsAddModalComponent,
     QrCodeModalComponent,
@@ -86,7 +87,8 @@ import { SupplierAddModalComponent } from './public/supplier-add-modal/supplier-
     SupplierModalComponent,
     CreateQrCodeModalComponent,
     StockHistoryModalComponent,
-    SupplierAddModalComponent
+    SupplierAddModalComponent,
+    PreObsoleteModalComponent
   ],
   providers: [
     ApiService,
