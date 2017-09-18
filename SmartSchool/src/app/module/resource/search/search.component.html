@@ -26,7 +26,9 @@
 				<td-paging-bar 
 					#pagingBar 
 					[firstLast]="true" 
-					pageLinkCount="5" 
+					pageLinkCount="5"
+					[pageSizeAll]="false"
+					[pageSizes]="[10,20,50]" 
 					[initialPage]="initialPage"
 					[pageSize]="pageSize" 
 					[total]="totalCount" 

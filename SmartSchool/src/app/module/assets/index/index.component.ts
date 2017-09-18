@@ -45,6 +45,7 @@ export class IndexComponent implements OnInit {
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
+  schoolList = [];
 
   constructor(
     public dialog: MdDialog,
@@ -186,8 +187,13 @@ export class IndexComponent implements OnInit {
         this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
-         this.filter();
+        this.filter();
       });
+
+    this._service
+      .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
+        this.schoolList = response.entries;
+      })
   }
 
   filter(): void {
