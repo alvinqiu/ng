@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
     // { name: 'price', label: '总价(元)' },
     { name: 'purchaseDate', label: '购买时间' },
   ];
-
+  schoolId: number;
   basicValidData: Array<AssetsClass>;
   basicInvalidData: Array<AssetsClass>;
   selectedRows: any[] = [];

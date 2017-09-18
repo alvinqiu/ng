@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp(`/resource?name=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&sort=${this.sort}`, res => {
+    this._service.getResourceHttp(`/resource?name=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
   handleSearch(searchInputTerm: string) {
     this.searchInputTerm = searchInputTerm;
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&sort=${this.sort}`, res => {
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -46,7 +46,27 @@ export class SearchComponent implements OnInit {
     document.getElementById('app-loading').style.display = "flex";
     this.page = event.page;
     this.pageSize = event.pageSize;
-    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&sort=${this.sort}`, res => {
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
+      this.resourcelist = res.content;
+      this.totalCount = res.totalElements;
+      document.getElementById('app-loading').style.display = "none";
+    });
+  }
+
+  ascending() {
+    this.sort = "asc";
+    document.getElementById('app-loading').style.display = "flex";
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
+      this.resourcelist = res.content;
+      this.totalCount = res.totalElements;
+      document.getElementById('app-loading').style.display = "none";
+    });
+  }
+
+  descending() {
+    this.sort = "des";
+    document.getElementById('app-loading').style.display = "flex";
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";

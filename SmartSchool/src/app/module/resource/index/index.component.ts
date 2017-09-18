@@ -25,6 +25,10 @@ export class IndexComponent implements OnInit {
     version:0,
     textbook:0
   };
+  sumSize = {
+    "sumSize":0,
+    "count":0
+  };
   keyword = "name";
   keywordlist = [{"text":"名称", "value":"name"},{"text":"作者", "value":"authorName"},{"text":"时间", "value":"createTime"}];
   serarchSectionId = 0;
@@ -48,6 +52,9 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('app-loading').style.display = "flex";
+    this._service.getResourceHttp('/resource/sumSize', res => {
+      this.sumSize = res;
+    });
   	this._service.getResourceHttp('/category/tree', res => {
 	    this.fileTypes = fileTypeList;
 	  	this.showMenu.period = this.tree = res;
@@ -63,6 +70,7 @@ export class IndexComponent implements OnInit {
       })
       this.searchResource();
   	})
+    
   }
 
   periodChange(): void {
@@ -194,5 +202,15 @@ export class IndexComponent implements OnInit {
         return "iconfont icon-file"
 
     }
+  }
+  bytesToSize(bytes) {
+    if (bytes === 0) return '0 B';
+      let k = 1024;
+      let sizes = ['B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      let i = Math.floor(Math.log(bytes) / Math.log(k));
+      var num = bytes / Math.pow(k, i);
+      return num.toPrecision(3) + ' ' + sizes[i];
+      //return (bytes / Math.pow(k, i)) + ' ' + sizes[i]; 
+      //toPrecision(3) 后面保留一位小数，如1.0GB //return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
   }
 }
