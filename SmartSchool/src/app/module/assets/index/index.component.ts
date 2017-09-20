@@ -49,6 +49,7 @@ export class IndexComponent implements OnInit {
   schoolList = [];
   schoolId: number = 0;
   userRole: any;
+  disableFunc: boolean = false;
 
   constructor(
     public dialog: MdDialog,
@@ -195,6 +196,10 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this._service.getBasicHttp("/user/profile", res => {
       this.userRole = res;
+
+      if (this.schoolId !== 0 && this.userRole.user.roleId === 1 && this.userRole.user.schoolId !== this.schoolId) {
+        this.disableFunc = true;
+      } else { this.disableFunc = false; }
     });
 
     document.getElementById('app-loading').style.display = 'flex';
@@ -203,16 +208,12 @@ export class IndexComponent implements OnInit {
         this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
-        this.filter();
       });
 
     this._service
       .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
         this.schoolList = response.entries;
-      })
-  }
-
-  filter(): void {
+      });
 
   }
 

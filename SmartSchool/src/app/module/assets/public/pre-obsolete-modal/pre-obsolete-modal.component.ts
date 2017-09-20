@@ -24,7 +24,7 @@ export class PreObsoleteModalComponent implements OnInit {
     { name: 'supplierName', label: '供应商' },
     { name: 'price', label: '单价(元)' },
     { name: 'purchaseDate', label: '购买时间' },
-    { name: 'btn', label: '操作' },
+    { name: 'operation', label: '操作' },
   ];
 
   event: IPageChangeEvent;
@@ -50,13 +50,13 @@ export class PreObsoleteModalComponent implements OnInit {
     this.sortOrder = sortEvent.order;
   }
 
-  changeStatus(status: any) {
-    switch (status) {
+  changeStatus(condition: any) {
+    switch (condition.status) {
       case 1:
-      this.msg="是否确定批准报废资产?";
+        this.msg = "是否确定批准报废资产?";
         break;
       case 2:
-      this.msg="是否确定拒绝报废资产?";
+        this.msg = "是否确定拒绝报废资产?";
         break;
     }
 
@@ -68,11 +68,11 @@ export class PreObsoleteModalComponent implements OnInit {
     }).afterClosed().subscribe((accept: boolean) => {
       if (accept) {
         this._service
-          .postAssetsHttp(`/equipment-specific-status?equipmentIds=${equipmentIdArray}&equipmentGeneralId=${equipmentGeneralId}&status=${status}`
+          .postAssetsHttp(`/equipment-specific-status?equipmentIds=${condition.id}&equipmentGeneralId=${condition.generalId}&status=${condition.status}`
           , {}, (response: any) => {
 
-            this._service.getAssetsHttp(`/equipment-specific-valid/${equipmentGeneralId}/${this.page}/${this.pageSize}`,
-              (response: any) => {
+            this._service
+              .getAssetsHttp(`/preObsolete-equipment-list/${this.page}/${this.pageSize}`, (response: any) => {
                 this.basicData = response.entries;
                 this.totalCount = response.totalCount;
               });
