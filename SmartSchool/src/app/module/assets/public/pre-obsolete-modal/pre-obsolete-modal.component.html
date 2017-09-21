@@ -10,8 +10,8 @@
   >
     <ng-template tdDataTableTemplate="operation" let-value="value" let-row="row" let-column="column">
       <div layout="row">
-        <span flex><button md-button (click)="changeStatus({status:1,id:row['id'],generalId:row['id']})">批准</button></span>
-        <span flex><button md-button (click)="changeStatus({status:2,id:row['id'],generalId:row['id']})">拒绝</button></span>
+        <span flex><button md-button (click)="changeStatus({status:1,id:row['id'],generalId:row['equipmentGeneralId']})">批准</button></span>
+        <span flex><button md-button (click)="changeStatus({status:2,id:row['id'],generalId:row['equipmentGeneralId']})">拒绝</button></span>
       </div>
     </ng-template>
   </td-data-table>
