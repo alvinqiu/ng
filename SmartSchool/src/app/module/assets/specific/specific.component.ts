@@ -160,7 +160,7 @@ export class SpecificComponent implements OnInit {
           this.msg = "是否确定删除资产?";
           this.returnMsg = "删除成功!";
           break;
-        case 1:
+        case 3:
           this.msg = "是否确定申请报废?";
           this.returnMsg = "申请成功, 请等待审核";
           break;

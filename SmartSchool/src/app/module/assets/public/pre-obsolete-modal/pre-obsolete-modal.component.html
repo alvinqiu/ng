@@ -1,0 +1,40 @@
+<div class="container fall-in-x">
+  <td-data-table
+    fxFlexFill
+    #dataTable
+    [data]="basicData"
+    [columns]="columns"
+    [sortable]="true"
+    [sortOrder]="sortOrder"
+    (sortChange)="sort($event)"
+  >
+    <ng-template tdDataTableTemplate="operation" let-value="value" let-row="row" let-column="column">
+      <div layout="row">
+        <span flex><button md-button (click)="changeStatus({status:1,id:row['id'],generalId:row['id']})">批准</button></span>
+        <span flex><button md-button (click)="changeStatus({status:2,id:row['id'],generalId:row['id']})">拒绝</button></span>
+      </div>
+    </ng-template>
+  </td-data-table>
+
+  <td-paging-bar
+    fxFlexFill
+    #pagingBar
+    [firstLast]="true"
+    [pageSizeAll]="false"
+    [pageSizes]="[10,20,50]"
+    pageLinkCount="5"
+    [initialPage]="1"
+    [pageSize]="pageSize"
+    [total]="totalCount"
+    (change)="change($event)">
+    <span td-paging-bar-label>每页:</span>
+    {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
+  </td-paging-bar>
+
+  <md-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+    <button
+      md-button
+      color="primary"
+      md-dialog-close>关闭</button>
+  </md-dialog-actions>
+</div>

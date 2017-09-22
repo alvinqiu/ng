@@ -12,6 +12,7 @@ import { AssetsAddModalComponent } from '../public/assets-add-modal/assets-add-m
 import { QrCodeModalComponent } from '../public/qr-code-modal/qr-code-modal.component';
 import { AssetsTypeModalComponent } from '../public/assets-type-modal/assets-type-modal.component';
 import { SupplierModalComponent } from '../public/supplier-modal/supplier-modal.component';
+import { PreObsoleteModalComponent } from '../public/pre-obsolete-modal/pre-obsolete-modal.component';
 
 @Component({
   selector: 'app-index',
@@ -46,6 +47,9 @@ export class IndexComponent implements OnInit {
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
   schoolList = [];
+  schoolId: number = 0;
+  userRole: any;
+  disableFunc: boolean = false;
 
   constructor(
     public dialog: MdDialog,
@@ -69,7 +73,7 @@ export class IndexComponent implements OnInit {
             this.selectedRows = [];
             document.getElementById('app-loading').style.display = 'flex';
             this._service
-              .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+              .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
                 this.basicValidData = response.entries;
                 this.totalCount = response.totalCount;
                 document.getElementById('app-loading').style.display = 'none';
@@ -91,7 +95,7 @@ export class IndexComponent implements OnInit {
               this.selectedRows = [];
               document.getElementById('app-loading').style.display = 'flex';
               this._service
-                .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+                .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
                   this.basicValidData = response.entries;
                   this.totalCount = response.totalCount;
                   document.getElementById('app-loading').style.display = 'none';
@@ -113,6 +117,11 @@ export class IndexComponent implements OnInit {
       case 'supplier':
         dialogRef = this.dialog.open(SupplierModalComponent, {
           width: '50%'
+        });
+        break;
+      case 'preObsolete':
+        dialogRef = this.dialog.open(PreObsoleteModalComponent, {
+          width: '80%'
         });
         break;
       // case 'rule':
@@ -173,30 +182,38 @@ export class IndexComponent implements OnInit {
       ];
 
       this._service
-        .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+        .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
           this.basicValidData = response.entries;
           this.totalCount = response.totalCount;
         });
     }
   }
 
+  schoolChange() {
+    this.ngOnInit();
+  }
+
   ngOnInit() {
+    this._service.getBasicHttp("/user/profile", res => {
+      this.userRole = res;
+
+      if (this.schoolId !== 0 && this.userRole.user.roleId === 1 && this.userRole.user.schoolId !== this.schoolId) {
+        this.disableFunc = true;
+      } else { this.disableFunc = false; }
+    });
+
     document.getElementById('app-loading').style.display = 'flex';
     this._service
-      .getAssetsHttp(`/equipment-valid/${this.page}/${this.pageSize}`, (response: any) => {
+      .getAssetsHttp(`/equipment-valid/${this.schoolId}/${this.page}/${this.pageSize}`, (response: any) => {
         this.basicValidData = response.entries;
         this.totalCount = response.totalCount;
         document.getElementById('app-loading').style.display = 'none';
-        this.filter();
       });
 
     this._service
       .getBasicHttp(`/api/bi/school/getSchoolByCondition`, (response: any) => {
         this.schoolList = response.entries;
-      })
-  }
-
-  filter(): void {
+      });
 
   }
 
