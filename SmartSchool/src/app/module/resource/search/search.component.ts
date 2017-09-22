@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../service/api.service';
 import { IPageChangeEvent } from '@covalent/core';
-
+import {
+  Router,
+  ActivatedRoute,
+  Params
+} from "@angular/router";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -17,11 +21,15 @@ export class SearchComponent implements OnInit {
   sort = "asc";
   constructor(
   	private _service: ApiService,
+    private aRoute: ActivatedRoute, 
   	) { }
 
   ngOnInit() {
+    this.aRoute.params.subscribe((params) => {
+      this.searchInputTerm = params.id?params.id:'';
+    })
     document.getElementById('app-loading').style.display = "flex";
-    this._service.getResourceHttp(`/resource?name=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
+    this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;
       this.totalCount = res.totalElements;
       document.getElementById('app-loading').style.display = "none";
@@ -29,7 +37,7 @@ export class SearchComponent implements OnInit {
 
   }
   handleSearch(searchInputTerm: string) {
-    this.searchInputTerm = searchInputTerm;
+    this.searchInputTerm = searchInputTerm?searchInputTerm:'';
     document.getElementById('app-loading').style.display = "flex";
     this._service.getResourceHttp(`/resource?keyword=${this.searchInputTerm}&page=${this.page}&size=${this.pageSize}&resSort=${this.sort}`, res => {
       this.resourcelist = res.content;

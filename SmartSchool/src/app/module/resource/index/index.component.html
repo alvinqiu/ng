@@ -5,7 +5,7 @@
 		
 		<md-card class="menu" fxFlex="100">
 			<div fxLayout="row" fxLayoutAlign="center center" class="search">
-				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	(click)="handleSearch($event)">
+				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
 				</td-search-box>
 			</div>
 			<md-toolbar>总容量：{{bytesToSize(sumSize.sumSize)}}， 总资料：{{sumSize.count}}套</md-toolbar>

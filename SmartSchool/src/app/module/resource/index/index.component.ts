@@ -139,7 +139,7 @@ export class IndexComponent implements OnInit {
   }
 
   handleSearch(searchInputTerm: string):void {
-     this.router.navigate(['/app/resource/search']);
+     this.router.navigate([`/app/resource/search/${searchInputTerm?searchInputTerm:''}`]);
   }
 
   download(e) {
