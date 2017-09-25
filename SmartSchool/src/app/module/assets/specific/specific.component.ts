@@ -46,7 +46,9 @@ export class SpecificComponent implements OnInit {
   ) { }
 
   change(event: IPageChangeEvent): void {
-    this.event = event;
+    this.page = event.page;
+    this.pageSize = event.pageSize;
+    this.ngOnInit();
   }
 
   openDialog(condition: any): void {

@@ -7,11 +7,11 @@
         <button md-button (click)="openDialog({func:'qrCode'})" [disabled]="disableFunc">条形码查询资产</button>
         <button md-button (click)="openDialog({func:'type'})" [disabled]="disableFunc">资产类别设置</button>
         <button md-button (click)="openDialog({func:'supplier'})" [disabled]="disableFunc">供应商管理</button>
-        <button md-button (click)="openDialog({func:'preObsolete'})">报废待审核</button>
+        <button md-button (click)="openDialog({func:'preObsolete'})" *ngIf="isSuperAdminRole">报废待审核</button>
         <!--<button md-button (click)="openDialog({func:'rule'})">资产编号规则设置</button>-->
       </md-toolbar>
 
-      <md-toolbar>
+      <md-toolbar *ngIf="isSuperAdminRole">
         <md-select placeholder="学校列表" fxFlex="50" [(ngModel)]="schoolId" name="schoolId" (change)="schoolChange()">
           <md-option *ngFor="let item of schoolList" [value]="item.id">
             {{ item.name }}
