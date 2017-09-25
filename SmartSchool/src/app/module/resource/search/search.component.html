@@ -5,6 +5,12 @@
 				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
 				</td-search-box>
 			</div>
+			<div class="divider"></div>
+			<div fxLayout="row" fxLayoutAlign="end center" class="sort">
+				<button md-button (click)="ascending()"><md-icon>arrow_upward</md-icon>资源评分由低到高</button>
+				<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由高到低</button>
+			</div>
+			<div class="divider"></div>
 			<div fxLayout="column">
 				<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
 				  <a md-subheader routerLink="/app/resource/detail/{{item.uuid}}"><h4>{{item.name}}</h4></a>

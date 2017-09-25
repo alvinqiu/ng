@@ -5,9 +5,10 @@
 		
 		<md-card class="menu" fxFlex="100">
 			<div fxLayout="row" fxLayoutAlign="center center" class="search">
-				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	(click)="handleSearch($event)">
+				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
 				</td-search-box>
 			</div>
+			<md-toolbar>总容量：{{bytesToSize(sumSize.sumSize)}}， 总资料：{{sumSize.count}}套</md-toolbar>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start" >
 				<div fxFlex="60px" class="menu-brand">学段:</div>
@@ -86,7 +87,7 @@
         		</td-search-box> -->
         		<button md-button (click)="openDialog({})" fxFlex="120px">上传资源</button>
         		<button md-button (click)="ascending()"><md-icon>arrow_upward</md-icon>资源评分由低到高</button>
-				<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由低到高</button>
+				<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由高到低</button>
 			</div>
 			<!-- <div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="end start">

@@ -10,8 +10,11 @@ const ResourceRoutes: Route[] = [
 	{ path: '', redirectTo: 'index',  pathMatch: 'full'},
 	{ path: 'index', component: IndexComponent },
 	// { path: 'search/:id', component: SearchComponent},
-	{ path: 'search', component: SearchComponent },
-	{ path: 'detail/:id', component: DetailComponent },
+	{ path: 'search', children: [
+		{path: '', component: SearchComponent},
+		{path: ':id', component: SearchComponent}
+	]},
+	{ path: 'detail', component: DetailComponent },
 	{ path: 'mine', component: MineComponent},
 	{ path: 'review', component: ReviewComponent},
 	// { path: 'error', component: ErrorComponent }
