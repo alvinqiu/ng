@@ -1,6 +1,5 @@
-<div class="container" fxLayout="row" fxLayoutAlign="center start">
-  <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
-    <md-card fxFlexFill>
+  <div class="container fall-in-x">
+    <md-card>
       <md-toolbar>
         <button md-button  routerLink="/app/assets/index"><md-icon>reply</md-icon>返回资产列表</button>
         <button md-button (click)="openConfirm(3)">申请报废</button>
@@ -45,6 +44,5 @@
       <span td-paging-bar-label>每页:</span>
       {{pagingBar.range}} <span>of {{pagingBar.total}}</span>
     </td-paging-bar>
-  </div>
 
-</div>
+  </div>

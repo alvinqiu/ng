@@ -49,14 +49,19 @@ export class IndexComponent implements OnInit {
   schoolId: number = 0;
   userRole: any;
   disableFunc: boolean = false;
+  isSuperAdminRole: boolean = false;
 
   constructor(
     public dialog: MdDialog,
     private _service: ApiService
   ) { }
+
   change(event: IPageChangeEvent): void {
-    this.event = event;
+    this.page = event.page;
+    this.pageSize = event.pageSize;
+    this.ngOnInit();
   }
+
   openDialog(condition: any): void {
     let dialogRef = null;
     switch (condition.func) {
@@ -195,6 +200,8 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this._service.getBasicHttp("/user/profile", res => {
       this.userRole = res;
+
+      if (this.userRole.user.roleId === 1) { this.isSuperAdminRole = true; }
 
       if (this.schoolId !== 0 && this.userRole.user.roleId === 1 && this.userRole.user.schoolId !== this.schoolId) {
         this.disableFunc = true;
