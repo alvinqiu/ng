@@ -14,7 +14,7 @@ const ResourceRoutes: Route[] = [
 		{path: '', component: SearchComponent},
 		{path: ':id', component: SearchComponent}
 	]},
-	{ path: 'detail', component: DetailComponent },
+	{ path: 'detail/:id', component: DetailComponent },
 	{ path: 'mine', component: MineComponent},
 	{ path: 'review', component: ReviewComponent},
 	// { path: 'error', component: ErrorComponent }

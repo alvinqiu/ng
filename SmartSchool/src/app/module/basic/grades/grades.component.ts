@@ -50,7 +50,7 @@ export class GradesComponent implements OnInit {
           
       }
     },
-    { name: 'gradeLevel', label: '入学年', format: v => v? `${new Date(v).getFullYear()}级`:''},
+    // { name: 'gradeLevel', label: '入学年', format: v => v? `${new Date(v).getFullYear()}级`:''},
     { name: 'managerName', label: '年级负责人' },
     { name: 'status', label: '状态' , format: v => v && v == 1 ? '结业':'在读'},
     { name: 'schoolName', label: '学校' },

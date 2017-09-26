@@ -13,7 +13,7 @@
 					{{ item.viewValue }}
 				</md-option>
 			</md-select>
-		    <md-select placeholder="年级属性" fxFlex="50" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
+		    <md-select placeholder="年级属性" fxFlex="100" [(ngModel)]="grade.gradeAttr" name="gradeAttr" [disabled]="status == 'check'">
 				<md-option *ngFor="let item of propertylist" [value]="item.value">
 					{{ item.viewValue }}
 				</md-option>
