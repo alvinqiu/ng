@@ -12,7 +12,7 @@
       </md-toolbar>
 
       <md-toolbar *ngIf="isSuperAdminRole">
-        <md-select placeholder="学校列表" fxFlex="50" [(ngModel)]="schoolId" name="schoolId" (change)="schoolChange()">
+        <md-select placeholder="学校列表" fxFlex="20" [(ngModel)]="schoolId" name="schoolId" (change)="schoolChange()">
           <md-option *ngFor="let item of schoolList" [value]="item.id">
             {{ item.name }}
           </md-option>
