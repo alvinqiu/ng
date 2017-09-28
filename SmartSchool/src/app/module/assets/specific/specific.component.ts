@@ -38,6 +38,13 @@ export class SpecificComponent implements OnInit {
   searchInputTerm: string;
   sortBy: string = 'name';
   sortOrder: TdDataTableSortingOrder = TdDataTableSortingOrder.Descending;
+  stockStatus: number = 2;
+  stockStatusList = [
+    { "id": 2, "name": "全部" },
+    { "id": 0, "name": "出库" },
+    { "id": 1, "name": "入库" }
+  ];
+
   constructor(
     private aRoute: ActivatedRoute,
     public dialog: MdDialog,
@@ -95,7 +102,7 @@ export class SpecificComponent implements OnInit {
     this.aRoute.params.subscribe((params) => {
       if (params.tabIndex == '0') {
         // 使用中二级资产
-        this._service.getAssetsHttp(`/equipment-specific-valid/${params.equipmentGeneralId}/${this.page}/${this.pageSize}`,
+        this._service.getAssetsHttp(`/equipment-specific-valid/${params.equipmentGeneralId}/${this.stockStatus}/${this.page}/${this.pageSize}`,
           (response: any) => {
             this.basicData = response.entries;
             this.totalCount = response.totalCount;
@@ -206,6 +213,10 @@ export class SpecificComponent implements OnInit {
       title: '提示',
       closeButton: '关闭',
     });
+  }
+
+  stockStatusChange() {
+    this.ngOnInit();
   }
 
 }

@@ -6,6 +6,14 @@
         <button md-button (click)="openConfirm(0)">删除</button>
         <button md-button (click)="openDialog({func:'create'})">生成条形码</button>
       </md-toolbar>
+
+      <md-toolbar *ngIf="tabIndex == '0'">
+        <md-select placeholder="状态过滤" fxFlex="10" [(ngModel)]="stockStatus" name="stockStatus" (change)="stockStatusChange()">
+          <md-option *ngFor="let item of stockStatusList" [value]="item.id">
+            {{ item.name }}
+          </md-option>
+        </md-select>
+      </md-toolbar>
     </md-card>
 
     <td-data-table
