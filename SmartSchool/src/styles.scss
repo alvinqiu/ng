@@ -618,3 +618,50 @@ td-expansion-panel {
   }
 }  
 // global animate
+
+
+
+// 2017-09-29 new style
+.menus-container {
+	background: url(/static/img/首页bg.png) no-repeat;
+	max-height: none !important;
+}
+
+// icon image
+.card-container {
+	&>md-card>a>span>div:first-child {
+		width: 90px;
+		height: 90px;
+	}
+	
+	.account_circle {
+		background: url(/static/img/index/个人信息.png) no-repeat;
+	}
+	.people {
+		background: url(/static/img/index/教职工信息.png) no-repeat;
+	}
+	.school {
+		background: url(/static/img/index/学校管理.png) no-repeat;
+	}
+	.lock {
+		background: url(/static/img/index/密码管理.png) no-repeat;
+	}
+	.cloud {
+		background: url(/static/img/index/资源中心.png) no-repeat;
+	}
+	.my_location {
+		background: url(/static/img/index/我的资源.png) no-repeat;
+	}
+	.rate_review {
+		background: url(/static/img/index/资源审核.png) no-repeat;
+	}
+	.library_books {
+		background: url(/static/img/index/数字证书.png) no-repeat;
+	}
+	.web_asset {
+		background: url(/static/img/index/资产管理.png) no-repeat;
+	}
+	.date_range {
+		background: url(/static/img/index/走班排课.png) no-repeat;
+	}
+}

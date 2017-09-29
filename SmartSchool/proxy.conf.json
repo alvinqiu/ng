@@ -27,5 +27,14 @@
   "/preObsolete": {
     "target": "http://www.marchezvousblue.cn",
     "secure": false
+  },
+  "/static/img": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
+  },
+  "/static/img/index": {
+    "target": "http://www.marchezvousblue.cn",
+    "secure": false
   }
+
 }

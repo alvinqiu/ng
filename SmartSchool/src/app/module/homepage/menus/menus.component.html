@@ -15,14 +15,14 @@
 				<div class="card-container" fxFlex="20"  *ngFor="let child of item.children; let o = index;">
 					<md-card *ngIf="!child.key">
 						<a md-button routerLink="{{child.url}}">
-							<md-icon>{{child.icon}}</md-icon>
+							<div class="{{child.icon}}"></div>
 							<span>{{child.name}}</span>
 							<div>{{child.description}}</div>
 						</a>
 					</md-card>
 					<md-card *ngIf="child.key">
 						<a md-button href="{{child.url}}">
-							<md-icon>{{child.icon}}</md-icon>
+							<div class="{{child.icon}}"></div>
 							<span>{{child.name}}</span>
 							<div>{{child.description}}</div>
 						</a>
@@ -43,7 +43,7 @@
 				<div class="card-container" fxFlex="20">
 					<md-card >
 						<a md-button href="{{link}}">
-							<md-icon>date_range</md-icon>
+							<div class="date_range"></div>
 							<span>走班排课</span>
 						</a>
 					</md-card>
