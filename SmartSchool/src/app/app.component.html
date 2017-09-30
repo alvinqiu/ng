@@ -1,6 +1,5 @@
-
-<md-toolbar id="app-nav" class="slide-in-down hide" color="primary" fxLayout="row" fxLayoutAlign="space-between center" >
-	<div fxFlex="1 1 auto">
+<md-toolbar id="app-nav" class="slide-in-down hide" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+	<!-- <div fxFlex="1 1 auto">
 		<button md-button [mdMenuTriggerFor]="topMenu">SmartSchool智慧校园系统<md-icon>more_vert</md-icon></button>
 		<md-menu #topMenu="mdMenu">
 		  <a md-menu-item routerLink="/app/homepage/">
@@ -16,8 +15,18 @@
 		    <span>资源模块</span>
 		  </a>
 		</md-menu>
+	</div> -->
+	<div fxFlex="1 1 auto">
+		<span class="title">SmartSchool智慧校园系统</span>
+
+		<div class="item">
+			<button md-button routerLink="/app/homepage/">菜单首页</button>
+			<button md-button routerLink="/app/basic/">基础模块</button>
+			<button md-button routerLink="/app/resource/">资源模块</button>
+		</div>
 	</div>
-	
+
 	<button md-button (click)="logout()">退出登录</button>
+
 </md-toolbar>
 <router-outlet></router-outlet>
