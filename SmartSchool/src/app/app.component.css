@@ -4,5 +4,38 @@
 
 .item{
 	display: inline-block;
-	margin-left: 50px;
+	margin-left: 350px;
+}
+
+
+.title {
+	display: inline-block;
+	position: absolute;
+	left: 96px;
+    bottom: 0px;
+    padding: 8px 0px 0px 0px;
+    background-color: white;
+    color: rgba(0,151,136,1);
+    font-size: 14px;
+}
+.title:after {
+	content: '';
+	background: white;
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	left: -48px;
+	top: 0px;
+	border-top-left-radius: 100%;
+	
+}
+.title:before {
+	content: '';
+	background: white;
+	position: absolute;
+	right: -48px;
+	width: 48px;
+	height: 48px;
+	top: 0px;
+	border-top-right-radius: 100%;
 }

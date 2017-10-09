@@ -43,7 +43,7 @@ export class IndexComponent implements OnInit {
   pageSize: number = 20;
   page: number = 1;
   totalCount: number = 0;
-  sort = "asc";
+  sort = "";
   constructor(
   	private _service: ApiService,
     public dialog: MdDialog,

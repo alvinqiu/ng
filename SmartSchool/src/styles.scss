@@ -352,13 +352,17 @@ td-expansion-panel {
 
 .menus-container-container {
 	.mat-button-wrapper {
+		&>div:first-child {
+			margin-top: 12px;
+			width: 75px;
+			height: 75px;
+		}
 		display: flex;
 	    flex-direction: column;
 	    justify-content: center;
 	    text-align: center;
 	    align-items: center;
 	    md-icon {
-	    	margin-left: 16px;
 	    	height: 48px;
     		width: 48px;
     		font-size: 48px
@@ -629,57 +633,73 @@ td-expansion-panel {
 
 // icon image
 .card-container {
-	&>md-card>a>span>div:first-child {
-		width: 90px;
-		height: 90px;
-	}
+	// &>md-card>a>span>div:first-child {
+	// 	width: 90px;
+	// 	height: 90px;
+	// }
 	
 	.account_circle {
 		background: url(/static/img/index/个人信息.png) no-repeat;
+		background-size: contain;
 	}
 	.people {
 		background: url(/static/img/index/教职工信息.png) no-repeat;
+		background-size: contain;
 	}
 	.school {
 		background: url(/static/img/index/学校管理.png) no-repeat;
+		background-size: contain;
 	}
 	.lock {
 		background: url(/static/img/index/密码管理.png) no-repeat;
+		background-size: contain;
 	}
 	.cloud {
 		background: url(/static/img/index/资源中心.png) no-repeat;
+		background-size: contain;
 	}
 	.my_location {
 		background: url(/static/img/index/我的资源.png) no-repeat;
+		background-size: contain;
 	}
 	.rate_review {
 		background: url(/static/img/index/资源审核.png) no-repeat;
+		background-size: contain;
 	}
 	.library_books {
 		background: url(/static/img/index/数字证书.png) no-repeat;
+		background-size: contain;
 	}
 	.web_asset {
 		background: url(/static/img/index/资产管理.png) no-repeat;
+		background-size: contain;
 	}
 	.date_range {
 		background: url(/static/img/index/走班排课.png) no-repeat;
+		background-size: contain;
 	}
 	.account_balance {
 		background: url(/static/img/index/教学楼管理.png) no-repeat;
+		background-size: contain;
 	}
 	.local_post_office {
 		background: url(/static/img/index/教师办公室管理.png) no-repeat;
+		background-size: contain;
 	}
 	.subject {
 		background: url(/static/img/index/学科管理.png) no-repeat;
+		background-size: contain;
 	}
 	.golf_course {
 		background: url(/static/img/index/课程管理.png) no-repeat;
+		background-size: contain;
 	}
 	.grade {
 		background: url(/static/img/index/年级管理.png) no-repeat;
+		background-size: contain;
 	}
 	.class {
 		background: url(/static/img/index/班级管理.png) no-repeat;
+		background-size: contain;
 	}
 }

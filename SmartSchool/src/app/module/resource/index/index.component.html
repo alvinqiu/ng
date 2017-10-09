@@ -83,8 +83,8 @@
 
 				<div>
 	        		<button md-button (click)="openDialog({})" fxFlex="120px">上传资源</button>
-	        		<button md-button (click)="ascending()"><md-icon>arrow_upward</md-icon>资源评分由高到低</button>
-					<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由低到高</button>
+	        		<button md-button (click)="ascending()"><md-icon>arrow_upward</md-icon>资源评分由低到高</button>
+					<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由高到低</button>
 				</div>
 			</div>
 			<!-- <div class="divider"></div>
@@ -108,7 +108,7 @@
 					  	<i [class]="iconfont(item.format)" md-list-icon></i>
 					    <p md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</p>
 					    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
-					    <p md-line><bar-rating [(rate)]="item.hots" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating></p>
+					    <p md-line><bar-rating [(rate)]="item.averComment" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating></p>
 					    <div class="slot">
 					    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}" ><i class="material-icons primary">view_module</i>资源预览</a>
 

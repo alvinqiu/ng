@@ -15,6 +15,6 @@ export class GradeClass {
 		this.gradeDesc = "";
 		this.gradeLevel = new Date();
 		this.gradeAttr = 0;
-		this.status = 0;
+		this.status = 2;
 	}
 }
