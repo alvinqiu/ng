@@ -161,19 +161,21 @@ export const Menu = [{
 		"name": "资源审核",
 		"url": "/app/resource/review",
 		"description": ""
-	},{
+	}, {
 		"icon": "library_books",
 		"name": "数字图书",
-		"key":"true",
+		"key": "true",
 		"url": "http://10.1.1.62:9000",
 		"description": ""
-	},{
-		"icon": "radio",
-		"name": "视频资源",
-		"key":"true",
-		"url": "ftp://10.1.1.62",
-		"description": ""
-	}]
+	}
+		//,{
+		// 	"icon": "radio",
+		// 	"name": "视频资源",
+		// 	"key":"true",
+		// 	"url": "ftp://10.1.1.62",
+		// 	"description": ""
+		// }
+	]
 }, {
 	"id": "resource",
 	"name": "资产管理",
@@ -213,19 +215,21 @@ export const MenuTeacher = [{
 		"name": "我的资源",
 		"url": "/app/resource/mine",
 		"description": ""
-	},{
+	}, {
 		"icon": "library_books",
 		"name": "数字图书",
-		"key":"true",
+		"key": "true",
 		"url": "http://10.1.1.62:9000",
 		"description": ""
-	},{
-		"icon": "radio",
-		"name": "视频资源",
-		"key":"true",
-		"url": "ftp://10.1.1.62",
-		"description": ""
-	}]
+	}
+		// , {
+		// 	"icon": "radio",
+		// 	"name": "视频资源",
+		// 	"key": "true",
+		// 	"url": "ftp://10.1.1.62",
+		// 	"description": ""
+		// }
+	]
 }]
 
 export const MenuSuper = [{
@@ -270,19 +274,21 @@ export const MenuSuper = [{
 		"name": "资源审核",
 		"url": "/app/resource/review",
 		"description": ""
-	},{
+	}, {
 		"icon": "library_books",
 		"name": "数字图书",
-		"key":"true",
+		"key": "true",
 		"url": "http://10.1.1.62:9000",
 		"description": ""
-	},{
-		"icon": "radio",
-		"name": "视频资源",
-		"key":"true",
-		"url": "ftp://10.1.1.62",
-		"description": ""
-	}]
+	}
+		// , {
+		// 	"icon": "radio",
+		// 	"name": "视频资源",
+		// 	"key": "true",
+		// 	"url": "ftp://10.1.1.62",
+		// 	"description": ""
+		// }
+	]
 }, {
 	"id": "resource",
 	"name": "资产管理",
