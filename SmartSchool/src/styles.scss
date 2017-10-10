@@ -79,6 +79,13 @@ app-homepage {
 		}
 	}
 }
+
+// toolbar
+.mat-toolbar.mat-primary {
+	background: linear-gradient(rgba(4,172,125,1), rgba(27,124,90,1));
+}
+// toolbar
+
 // divider
 .divider {
 	width: 100%;
@@ -295,11 +302,11 @@ td-expansion-panel {
 			}
 		}
 	}
-	.search {
-		md-form-field {
-			width: 100%;
-		}
-	} 
+	// .search {
+	// 	md-form-field {
+	// 		width: 100%;
+	// 	}
+	// } 
 	.sort {
 		md-icon {
 			font-size: 16px;

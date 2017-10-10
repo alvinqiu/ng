@@ -4,16 +4,21 @@
 		
 		
 		<md-card class="menu" fxFlex="100">
-			<div fxLayout="row" fxLayoutAlign="center center" class="search">
-				<td-search-box fxFlex="500px" backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
-				</td-search-box>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between start" >
+				<div>
+					<div fxFlex="60px" class="menu-brand">学段:</div>
+					<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()" fxFlex="grow" class="height">
+					  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.period; let o = index;">{{child.name}}</md-radio-button>
+					</md-radio-group>
+				</div>
+				<div>
+					<div fxLayout="row" fxLayoutAlign="center center" class="search">
+					<td-search-box backIcon="search" placeholder="搜索" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (clear)="searchInputTerm = ''" (search)="handleSearch($event)"	>
+					</td-search-box>
+				</div>
+				
 			</div>
-			<div class="divider"></div>
-			<div fxLayout="row" fxLayoutAlign="start start" >
-				<div fxFlex="60px" class="menu-brand">学段:</div>
-				<md-radio-group fxLayoutWrap [(ngModel)]="searchMenu.period" name="period" (change)="periodChange()" fxFlex="grow" class="height">
-				  <md-radio-button class="radio-select" value="{{child.id}}" *ngFor="let child of showMenu.period; let o = index;">{{child.name}}</md-radio-button>
-				</md-radio-group>
 			</div>
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start">
@@ -76,21 +81,17 @@
 				</md-button-toggle-group>
 			</div>
 			<div class="divider"></div>
-			<div fxLayout="row" fxLayoutAlign="space-between center" class="sort">
+			<div fxLayout="row" fxLayoutAlign="end center" class="sort">
 				<div>
 					总容量：{{bytesToSize(sumSize.sumSize)}}， 总资料：{{sumSize.count}}套
 				</div>
-
+<!-- 
 				<div>
 	        		<button md-button (click)="openDialog({})" fxFlex="120px">上传资源</button>
 	        		<button md-button (click)="ascending()"><md-icon>arrow_upward</md-icon>资源评分由低到高</button>
 					<button md-button (click)="descending()"><md-icon>arrow_downward</md-icon>资源评分由高到低</button>
-				</div>
+				</div> -->
 			</div>
-			<!-- <div class="divider"></div>
-			<div fxLayout="row" fxLayoutAlign="end start">
-				
-			</div> -->
 			<div class="divider"></div>
 			<div fxLayout="row" fxLayoutAlign="start start">
 				<tree-root [nodes]="nodesTree" fxFlex="275px" class="tree-menu">
@@ -102,6 +103,15 @@
 					</ng-template>
 				</tree-root>
 				<div fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap>
+					<div fxFlex="100" fxLayoutAlign="space-between start">
+						
+						<div>
+							<button md-button (click)="ascending()" class="sort"><md-icon>arrow_upward</md-icon>资源评分由低到高</button>
+							<button md-button (click)="descending()" class="sort"><md-icon>arrow_downward</md-icon>资源评分由高到低</button>
+						</div>
+						<button md-button (click)="openDialog({})" fxFlex="120px">上传资源</button>
+					</div>
+					<div class="divider"></div>
 					<md-list fxFlex="100" *ngFor="let item of resourcelist; let o = index;">
 					  <a md-subheader routerLink="/app/resource/detail/{{item.uuid}}"><h4>{{item.name}}</h4></a>
 					  <md-list-item>
@@ -109,7 +119,7 @@
 					    <p md-line>{{item.stagesName}} | {{item.gradeName}} | {{item.versionName}} | {{item.courseName}}</p>
 					    <p md-line>收藏人数：{{item.favorites}} | 下载次数：{{item.downloads}} |上传时间：{{item.updateTime | date: 'yyyy-MM-dd'}} </p>
 					    <p md-line><bar-rating [(rate)]="item.averComment" [max]="5" [theme]="'default'" [readOnly]="true"></bar-rating></p>
-					    <div class="slot">
+					    <div class="slot" fxLayoutAlign="start start">
 					    	<a md-button routerLink="/app/resource/detail/{{item.uuid}}" ><i class="material-icons primary">view_module</i>资源预览</a>
 
 					    	<button md-button (click)="download(item.uuid)" class="primary"><i class="material-icons blue">file_download</i>资源下载</button>
