@@ -26,6 +26,17 @@ md-toolbar {
 	font-size: 16px;
 }
 
+md-list a {
+	text-decoration: none;
+	color: rgba(74,74,74,1);
+}
+
+md-list p {
+	margin-top: 4px!important;
+	color: rgba(155,155,155,1);
+}
+
+
 
 
 

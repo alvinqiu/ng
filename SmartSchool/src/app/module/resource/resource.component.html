@@ -1,9 +1,11 @@
 
 <router-outlet>
+	<md-toolbar>
 	<span  *ngFor="let child of Menu.children; let o = index;">
-		<a md-button *ngIf="!child.key" routerLink="{{child.url}}">{{child.name}}</a>
+		<a md-button *ngIf="!child.key" routerLink="{{child.url}}" routerLinkActive="active">{{child.name}}</a>
 		<a md-button *ngIf="child.key" href="{{child.url}}">{{child.name}}</a>
 	</span>
+	</md-toolbar>
   	<div class="divider"></div>
 </router-outlet>
 

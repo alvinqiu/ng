@@ -1,0 +1,17 @@
+md-toolbar {
+	margin-top: 8px;
+}
+
+
+md-toolbar a {
+	border-radius: 24px;
+	background-color: white;
+	color: rgba(74,74,74,1);
+	margin-right: 24px;
+}
+
+
+md-toolbar a.active {
+	background-color: rgba(0,151,136,1);
+	color: white;
+}

@@ -176,7 +176,13 @@ td-message {
 }
 
 //msg
-
+//
+md-toolbar.mat-toolbar {
+	min-height: 50px;
+}
+md-toolbar-row.mat-toolbar-row{
+	height: 50px;
+}
 
 //modal
 .mat-dialog-container {
@@ -234,6 +240,9 @@ td-expansion-panel {
 //expansion-panel
 
 // stars
+.mat-line .br.br-default {
+	margin: 0px 0!important;
+}
 .br-default .br-unit {
 	height: auto;
 }
