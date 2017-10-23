@@ -36,7 +36,11 @@ md-list p {
 	color: rgba(155,155,155,1);
 }
 
-
+.statistics {
+	color: red;
+	font-weight: bold;
+	font-size: 17px;
+}
 
 
 
